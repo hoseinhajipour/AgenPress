@@ -36,7 +36,7 @@ export async function uploadFile( file ) {
 	return json.data;
 }
 
-export async function sendElementorMessage( message, conversationId, context, attachments = [] ) {
+export async function sendElementorMessage( message, conversationId, context, attachments = [], signal ) {
 	const res = await apiFetch( {
 		url: restUrl( 'chat/elementor' ),
 		method: 'POST',
@@ -46,11 +46,12 @@ export async function sendElementorMessage( message, conversationId, context, at
 			context,
 			attachments,
 		},
+		signal,
 	} );
 	return res.data;
 }
 
-export async function confirmElementorAction( pendingId, conversationId ) {
+export async function confirmElementorAction( pendingId, conversationId, signal ) {
 	const res = await apiFetch( {
 		url: restUrl( 'chat/elementor/confirm' ),
 		method: 'POST',
@@ -58,6 +59,7 @@ export async function confirmElementorAction( pendingId, conversationId ) {
 			pending_id: pendingId,
 			conversation_id: conversationId,
 		},
+		signal,
 	} );
 	return res.data;
 }

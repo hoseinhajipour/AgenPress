@@ -33,10 +33,26 @@ export default function Panel() {
 	const [ pendingAction, setPendingAction ] = useState( null );
 	const [ attachments, setAttachments ] = useState( [] );
 	const messagesEndRef = useRef( null );
+	const abortControllerRef = useRef( null );
 
 	const suggestions = data.suggestions || [];
 
+	const isAbortError = ( err ) => err?.name === 'AbortError';
+
+	const cancelRequest = () => {
+		if ( abortControllerRef.current ) {
+			abortControllerRef.current.abort();
+			abortControllerRef.current = null;
+		}
+	};
+
+	const handleStop = () => {
+		cancelRequest();
+	};
+
 	useEffect( () => subscribeToSelection( setSelection ), [] );
+
+	useEffect( () => () => cancelRequest(), [] );
 
 	useEffect( () => {
 		messagesEndRef.current?.scrollIntoView( { behavior: 'smooth' } );
@@ -75,6 +91,10 @@ export default function Panel() {
 			},
 		] );
 		setInput( '' );
+		cancelRequest();
+		const controller = new AbortController();
+		abortControllerRef.current = controller;
+
 		setLoading( true );
 		setError( null );
 		setPendingAction( null );
@@ -84,7 +104,8 @@ export default function Panel() {
 				text.trim(),
 				conversationId,
 				context,
-				attachments
+				attachments,
+				controller.signal
 			);
 			handleResponse( response );
 			setAttachments( [] );
@@ -95,8 +116,14 @@ export default function Panel() {
 
 			await refreshElementorDocument( context.post_id );
 		} catch ( err ) {
+			if ( isAbortError( err ) ) {
+				return;
+			}
 			setError( err.message || __( 'Failed to send message.', 'agenpress' ) );
 		} finally {
+			if ( abortControllerRef.current === controller ) {
+				abortControllerRef.current = null;
+			}
 			setLoading( false );
 		}
 	};
@@ -106,17 +133,31 @@ export default function Panel() {
 			return;
 		}
 
+		cancelRequest();
+		const controller = new AbortController();
+		abortControllerRef.current = controller;
+
 		setLoading( true );
 		setError( null );
 
 		try {
-			const response = await confirmElementorAction( pendingAction.id, conversationId );
+			const response = await confirmElementorAction(
+				pendingAction.id,
+				conversationId,
+				controller.signal
+			);
 			setPendingAction( null );
 			handleResponse( response );
 			await refreshElementorDocument( getElementorSelection().post_id );
 		} catch ( err ) {
+			if ( isAbortError( err ) ) {
+				return;
+			}
 			setError( err.message );
 		} finally {
+			if ( abortControllerRef.current === controller ) {
+				abortControllerRef.current = null;
+			}
 			setLoading( false );
 		}
 	};
@@ -177,7 +218,18 @@ export default function Panel() {
 						</div>
 					) }
 
-					{ loading && <div className="ap-el-loading">{ __( 'Thinking...', 'agenpress' ) }</div> }
+					{ loading && (
+						<div className="ap-el-loading-row">
+							<span className="ap-el-loading">{ __( 'Thinking...', 'agenpress' ) }</span>
+							<button
+								type="button"
+								className="ap-el-stop"
+								onClick={ handleStop }
+							>
+								{ __( 'Stop', 'agenpress' ) }
+							</button>
+						</div>
+					) }
 
 					{ attachments.length > 0 && (
 						<div className="ap-el-attachments">

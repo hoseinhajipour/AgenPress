@@ -21,12 +21,12 @@ class CreateWidgetTool extends ElementorAbstractTool {
 	public function get_schema(): array {
 		return array(
 			'name'        => 'create_widget',
-			'description' => 'Add a new Elementor widget (heading, text-editor, image, button, icon, spacer, etc.) inside a column',
+			'description' => 'Add a new Elementor widget inside a column or container. Use column_id from create_section response, or a column/container id from get_page_structure. Widget types: heading, text-editor, icon-box (icon + title + text), image, button, divider, spacer.',
 			'parameters'  => array(
 				'type'       => 'object',
 				'properties' => array(
 					'post_id'          => array( 'type' => 'integer', 'description' => 'Page or post ID' ),
-					'column_id'        => array( 'type' => 'string', 'description' => 'Parent column element ID' ),
+					'column_id'        => array( 'type' => 'string', 'description' => 'Parent column or container ID (use column_id from create_section, not the section id)' ),
 					'widget_type'      => array( 'type' => 'string', 'description' => 'Widget type slug, e.g. heading, text-editor, image, button' ),
 					'settings'         => array(
 						'type'        => 'object',

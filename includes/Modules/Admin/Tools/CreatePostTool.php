@@ -8,6 +8,7 @@
 namespace AgenPress\Modules\Admin\Tools;
 
 use AgenPress\Agents\AbstractTool;
+use AgenPress\Content\FaqSchema;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -34,6 +35,18 @@ class CreatePostTool extends AbstractTool {
 					'categories' => array( 'type' => 'array', 'items' => array( 'type' => 'string' ), 'description' => 'Category names' ),
 					'tags'       => array( 'type' => 'array', 'items' => array( 'type' => 'string' ), 'description' => 'Tag names' ),
 					'excerpt'    => array( 'type' => 'string', 'description' => 'Post excerpt' ),
+					'faq'        => array(
+						'type'        => 'array',
+						'description' => 'FAQ items for JSON-LD schema (saved to meta, not visible in content). Each item: {question, answer}.',
+						'items'       => array(
+							'type'       => 'object',
+							'properties' => array(
+								'question' => array( 'type' => 'string' ),
+								'answer'   => array( 'type' => 'string' ),
+							),
+							'required'   => array( 'question', 'answer' ),
+						),
+					),
 				),
 				'required'   => array( 'title', 'content' ),
 			),
@@ -56,10 +69,15 @@ class CreatePostTool extends AbstractTool {
 			$status = 'draft';
 		}
 
+		$content   = (string) ( $args['content'] ?? '' );
+		$faq_items = ! empty( $args['faq'] ) && is_array( $args['faq'] ) ? $args['faq'] : null;
+		$schema    = FaqSchema::resolve( $content, $faq_items );
+		$content   = FaqSchema::strip_from_content( $content );
+
 		$post_id = wp_insert_post(
 			array(
 				'post_title'   => sanitize_text_field( $args['title'] ?? '' ),
-				'post_content' => wp_kses_post( $args['content'] ?? '' ),
+				'post_content' => wp_kses_post( $content ),
 				'post_excerpt' => sanitize_textarea_field( $args['excerpt'] ?? '' ),
 				'post_type'    => $post_type,
 				'post_status'  => $status,
@@ -92,6 +110,10 @@ class CreatePostTool extends AbstractTool {
 
 		if ( 'post' === $post_type && ! empty( $args['tags'] ) && is_array( $args['tags'] ) ) {
 			wp_set_post_tags( $post_id, array_map( 'sanitize_text_field', $args['tags'] ) );
+		}
+
+		if ( $post_id && $schema ) {
+			FaqSchema::save_to_post( (int) $post_id, $schema );
 		}
 
 		$post = get_post( $post_id );

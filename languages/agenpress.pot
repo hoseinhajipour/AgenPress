@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AgenPress\n"
 "Report-Msgid-Bugs-To: https://github.com/agenpress/agenpress\n"
-"POT-Creation-Date: 2026-06-10 12:22+0000\n"
+"POT-Creation-Date: 2026-06-10 17:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,11 +56,11 @@ msgstr ""
 msgid "A team member will follow up with you."
 msgstr ""
 
-#: includes/AI/OpenAICompatibleProvider.php:294
+#: includes/AI/OpenAICompatibleProvider.php:304
 msgid "AI API error (HTTP %1$d): %2$s"
 msgstr ""
 
-#: includes/AI/OpenAICompatibleProvider.php:302
+#: includes/AI/OpenAICompatibleProvider.php:312
 msgid "AI API error (HTTP %d)."
 msgstr ""
 
@@ -115,7 +115,7 @@ msgstr ""
 msgid "AI did not return image_prompt for this section."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:1066
+#: includes/Agents/TaskStepExecutor.php:1002
 msgid "AI image API returned no image URL or data."
 msgstr ""
 
@@ -131,11 +131,11 @@ msgstr ""
 msgid "AI response preview:"
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:1250
+#: includes/Agents/TaskStepExecutor.php:1186
 msgid "AI response was not text or JSON."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:155
+#: includes/Agents/TaskStepExecutor.php:156
 msgid "AI step completed."
 msgstr ""
 
@@ -180,7 +180,7 @@ msgstr ""
 msgid "Add Memory Entry"
 msgstr ""
 
-#: includes/Modules/Elementor/ElementorModule.php:135
+#: includes/Modules/Elementor/ElementorModule.php:136
 msgid "Add a CTA button below the hero"
 msgstr ""
 
@@ -188,7 +188,7 @@ msgstr ""
 msgid "Add at least one step before saving."
 msgstr ""
 
-#: includes/Modules/Elementor/ElementorModule.php:136
+#: includes/Modules/Elementor/ElementorModule.php:137
 msgid "Add my uploaded image to this page"
 msgstr ""
 
@@ -213,7 +213,7 @@ msgstr ""
 msgid "AgenPress"
 msgstr ""
 
-#: src/elementor/Panel.jsx:127
+#: src/elementor/Panel.jsx:168
 msgid "AgenPress AI"
 msgstr ""
 
@@ -245,7 +245,7 @@ msgid "An AI provider API key is required."
 msgstr ""
 
 #: includes/Modules/Admin/Tools/GenerateImageTool.php:76
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:75
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:82
 #: includes/REST/ImageController.php:134
 msgid "An image-capable AI provider API key is required (OpenAI, GapGPT, or Custom)."
 msgstr ""
@@ -292,7 +292,7 @@ msgstr ""
 msgid "Article"
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:271
+#: includes/Agents/TaskStepExecutor.php:272
 msgid "Article JSON was parsed but sections/content are empty."
 msgstr ""
 
@@ -312,11 +312,11 @@ msgstr ""
 msgid "Ask AgenPress anything..."
 msgstr ""
 
-#: src/elementor/Panel.jsx:205
+#: src/elementor/Panel.jsx:257
 msgid "Ask about this page..."
 msgstr ""
 
-#: src/elementor/Panel.jsx:142
+#: src/elementor/Panel.jsx:183
 msgid "Ask me to design sections, update widgets, or generate images for your page."
 msgstr ""
 
@@ -333,7 +333,7 @@ msgstr ""
 msgid "Attachment not found."
 msgstr ""
 
-#: includes/Agents/AgentEngine.php:455
+#: includes/Agents/AgentEngine.php:479
 msgid "Audience: WordPress admin — the user is a shop employee or manager, NOT a storefront customer."
 msgstr ""
 
@@ -487,7 +487,7 @@ msgid "Configured"
 msgstr ""
 
 #: src/admin/components/ConfirmationModal.jsx:43
-#: src/elementor/Panel.jsx:159
+#: src/elementor/Panel.jsx:200
 msgid "Confirm"
 msgstr ""
 
@@ -559,15 +559,19 @@ msgstr ""
 msgid "Copy your key now — it won't be shown again:"
 msgstr ""
 
-#: includes/Media/AiImageSideloader.php:137
+#: includes/Media/AiImageSideloader.php:187
 msgid "Could not create temporary file for image."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:1280
+#: includes/Media/AiImageSideloader.php:299
+msgid "Could not create upload directory: %s"
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:1216
 msgid "Could not decode JSON from AI response."
 msgstr ""
 
-#: includes/Media/AiImageSideloader.php:147
+#: includes/Media/AiImageSideloader.php:197
 msgid "Could not write temporary image file."
 msgstr ""
 
@@ -603,7 +607,7 @@ msgstr ""
 msgid "Create an AI hero image for a landing page"
 msgstr ""
 
-#: includes/Modules/Admin/Tools/CreatePostTool.php:103
+#: includes/Modules/Admin/Tools/CreatePostTool.php:125
 msgid "Created \"%s\" successfully."
 msgstr ""
 
@@ -645,7 +649,7 @@ msgstr ""
 msgid "Customer"
 msgstr ""
 
-#: includes/Agents/AgentEngine.php:503
+#: includes/Agents/AgentEngine.php:527
 msgid "Customer conversation history:"
 msgstr ""
 
@@ -825,7 +829,7 @@ msgstr ""
 msgid "Elementor page not found."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:1032
+#: includes/Agents/TaskStepExecutor.php:968
 msgid "Empty image prompt."
 msgstr ""
 
@@ -842,7 +846,7 @@ msgstr ""
 msgid "Error:"
 msgstr ""
 
-#: includes/Agents/AgentEngine.php:546
+#: includes/Agents/AgentEngine.php:570
 msgid "Error: %s"
 msgstr ""
 
@@ -904,7 +908,7 @@ msgstr ""
 msgid "Failed"
 msgstr ""
 
-#: includes/Media/AiImageSideloader.php:196
+#: includes/Media/AiImageSideloader.php:368
 msgid "Failed to add image to media library: %s"
 msgstr ""
 
@@ -956,7 +960,7 @@ msgstr ""
 msgid "Failed to delete product."
 msgstr ""
 
-#: includes/Media/AiImageSideloader.php:89
+#: includes/Media/AiImageSideloader.php:93
 msgid "Failed to download image: %s"
 msgstr ""
 
@@ -968,7 +972,7 @@ msgstr ""
 msgid "Failed to load analytics."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:241
+#: includes/Agents/TaskStepExecutor.php:242
 msgid "Failed to parse generated article: %s"
 msgstr ""
 
@@ -976,15 +980,15 @@ msgstr ""
 msgid "Failed to run workflow."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:1081
+#: includes/Agents/TaskStepExecutor.php:1017
 #: includes/Modules/Admin/Tools/GenerateImageTool.php:97
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:96
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:104
 #: includes/REST/ImageController.php:171
 msgid "Failed to save image to media library."
 msgstr ""
 
 #: src/admin/components/ChatInterface.jsx:115
-#: src/elementor/Panel.jsx:98
+#: src/elementor/Panel.jsx:122
 #: src/frontend/Widget.jsx:116
 msgid "Failed to send message."
 msgstr ""
@@ -998,7 +1002,7 @@ msgstr ""
 msgid "Failed to start conversation."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:313
+#: includes/Agents/TaskStepExecutor.php:314
 #: src/admin/components/TaskDetails.jsx:96
 msgid "Featured image"
 msgstr ""
@@ -1039,7 +1043,7 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-#: includes/Modules/Elementor/ElementorModule.php:133
+#: includes/Modules/Elementor/ElementorModule.php:134
 msgid "Find all heading widgets on this page"
 msgstr ""
 
@@ -1160,7 +1164,7 @@ msgstr ""
 msgid "Generate post ideas"
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:267
+#: includes/Agents/TaskStepExecutor.php:268
 msgid "Generated article has no usable content (sections in response: %d)."
 msgstr ""
 
@@ -1213,12 +1217,12 @@ msgstr ""
 msgid "How can I help you manage your site?"
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:1020
+#: includes/Agents/TaskStepExecutor.php:956
 #: includes/Media/AttachmentContext.php:52
 msgid "Image"
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:1048
+#: includes/Agents/TaskStepExecutor.php:984
 msgid "Image AI provider is not configured. Add an API key for OpenAI, GapGPT, or Custom in AgenPress settings."
 msgstr ""
 
@@ -1230,36 +1234,48 @@ msgstr ""
 msgid "Image Model"
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:1098
+#: includes/Agents/TaskStepExecutor.php:1034
 msgid "Image created for %1$s (attachment #%2$d)."
+msgstr ""
+
+#: includes/Media/AiImageSideloader.php:130
+msgid "Image download failed with HTTP status %d."
+msgstr ""
+
+#: includes/Media/AiImageSideloader.php:141
+msgid "Image download failed: temporary file missing."
 msgstr ""
 
 #: includes/Agents/TaskStepExecutor.php:871
 msgid "Image errors: %d (see task logs)"
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:1036
-#: includes/Agents/TaskStepExecutor.php:1052
-#: includes/Agents/TaskStepExecutor.php:1070
-#: includes/Agents/TaskStepExecutor.php:1085
-#: includes/Agents/TaskStepExecutor.php:1109
+#: includes/Agents/TaskStepExecutor.php:972
+#: includes/Agents/TaskStepExecutor.php:988
+#: includes/Agents/TaskStepExecutor.php:1006
+#: includes/Agents/TaskStepExecutor.php:1021
+#: includes/Agents/TaskStepExecutor.php:1045
 msgid "Image failed for %1$s: %2$s"
 msgstr ""
 
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:123
-msgid "Image generated and applied to element."
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:154
+msgid "Image generated and added to the page as an image widget."
 msgstr ""
 
 #: includes/Modules/Admin/Tools/GenerateImageTool.php:188
 msgid "Image generated and saved to media library (ID: %d)."
 msgstr ""
 
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:124
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:158
+msgid "Image generated and saved to media library, but could not be added to the page: %s"
+msgstr ""
+
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:162
 msgid "Image generated and saved to media library."
 msgstr ""
 
 #: includes/Modules/Admin/Tools/GenerateImageTool.php:91
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:90
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:97
 #: includes/REST/ImageController.php:159
 #: src/post-editor/FeaturedImageModal.jsx:49
 #: src/post-editor/InsertImageModal.jsx:49
@@ -1275,7 +1291,7 @@ msgid "Image generation:"
 msgstr ""
 
 #: includes/Modules/Admin/Tools/GenerateImageTool.php:70
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:69
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:76
 #: includes/REST/ImageController.php:116
 msgid "Image prompt is required."
 msgstr ""
@@ -1284,7 +1300,7 @@ msgstr ""
 msgid "Image skipped for %s: missing image_prompt from AI."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:322
+#: includes/Agents/TaskStepExecutor.php:323
 msgid "Image was generated but could not be set as featured image."
 msgstr ""
 
@@ -1334,7 +1350,7 @@ msgstr ""
 msgid "Invalid JSON in tool arguments."
 msgstr ""
 
-#: includes/Media/AiImageSideloader.php:128
+#: includes/Media/AiImageSideloader.php:178
 msgid "Invalid base64 image data from AI."
 msgstr ""
 
@@ -1556,7 +1572,7 @@ msgid "No active sales chats."
 msgstr ""
 
 #: includes/Modules/Elementor/ElementorDocumentService.php:445
-msgid "No column found to insert the image widget."
+msgid "No column or container found to insert the image widget."
 msgstr ""
 
 #: src/elementor/Panel.jsx:13
@@ -1681,6 +1697,10 @@ msgstr ""
 msgid "Output key"
 msgstr ""
 
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:150
+msgid "Page ID was missing; image saved to media library only."
+msgstr ""
+
 #: includes/Modules/Elementor/Tools/GetPageStructureTool.php:52
 msgid "Page structure retrieved."
 msgstr ""
@@ -1709,7 +1729,7 @@ msgstr ""
 msgid "Pending action not found or expired."
 msgstr ""
 
-#: includes/Modules/Admin/Tools/CreatePostTool.php:45
+#: includes/Modules/Admin/Tools/CreatePostTool.php:58
 #: includes/Modules/Admin/Tools/CreateProductTool.php:48
 #: includes/Modules/Admin/Tools/CreateTermTool.php:41
 #: includes/Modules/Admin/Tools/DeletePostTool.php:58
@@ -1723,7 +1743,7 @@ msgstr ""
 #: includes/Modules/Admin/Tools/ListTermsTool.php:40
 #: includes/Modules/Admin/Tools/ListUsersTool.php:40
 #: includes/Modules/Admin/Tools/UpdateMediaTool.php:42
-#: includes/Modules/Admin/Tools/UpdatePostTool.php:45
+#: includes/Modules/Admin/Tools/UpdatePostTool.php:58
 #: includes/Modules/Admin/Tools/UpdateProductTool.php:49
 #: includes/Modules/Elementor/Tools/AddAttachedImageTool.php:41
 #: includes/Modules/Elementor/Tools/AddAttachedImageTool.php:48
@@ -1733,7 +1753,7 @@ msgstr ""
 #: includes/Modules/Elementor/Tools/CreateWidgetTool.php:50
 #: includes/Modules/Elementor/Tools/DeleteElementTool.php:53
 #: includes/Modules/Elementor/Tools/DuplicateElementTool.php:41
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:63
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:70
 #: includes/Modules/Elementor/Tools/GetElementTool.php:41
 #: includes/Modules/Elementor/Tools/GetPageStructureTool.php:40
 #: includes/Modules/Elementor/Tools/ListElementorPagesTool.php:36
@@ -1760,7 +1780,7 @@ msgstr ""
 msgid "Plan titles → create 3 SEO drafts → summary."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:149
+#: includes/Agents/TaskStepExecutor.php:150
 msgid "Planned %d article titles."
 msgstr ""
 
@@ -1800,7 +1820,7 @@ msgstr ""
 
 #: includes/Modules/Admin/Tools/DeletePostTool.php:65
 #: includes/Modules/Admin/Tools/GetPostTool.php:45
-#: includes/Modules/Admin/Tools/UpdatePostTool.php:52
+#: includes/Modules/Admin/Tools/UpdatePostTool.php:65
 #: includes/REST/ImageController.php:201
 msgid "Post not found."
 msgstr ""
@@ -1809,7 +1829,7 @@ msgstr ""
 msgid "Post retrieved."
 msgstr ""
 
-#: includes/Modules/Admin/Tools/UpdatePostTool.php:95
+#: includes/Modules/Admin/Tools/UpdatePostTool.php:124
 msgid "Post updated successfully."
 msgstr ""
 
@@ -1956,7 +1976,7 @@ msgstr ""
 msgid "Resolved"
 msgstr ""
 
-#: includes/Agents/AgentEngine.php:469
+#: includes/Agents/AgentEngine.php:493
 msgid "Respond with internal sales analytics and operational insights. Do not pitch products to this user."
 msgstr ""
 
@@ -2122,7 +2142,7 @@ msgstr ""
 msgid "Selected text"
 msgstr ""
 
-#: src/elementor/Panel.jsx:134
+#: src/elementor/Panel.jsx:175
 msgid "Selection:"
 msgstr ""
 
@@ -2135,7 +2155,7 @@ msgid "Semantic search..."
 msgstr ""
 
 #: src/admin/components/ChatInterface.jsx:302
-#: src/elementor/Panel.jsx:213
+#: src/elementor/Panel.jsx:265
 #: src/frontend/Widget.jsx:257
 msgid "Send"
 msgstr ""
@@ -2162,7 +2182,7 @@ msgstr ""
 msgid "Show active discount codes"
 msgstr ""
 
-#: includes/Modules/Elementor/ElementorModule.php:132
+#: includes/Modules/Elementor/ElementorModule.php:133
 msgid "Show me the structure of this page"
 msgstr ""
 
@@ -2183,7 +2203,7 @@ msgstr ""
 msgid "Site info retrieved."
 msgstr ""
 
-#: includes/Agents/AgentEngine.php:460
+#: includes/Agents/AgentEngine.php:484
 msgid "Staff member: %s"
 msgstr ""
 
@@ -2220,6 +2240,10 @@ msgstr ""
 #: src/admin/pages/Workflows.jsx:411
 #: src/admin/pages/Workflows.jsx:683
 msgid "Steps"
+msgstr ""
+
+#: src/elementor/Panel.jsx:229
+msgid "Stop"
 msgstr ""
 
 #: src/admin/pages/Memory.jsx:242
@@ -2277,7 +2301,7 @@ msgid "Talk to a human"
 msgstr ""
 
 #: includes/Modules/Elementor/ElementorDocumentService.php:348
-msgid "Target column not found."
+msgid "Target column or container not found."
 msgstr ""
 
 #: includes/Agents/TaskRunner.php:207
@@ -2320,7 +2344,7 @@ msgstr ""
 msgid "Task not found."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:201
+#: includes/Agents/TaskStepExecutor.php:202
 msgid "Task plan created."
 msgstr ""
 
@@ -2374,7 +2398,7 @@ msgid "Things the assistant must do when helping customers."
 msgstr ""
 
 #: src/admin/components/ChatInterface.jsx:272
-#: src/elementor/Panel.jsx:180
+#: src/elementor/Panel.jsx:223
 msgid "Thinking..."
 msgstr ""
 
@@ -2489,8 +2513,12 @@ msgstr ""
 msgid "Unassigned"
 msgstr ""
 
-#: includes/Modules/Elementor/ElementorModule.php:134
+#: includes/Modules/Elementor/ElementorModule.php:135
 msgid "Update the selected widget heading text"
+msgstr ""
+
+#: includes/Media/AiImageSideloader.php:307
+msgid "Upload directory is not writable: %s"
 msgstr ""
 
 #: src/shared/FileUpload.jsx:25
@@ -2554,14 +2582,6 @@ msgstr ""
 msgid "Warm and conversational"
 msgstr ""
 
-#: includes/Media/AiImageSideloader.php:215
-msgid "WebP conversion failed: PHP GD extension does not support WebP on this server."
-msgstr ""
-
-#: includes/Media/AiImageSideloader.php:218
-msgid "WebP conversion failed: image could not be processed."
-msgstr ""
-
 #: src/frontend/Widget.jsx:186
 msgid "Welcome back! I remember our previous chats. How can I help you today?"
 msgstr ""
@@ -2620,7 +2640,7 @@ msgstr ""
 msgid "Widget type is required."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:1131
+#: includes/Agents/TaskStepExecutor.php:1067
 #: includes/Modules/Admin/Tools/CreateProductTool.php:44
 #: includes/Modules/Admin/Tools/DeleteProductTool.php:61
 #: includes/Modules/Admin/Tools/GetProductTool.php:39
@@ -2704,7 +2724,7 @@ msgstr ""
 msgid "e.g. brand_name, primary_color"
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:242
+#: includes/Agents/TaskStepExecutor.php:243
 msgid "invalid JSON structure"
 msgstr ""
 

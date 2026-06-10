@@ -21,7 +21,7 @@ class CreateSectionTool extends ElementorAbstractTool {
 	public function get_schema(): array {
 		return array(
 			'name'        => 'create_section',
-			'description' => 'Create a new Elementor section on a page. Use brand colors from site memory in settings when possible.',
+			'description' => 'Create a new Elementor section or container on a page. Returns column_id — always use that column_id (not element_id) when calling create_widget next.',
 			'parameters'  => array(
 				'type'       => 'object',
 				'properties' => array(
@@ -57,6 +57,8 @@ class CreateSectionTool extends ElementorAbstractTool {
 			array(
 				'post_id'    => $post_id,
 				'element_id' => $result['element_id'],
+				'column_id'  => $result['column_id'] ?? null,
+				'layout'     => $result['layout'] ?? null,
 			),
 			$result['message']
 		);

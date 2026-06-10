@@ -388,6 +388,9 @@
             "Could not create temporary file for image.": [
                 "Could not create temporary file for image."
             ],
+            "Could not create upload directory: %s": [
+                "Could not create upload directory: %s"
+            ],
             "Could not decode JSON from AI response.": [
                 "Could not decode JSON from AI response."
             ],
@@ -853,17 +856,26 @@
             "Image created for %1$s (attachment #%2$d).": [
                 "Image created for %1$s (attachment #%2$d)."
             ],
+            "Image download failed with HTTP status %d.": [
+                "Image download failed with HTTP status %d."
+            ],
+            "Image download failed: temporary file missing.": [
+                "Image download failed: temporary file missing."
+            ],
             "Image errors: %d (see task logs)": [
                 "Image errors: %d (see task logs)"
             ],
             "Image failed for %1$s: %2$s": [
                 "Image failed for %1$s: %2$s"
             ],
-            "Image generated and applied to element.": [
-                "تصویر تولید و به عنصر اعمال شد."
+            "Image generated and added to the page as an image widget.": [
+                "Image generated and added to the page as an image widget."
             ],
             "Image generated and saved to media library (ID: %d).": [
                 "Image generated and saved to media library (ID: %d)."
+            ],
+            "Image generated and saved to media library, but could not be added to the page: %s": [
+                "Image generated and saved to media library, but could not be added to the page: %s"
             ],
             "Image generated and saved to media library.": [
                 "تصویر تولید و در کتابخانه رسانه ذخیره شد."
@@ -1075,8 +1087,8 @@
             "No active sales chats.": [
                 "چت فروش فعالی وجود ندارد."
             ],
-            "No column found to insert the image widget.": [
-                "No column found to insert the image widget."
+            "No column or container found to insert the image widget.": [
+                "No column or container found to insert the image widget."
             ],
             "No element selected": [
                 "هیچ عنصری انتخاب نشده"
@@ -1167,6 +1179,9 @@
             ],
             "Output key": [
                 "Output key"
+            ],
+            "Page ID was missing; image saved to media library only.": [
+                "Page ID was missing; image saved to media library only."
             ],
             "Page structure retrieved.": [
                 "ساختار صفحه دریافت شد."
@@ -1528,6 +1543,9 @@
             "Steps": [
                 "مراحل"
             ],
+            "Stop": [
+                "Stop"
+            ],
             "Store brand info, design rules, SEO keywords...": [
                 "اطلاعات برند، قوانین طراحی، کلمات کلیدی سئو... را ذخیره کنید"
             ],
@@ -1567,8 +1585,8 @@
             "Talk to a human": [
                 "صحبت با یک انسان"
             ],
-            "Target column not found.": [
-                "Target column not found."
+            "Target column or container not found.": [
+                "Target column or container not found."
             ],
             "Task \"%s\" completed successfully.": [
                 "وظیفه \"%s\" با موفقیت تکمیل شد."
@@ -1723,6 +1741,9 @@
             "Update the selected widget heading text": [
                 "متن عنوان ابزارک انتخاب‌شده را به‌روز کن"
             ],
+            "Upload directory is not writable: %s": [
+                "Upload directory is not writable: %s"
+            ],
             "Upload failed.": [
                 "آپلود ناموفق بود."
             ],
@@ -1767,12 +1788,6 @@
             ],
             "Warm and conversational": [
                 "گرم و گفتگومحور"
-            ],
-            "WebP conversion failed: PHP GD extension does not support WebP on this server.": [
-                "WebP conversion failed: PHP GD extension does not support WebP on this server."
-            ],
-            "WebP conversion failed: image could not be processed.": [
-                "WebP conversion failed: image could not be processed."
             ],
             "Welcome back! I remember our previous chats. How can I help you today?": [
                 "خوش برگشتی! مکالمات قبلی‌مان را به خاطر دارم. امروز چطور می‌توانم کمکت کنم؟"

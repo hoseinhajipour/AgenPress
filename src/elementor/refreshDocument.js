@@ -1,27 +1,16 @@
 /**
- * Reload Elementor editor state from the server after AI changes.
- *
- * Elementor's preview uses in-memory document data. reloadPreview() alone
- * does not pick up changes saved via the REST API until we re-import elements.
+ * Fetch the latest Elementor element tree from the server.
  *
  * @param {number} postId Document post ID.
- * @return {Promise<void>}
+ * @return {Promise<Array|null>}
  */
-export async function refreshElementorDocument( postId ) {
-	const elementor = window.elementor;
-	const $e = window.$e;
-	const resolvedId = postId || elementor?.config?.document?.id;
-
-	if ( ! resolvedId || ! elementor ) {
-		return;
-	}
-
+async function fetchDocumentElements( postId ) {
 	const data = window.agenpressElementorData || {};
-	let elements = null;
+	const base = String( data.apiUrl || '' ).replace( /\/$/, '' );
 
 	try {
 		const response = await fetch(
-			`${ String( data.apiUrl || '' ).replace( /\/$/, '' ) }/elementor/documents/${ resolvedId }/elements`,
+			`${ base }/elementor/documents/${ postId }/elements`,
 			{
 				headers: {
 					'X-WP-Nonce': data.nonce || '',
@@ -33,52 +22,118 @@ export async function refreshElementorDocument( postId ) {
 		const json = await response.json();
 
 		if ( json?.success && Array.isArray( json?.data?.elements ) ) {
-			elements = json.data.elements;
+			return json.data.elements;
 		}
 	} catch ( error ) {
 		// Fall through to other strategies.
 	}
 
-	if ( elements && $e?.run ) {
-		try {
-			await $e.run( 'document/elements/import', { elements } );
-			elementor.reloadPreview?.();
-			return;
-		} catch ( error ) {
-			// Try the next strategy.
-		}
+	return null;
+}
+
+/**
+ * Update the open Elementor document in-place (no browser reload).
+ *
+ * @param {number} postId   Document post ID.
+ * @param {Array}  elements Element tree from the server.
+ * @return {Promise<boolean>}
+ */
+async function refreshInPlace( postId, elements ) {
+	const elementor = window.elementor;
+	const $e = window.$e;
+	const document = elementor?.documents?.getCurrent?.();
+
+	if ( ! elementor || ! document || document.id !== postId || ! Array.isArray( elements ) ) {
+		return false;
 	}
 
-	if ( window.elementorCommon?.ajax && $e?.run ) {
-		try {
-			const config = await new Promise( ( resolve, reject ) => {
-				window.elementorCommon.ajax.addRequest( 'get_document_config', {
-					data: { id: resolvedId },
-					success: resolve,
-					error: reject,
-				} );
-			} );
-
-			const configElements = config?.config?.elements;
-
-			if ( Array.isArray( configElements ) ) {
-				await $e.run( 'document/elements/import', { elements: configElements } );
-				elementor.reloadPreview?.();
-				return;
-			}
-		} catch ( error ) {
-			// Try the next strategy.
-		}
+	if ( typeof elementor.createBackboneElementsCollection !== 'function' ) {
+		return false;
 	}
 
-	if ( $e?.run ) {
-		try {
-			await $e.run( 'editor/documents/close', { id: resolvedId, confirm: false } );
-			await $e.run( 'editor/documents/open', { id: resolvedId } );
-			return;
-		} catch ( error ) {
-			// Fall back to preview reload only.
+	try {
+		if ( $e?.run ) {
+			await $e.run( 'document/elements/deselect-all' );
 		}
+
+		document.config.elements = elements;
+
+		if ( elementor.config?.document ) {
+			elementor.config.document.elements = elements;
+		}
+
+		elementor.elements = elementor.createBackboneElementsCollection( elements );
+		elementor.elementsModel = elementor.createBackboneElementsModel( elementor.elements );
+
+		elementor.initPreviewView( document );
+		document.container.view = elementor.getPreviewView();
+		document.container.model.attributes.elements = elementor.elements;
+
+		if ( typeof elementor.reloadPreview === 'function' ) {
+			elementor.reloadPreview();
+		}
+
+		return true;
+	} catch ( error ) {
+		return false;
+	}
+}
+
+/**
+ * Reload the current document via Elementor's switch command.
+ *
+ * @param {number} postId Document post ID.
+ * @return {Promise<boolean>}
+ */
+async function reloadViaDocumentSwitch( postId ) {
+	const elementor = window.elementor;
+	const $e = window.$e;
+
+	if ( ! elementor?.documents?.invalidateCache || ! $e?.run ) {
+		return false;
+	}
+
+	try {
+		elementor.documents.invalidateCache( postId );
+
+		await $e.run( 'editor/documents/switch', {
+			id: postId,
+			mode: 'discard',
+			shouldScroll: false,
+			shouldNavigateToDefaultRoute: false,
+		} );
+
+		return true;
+	} catch ( error ) {
+		return false;
+	}
+}
+
+/**
+ * Reload Elementor editor state from the server after AI changes.
+ *
+ * Elementor keeps document data in memory. After REST API saves, we must
+ * re-import the element tree so new widgets appear without a browser refresh.
+ *
+ * @param {number} postId Document post ID.
+ * @return {Promise<void>}
+ */
+export async function refreshElementorDocument( postId ) {
+	const elementor = window.elementor;
+	const resolvedId = postId || elementor?.config?.document?.id;
+
+	if ( ! resolvedId || ! elementor ) {
+		return;
+	}
+
+	const elements = await fetchDocumentElements( resolvedId );
+
+	if ( elements && await refreshInPlace( resolvedId, elements ) ) {
+		return;
+	}
+
+	if ( await reloadViaDocumentSwitch( resolvedId ) ) {
+		return;
 	}
 
 	elementor.reloadPreview?.();

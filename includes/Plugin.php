@@ -528,11 +528,11 @@ class Plugin {
 	 * @return void
 	 */
 	public function output_seo_article_faq_schema(): void {
-		if ( ! is_singular( 'post' ) ) {
+		if ( ! is_singular( array( 'post', 'page' ) ) ) {
 			return;
 		}
 
-		$schema_json = get_post_meta( get_queried_object_id(), '_agenpress_faq_schema', true );
+		$schema_json = get_post_meta( get_queried_object_id(), \AgenPress\Content\FaqSchema::META_KEY, true );
 
 		if ( ! is_string( $schema_json ) || '' === $schema_json ) {
 			return;

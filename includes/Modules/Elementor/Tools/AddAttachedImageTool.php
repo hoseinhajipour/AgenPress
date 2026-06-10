@@ -21,7 +21,7 @@ class AddAttachedImageTool extends ElementorAbstractTool {
 	public function get_schema(): array {
 		return array(
 			'name'        => 'add_attached_image_to_page',
-			'description' => 'Add a new Elementor image widget to the page using an uploaded media library attachment (from user file upload). Inserts into the selected column/section or the first available column.',
+			'description' => 'Place an uploaded attachment on the page as a raw image widget — no AI design. Use ONLY when the user explicitly wants the file added as-is. For banners, ads, or designed graphics (text in image, layout, icons), use generate_section_image instead.',
 			'parameters'  => array(
 				'type'       => 'object',
 				'properties' => array(

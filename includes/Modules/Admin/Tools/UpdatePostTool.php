@@ -8,6 +8,7 @@
 namespace AgenPress\Modules\Admin\Tools;
 
 use AgenPress\Agents\AbstractTool;
+use AgenPress\Content\FaqSchema;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -34,6 +35,18 @@ class UpdatePostTool extends AbstractTool {
 					'excerpt'    => array( 'type' => 'string', 'description' => 'Post excerpt' ),
 					'categories' => array( 'type' => 'array', 'items' => array( 'type' => 'string' ) ),
 					'tags'       => array( 'type' => 'array', 'items' => array( 'type' => 'string' ) ),
+					'faq'        => array(
+						'type'        => 'array',
+						'description' => 'FAQ items for JSON-LD schema (saved to meta, not visible in content). Each item: {question, answer}.',
+						'items'       => array(
+							'type'       => 'object',
+							'properties' => array(
+								'question' => array( 'type' => 'string' ),
+								'answer'   => array( 'type' => 'string' ),
+							),
+							'required'   => array( 'question', 'answer' ),
+						),
+					),
 				),
 				'required'   => array( 'post_id' ),
 			),
@@ -58,7 +71,23 @@ class UpdatePostTool extends AbstractTool {
 			$update['post_title'] = sanitize_text_field( $args['title'] );
 		}
 		if ( isset( $args['content'] ) ) {
-			$update['post_content'] = wp_kses_post( $args['content'] );
+			$content = (string) $args['content'];
+			$schema  = FaqSchema::resolve(
+				$content,
+				! empty( $args['faq'] ) && is_array( $args['faq'] ) ? $args['faq'] : null
+			);
+
+			$update['post_content'] = wp_kses_post( FaqSchema::strip_from_content( $content ) );
+
+			if ( $schema ) {
+				FaqSchema::save_to_post( $post_id, $schema );
+			}
+		} elseif ( ! empty( $args['faq'] ) && is_array( $args['faq'] ) ) {
+			$schema = FaqSchema::build_from_faq_items( $args['faq'] );
+
+			if ( $schema ) {
+				FaqSchema::save_to_post( $post_id, $schema );
+			}
 		}
 		if ( isset( $args['excerpt'] ) ) {
 			$update['post_excerpt'] = sanitize_textarea_field( $args['excerpt'] );

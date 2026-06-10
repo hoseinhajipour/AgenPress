@@ -9,6 +9,7 @@ namespace AgenPress\Agents;
 
 use AgenPress\AI\ImageSizeRegistry;
 use AgenPress\AI\ProviderFactory;
+use AgenPress\Content\FaqSchema;
 use AgenPress\Media\AiImageSideloader;
 use AgenPress\Memory\ContextBuilder;
 use AgenPress\Modules\ContentPrompts;
@@ -254,7 +255,7 @@ class TaskStepExecutor {
 		$content = $this->assemble_seo_article_content( $article, $options );
 
 		if ( '' === trim( $content ) && ! empty( $article['content'] ) ) {
-			$content = $this->sanitize_seo_article_content( (string) $article['content'] );
+			$content = FaqSchema::strip_from_content( (string) $article['content'] );
 		}
 
 		if ( '' === trim( $content ) ) {
@@ -326,10 +327,9 @@ class TaskStepExecutor {
 		}
 
 		if ( $post_id && ! empty( $options['include_faq'] ) && ! empty( $article['faq'] ) && is_array( $article['faq'] ) ) {
-			$schema = $this->build_faq_schema_array( $article['faq'] );
+			$schema = FaqSchema::build_from_faq_items( $article['faq'] );
 
-			if ( $schema ) {
-				update_post_meta( $post_id, '_agenpress_faq_schema', wp_json_encode( $schema ) );
+			if ( $schema && FaqSchema::save_to_post( $post_id, $schema ) ) {
 				$faq_schema_saved = true;
 			}
 		}
@@ -496,7 +496,7 @@ class TaskStepExecutor {
 				}
 
 				$heading = (string) ( $section['heading'] ?? '' );
-				$content = $this->sanitize_seo_article_content( (string) ( $section['content'] ?? '' ) );
+				$content = FaqSchema::strip_from_content( (string) ( $section['content'] ?? '' ) );
 
 				if ( '' !== $heading ) {
 					$html .= '<h2>' . esc_html( $heading ) . '</h2>';
@@ -526,7 +526,7 @@ class TaskStepExecutor {
 				}
 
 				$question = (string) ( $item['question'] ?? '' );
-				$answer   = $this->sanitize_seo_article_content( (string) ( $item['answer'] ?? '' ) );
+				$answer   = FaqSchema::strip_from_content( (string) ( $item['answer'] ?? '' ) );
 
 				if ( '' === $question ) {
 					continue;
@@ -542,7 +542,7 @@ class TaskStepExecutor {
 
 		if ( ! empty( $options['include_conclusion'] ) && ! empty( $article['conclusion'] ) ) {
 			$html .= '<h2>' . esc_html__( 'Conclusion', 'agenpress' ) . '</h2>';
-			$html .= wp_kses_post( $this->sanitize_seo_article_content( (string) $article['conclusion'] ) );
+			$html .= wp_kses_post( FaqSchema::strip_from_content( (string) $article['conclusion'] ) );
 		}
 
 		if ( ! empty( $options['suggest_services'] ) && ! empty( $article['suggested_services'] ) && is_array( $article['suggested_services'] ) ) {
@@ -942,70 +942,6 @@ class TaskStepExecutor {
 		}
 
 		return $image_logs;
-	}
-
-	/**
-	 * Strip metadata leaks (schema, image prompts, alt lines) from article HTML/text.
-	 *
-	 * @param string $content Raw content.
-	 * @return string
-	 */
-	private function sanitize_seo_article_content( string $content ): string {
-		$content = trim( $content );
-
-		if ( '' === $content ) {
-			return '';
-		}
-
-		$content = preg_replace( '/<script[^>]*type=["\']application\/ld\+json["\'][^>]*>.*?<\/script>/is', '', $content );
-		$content = preg_replace( '/\{\s*"@context"\s*:\s*"https?:\/\/schema\.org"[^}]*(?:\{[^}]*\}[^}]*)*\}/s', '', $content );
-		$content = preg_replace( '/^(?:alt\s*(?:متن|text)?\s*(?:تصویر|image)?|image_prompt)\s*[:：].*$/miu', '', $content );
-		$content = preg_replace( '/^(?:هشتگ(?:‌|ی)?های?\s*پیشنهادی|Suggested hashtags)\s*[:：].*$/miu', '', $content );
-		$content = preg_replace( '/\n{3,}/', "\n\n", $content );
-
-		return trim( $content );
-	}
-
-	/**
-	 * Build FAQPage schema array for post meta / head output.
-	 *
-	 * @param array<int, array<string, string>> $faq_items FAQ items.
-	 * @return array<string, mixed>|null
-	 */
-	private function build_faq_schema_array( array $faq_items ): ?array {
-		$entities = array();
-
-		foreach ( $faq_items as $item ) {
-			if ( ! is_array( $item ) ) {
-				continue;
-			}
-
-			$question = trim( (string) ( $item['question'] ?? '' ) );
-			$answer   = trim( wp_strip_all_tags( (string) ( $item['answer'] ?? '' ) ) );
-
-			if ( '' === $question || '' === $answer ) {
-				continue;
-			}
-
-			$entities[] = array(
-				'@type'          => 'Question',
-				'name'           => $question,
-				'acceptedAnswer' => array(
-					'@type' => 'Answer',
-					'text'  => $answer,
-				),
-			);
-		}
-
-		if ( empty( $entities ) ) {
-			return null;
-		}
-
-		return array(
-			'@context'   => 'https://schema.org',
-			'@type'      => 'FAQPage',
-			'mainEntity' => $entities,
-		);
 	}
 
 	/**

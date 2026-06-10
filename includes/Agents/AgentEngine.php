@@ -10,6 +10,7 @@ namespace AgenPress\Agents;
 use AgenPress\AI\ProviderFactory;
 use AgenPress\Chat\MessageRepository;
 use AgenPress\Media\AttachmentContext;
+use AgenPress\Media\ReferenceImagePreparer;
 use AgenPress\Memory\ContextBuilder;
 use AgenPress\Sales\ProductLinkFixer;
 use AgenPress\Security\AuditLogger;
@@ -25,7 +26,12 @@ class AgentEngine {
 	/**
 	 * Max tool-call follow-up rounds.
 	 */
-	private const MAX_TOOL_ROUNDS = 3;
+	private const MAX_TOOL_ROUNDS = 5;
+
+	/**
+	 * Extra tool rounds for Elementor (multi-step page building).
+	 */
+	private const MAX_TOOL_ROUNDS_ELEMENTOR = 10;
 
 	/**
 	 * Provider factory.
@@ -162,13 +168,15 @@ class AgentEngine {
 		$content       = $response['content'] ?? '';
 		$pending       = array();
 
-		for ( $round = 0; $round < self::MAX_TOOL_ROUNDS && ! empty( $response['tool_calls'] ); $round++ ) {
+		$max_tool_rounds = 'elementor' === $module ? self::MAX_TOOL_ROUNDS_ELEMENTOR : self::MAX_TOOL_ROUNDS;
+
+		for ( $round = 0; $round < $max_tool_rounds && ! empty( $response['tool_calls'] ); $round++ ) {
 			$tool_messages = array();
 			$has_pending   = false;
 
 			foreach ( $response['tool_calls'] as $call ) {
 				$tool_name = $call['name'] ?? '';
-				$tool_args = $call['arguments'] ?? array();
+				$tool_args = $this->merge_tool_context( $module, $tool_name, $call['arguments'] ?? array(), $context );
 
 				if ( $this->tool_registry->requires_confirmation( $tool_name ) ) {
 					$pending_id = $this->pending_actions->create(
@@ -201,6 +209,10 @@ class AgentEngine {
 				);
 
 				$content .= "\n\n**" . $tool_name . ":** " . $result['message'];
+
+				if ( empty( $result['success'] ) ) {
+					$content .= ' [' . __( 'FAILED', 'agenpress' ) . ']';
+				}
 
 				$tool_messages[] = array(
 					'role'         => 'tool',
@@ -414,7 +426,7 @@ class AgentEngine {
 		$lines = array( 'Elementor Editor Context:' );
 
 		if ( ! empty( $context['post_id'] ) ) {
-			$lines[] = sprintf( 'Page ID: %d', (int) $context['post_id'] );
+			$lines[] = sprintf( 'Page ID: %d (always pass this as post_id in tool calls)', (int) $context['post_id'] );
 		}
 
 		if ( ! empty( $context['element_id'] ) ) {
@@ -432,7 +444,7 @@ class AgentEngine {
 		}
 
 		if ( ! empty( $context['attachments'] ) && is_array( $context['attachments'] ) ) {
-			$attachment_block = AttachmentContext::format_context_block( $context['attachments'] );
+			$attachment_block = AttachmentContext::format_context_block( $context['attachments'], 'elementor' );
 
 			if ( '' !== trim( $attachment_block ) ) {
 				$lines[] = '';
@@ -441,6 +453,39 @@ class AgentEngine {
 		}
 
 		return implode( "\n", $lines );
+	}
+
+	/**
+	 * Merge editor runtime context into tool arguments when the model omits them.
+	 *
+	 * @param string               $module    Module slug.
+	 * @param string               $tool_name Tool name.
+	 * @param array<string, mixed> $args      Tool arguments from the model.
+	 * @param array<string, mixed> $context   Runtime context payload.
+	 * @return array<string, mixed>
+	 */
+	private function merge_tool_context( string $module, string $tool_name, array $args, array $context ): array {
+		if ( 'elementor' !== $module || empty( $context ) ) {
+			return $args;
+		}
+
+		if ( empty( $args['post_id'] ) && ! empty( $context['post_id'] ) ) {
+			$args['post_id'] = (int) $context['post_id'];
+		}
+
+		if ( empty( $args['context_element_id'] ) && ! empty( $context['element_id'] ) ) {
+			$args['context_element_id'] = sanitize_text_field( (string) $context['element_id'] );
+		}
+
+		if ( 'generate_section_image' === $tool_name && empty( $args['reference_attachment_id'] ) && ! empty( $context['attachments'] ) && is_array( $context['attachments'] ) ) {
+			$reference_id = ReferenceImagePreparer::first_image_attachment_id( $context['attachments'] );
+
+			if ( $reference_id > 0 ) {
+				$args['reference_attachment_id'] = $reference_id;
+			}
+		}
+
+		return $args;
 	}
 
 	/**

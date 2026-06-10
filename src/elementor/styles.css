@@ -175,8 +175,31 @@
 	font-size: 12px;
 }
 
-.ap-el-loading {
+.ap-el-loading-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
 	padding: 4px 14px 8px;
+}
+
+.ap-el-loading {
 	font-size: 12px;
 	color: #646970;
+}
+
+.ap-el-stop {
+	background: #b32d2e;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	padding: 4px 10px;
+	font-size: 12px;
+	cursor: pointer;
+	white-space: nowrap;
+	flex-shrink: 0;
+}
+
+.ap-el-stop:hover {
+	background: #8a2424;
 }

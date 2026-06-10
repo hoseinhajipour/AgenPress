@@ -124,6 +124,7 @@ class ElementorDocumentService {
 		return array(
 			'post_id'  => $post_id,
 			'title'    => get_the_title( $post_id ),
+			'layout'   => $this->uses_flexbox_container_layout( $post_id ) ? 'container' : 'section',
 			'elements' => array_map(
 				fn( array $element ) => $this->summarize_element( $element, $include_settings ),
 				is_array( $elements ) ? $elements : array()
@@ -160,18 +161,24 @@ class ElementorDocumentService {
 	 * @return array{success: bool, element_id: string|null, message: string}
 	 */
 	public function create_section( int $post_id, array $settings = array(), ?string $after_element_id = null ): array {
+		if ( $this->uses_flexbox_container_layout( $post_id ) ) {
+			return $this->create_container( $post_id, $settings, $after_element_id );
+		}
+
 		$document = $this->get_document( $post_id );
 
 		if ( ! $document ) {
 			return array(
 				'success'    => false,
 				'element_id' => null,
+				'column_id'  => null,
 				'message'    => __( 'Elementor document not found.', 'agenpress' ),
 			);
 		}
 
 		$elements    = $document->get_elements_data();
 		$new_section = $this->build_section( $settings );
+		$column_id   = (string) ( $new_section['elements'][0]['id'] ?? '' );
 
 		if ( $after_element_id ) {
 			$inserted = $this->insert_after( $elements, $after_element_id, $new_section );
@@ -187,8 +194,131 @@ class ElementorDocumentService {
 		return array(
 			'success'    => true,
 			'element_id' => $new_section['id'],
-			'message'    => __( 'Section created.', 'agenpress' ),
+			'column_id'  => $column_id,
+			'layout'     => 'section',
+			'message'    => sprintf(
+				/* translators: 1: section element ID, 2: column element ID */
+				__( 'Section created (id: %1$s). Add widgets using column_id: %2$s.', 'agenpress' ),
+				$new_section['id'],
+				$column_id
+			),
 		);
+	}
+
+	/**
+	 * Create a flexbox container on a page.
+	 *
+	 * @param int                  $post_id          Post ID.
+	 * @param array<string, mixed> $settings         Container settings.
+	 * @param string|null          $after_element_id Insert after this element ID.
+	 * @return array{success: bool, element_id: string|null, column_id: string|null, layout?: string, message: string}
+	 */
+	public function create_container( int $post_id, array $settings = array(), ?string $after_element_id = null ): array {
+		$document = $this->get_document( $post_id );
+
+		if ( ! $document ) {
+			return array(
+				'success'    => false,
+				'element_id' => null,
+				'column_id'  => null,
+				'message'    => __( 'Elementor document not found.', 'agenpress' ),
+			);
+		}
+
+		$elements       = $document->get_elements_data();
+		$new_container  = $this->build_container( $settings );
+		$container_id   = (string) $new_container['id'];
+
+		if ( $after_element_id ) {
+			$inserted = $this->insert_after( $elements, $after_element_id, $new_container );
+			if ( ! $inserted ) {
+				$elements[] = $new_container;
+			}
+		} else {
+			$elements[] = $new_container;
+		}
+
+		$this->save_elements( $document, $elements );
+
+		return array(
+			'success'    => true,
+			'element_id' => $container_id,
+			'column_id'  => $container_id,
+			'layout'     => 'container',
+			'message'    => sprintf(
+				/* translators: %s: container element ID */
+				__( 'Container created (id: %s). Add widgets using this id as column_id.', 'agenpress' ),
+				$container_id
+			),
+		);
+	}
+
+	/**
+	 * Whether the page uses Elementor flexbox containers at the root level.
+	 *
+	 * @param int $post_id Post ID.
+	 * @return bool
+	 */
+	public function uses_flexbox_container_layout( int $post_id ): bool {
+		$document = $this->get_document( $post_id );
+
+		if ( ! $document ) {
+			return false;
+		}
+
+		$elements = $document->get_elements_data();
+
+		if ( ! is_array( $elements ) ) {
+			return false;
+		}
+
+		foreach ( $elements as $element ) {
+			if ( 'container' === ( $element['elType'] ?? '' ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Resolve a section/column/container ID to a widget parent ID.
+	 *
+	 * @param int    $post_id    Post ID.
+	 * @param string $element_id Element ID from structure or create_section.
+	 * @return string|null
+	 */
+	public function resolve_widget_parent_id( int $post_id, string $element_id ): ?string {
+		$document = $this->get_document( $post_id );
+
+		if ( ! $document || '' === $element_id ) {
+			return null;
+		}
+
+		$elements = $document->get_elements_data();
+		$element  = $this->find_element( is_array( $elements ) ? $elements : array(), $element_id );
+
+		if ( ! $element ) {
+			return null;
+		}
+
+		$el_type = (string) ( $element['elType'] ?? '' );
+
+		if ( $this->is_widget_parent_type( $el_type ) ) {
+			return $element_id;
+		}
+
+		if ( 'section' === $el_type ) {
+			foreach ( $element['elements'] ?? array() as $child ) {
+				$child_type = (string) ( $child['elType'] ?? '' );
+
+				if ( $this->is_widget_parent_type( $child_type ) && ! empty( $child['id'] ) ) {
+					return (string) $child['id'];
+				}
+			}
+		}
+
+		return null;
 	}
 
 	/**
@@ -328,6 +458,8 @@ class ElementorDocumentService {
 		array $settings = array(),
 		?string $after_element_id = null
 	): array {
+		$parent_id = $this->resolve_widget_parent_id( $post_id, $column_id ) ?? $column_id;
+
 		$document = $this->get_document( $post_id );
 
 		if ( ! $document ) {
@@ -339,15 +471,21 @@ class ElementorDocumentService {
 		}
 
 		$elements = $document->get_elements_data();
-		$parent   = $this->find_element( $elements, $column_id );
+		$parent   = $this->find_element( $elements, $parent_id );
 
-		if ( ! $parent || 'column' !== ( $parent['elType'] ?? '' ) ) {
+		if ( ! $parent || ! $this->is_widget_parent_type( (string) ( $parent['elType'] ?? '' ) ) ) {
 			return array(
 				'success'    => false,
 				'element_id' => null,
-				'message'    => __( 'Target column not found.', 'agenpress' ),
+				'message'    => sprintf(
+					/* translators: %s: element ID */
+					__( 'Could not find a column or container for widgets (id: %s). Use column_id from create_section or get_page_structure.', 'agenpress' ),
+					$column_id
+				),
 			);
 		}
+
+		$column_id = $parent_id;
 
 		$widget_type = sanitize_key( $widget_type );
 
@@ -442,7 +580,7 @@ class ElementorDocumentService {
 			return array(
 				'success'    => false,
 				'element_id' => null,
-				'message'    => __( 'No column found to insert the image widget.', 'agenpress' ),
+				'message'    => __( 'No column or container found to insert the image widget.', 'agenpress' ),
 			);
 		}
 
@@ -511,7 +649,7 @@ class ElementorDocumentService {
 		if ( $column_id ) {
 			$column = $this->find_element( $elements, sanitize_text_field( $column_id ) );
 
-			if ( $column && 'column' === ( $column['elType'] ?? '' ) ) {
+			if ( $column && $this->is_widget_parent_type( (string) ( $column['elType'] ?? '' ) ) ) {
 				return (string) $column['id'];
 			}
 		}
@@ -644,6 +782,41 @@ class ElementorDocumentService {
 					'isInner'  => false,
 				),
 			),
+		);
+	}
+
+	/**
+	 * Build a flexbox container element.
+	 *
+	 * @param array<string, mixed> $settings Container settings.
+	 * @return array<string, mixed>
+	 */
+	private function build_container( array $settings ): array {
+		$defaults = array(
+			'content_width'  => 'boxed',
+			'flex_direction' => 'column',
+			'flex_gap'       => array(
+				'unit'   => 'px',
+				'size'   => 20,
+				'column' => '20',
+				'row'    => '20',
+			),
+			'padding'        => array(
+				'unit'       => 'px',
+				'top'        => '40',
+				'right'      => '20',
+				'bottom'     => '40',
+				'left'       => '20',
+				'isLinked'   => false,
+			),
+		);
+
+		return array(
+			'id'       => $this->generate_id(),
+			'elType'   => 'container',
+			'isInner'  => false,
+			'settings' => array_merge( $defaults, $settings ),
+			'elements' => array(),
 		);
 	}
 
@@ -782,7 +955,7 @@ class ElementorDocumentService {
 	 */
 	private function find_first_column_id( array $elements ): ?string {
 		foreach ( $elements as $element ) {
-			if ( 'column' === ( $element['elType'] ?? '' ) && ! empty( $element['id'] ) ) {
+			if ( $this->is_widget_parent_type( (string) ( $element['elType'] ?? '' ) ) && ! empty( $element['id'] ) ) {
 				return (string) $element['id'];
 			}
 
@@ -796,6 +969,16 @@ class ElementorDocumentService {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Whether an element type can contain widgets directly.
+	 *
+	 * @param string $el_type Element type.
+	 * @return bool
+	 */
+	private function is_widget_parent_type( string $el_type ): bool {
+		return in_array( $el_type, array( 'column', 'container' ), true );
 	}
 
 	/**
@@ -821,16 +1004,18 @@ class ElementorDocumentService {
 		foreach ( $elements as $element ) {
 			$id      = (string) ( $element['id'] ?? '' );
 			$el_type = (string) ( $element['elType'] ?? '' );
-			$column  = 'column' === $el_type ? $id : $parent_column_id;
+			$column  = $this->is_widget_parent_type( $el_type ) ? $id : $parent_column_id;
 
 			if ( $id === $target_element_id ) {
-				if ( 'column' === $el_type ) {
+				if ( $this->is_widget_parent_type( $el_type ) ) {
 					return $id;
 				}
 
 				if ( 'section' === $el_type ) {
 					foreach ( $element['elements'] ?? array() as $child ) {
-						if ( 'column' === ( $child['elType'] ?? '' ) && ! empty( $child['id'] ) ) {
+						$child_type = (string) ( $child['elType'] ?? '' );
+
+						if ( $this->is_widget_parent_type( $child_type ) && ! empty( $child['id'] ) ) {
 							return (string) $child['id'];
 						}
 					}

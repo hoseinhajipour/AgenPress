@@ -124,6 +124,27 @@ abstract class OpenAICompatibleProvider implements ProviderInterface {
 			throw new \RuntimeException( $this->get_not_configured_message() );
 		}
 
+		$reference_path = (string) ( $options['reference_path'] ?? '' );
+		$model          = $options['model'] ?? $this->settings->get_default_image_model();
+
+		if ( '' !== $reference_path && file_exists( $reference_path ) ) {
+			if ( $this->model_supports_reference_images( $model ) ) {
+				try {
+					return $this->generate_image_edit( $prompt, $reference_path, $options );
+				} catch ( \RuntimeException $e ) {
+					if ( $this->model_requires_reference_upload( $model ) ) {
+						throw $e;
+					}
+				}
+			}
+
+			$prompt = sprintf(
+				/* translators: %s: original image prompt */
+				__( 'Using the attached reference photo as visual inspiration (preserve the subject appearance and placement described below), create one complete banner image: %s', 'agenpress' ),
+				$prompt
+			);
+		}
+
 		$model = $options['model'] ?? $this->settings->get_default_image_model();
 		$size  = ImageSizeRegistry::resolve_size_for_model(
 			(string) ( $options['size'] ?? '' ),
@@ -131,16 +152,26 @@ abstract class OpenAICompatibleProvider implements ProviderInterface {
 		);
 
 		$params = array(
-			'model'  => $model,
-			'prompt' => $prompt,
-			'n'      => 1,
+			'model'           => $model,
+			'prompt'          => $prompt,
+			'n'               => 1,
+			'response_format' => 'b64_json',
 		);
 
 		if ( '' !== $size ) {
 			$params['size'] = $size;
 		}
 
-		$data = $this->request( 'images/generations', $params );
+		try {
+			$data = $this->request( 'images/generations', $params );
+		} catch ( \RuntimeException $e ) {
+			if ( false === stripos( $e->getMessage(), 'response_format' ) ) {
+				throw $e;
+			}
+
+			unset( $params['response_format'] );
+			$data = $this->request( 'images/generations', $params );
+		}
 
 		$item = $data['data'][0] ?? array();
 
@@ -257,6 +288,164 @@ abstract class OpenAICompatibleProvider implements ProviderInterface {
 
 		if ( $code >= 400 ) {
 			throw new \RuntimeException( $this->extract_api_error_message( $code, $data, $response ) );
+		}
+
+		return is_array( $data ) ? $data : array();
+	}
+
+	/**
+	 * Generate or edit an image using a reference photo (images/edits API).
+	 *
+	 * @param string               $prompt         Image prompt.
+	 * @param string               $reference_path Local PNG path.
+	 * @param array<string, mixed> $options        Options.
+	 * @return array{url: string, b64_json: string, revised_prompt: string}
+	 */
+	private function generate_image_edit( string $prompt, string $reference_path, array $options ): array {
+		$model = $options['model'] ?? $this->settings->get_default_image_model();
+		$size  = ImageSizeRegistry::resolve_size_for_model(
+			(string) ( $options['size'] ?? '' ),
+			$model
+		);
+
+		$file_field = str_starts_with( $model, 'gpt-image-' ) ? 'image[]' : 'image';
+
+		$fields = array(
+			'model'           => $model,
+			'prompt'          => $prompt,
+			'n'               => '1',
+			'response_format' => 'b64_json',
+		);
+
+		if ( '' !== $size ) {
+			$fields['size'] = $size;
+		}
+
+		$files = array(
+			$file_field => $reference_path,
+		);
+
+		try {
+			$data = $this->request_multipart( 'images/edits', $fields, $files );
+		} catch ( \RuntimeException $e ) {
+			unset( $fields['response_format'] );
+
+			try {
+				$data = $this->request_multipart( 'images/edits', $fields, $files );
+			} catch ( \RuntimeException $inner ) {
+				if ( str_starts_with( $model, 'gpt-image-' ) ) {
+					throw $inner;
+				}
+
+				unset( $fields['size'] );
+				$fields['model'] = 'dall-e-2';
+				$fields['size']  = '1024x1024';
+				$data            = $this->request_multipart(
+					'images/edits',
+					$fields,
+					array(
+						'image' => $reference_path,
+					)
+				);
+			}
+		}
+
+		$item = $data['data'][0] ?? array();
+
+		if ( empty( $item['url'] ) && empty( $item['b64_json'] ) ) {
+			throw new \RuntimeException( __( 'Reference image edit failed.', 'agenpress' ) );
+		}
+
+		return array(
+			'url'            => $item['url'] ?? '',
+			'b64_json'       => $item['b64_json'] ?? '',
+			'revised_prompt' => $item['revised_prompt'] ?? $prompt,
+		);
+	}
+
+	/**
+	 * Whether a model accepts reference photos via the images/edits endpoint.
+	 *
+	 * @param string $model Image model ID.
+	 * @return bool
+	 */
+	private function model_supports_reference_images( string $model ): bool {
+		return str_starts_with( $model, 'gpt-image-' ) || 'dall-e-2' === $model;
+	}
+
+	/**
+	 * Whether reference upload failure should abort instead of falling back to text-only generation.
+	 *
+	 * @param string $model Image model ID.
+	 * @return bool
+	 */
+	private function model_requires_reference_upload( string $model ): bool {
+		return str_starts_with( $model, 'gpt-image-' );
+	}
+
+	/**
+	 * POST multipart/form-data to the API (for image edits).
+	 *
+	 * @param string                            $endpoint API path.
+	 * @param array<string, string>             $fields   Form fields.
+	 * @param array<string, string>             $files    File field => path map.
+	 * @return array<string, mixed>
+	 */
+	private function request_multipart( string $endpoint, array $fields, array $files ): array {
+		$boundary = 'agenpress-' . wp_generate_password( 16, false, false );
+		$body     = '';
+
+		foreach ( $fields as $name => $value ) {
+			$body .= '--' . $boundary . "\r\n";
+			$body .= 'Content-Disposition: form-data; name="' . $name . "\"\r\n\r\n";
+			$body .= $value . "\r\n";
+		}
+
+		foreach ( $files as $name => $file_path ) {
+			if ( ! is_readable( $file_path ) ) {
+				continue;
+			}
+
+			$filename = basename( $file_path );
+			$checked  = wp_check_filetype( $file_path );
+			$mime     = $checked['type'] ?: 'image/png';
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+			$content  = file_get_contents( $file_path );
+
+			if ( false === $content ) {
+				throw new \RuntimeException( __( 'Could not read reference image file.', 'agenpress' ) );
+			}
+
+			$body .= '--' . $boundary . "\r\n";
+			$body .= 'Content-Disposition: form-data; name="' . $name . '"; filename="' . $filename . "\"\r\n";
+			$body .= 'Content-Type: ' . $mime . "\r\n\r\n";
+			$body .= $content . "\r\n";
+		}
+
+		$body .= '--' . $boundary . "--\r\n";
+
+		$base_url = trailingslashit( $this->get_base_url() );
+		$response = wp_remote_post(
+			$base_url . $endpoint,
+			array(
+				'timeout' => 180,
+				'headers' => array(
+					'Authorization' => 'Bearer ' . $this->settings->get_api_key( $this->get_key_slug() ),
+					'Content-Type'  => 'multipart/form-data; boundary=' . $boundary,
+				),
+				'body'    => $body,
+			)
+		);
+
+		if ( is_wp_error( $response ) ) {
+			throw new \RuntimeException( $response->get_error_message() );
+		}
+
+		$code = wp_remote_retrieve_response_code( $response );
+		$data = json_decode( wp_remote_retrieve_body( $response ), true );
+
+		if ( $code >= 400 ) {
+			throw new \RuntimeException( $this->extract_api_error_message( $code, is_array( $data ) ? $data : array(), $response ) );
 		}
 
 		return is_array( $data ) ? $data : array();

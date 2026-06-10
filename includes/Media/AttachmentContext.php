@@ -21,7 +21,7 @@ class AttachmentContext {
 	 * @param array<int, mixed>    $attachments Attachment payloads.
 	 * @return string
 	 */
-	public static function append_to_content( string $content, array $attachments ): string {
+	public static function append_to_content( string $content, array $attachments, string $module = 'admin' ): string {
 		if ( empty( $attachments ) ) {
 			return $content;
 		}
@@ -76,23 +76,51 @@ class AttachmentContext {
 			return $content;
 		}
 
-		$lines[] = __( 'For Elementor: call add_attached_image_to_page with attachment_id to insert an image widget. Use apply_media_to_element only for existing widgets.', 'agenpress' );
-
 		return rtrim( $content ) . implode( "\n", $lines );
+	}
+
+	/**
+	 * Format attachments for Elementor editor context.
+	 *
+	 * @param array<int, mixed> $attachments Attachment payloads.
+	 * @return string
+	 */
+	public static function format_elementor_context_block( array $attachments ): string {
+		$block = self::format_context_block( $attachments, 'admin' );
+
+		if ( '' === trim( $block ) ) {
+			return '';
+		}
+
+		$lines   = array( trim( $block ) );
+		$lines[] = __( 'Banner / graphic design with an attached image:', 'agenpress' );
+		$lines[] = __( '- Call generate_section_image ONCE with reference_attachment_id and a detailed prompt (layout left/right, exact text inside the image, icons, 3D style, size).', 'agenpress' );
+		$lines[] = __( '- Do NOT call add_attached_image_to_page for design requests — that only places the raw file.', 'agenpress' );
+		$lines[] = __( '- Do NOT create separate heading or text widgets when the user wants a designed banner — text must be baked into the generated image.', 'agenpress' );
+		$lines[] = __( 'Only use add_attached_image_to_page when the user explicitly wants the uploaded file placed as-is without AI design.', 'agenpress' );
+
+		return implode( "\n", $lines );
 	}
 
 	/**
 	 * Format attachments for system/runtime context blocks.
 	 *
 	 * @param array<int, mixed> $attachments Attachment payloads.
+	 * @param string            $module      Module slug.
 	 * @return string
 	 */
-	public static function format_context_block( array $attachments ): string {
+	public static function format_context_block( array $attachments, string $module = 'admin' ): string {
 		if ( empty( $attachments ) ) {
 			return '';
 		}
 
-		return self::append_to_content( '', $attachments );
+		$content = self::append_to_content( '', $attachments, $module );
+
+		if ( 'elementor' === $module ) {
+			return self::format_elementor_context_block( $attachments );
+		}
+
+		return $content;
 	}
 
 	/**

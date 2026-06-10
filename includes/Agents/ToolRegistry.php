@@ -192,6 +192,18 @@ class ToolRegistry {
 			}
 		}
 
-		return $tool->execute( $args, $user_id );
+		try {
+			return $tool->execute( $args, $user_id );
+		} catch ( \Throwable $e ) {
+			return array(
+				'success' => false,
+				'data'    => null,
+				'message' => sprintf(
+					/* translators: %s: error message */
+					__( 'Tool execution failed: %s', 'agenpress' ),
+					$e->getMessage()
+				),
+			);
+		}
 	}
 }

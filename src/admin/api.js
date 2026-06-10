@@ -43,7 +43,14 @@ export async function deleteConversation( id ) {
 	} );
 }
 
-export async function sendMessage( module, message, conversationId = 0, attachments = [] ) {
+export async function deleteMessage( conversationId, messageId ) {
+	return apiFetch( {
+		path: `${ BASE }/conversations/${ conversationId }/messages/${ messageId }`,
+		method: 'DELETE',
+	} );
+}
+
+export async function sendMessage( module, message, conversationId = 0, attachments = [], context = {} ) {
 	const res = await apiFetch( {
 		path: `${ BASE }/chat/${ module }`,
 		method: 'POST',
@@ -51,6 +58,10 @@ export async function sendMessage( module, message, conversationId = 0, attachme
 			message,
 			conversation_id: conversationId,
 			attachments,
+			context: {
+				audience: 'admin',
+				...context,
+			},
 		},
 	} );
 	return res.data;
@@ -233,11 +244,25 @@ export async function getWorkflows() {
 	return res.data;
 }
 
-export async function createWorkflow( title, steps ) {
+export async function createWorkflow( data ) {
 	const res = await apiFetch( {
 		path: `${ BASE }/workflows`,
 		method: 'POST',
-		data: { title, steps, enabled: true, trigger_type: 'manual' },
+		data: {
+			enabled: true,
+			trigger_type: 'manual',
+			steps: [],
+			...data,
+		},
+	} );
+	return res.data;
+}
+
+export async function updateWorkflow( id, data ) {
+	const res = await apiFetch( {
+		path: `${ BASE }/workflows/${ id }`,
+		method: 'PUT',
+		data,
 	} );
 	return res.data;
 }

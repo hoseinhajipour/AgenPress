@@ -9,13 +9,17 @@ namespace AgenPress\Modules\Elementor;
 
 use AgenPress\Agents\ToolRegistry;
 use AgenPress\AI\ProviderFactory;
+use AgenPress\Modules\Elementor\Tools\AddAttachedImageTool;
+use AgenPress\Modules\Elementor\Tools\ApplyMediaToElementTool;
 use AgenPress\Modules\Elementor\Tools\CreateSectionTool;
+use AgenPress\Modules\Elementor\Tools\CreateWidgetTool;
 use AgenPress\Modules\Elementor\Tools\DeleteElementTool;
 use AgenPress\Modules\Elementor\Tools\DuplicateElementTool;
 use AgenPress\Modules\Elementor\Tools\GenerateSectionImageTool;
 use AgenPress\Modules\Elementor\Tools\GetElementTool;
 use AgenPress\Modules\Elementor\Tools\GetPageStructureTool;
 use AgenPress\Modules\Elementor\Tools\ListElementorPagesTool;
+use AgenPress\Modules\Elementor\Tools\SearchElementsTool;
 use AgenPress\Modules\Elementor\Tools\UpdateWidgetSettingsTool;
 use AgenPress\Modules\ModuleInterface;
 
@@ -88,6 +92,10 @@ class ElementorModule implements ModuleInterface {
 			new GetElementTool( $this->documents ),
 			new CreateSectionTool( $this->documents ),
 			new UpdateWidgetSettingsTool( $this->documents ),
+			new SearchElementsTool( $this->documents ),
+			new CreateWidgetTool( $this->documents ),
+			new AddAttachedImageTool( $this->documents ),
+			new ApplyMediaToElementTool( $this->documents ),
 			new DuplicateElementTool( $this->documents ),
 			new DeleteElementTool( $this->documents ),
 			new GenerateSectionImageTool( $this->documents, $this->provider_factory ),
@@ -102,7 +110,11 @@ class ElementorModule implements ModuleInterface {
 			"\n\n",
 			array(
 				'You are AgenPress Elementor Assistant. You help design and edit Elementor pages, sections, columns, and widgets.',
+				'Workflow: (1) get_page_structure or search_elements to locate widgets, (2) get_element for full settings, (3) update_widget_settings / create_widget / apply_media_to_element / delete_element.',
 				'Always use tools to read the real page structure before making changes. Never invent element IDs.',
+				'search_elements finds widgets by type or text. create_widget adds widgets to a column. update_widget_settings changes any settings (text, colors, typography, links, spacing).',
+				'When the user uploads an image and asks to add it to the page, call add_attached_image_to_page with post_id and attachment_id from the message. Use context_element_id from editor context when no column is specified.',
+				'For existing image widgets or section backgrounds only, use apply_media_to_element instead of creating a new widget.',
 				'Use brand colors, fonts, and design rules from Site Memory when suggesting or applying styles.',
 				'When the user has a selected element, prefer operating on that element ID and the current page.',
 				'For hero sections and landing pages, suggest clear structure: headline, subheadline, CTA, imagery.',
@@ -118,10 +130,10 @@ class ElementorModule implements ModuleInterface {
 	public function get_suggestions(): array {
 		return array(
 			__( 'Show me the structure of this page', 'agenpress' ),
-			__( 'Design a hero section using my brand colors', 'agenpress' ),
+			__( 'Find all heading widgets on this page', 'agenpress' ),
 			__( 'Update the selected widget heading text', 'agenpress' ),
-			__( 'Generate a background image for this section', 'agenpress' ),
-			__( 'Duplicate this section and adjust the copy', 'agenpress' ),
+			__( 'Add a CTA button below the hero', 'agenpress' ),
+			__( 'Add my uploaded image to this page', 'agenpress' ),
 		);
 	}
 

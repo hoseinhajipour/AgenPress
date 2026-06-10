@@ -7,6 +7,7 @@
 
 namespace AgenPress\Modules\Elementor\Tools;
 
+use AgenPress\AI\ImageSizeRegistry;
 use AgenPress\AI\ProviderFactory;
 use AgenPress\Media\AiImageSideloader;
 use AgenPress\Modules\Elementor\ElementorDocumentService;
@@ -50,7 +51,7 @@ class GenerateSectionImageTool extends ElementorAbstractTool {
 					'prompt'     => array( 'type' => 'string', 'description' => 'Image generation prompt' ),
 					'post_id'    => array( 'type' => 'integer', 'description' => 'Page ID (optional, for applying to element)' ),
 					'element_id' => array( 'type' => 'string', 'description' => 'Element ID to apply image to (optional)' ),
-					'size'       => array( 'type' => 'string', 'description' => 'Image size: 1024x1024, 1792x1024, or 1024x1792' ),
+					'size'       => array( 'type' => 'string', 'description' => 'Image aspect ratio (1:1, 16:9, 9:16, 4:3, 3:2) or pixel size. Uses plugin default when omitted.' ),
 				),
 				'required'   => array( 'prompt' ),
 			),
@@ -78,18 +79,18 @@ class GenerateSectionImageTool extends ElementorAbstractTool {
 			$image = $provider->generate_image(
 				$prompt,
 				array(
-					'size' => sanitize_text_field( $args['size'] ?? '1024x1024' ),
+					'size' => ImageSizeRegistry::resolve_size( sanitize_text_field( $args['size'] ?? '' ) ),
 				)
 			);
 		} catch ( \Exception $e ) {
 			return $this->fail( $e->getMessage() );
 		}
 
-		if ( empty( $image['url'] ) ) {
+		if ( empty( $image['url'] ) && empty( $image['b64_json'] ) ) {
 			return $this->fail( __( 'Image generation failed.', 'agenpress' ) );
 		}
 
-		$attachment_id = AiImageSideloader::sideload( $image['url'], $prompt );
+		$attachment_id = AiImageSideloader::sideload_result( $image, $prompt );
 
 		if ( ! $attachment_id ) {
 			return $this->fail( __( 'Failed to save image to media library.', 'agenpress' ) );

@@ -81,12 +81,41 @@
 	height: calc(100vh - 180px);
 }
 
+.ap-chat-toolbar {
+	@apply ap-flex ap-justify-end ap-px-4 ap-pt-3 ap-pb-0 ap-border-b ap-border-slate-100;
+}
+
+.ap-chat-clear-btn {
+	@apply ap-text-xs ap-py-1 ap-px-3;
+}
+
 .ap-chat-messages {
 	@apply ap-flex-1 ap-overflow-y-auto ap-p-4 ap-space-y-4;
 }
 
 .ap-message {
 	@apply ap-flex ap-gap-3 ap-max-w-3xl;
+}
+
+.ap-message-body {
+	@apply ap-flex ap-items-start ap-gap-2 ap-min-w-0 ap-flex-1;
+}
+
+.ap-message-delete {
+	@apply ap-shrink-0 ap-w-7 ap-h-7 ap-rounded-full ap-border ap-border-transparent ap-bg-transparent ap-text-slate-400 ap-text-lg ap-leading-none ap-cursor-pointer ap-opacity-0 ap-transition-opacity;
+}
+
+.ap-message:hover .ap-message-delete,
+.ap-message-delete:focus {
+	@apply ap-opacity-100;
+}
+
+.ap-message-delete:hover {
+	@apply ap-bg-red-50 ap-border-red-200 ap-text-red-600;
+}
+
+.ap-message-delete:disabled {
+	@apply ap-opacity-30 ap-cursor-not-allowed;
 }
 
 .ap-message.user {
@@ -115,6 +144,185 @@
 
 .ap-message.user .ap-message-bubble {
 	@apply ap-bg-blue-600 ap-text-white;
+}
+
+.ap-message-md {
+	white-space: normal;
+}
+
+.ap-message-md p {
+	margin: 0 0 8px;
+}
+
+.ap-message-md p:last-child {
+	margin-bottom: 0;
+}
+
+.ap-message-md strong {
+	font-weight: 600;
+}
+
+.ap-message.assistant .ap-message-md strong {
+	color: #0f172a;
+}
+
+.ap-message.user .ap-message-md strong {
+	color: inherit;
+}
+
+.ap-message-md em {
+	font-style: italic;
+}
+
+.ap-message-md a:not(.ap-chat-link-btn) {
+	color: #2563eb;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.ap-message.user .ap-message-md a:not(.ap-chat-link-btn) {
+	color: #dbeafe;
+}
+
+.ap-message-md a:not(.ap-chat-link-btn):hover {
+	color: #1d4ed8;
+}
+
+.ap-message.user .ap-message-md a:not(.ap-chat-link-btn):hover {
+	color: #fff;
+}
+
+.ap-chat-link-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	margin-top: 4px;
+	padding: 5px 10px;
+	border-radius: 999px;
+	background: #f8fafc;
+	border: 1px solid #cbd5e1;
+	color: #1d4ed8 !important;
+	font-size: 12px;
+	font-weight: 600;
+	text-decoration: none !important;
+	line-height: 1.25;
+	max-width: 100%;
+	vertical-align: middle;
+	transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ap-chat-link-btn.ap-chat-link-inline {
+	margin-top: 0;
+	margin-inline: 2px;
+	padding: 3px 9px;
+	font-size: 12px;
+}
+
+.ap-chat-link-text {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 220px;
+}
+
+.ap-chat-link-btn:hover {
+	background: #eff6ff;
+	border-color: #93c5fd;
+	color: #1e40af !important;
+	box-shadow: 0 1px 3px rgba(37, 99, 235, 0.12);
+}
+
+.ap-chat-link-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+	background: rgba(37, 99, 235, 0.1);
+	font-size: 10px;
+	line-height: 1;
+	flex-shrink: 0;
+}
+
+.ap-chat-link-row {
+	margin: 4px 0 8px;
+}
+
+.ap-chat-product-item {
+	padding: 10px 12px;
+	margin-bottom: 8px;
+	border-radius: 10px;
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	list-style: none;
+}
+
+.ap-message-md ul .ap-chat-product-item,
+.ap-message-md ol .ap-chat-product-item {
+	margin-inline-start: -1.25em;
+}
+
+.ap-chat-li-main {
+	line-height: 1.5;
+}
+
+.ap-chat-li-extra {
+	margin-top: 4px;
+	font-size: 13px;
+	color: #64748b;
+}
+
+.ap-chat-li-link {
+	margin-top: 8px;
+}
+
+.ap-chat-li-image,
+.ap-chat-image-row {
+	margin-top: 8px;
+}
+
+.ap-chat-product-image {
+	display: block;
+	max-width: 280px;
+	border-radius: 8px;
+	overflow: hidden;
+	border: 1px solid #e2e8f0;
+	background: #fff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.ap-chat-product-image img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.ap-message-md ul,
+.ap-message-md ol {
+	margin: 6px 0 8px;
+	padding-inline-start: 1.25em;
+}
+
+.ap-message-md li {
+	margin-bottom: 6px;
+	padding-inline-start: 2px;
+}
+
+.ap-message-md li:last-child {
+	margin-bottom: 0;
+}
+
+.ap-message-md .ap-md-heading {
+	margin: 0 0 6px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #0f172a;
+	line-height: 1.4;
+}
+
+.ap-message-md .ap-md-heading-lg {
+	font-size: 15px;
 }
 
 .ap-chat-input-area {
@@ -191,6 +399,37 @@
 .ap-badge-paused { @apply ap-bg-orange-100 ap-text-orange-800; }
 .ap-badge-completed { @apply ap-bg-green-100 ap-text-green-800; }
 .ap-badge-failed { @apply ap-bg-red-100 ap-text-red-800; }
+.ap-badge-success { @apply ap-bg-green-100 ap-text-green-800; }
+.ap-badge-muted { @apply ap-bg-slate-100 ap-text-slate-600; }
+
+.ap-form-checkbox {
+	@apply ap-flex ap-items-center ap-gap-2 ap-text-sm ap-text-slate-700 ap-mb-2 ap-cursor-pointer;
+}
+
+.ap-workflow-step-card {
+	@apply ap-border ap-border-slate-200 ap-rounded-lg ap-p-4 ap-mb-3 ap-bg-slate-50;
+}
+
+.ap-workflow-step-header {
+	@apply ap-flex ap-justify-between ap-items-center ap-gap-3 ap-mb-3 ap-pb-3 ap-border-b ap-border-slate-200;
+}
+
+.ap-workflow-presets {
+	@apply ap-grid ap-gap-3;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.ap-workflow-preset-card {
+	@apply ap-border ap-border-slate-200 ap-rounded-lg ap-p-4 ap-bg-slate-50 ap-flex ap-flex-col;
+}
+
+.ap-workflow-preset-card p {
+	@apply ap-text-sm ap-text-slate-600 ap-m-0 ap-mb-3 ap-flex-1;
+}
+
+.ap-workflow-preset-header {
+	@apply ap-flex ap-justify-between ap-items-start ap-gap-2 ap-mb-2;
+}
 
 .ap-progress-bar {
 	@apply ap-w-full ap-h-2 ap-bg-slate-200 ap-rounded-full ap-overflow-hidden;

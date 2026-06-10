@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AgenPress\n"
 "Report-Msgid-Bugs-To: https://github.com/agenpress/agenpress\n"
-"POT-Creation-Date: 2026-06-10 08:16+0000\n"
+"POT-Creation-Date: 2026-06-10 10:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,19 +11,48 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Domain: agenpress\n"
 
+#: includes/Media/AttachmentContext.php:71
+msgid "  File excerpt:"
+msgstr ""
+
 #: includes/Modules/Sales/Tools/RecommendProductsTool.php:74
 msgid "%d recommendations."
+msgstr ""
+
+#: includes/AI/ImageSizeRegistry.php:30
+msgid "16:9 (Landscape)"
+msgstr ""
+
+#: includes/AI/ImageSizeRegistry.php:26
+msgid "1:1 (Square)"
+msgstr ""
+
+#: src/admin/workflowPresets.js:53
+#: src/admin/workflowPresets.js:56
+msgid "3 SEO Articles Batch"
+msgstr ""
+
+#: includes/AI/ImageSizeRegistry.php:42
+msgid "3:2 (Landscape)"
+msgstr ""
+
+#: includes/AI/ImageSizeRegistry.php:38
+msgid "4:3 (Landscape)"
+msgstr ""
+
+#: includes/AI/ImageSizeRegistry.php:34
+msgid "9:16 (Portrait)"
 msgstr ""
 
 #: includes/Modules/Sales/Tools/EscalateToHumanTool.php:78
 msgid "A team member will follow up shortly."
 msgstr ""
 
-#: src/frontend/Widget.jsx:157
+#: src/frontend/Widget.jsx:168
 msgid "A team member will follow up with you."
 msgstr ""
 
-#: includes/AI/OpenAICompatibleProvider.php:259
+#: includes/AI/OpenAICompatibleProvider.php:255
 msgid "AI API error."
 msgstr ""
 
@@ -36,12 +65,12 @@ msgstr ""
 msgid "AI Chat"
 msgstr ""
 
-#: src/post-editor/FeaturedImageModal.jsx:100
-#: src/post-editor/InsertImageModal.jsx:86
+#: src/post-editor/FeaturedImageModal.jsx:86
+#: src/post-editor/InsertImageModal.jsx:79
 msgid "AI Generate Image"
 msgstr ""
 
-#: src/post-editor/GenerateTextModal.jsx:73
+#: src/post-editor/GenerateTextModal.jsx:65
 msgid "AI Generate Text"
 msgstr ""
 
@@ -50,31 +79,51 @@ msgstr ""
 msgid "AI Generate image"
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:322
+#: src/admin/pages/Settings.jsx:344
 msgid "AI Language"
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:228
+#: src/admin/pages/Workflows.jsx:18
+msgid "AI Planning"
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:16
+msgid "AI Prompt"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:230
 msgid "AI Provider"
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:270
+#: src/admin/workflowPresets.js:23
+msgid "AI analyzes your site context, then turns the strategy into 10 concrete post ideas. Edit the topic in step 1 if needed."
+msgstr ""
+
+#: src/admin/workflowPresets.js:209
+msgid "AI breaks a goal into action items, then executes. Edit title and description in step 1."
+msgstr ""
+
+#: src/admin/workflowPresets.js:212
+msgid "AI plan → AI execution pattern for open-ended admin work."
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:274
 msgid "AI planning task steps"
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:51
+#: includes/Agents/TaskTemplates.php:53
 msgid "AI-planned multi-step task from your description"
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:257
+#: src/admin/pages/Settings.jsx:259
 msgid "API Base URL"
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:270
+#: src/admin/pages/Settings.jsx:272
 msgid "API Endpoint"
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:276
+#: src/admin/pages/Settings.jsx:278
 msgid "API Key"
 msgstr ""
 
@@ -90,7 +139,7 @@ msgstr ""
 msgid "About AgenPress"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:250
+#: src/admin/pages/Tasks.jsx:252
 msgid "Actions"
 msgstr ""
 
@@ -103,7 +152,19 @@ msgstr ""
 msgid "Add Memory Entry"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:213
+#: includes/Modules/Elementor/ElementorModule.php:135
+msgid "Add a CTA button below the hero"
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:334
+msgid "Add at least one step before saving."
+msgstr ""
+
+#: includes/Modules/Elementor/ElementorModule.php:136
+msgid "Add my uploaded image to this page"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:215
 msgid "Additional instructions for the agent..."
 msgstr ""
 
@@ -111,8 +172,12 @@ msgstr ""
 msgid "Admin AI"
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:64
+#: includes/Modules/Admin/AdminModule.php:75
 msgid "Admin Assistant"
+msgstr ""
+
+#: src/frontend/formatMessage.js:49
+msgid "Admin panel"
 msgstr ""
 
 #: includes/Admin/AdminMenu.php:24
@@ -120,7 +185,7 @@ msgstr ""
 msgid "AgenPress"
 msgstr ""
 
-#: src/elementor/Panel.jsx:138
+#: src/elementor/Panel.jsx:127
 msgid "AgenPress AI"
 msgstr ""
 
@@ -151,8 +216,9 @@ msgstr ""
 msgid "An AI provider API key is required."
 msgstr ""
 
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:74
-#: includes/REST/ImageController.php:142
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:76
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:75
+#: includes/REST/ImageController.php:134
 msgid "An image-capable AI provider API key is required (OpenAI, GapGPT, or Custom)."
 msgstr ""
 
@@ -170,6 +236,14 @@ msgstr ""
 msgid "Analytics requires an Enterprise license. Update the license tier in Settings to enable usage reporting."
 msgstr ""
 
+#: src/admin/workflowPresets.js:32
+msgid "Analyze content strategy"
+msgstr ""
+
+#: src/admin/workflowPresets.js:33
+msgid "Analyze what types of content would help this WordPress site grow. Consider SEO, audience engagement, and conversions. Write 3–5 paragraphs of plain text only (no JSON, no bullet lists)."
+msgstr ""
+
 #: src/admin/pages/Settings.jsx:26
 msgid "Anthropic Claude models"
 msgstr ""
@@ -182,23 +256,27 @@ msgstr ""
 msgid "Appearance and placement on the storefront"
 msgstr ""
 
-#: src/post-editor/FeaturedImageModal.jsx:187
+#: src/post-editor/FeaturedImageModal.jsx:173
 msgid "Applying..."
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:194
+msgid "Article index"
 msgstr ""
 
 #: includes/Agents/TaskTemplates.php:31
 msgid "Article sections count"
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:201
+#: src/admin/components/ChatInterface.jsx:293
 msgid "Ask AgenPress anything..."
 msgstr ""
 
-#: src/elementor/Panel.jsx:199
+#: src/elementor/Panel.jsx:205
 msgid "Ask about this page..."
 msgstr ""
 
-#: src/elementor/Panel.jsx:153
+#: src/elementor/Panel.jsx:142
 msgid "Ask me to design sections, update widgets, or generate images for your page."
 msgstr ""
 
@@ -207,8 +285,20 @@ msgstr ""
 msgid "Assistant"
 msgstr ""
 
+#: includes/Media/AttachmentContext.php:29
+msgid "Attached files:"
+msgstr ""
+
 #: includes/Modules/Admin/Tools/UpdateMediaTool.php:48
 msgid "Attachment not found."
+msgstr ""
+
+#: includes/Agents/AgentEngine.php:455
+msgid "Audience: WordPress admin — the user is a shop employee or manager, NOT a storefront customer."
+msgstr ""
+
+#: src/admin/workflowPresets.js:197
+msgid "Audit this WordPress site taxonomy. Suggest 5–10 new categories or tags to add, terms to merge or remove, and a simpler structure for editors. Output markdown with sections: Current state, Gaps, Recommendations."
 msgstr ""
 
 #: includes/REST/RestController.php:54
@@ -219,12 +309,24 @@ msgstr ""
 msgid "Auto-Extract Brand Info"
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:335
+#: src/admin/pages/Workflows.jsx:359
+msgid "Back to list"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:357
 msgid "Base language for AI responses and generated content."
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:346
+#: src/admin/workflowPresets.js:42
+msgid "Based on this content strategy:\\n\\n{{strategy}}\\n\\nList exactly 10 specific blog post titles the site should publish next. Use a plain numbered list only (1. Title…). No JSON."
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:368
 msgid "Basic"
+msgstr ""
+
+#: src/admin/workflowPresets.js:80
+msgid "Batch summary"
 msgstr ""
 
 #: src/admin/pages/SalesChatSettings.jsx:237
@@ -245,10 +347,11 @@ msgstr ""
 
 #: src/admin/components/ConfirmationModal.jsx:36
 #: src/admin/pages/Memory.jsx:339
-#: src/admin/pages/Tasks.jsx:280
-#: src/post-editor/FeaturedImageModal.jsx:165
-#: src/post-editor/GenerateTextModal.jsx:132
-#: src/post-editor/InsertImageModal.jsx:151
+#: src/admin/pages/Tasks.jsx:282
+#: src/admin/pages/Workflows.jsx:480
+#: src/post-editor/FeaturedImageModal.jsx:151
+#: src/post-editor/GenerateTextModal.jsx:124
+#: src/post-editor/InsertImageModal.jsx:144
 msgid "Cancel"
 msgstr ""
 
@@ -269,12 +372,17 @@ msgstr ""
 msgid "Category"
 msgstr ""
 
-#: includes/Core/Settings.php:42
-#: includes/Core/Settings.php:344
+#: src/admin/workflowPresets.js:172
+#: src/admin/workflowPresets.js:175
+msgid "Category & Tag Audit"
+msgstr ""
+
+#: includes/Core/Settings.php:45
+#: includes/Core/Settings.php:377
 #: src/admin/pages/SalesChatSettings.jsx:75
 #: src/admin/pages/SalesChatSettings.jsx:86
 #: src/admin/pages/SalesChatSettings.jsx:212
-#: src/frontend/Widget.jsx:23
+#: src/frontend/Widget.jsx:26
 msgid "Chat with us"
 msgstr ""
 
@@ -294,10 +402,18 @@ msgstr ""
 msgid "Clear and business-like"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:315
-#: src/post-editor/FeaturedImageModal.jsx:106
-#: src/post-editor/GenerateTextModal.jsx:79
-#: src/post-editor/InsertImageModal.jsx:92
+#: src/admin/components/ChatInterface.jsx:215
+msgid "Clear chat"
+msgstr ""
+
+#: src/admin/components/ChatInterface.jsx:174
+msgid "Clear this chat and start over?"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:317
+#: src/post-editor/FeaturedImageModal.jsx:92
+#: src/post-editor/GenerateTextModal.jsx:71
+#: src/post-editor/InsertImageModal.jsx:85
 msgid "Close"
 msgstr ""
 
@@ -305,7 +421,7 @@ msgstr ""
 msgid "Completed"
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:434
+#: includes/Agents/TaskStepExecutor.php:465
 msgid "Conclusion"
 msgstr ""
 
@@ -326,7 +442,7 @@ msgid "Configured"
 msgstr ""
 
 #: src/admin/components/ConfirmationModal.jsx:43
-#: src/elementor/Panel.jsx:165
+#: src/elementor/Panel.jsx:159
 msgid "Confirm"
 msgstr ""
 
@@ -342,7 +458,7 @@ msgstr ""
 msgid "Confirm this action?"
 msgstr ""
 
-#: includes/Agents/AgentEngine.php:312
+#: includes/Agents/AgentEngine.php:317
 msgid "Confirmed action **%1$s**: %2$s"
 msgstr ""
 
@@ -350,12 +466,17 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
+#: src/admin/workflowPresets.js:22
+#: src/admin/workflowPresets.js:25
+msgid "Content Strategy Brief"
+msgstr ""
+
 #: src/admin/pages/SalesChatSettings.jsx:279
 msgid "Controls how the sales assistant speaks to customers."
 msgstr ""
 
 #: includes/Modules/Sales/Tools/EscalateToHumanTool.php:58
-#: includes/REST/SalesChatController.php:339
+#: includes/REST/SalesChatController.php:341
 msgid "Conversation ID is required."
 msgstr ""
 
@@ -364,19 +485,20 @@ msgid "Conversation Tone"
 msgstr ""
 
 #: includes/Modules/Sales/Tools/EscalateToHumanTool.php:64
-#: includes/REST/ChatController.php:176
-#: includes/REST/ChatController.php:206
-#: includes/REST/ChatController.php:292
+#: includes/REST/ChatController.php:186
+#: includes/REST/ChatController.php:216
+#: includes/REST/ChatController.php:248
+#: includes/REST/ChatController.php:351
 #: includes/REST/InboxController.php:138
 #: includes/REST/InboxController.php:190
 #: includes/REST/InboxController.php:216
 #: includes/REST/SalesChatController.php:141
-#: includes/REST/SalesChatController.php:312
-#: includes/REST/SalesChatController.php:353
+#: includes/REST/SalesChatController.php:314
+#: includes/REST/SalesChatController.php:355
 msgid "Conversation not found."
 msgstr ""
 
-#: includes/Core/Settings.php:289
+#: includes/Core/Settings.php:322
 msgid "Conversation tone:"
 msgstr ""
 
@@ -388,7 +510,7 @@ msgstr ""
 msgid "Conversations by Module"
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:359
+#: src/admin/pages/Settings.jsx:381
 msgid "Copy your key now — it won't be shown again:"
 msgstr ""
 
@@ -404,24 +526,24 @@ msgstr ""
 msgid "Courteous and respectful"
 msgstr ""
 
-#: src/admin/pages/Workflows.jsx:92
-msgid "Create"
-msgstr ""
-
-#: src/admin/pages/Tasks.jsx:151
+#: src/admin/pages/Tasks.jsx:153
 msgid "Create Agent Task"
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:125
+#: includes/Modules/Admin/AdminModule.php:141
 msgid "Create FAQ schema markup for [topic]"
 msgstr ""
 
-#: src/admin/pages/Workflows.jsx:82
-msgid "Create Workflow"
+#: src/admin/workflowPresets.js:72
+msgid "Create SEO article"
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:132
+#: includes/Modules/Admin/AdminModule.php:150
 msgid "Create a new product draft for [product name]"
+msgstr ""
+
+#: includes/Modules/Admin/AdminModule.php:145
+msgid "Create an AI hero image for a landing page"
 msgstr ""
 
 #: includes/Modules/Admin/Tools/CreatePostTool.php:103
@@ -436,11 +558,11 @@ msgstr ""
 msgid "Created term \"%s\"."
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:190
+#: includes/Agents/TaskTemplates.php:194
 msgid "Creating SEO article %d"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:217
+#: src/admin/pages/Tasks.jsx:219
 msgid "Creating..."
 msgstr ""
 
@@ -452,7 +574,12 @@ msgstr ""
 msgid "Custom AI agent API key and base URL are not configured."
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:50
+#: src/admin/workflowPresets.js:208
+#: src/admin/workflowPresets.js:211
+msgid "Custom Planned Task"
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:52
 msgid "Custom Task"
 msgstr ""
 
@@ -461,11 +588,11 @@ msgstr ""
 msgid "Customer"
 msgstr ""
 
-#: includes/Agents/AgentEngine.php:457
+#: includes/Agents/AgentEngine.php:503
 msgid "Customer conversation history:"
 msgstr ""
 
-#: includes/REST/SalesChatController.php:364
+#: includes/REST/SalesChatController.php:366
 msgid "Customer requested human support"
 msgstr ""
 
@@ -478,9 +605,21 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
+#: src/admin/pages/Settings.jsx:324
+msgid "Default Image Dimensions"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:337
+msgid "Default aspect ratio used when generating AI images across the plugin."
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:627
+msgid "Define reusable multi-step automations and run them on demand."
+msgstr ""
+
 #: src/admin/pages/Memory.jsx:376
-#: src/admin/pages/Tasks.jsx:297
-#: src/admin/pages/Workflows.jsx:128
+#: src/admin/pages/Tasks.jsx:299
+#: src/admin/pages/Workflows.jsx:728
 msgid "Delete"
 msgstr ""
 
@@ -490,6 +629,11 @@ msgstr ""
 
 #: includes/Modules/Elementor/Tools/DeleteElementTool.php:28
 msgid "Delete Elementor element \"%s\"? This cannot be undone."
+msgstr ""
+
+#: src/admin/components/ChatInterface.jsx:259
+#: src/admin/components/ChatInterface.jsx:260
+msgid "Delete message"
 msgstr ""
 
 #: includes/Modules/Admin/Tools/DeleteProductTool.php:37
@@ -505,6 +649,10 @@ msgstr ""
 msgid "Delete this product? This cannot be undone."
 msgstr ""
 
+#: src/admin/pages/Workflows.jsx:587
+msgid "Delete this workflow?"
+msgstr ""
+
 #: includes/Modules/Admin/Tools/DeletePostTool.php:79
 msgid "Deleted \"%s\"."
 msgstr ""
@@ -513,16 +661,17 @@ msgstr ""
 msgid "Deleted product \"%s\"."
 msgstr ""
 
-#: src/post-editor/FeaturedImageModal.jsx:123
-#: src/post-editor/InsertImageModal.jsx:109
+#: src/post-editor/FeaturedImageModal.jsx:109
+#: src/post-editor/InsertImageModal.jsx:102
 msgid "Describe the image you want to generate..."
 msgstr ""
 
-#: src/post-editor/GenerateTextModal.jsx:103
+#: src/post-editor/GenerateTextModal.jsx:95
 msgid "Describe the text you want to generate..."
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:208
+#: src/admin/pages/Tasks.jsx:210
+#: src/admin/pages/Workflows.jsx:377
 msgid "Description"
 msgstr ""
 
@@ -530,50 +679,57 @@ msgstr ""
 msgid "Design"
 msgstr ""
 
-#: includes/Modules/Elementor/ElementorModule.php:121
-msgid "Design a hero section using my brand colors"
-msgstr ""
-
-#: src/admin/pages/Tasks.jsx:294
+#: src/admin/pages/Tasks.jsx:296
 msgid "Details"
 msgstr ""
 
-#: src/post-editor/FeaturedImageModal.jsx:129
-#: src/post-editor/InsertImageModal.jsx:115
+#: src/post-editor/FeaturedImageModal.jsx:115
+#: src/post-editor/InsertImageModal.jsx:108
 msgid "Dimensions"
 msgstr ""
 
-#: includes/Modules/Sales/SalesModule.php:113
+#: src/admin/pages/Workflows.jsx:701
+msgid "Disabled"
+msgstr ""
+
+#: includes/Modules/Sales/SalesModule.php:150
 msgid "Do you have any active discount codes?"
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:19
-msgid "Draft a customer support response"
+#: src/admin/workflowPresets.js:121
+#: src/admin/workflowPresets.js:124
+msgid "Draft Posts Review"
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:127
+#: includes/Modules/Admin/AdminModule.php:143
 msgid "Draft a new page with a hero section and CTA"
 msgstr ""
 
-#: includes/Modules/Elementor/ElementorModule.php:124
-msgid "Duplicate this section and adjust the copy"
-msgstr ""
-
 #: src/admin/pages/Memory.jsx:369
+#: src/admin/pages/Workflows.jsx:713
 msgid "Edit"
 msgstr ""
 
-#: includes/Modules/Elementor/ElementorDocumentService.php:301
+#: src/admin/pages/Workflows.jsx:356
+msgid "Edit Workflow"
+msgstr ""
+
+#: src/frontend/formatMessage.js:44
+msgid "Edit post"
+msgstr ""
+
+#: includes/Modules/Elementor/ElementorDocumentService.php:594
 msgid "Element deleted."
 msgstr ""
 
-#: includes/Modules/Elementor/ElementorDocumentService.php:266
+#: includes/Modules/Elementor/ElementorDocumentService.php:284
 msgid "Element duplicated."
 msgstr ""
 
-#: includes/Modules/Elementor/ElementorDocumentService.php:214
-#: includes/Modules/Elementor/ElementorDocumentService.php:251
-#: includes/Modules/Elementor/ElementorDocumentService.php:293
+#: includes/Modules/Elementor/ElementorDocumentService.php:232
+#: includes/Modules/Elementor/ElementorDocumentService.php:269
+#: includes/Modules/Elementor/ElementorDocumentService.php:554
+#: includes/Modules/Elementor/ElementorDocumentService.php:586
 #: includes/Modules/Elementor/Tools/GetElementTool.php:47
 msgid "Element not found."
 msgstr ""
@@ -582,18 +738,20 @@ msgstr ""
 msgid "Element retrieved."
 msgstr ""
 
-#: includes/Modules/Elementor/ElementorDocumentService.php:222
+#: includes/Modules/Elementor/ElementorDocumentService.php:240
 msgid "Element settings updated."
 msgstr ""
 
-#: includes/Modules/Elementor/ElementorModule.php:78
+#: includes/Modules/Elementor/ElementorModule.php:82
 msgid "Elementor Assistant"
 msgstr ""
 
-#: includes/Modules/Elementor/ElementorDocumentService.php:151
-#: includes/Modules/Elementor/ElementorDocumentService.php:190
-#: includes/Modules/Elementor/ElementorDocumentService.php:240
-#: includes/Modules/Elementor/ElementorDocumentService.php:283
+#: includes/Modules/Elementor/ElementorDocumentService.php:169
+#: includes/Modules/Elementor/ElementorDocumentService.php:208
+#: includes/Modules/Elementor/ElementorDocumentService.php:258
+#: includes/Modules/Elementor/ElementorDocumentService.php:337
+#: includes/Modules/Elementor/ElementorDocumentService.php:576
+#: includes/REST/ElementorController.php:73
 msgid "Elementor document not found."
 msgstr ""
 
@@ -602,14 +760,20 @@ msgid "Elementor is not active."
 msgstr ""
 
 #: includes/Modules/Elementor/Tools/GetPageStructureTool.php:49
+#: includes/Modules/Elementor/Tools/SearchElementsTool.php:53
 msgid "Elementor page not found."
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:348
+#: src/admin/pages/Workflows.jsx:394
+#: src/admin/pages/Workflows.jsx:701
+msgid "Enabled"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:370
 msgid "Enterprise"
 msgstr ""
 
-#: includes/Agents/AgentEngine.php:477
+#: includes/Agents/AgentEngine.php:546
 msgid "Error: %s"
 msgstr ""
 
@@ -618,7 +782,19 @@ msgstr ""
 msgid "Escalated"
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:280
+#: src/admin/pages/Workflows.jsx:638
+msgid "Example Workflows"
+msgstr ""
+
+#: src/admin/workflowPresets.js:227
+msgid "Execute planned work"
+msgstr ""
+
+#: src/admin/workflowPresets.js:228
+msgid "Execute this WordPress admin task and describe what was done. Title: Improve site content quality. Description: Review content gaps and suggest concrete improvements."
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:284
 msgid "Executing planned work"
 msgstr ""
 
@@ -626,7 +802,7 @@ msgstr ""
 msgid "Executing..."
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:355
+#: src/admin/pages/Settings.jsx:377
 msgid "External API Keys"
 msgstr ""
 
@@ -634,11 +810,20 @@ msgstr ""
 msgid "Extracting..."
 msgstr ""
 
+#: src/admin/workflowPresets.js:150
+#: src/admin/workflowPresets.js:153
+msgid "FAQ Content Pack"
+msgstr ""
+
 #: src/admin/pages/Tasks.jsx:21
 msgid "Failed"
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:110
+#: src/admin/components/ChatInterface.jsx:182
+msgid "Failed to clear chat."
+msgstr ""
+
+#: src/admin/components/ChatInterface.jsx:136
 msgid "Failed to confirm action."
 msgstr ""
 
@@ -646,8 +831,8 @@ msgstr ""
 msgid "Failed to create API key."
 msgstr ""
 
-#: includes/REST/ChatController.php:148
-#: includes/REST/ChatController.php:278
+#: includes/REST/ChatController.php:158
+#: includes/REST/ChatController.php:337
 #: includes/REST/ExternalApiController.php:92
 #: includes/REST/OrchestratorController.php:110
 msgid "Failed to create conversation."
@@ -669,6 +854,11 @@ msgstr ""
 msgid "Failed to create workflow."
 msgstr ""
 
+#: includes/REST/ChatController.php:268
+#: src/admin/components/ChatInterface.jsx:164
+msgid "Failed to delete message."
+msgstr ""
+
 #: includes/Modules/Admin/Tools/DeletePostTool.php:72
 msgid "Failed to delete post."
 msgstr ""
@@ -677,12 +867,16 @@ msgstr ""
 msgid "Failed to delete product."
 msgstr ""
 
+#: includes/Modules/Elementor/ElementorDocumentService.php:401
+msgid "Failed to insert widget."
+msgstr ""
+
 #: src/admin/pages/Analytics.jsx:26
 msgid "Failed to load analytics."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:222
-#: includes/Agents/TaskStepExecutor.php:250
+#: includes/Agents/TaskStepExecutor.php:223
+#: includes/Agents/TaskStepExecutor.php:251
 msgid "Failed to parse generated article."
 msgstr ""
 
@@ -690,19 +884,20 @@ msgstr ""
 msgid "Failed to run workflow."
 msgstr ""
 
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:95
-#: includes/REST/ImageController.php:179
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:97
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:96
+#: includes/REST/ImageController.php:171
 msgid "Failed to save image to media library."
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:89
-#: src/elementor/Panel.jsx:109
-#: src/frontend/Widget.jsx:105
+#: src/admin/components/ChatInterface.jsx:115
+#: src/elementor/Panel.jsx:98
+#: src/frontend/Widget.jsx:116
 msgid "Failed to send message."
 msgstr ""
 
-#: includes/REST/ImageController.php:231
-#: src/post-editor/FeaturedImageModal.jsx:84
+#: includes/REST/ImageController.php:223
+#: src/post-editor/FeaturedImageModal.jsx:70
 msgid "Failed to set featured image."
 msgstr ""
 
@@ -710,12 +905,40 @@ msgstr ""
 msgid "Failed to start conversation."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:290
+#: includes/Agents/TaskStepExecutor.php:291
 msgid "Featured image set."
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:232
+#: src/admin/workflowPresets.js:250
+msgid "Fetch products"
+msgstr ""
+
+#: src/admin/workflowPresets.js:102
+msgid "Fetch site info"
+msgstr ""
+
+#: src/admin/workflowPresets.js:240
+msgid "Fetches WooCommerce products and rewrites descriptions for the first 3. Requires WooCommerce."
+msgstr ""
+
+#: src/admin/workflowPresets.js:93
+msgid "Fetches real site info via tool, then AI writes a short health report with recommendations."
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:236
 msgid "Fetching existing products"
+msgstr ""
+
+#: includes/Media/AttachmentContext.php:62
+msgid "File"
+msgstr ""
+
+#: includes/Modules/Elementor/ElementorModule.php:133
+msgid "Find all heading widgets on this page"
+msgstr ""
+
+#: includes/Media/AttachmentContext.php:79
+msgid "For Elementor: call add_attached_image_to_page with attachment_id to insert an image widget. Use apply_media_to_element only for existing widgets."
 msgstr ""
 
 #: includes/Modules/Elementor/Tools/ListElementorPagesTool.php:49
@@ -726,7 +949,12 @@ msgstr ""
 msgid "Found %d coupons."
 msgstr ""
 
+#: includes/Modules/Elementor/Tools/SearchElementsTool.php:60
+msgid "Found %d matching elements."
+msgstr ""
+
 #: includes/Modules/Sales/Tools/GetMyOrdersTool.php:50
+#: includes/Modules/Sales/Tools/ListOrdersTool.php:99
 msgid "Found %d orders."
 msgstr ""
 
@@ -747,7 +975,7 @@ msgstr ""
 msgid "Found %d users."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:412
+#: includes/Agents/TaskStepExecutor.php:443
 msgid "Frequently Asked Questions"
 msgstr ""
 
@@ -764,46 +992,57 @@ msgid "GapGPT API key is not configured."
 msgstr ""
 
 #: src/admin/pages/Memory.jsx:18
-#: src/admin/pages/Settings.jsx:319
+#: src/admin/pages/Settings.jsx:341
 msgid "General"
 msgstr ""
 
-#: src/post-editor/FeaturedImageModal.jsx:173
-#: src/post-editor/GenerateTextModal.jsx:140
-#: src/post-editor/InsertImageModal.jsx:159
+#: src/post-editor/FeaturedImageModal.jsx:159
+#: src/post-editor/GenerateTextModal.jsx:132
+#: src/post-editor/InsertImageModal.jsx:152
 msgid "Generate"
 msgstr ""
 
-#: includes/Modules/Admin/ClassicEditorToolbar.php:178
+#: src/admin/workflowPresets.js:161
+msgid "Generate 8 frequently asked questions and detailed answers about \"YOUR TOPIC HERE\" for a WordPress site. Format as markdown: ## Question followed by answer paragraphs. Suitable for FAQ schema and an FAQ page."
+msgstr ""
+
+#: src/admin/workflowPresets.js:160
+msgid "Generate FAQ pairs"
+msgstr ""
+
+#: includes/Modules/Admin/ClassicEditorToolbar.php:171
 msgid "Generate Image"
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:380
+#: src/admin/pages/Settings.jsx:402
 msgid "Generate Key"
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:42
+#: includes/Agents/TaskTemplates.php:44
 msgid "Generate SEO product descriptions for WooCommerce products"
 msgstr ""
 
-#: includes/Modules/Admin/ClassicEditorToolbar.php:177
+#: includes/Modules/Admin/ClassicEditorToolbar.php:170
 msgid "Generate Text"
 msgstr ""
 
-#: includes/Modules/Elementor/ElementorModule.php:123
-msgid "Generate a background image for this section"
+#: includes/Modules/Admin/AdminModule.php:144
+#: src/admin/components/ChatInterface.jsx:13
+msgid "Generate a featured image for my latest post"
 msgstr ""
 
 #: includes/Agents/TaskTemplates.php:32
+#: src/admin/pages/Workflows.jsx:230
 msgid "Generate featured image"
 msgstr ""
 
 #: includes/Agents/TaskTemplates.php:33
+#: src/admin/pages/Workflows.jsx:231
 msgid "Generate image for each section"
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:124
-#: src/admin/components/ChatInterface.jsx:11
+#: includes/Modules/Admin/AdminModule.php:140
+#: src/admin/components/ChatInterface.jsx:12
 msgid "Generate meta title and description for my latest post"
 msgstr ""
 
@@ -811,62 +1050,88 @@ msgstr ""
 msgid "Generate multiple SEO-optimized articles with categories and tags"
 msgstr ""
 
-#: src/post-editor/FeaturedImageModal.jsx:147
-#: src/post-editor/InsertImageModal.jsx:133
+#: src/admin/workflowPresets.js:41
+msgid "Generate post ideas"
+msgstr ""
+
+#: src/post-editor/FeaturedImageModal.jsx:133
+#: src/post-editor/InsertImageModal.jsx:126
 msgid "Generated preview"
 msgstr ""
 
-#: src/post-editor/FeaturedImageModal.jsx:153
-#: src/post-editor/InsertImageModal.jsx:139
+#: src/admin/workflowPresets.js:151
+msgid "Generates 8 FAQ pairs for a topic — useful for schema markup or a new FAQ page. Edit the topic in the prompt."
+msgstr ""
+
+#: src/post-editor/FeaturedImageModal.jsx:139
+#: src/post-editor/InsertImageModal.jsx:132
 msgid "Generating image..."
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:206
+#: includes/Agents/TaskTemplates.php:210
 msgid "Generating task summary"
 msgstr ""
 
-#: src/post-editor/GenerateTextModal.jsx:120
+#: src/post-editor/GenerateTextModal.jsx:112
 msgid "Generating text..."
 msgstr ""
 
-#: src/post-editor/FeaturedImageModal.jsx:173
-#: src/post-editor/GenerateTextModal.jsx:140
-#: src/post-editor/InsertImageModal.jsx:159
+#: src/post-editor/FeaturedImageModal.jsx:159
+#: src/post-editor/GenerateTextModal.jsx:132
+#: src/post-editor/InsertImageModal.jsx:152
 msgid "Generating..."
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:122
+#: includes/Modules/Sales/SalesModule.php:165
+#: src/admin/components/ChatInterface.jsx:21
+msgid "Give me a sales overview for this week"
+msgstr ""
+
+#: includes/Modules/Admin/AdminModule.php:138
 msgid "Give me an overview of my WordPress site"
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:14
+#: src/admin/components/ChatInterface.jsx:16
 msgid "Help me design a hero section"
 msgstr ""
 
-#: src/frontend/Widget.jsx:176
+#: src/frontend/Widget.jsx:187
 msgid "Hi! How can I help you today?"
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:144
+#: src/admin/components/ChatInterface.jsx:224
 msgid "How can I help you manage your site?"
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:308
+#: includes/Media/AttachmentContext.php:52
+msgid "Image"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:321
+msgid "Image Generator"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:310
 msgid "Image Model"
 msgstr ""
 
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:122
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:123
 msgid "Image generated and applied to element."
 msgstr ""
 
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:123
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:188
+msgid "Image generated and saved to media library (ID: %d)."
+msgstr ""
+
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:124
 msgid "Image generated and saved to media library."
 msgstr ""
 
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:89
-#: includes/REST/ImageController.php:167
-#: src/post-editor/FeaturedImageModal.jsx:56
-#: src/post-editor/InsertImageModal.jsx:56
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:91
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:90
+#: includes/REST/ImageController.php:159
+#: src/post-editor/FeaturedImageModal.jsx:49
+#: src/post-editor/InsertImageModal.jsx:49
 msgid "Image generation failed."
 msgstr ""
 
@@ -874,32 +1139,55 @@ msgstr ""
 msgid "Image generation is not supported by Claude provider."
 msgstr ""
 
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:68
-#: includes/REST/ImageController.php:122
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:70
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:69
+#: includes/REST/ImageController.php:116
 msgid "Image prompt is required."
 msgstr ""
 
+#: includes/Modules/Elementor/ElementorDocumentService.php:480
+msgid "Image widget added to the page."
+msgstr ""
+
+#: src/admin/workflowPresets.js:219
+msgid "Improve site content quality"
+msgstr ""
+
 #: includes/Agents/TaskTemplates.php:34
+#: src/admin/pages/Workflows.jsx:232
 msgid "Include FAQ section"
 msgstr ""
 
 #: includes/Agents/TaskTemplates.php:35
+#: src/admin/pages/Workflows.jsx:233
 msgid "Include conclusion"
 msgstr ""
 
-#: src/post-editor/InsertImageModal.jsx:168
+#: src/post-editor/InsertImageModal.jsx:161
 msgid "Insert Image"
 msgstr ""
 
-#: src/post-editor/GenerateTextModal.jsx:149
+#: src/post-editor/GenerateTextModal.jsx:141
 msgid "Insert Text"
+msgstr ""
+
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:209
+msgid "Inserted into content of \"%s\"."
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:115
+msgid "Instructions for the AI. Use {{output_key}} to reference prior step outputs."
 msgstr ""
 
 #: includes/REST/ExternalAuth.php:54
 msgid "Invalid API key."
 msgstr ""
 
-#: includes/Agents/AgentEngine.php:291
+#: src/admin/pages/Workflows.jsx:78
+msgid "Invalid JSON in tool arguments."
+msgstr ""
+
+#: includes/Agents/AgentEngine.php:296
 msgid "Invalid conversation for this action."
 msgstr ""
 
@@ -907,11 +1195,13 @@ msgstr ""
 msgid "Invalid data."
 msgstr ""
 
-#: includes/REST/ImageController.php:219
+#: includes/Modules/Elementor/ElementorDocumentService.php:435
+#: includes/Modules/Elementor/ElementorDocumentService.php:544
+#: includes/REST/ImageController.php:211
 msgid "Invalid image attachment."
 msgstr ""
 
-#: includes/REST/ChatController.php:231
+#: includes/REST/ChatController.php:290
 msgid "Invalid module."
 msgstr ""
 
@@ -924,11 +1214,11 @@ msgstr ""
 msgid "Key"
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:291
+#: src/admin/pages/Settings.jsx:293
 msgid "Key is saved. Paste a new value to replace it."
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:368
+#: src/admin/pages/Settings.jsx:390
 msgid "Key name"
 msgstr ""
 
@@ -936,29 +1226,49 @@ msgstr ""
 msgid "Key name and value are required."
 msgstr ""
 
-#: includes/Modules/Admin/ClassicEditorToolbar.php:169
-#: includes/Modules/Admin/PostFeaturedImage.php:143
-msgid "Landscape (1792×1024)"
-msgstr ""
-
 #: src/admin/pages/Analytics.jsx:66
 msgid "Last"
 msgstr ""
 
-#: src/admin/pages/Workflows.jsx:112
+#: src/admin/pages/Workflows.jsx:684
 msgid "Last Run"
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:340
+#: src/admin/pages/Settings.jsx:362
 msgid "License Tier"
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:126
+#: includes/Modules/Admin/AdminModule.php:142
 msgid "List all categories and suggest new ones"
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:131
+#: src/admin/workflowPresets.js:182
+msgid "List categories"
+msgstr ""
+
+#: src/admin/workflowPresets.js:131
+msgid "List draft posts"
+msgstr ""
+
+#: includes/Modules/Admin/AdminModule.php:149
 msgid "List my WooCommerce products and their stock levels"
+msgstr ""
+
+#: includes/Modules/Sales/SalesModule.php:166
+#: src/admin/components/ChatInterface.jsx:22
+msgid "List recent orders"
+msgstr ""
+
+#: src/admin/workflowPresets.js:189
+msgid "List tags"
+msgstr ""
+
+#: src/admin/workflowPresets.js:173
+msgid "Lists categories, then AI suggests new terms and a cleaner taxonomy structure."
+msgstr ""
+
+#: src/admin/workflowPresets.js:122
+msgid "Lists recent drafts, then AI suggests a 7-day publishing plan and priorities."
 msgstr ""
 
 #: src/admin/pages/Analytics.jsx:44
@@ -966,17 +1276,17 @@ msgid "Loading analytics..."
 msgstr ""
 
 #: src/admin/pages/SalesChatSettings.jsx:147
-#: src/admin/pages/Settings.jsx:217
+#: src/admin/pages/Settings.jsx:219
 msgid "Loading settings..."
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:240
+#: src/admin/pages/Tasks.jsx:242
 msgid "Loading tasks..."
 msgstr ""
 
 #: src/admin/pages/Inbox.jsx:130
 #: src/admin/pages/Memory.jsx:288
-#: src/admin/pages/Workflows.jsx:102
+#: src/admin/pages/Workflows.jsx:673
 msgid "Loading..."
 msgstr ""
 
@@ -984,7 +1294,7 @@ msgstr ""
 msgid "Logged-in customer"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:333
+#: src/admin/pages/Tasks.jsx:335
 msgid "Logs"
 msgstr ""
 
@@ -992,8 +1302,16 @@ msgstr ""
 msgid "Manage Memory"
 msgstr ""
 
+#: src/admin/pages/Workflows.jsx:404
+msgid "Manual run"
+msgstr ""
+
 #: src/admin/pages/Inbox.jsx:191
 msgid "Mark Resolved"
+msgstr ""
+
+#: src/frontend/formatMessage.js:47
+msgid "Media library"
 msgstr ""
 
 #: includes/Modules/Admin/Tools/UpdateMediaTool.php:79
@@ -1030,7 +1348,7 @@ msgstr ""
 msgid "Memory entry updated."
 msgstr ""
 
-#: includes/REST/ChatController.php:258
+#: includes/REST/ChatController.php:317
 #: includes/REST/SalesChatController.php:114
 msgid "Message cannot be empty."
 msgstr ""
@@ -1040,8 +1358,20 @@ msgstr ""
 msgid "Message is required."
 msgstr ""
 
+#: includes/REST/ChatController.php:258
+msgid "Message not found."
+msgstr ""
+
 #: src/admin/pages/Analytics.jsx:57
 msgid "Messages"
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:455
+msgid "Move down"
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:445
+msgid "Move up"
 msgstr ""
 
 #: src/admin/pages/Chat.jsx:31
@@ -1053,6 +1383,8 @@ msgid "Multi-model gateway (OpenAI-compatible)"
 msgstr ""
 
 #: includes/REST/WorkflowController.php:129
+#: src/admin/pages/Workflows.jsx:356
+#: src/admin/pages/Workflows.jsx:631
 msgid "New Workflow"
 msgstr ""
 
@@ -1060,7 +1392,11 @@ msgstr ""
 msgid "No active sales chats."
 msgstr ""
 
-#: src/elementor/Panel.jsx:35
+#: includes/Modules/Elementor/ElementorDocumentService.php:445
+msgid "No column found to insert the image widget."
+msgstr ""
+
+#: src/elementor/Panel.jsx:13
 msgid "No element selected"
 msgstr ""
 
@@ -1072,12 +1408,16 @@ msgstr ""
 msgid "No file uploaded."
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:347
+#: src/admin/pages/Tasks.jsx:349
 msgid "No logs yet."
 msgstr ""
 
 #: src/admin/pages/Memory.jsx:290
 msgid "No memory entries yet."
+msgstr ""
+
+#: includes/Modules/Sales/Tools/GetBestSellersTool.php:56
+msgid "No paid orders found for this period."
 msgstr ""
 
 #: src/admin/pages/Inbox.jsx:97
@@ -1088,15 +1428,19 @@ msgstr ""
 msgid "No response from AI provider."
 msgstr ""
 
+#: src/admin/pages/Workflows.jsx:429
+msgid "No steps yet. Add a step type above."
+msgstr ""
+
 #: src/admin/pages/Inbox.jsx:94
 msgid "No storefront sales chats yet."
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:242
+#: src/admin/pages/Tasks.jsx:244
 msgid "No tasks yet. Create one above."
 msgstr ""
 
-#: src/admin/pages/Workflows.jsx:104
+#: src/admin/pages/Workflows.jsx:675
 msgid "No workflows yet."
 msgstr ""
 
@@ -1104,7 +1448,7 @@ msgstr ""
 msgid "Number of articles"
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:44
+#: includes/Agents/TaskTemplates.php:46
 msgid "Number of products"
 msgstr ""
 
@@ -1120,7 +1464,7 @@ msgstr ""
 msgid "Only failed tasks can be retried."
 msgstr ""
 
-#: src/frontend/formatMessage.js:52
+#: src/frontend/formatMessage.js:66
 msgid "Open link"
 msgstr ""
 
@@ -1128,8 +1472,16 @@ msgstr ""
 msgid "OpenAI API key is not configured."
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:265
+#: src/admin/pages/Settings.jsx:267
 msgid "OpenAI-compatible base URL including /v1 path."
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:102
+msgid "Optional display label"
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:383
+msgid "Optional notes about what this workflow does"
 msgstr ""
 
 #: includes/Modules/Sales/Tools/GetOrderStatusTool.php:75
@@ -1149,15 +1501,24 @@ msgstr ""
 msgid "Order status: %s"
 msgstr ""
 
+#: includes/Agents/TaskStepExecutor.php:471
+msgid "Our Services"
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:119
+#: src/admin/pages/Workflows.jsx:151
+msgid "Output key"
+msgstr ""
+
 #: includes/Modules/Elementor/Tools/GetPageStructureTool.php:52
 msgid "Page structure retrieved."
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:292
+#: src/admin/pages/Settings.jsx:294
 msgid "Paste your API key here."
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:275
+#: src/admin/pages/Tasks.jsx:277
 msgid "Pause"
 msgstr ""
 
@@ -1169,11 +1530,11 @@ msgstr ""
 msgid "Pending"
 msgstr ""
 
-#: includes/REST/ChatController.php:346
+#: includes/REST/ChatController.php:407
 msgid "Pending action ID and conversation ID are required."
 msgstr ""
 
-#: includes/Agents/AgentEngine.php:287
+#: includes/Agents/AgentEngine.php:292
 msgid "Pending action not found or expired."
 msgstr ""
 
@@ -1182,6 +1543,7 @@ msgstr ""
 #: includes/Modules/Admin/Tools/CreateTermTool.php:41
 #: includes/Modules/Admin/Tools/DeletePostTool.php:58
 #: includes/Modules/Admin/Tools/DeleteProductTool.php:65
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:64
 #: includes/Modules/Admin/Tools/GetPostTool.php:39
 #: includes/Modules/Admin/Tools/GetProductTool.php:43
 #: includes/Modules/Admin/Tools/GetUserTool.php:39
@@ -1192,24 +1554,52 @@ msgstr ""
 #: includes/Modules/Admin/Tools/UpdateMediaTool.php:42
 #: includes/Modules/Admin/Tools/UpdatePostTool.php:45
 #: includes/Modules/Admin/Tools/UpdateProductTool.php:49
+#: includes/Modules/Elementor/Tools/AddAttachedImageTool.php:41
+#: includes/Modules/Elementor/Tools/AddAttachedImageTool.php:48
+#: includes/Modules/Elementor/Tools/ApplyMediaToElementTool.php:39
+#: includes/Modules/Elementor/Tools/ApplyMediaToElementTool.php:47
 #: includes/Modules/Elementor/Tools/CreateSectionTool.php:44
+#: includes/Modules/Elementor/Tools/CreateWidgetTool.php:50
 #: includes/Modules/Elementor/Tools/DeleteElementTool.php:53
 #: includes/Modules/Elementor/Tools/DuplicateElementTool.php:41
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:62
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:63
 #: includes/Modules/Elementor/Tools/GetElementTool.php:41
 #: includes/Modules/Elementor/Tools/GetPageStructureTool.php:40
 #: includes/Modules/Elementor/Tools/ListElementorPagesTool.php:36
+#: includes/Modules/Elementor/Tools/SearchElementsTool.php:42
 #: includes/Modules/Elementor/Tools/UpdateWidgetSettingsTool.php:50
+#: includes/Modules/Sales/Tools/SalesAbstractTool.php:38
+#: includes/REST/ElementorController.php:59
 msgid "Permission denied."
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:171
+#: src/admin/workflowPresets.js:64
+msgid "Plan 3 unique SEO blog article titles about \"YOUR TOPIC HERE\". Return ONLY a JSON array of 3 strings. No markdown."
+msgstr ""
+
+#: src/admin/workflowPresets.js:218
+msgid "Plan actions"
+msgstr ""
+
+#: src/admin/workflowPresets.js:63
+msgid "Plan article titles"
+msgstr ""
+
+#: src/admin/workflowPresets.js:57
+msgid "Plan titles → create 3 SEO drafts → summary."
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:175
 msgid "Planning article topics"
 msgstr ""
 
-#: src/post-editor/FeaturedImageModal.jsx:36
+#: src/admin/workflowPresets.js:54
+msgid "Plans 3 article titles, writes each as a draft with FAQ and featured image. Change YOUR TOPIC in steps 1 and 2–4."
+msgstr ""
+
+#: src/post-editor/FeaturedImageModal.jsx:37
 #: src/post-editor/GenerateTextModal.jsx:27
-#: src/post-editor/InsertImageModal.jsx:36
+#: src/post-editor/InsertImageModal.jsx:37
 msgid "Please enter a prompt."
 msgstr ""
 
@@ -1221,15 +1611,14 @@ msgstr ""
 msgid "Polite"
 msgstr ""
 
-#: includes/Modules/Admin/ClassicEditorToolbar.php:173
-#: includes/Modules/Admin/PostFeaturedImage.php:147
-msgid "Portrait (1024×1792)"
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:117
+msgid "Post not found or permission denied."
 msgstr ""
 
 #: includes/Modules/Admin/Tools/DeletePostTool.php:65
 #: includes/Modules/Admin/Tools/GetPostTool.php:45
 #: includes/Modules/Admin/Tools/UpdatePostTool.php:52
-#: includes/REST/ImageController.php:209
+#: includes/REST/ImageController.php:201
 msgid "Post not found."
 msgstr ""
 
@@ -1241,20 +1630,29 @@ msgstr ""
 msgid "Post updated successfully."
 msgstr ""
 
-#: src/frontend/Widget.jsx:232
+#: src/frontend/Widget.jsx:262
 msgid "Powered by AgenPress"
 msgstr ""
 
 #: src/admin/pages/SalesChatSettings.jsx:65
-#: src/post-editor/GenerateTextModal.jsx:110
+#: src/post-editor/GenerateTextModal.jsx:102
 msgid "Preview"
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:347
+#: src/admin/pages/Settings.jsx:369
 msgid "Pro"
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:41
+#: src/admin/pages/Workflows.jsx:20
+msgid "Product Description"
+msgstr ""
+
+#: src/admin/workflowPresets.js:239
+#: src/admin/workflowPresets.js:243
+msgid "Product Description Refresh"
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:43
 msgid "Product Descriptions"
 msgstr ""
 
@@ -1262,7 +1660,12 @@ msgstr ""
 msgid "Product details retrieved."
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:45
+#: src/admin/pages/Workflows.jsx:264
+msgid "Product index"
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:47
+#: src/admin/pages/Workflows.jsx:256
 msgid "Product niche"
 msgstr ""
 
@@ -1285,21 +1688,27 @@ msgstr ""
 msgid "Professional"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:249
+#: src/admin/pages/Tasks.jsx:251
 msgid "Progress"
 msgstr ""
 
-#: src/post-editor/FeaturedImageModal.jsx:116
-#: src/post-editor/GenerateTextModal.jsx:96
-#: src/post-editor/InsertImageModal.jsx:102
+#: src/admin/pages/Workflows.jsx:109
+#: src/post-editor/FeaturedImageModal.jsx:102
+#: src/post-editor/GenerateTextModal.jsx:88
+#: src/post-editor/InsertImageModal.jsx:95
 msgid "Prompt"
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:36
+#: includes/Agents/TaskTemplates.php:38
+#: src/admin/pages/Workflows.jsx:209
 msgid "Publish when done"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:217
+#: src/admin/workflowPresets.js:138
+msgid "Publishing plan"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:219
 msgid "Queue Task"
 msgstr ""
 
@@ -1311,7 +1720,7 @@ msgstr ""
 msgid "RAG"
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:401
+#: src/admin/pages/Settings.jsx:423
 msgid "Rate Limit (requests/hour)"
 msgstr ""
 
@@ -1323,7 +1732,7 @@ msgstr ""
 msgid "Rate limiting requires a user or visitor key."
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:290
+#: src/admin/pages/Tasks.jsx:292
 msgid "Re-run"
 msgstr ""
 
@@ -1331,8 +1740,12 @@ msgstr ""
 msgid "Reason:"
 msgstr ""
 
-#: includes/Modules/Sales/SalesModule.php:116
+#: includes/Modules/Sales/SalesModule.php:153
 msgid "Recommend products for [occasion]"
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:478
+msgid "Recommended Products"
 msgstr ""
 
 #: src/admin/pages/Memory.jsx:197
@@ -1347,24 +1760,40 @@ msgstr ""
 msgid "Reindexing..."
 msgstr ""
 
+#: src/admin/pages/Workflows.jsx:465
+msgid "Remove"
+msgstr ""
+
 #: src/admin/pages/Inbox.jsx:9
 #: src/admin/pages/Inbox.jsx:15
 msgid "Resolved"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:275
+#: includes/Agents/AgentEngine.php:469
+msgid "Respond with internal sales analytics and operational insights. Do not pitch products to this user."
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:277
 msgid "Resume"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:285
+#: src/admin/pages/Tasks.jsx:287
 msgid "Retry"
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:390
+#: src/admin/workflowPresets.js:220
+msgid "Review content gaps and suggest concrete improvements for the WordPress site (posts, pages, meta, internal links)."
+msgstr ""
+
+#: src/admin/workflowPresets.js:139
+msgid "Review the draft posts situation on this WordPress site and suggest priorities: which drafts to finish first, common content gaps, and a practical 7-day publishing plan. Use markdown with clear sections."
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:412
 msgid "Revoke"
 msgstr ""
 
-#: src/admin/pages/Workflows.jsx:125
+#: src/admin/pages/Workflows.jsx:721
 msgid "Run"
 msgstr ""
 
@@ -1380,11 +1809,15 @@ msgstr ""
 msgid "SEO"
 msgstr ""
 
+#: src/admin/pages/Workflows.jsx:19
+msgid "SEO Article"
+msgstr ""
+
 #: includes/Agents/TaskTemplates.php:26
 msgid "SEO Articles Batch"
 msgstr ""
 
-#: includes/Modules/Sales/SalesModule.php:66
+#: includes/Modules/Sales/SalesModule.php:69
 msgid "Sales Assistant"
 msgstr ""
 
@@ -1406,11 +1839,15 @@ msgstr ""
 msgid "Sales chat"
 msgstr ""
 
-#: includes/Core/Settings.php:298
+#: includes/Modules/Sales/Tools/GetSalesOverviewTool.php:81
+msgid "Sales overview: %1$d paid orders (%2$s)."
+msgstr ""
+
+#: includes/Core/Settings.php:331
 msgid "Sales rules — DO NOT:"
 msgstr ""
 
-#: includes/Core/Settings.php:293
+#: includes/Core/Settings.php:326
 msgid "Sales rules — DO:"
 msgstr ""
 
@@ -1423,17 +1860,22 @@ msgid "Save Memory"
 msgstr ""
 
 #: src/admin/pages/SalesChatSettings.jsx:331
-#: src/admin/pages/Settings.jsx:413
+#: src/admin/pages/Settings.jsx:435
 msgid "Save Settings"
 msgstr ""
 
-#: src/post-editor/FeaturedImageModal.jsx:177
+#: src/admin/pages/Workflows.jsx:477
+msgid "Save Workflow"
+msgstr ""
+
+#: src/post-editor/FeaturedImageModal.jsx:163
 msgid "Save the post as a draft first to set a featured image."
 msgstr ""
 
 #: src/admin/pages/Memory.jsx:246
 #: src/admin/pages/SalesChatSettings.jsx:331
-#: src/admin/pages/Settings.jsx:413
+#: src/admin/pages/Settings.jsx:435
+#: src/admin/pages/Workflows.jsx:477
 msgid "Saving..."
 msgstr ""
 
@@ -1449,19 +1891,23 @@ msgstr ""
 msgid "Search..."
 msgstr ""
 
-#: includes/Modules/Elementor/ElementorDocumentService.php:172
+#: includes/Modules/Elementor/ElementorDocumentService.php:190
 msgid "Section created."
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:212
+msgid "Sections count"
 msgstr ""
 
 #: src/admin/pages/Inbox.jsx:161
 msgid "Select a conversation to view."
 msgstr ""
 
-#: src/post-editor/GenerateTextModal.jsx:90
+#: src/post-editor/GenerateTextModal.jsx:82
 msgid "Selected text"
 msgstr ""
 
-#: src/elementor/Panel.jsx:145
+#: src/elementor/Panel.jsx:134
 msgid "Selection:"
 msgstr ""
 
@@ -1473,10 +1919,14 @@ msgstr ""
 msgid "Semantic search..."
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:210
-#: src/elementor/Panel.jsx:207
-#: src/frontend/Widget.jsx:227
+#: src/admin/components/ChatInterface.jsx:302
+#: src/elementor/Panel.jsx:213
+#: src/frontend/Widget.jsx:257
 msgid "Send"
+msgstr ""
+
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:200
+msgid "Set as featured image on \"%s\"."
 msgstr ""
 
 #: src/admin/App.jsx:34
@@ -1489,12 +1939,25 @@ msgid "Settings are required."
 msgstr ""
 
 #: src/admin/pages/SalesChatSettings.jsx:130
-#: src/admin/pages/Settings.jsx:182
+#: src/admin/pages/Settings.jsx:184
 msgid "Settings saved successfully."
 msgstr ""
 
-#: includes/Modules/Elementor/ElementorModule.php:120
+#: includes/Modules/Sales/SalesModule.php:168
+msgid "Show active discount codes"
+msgstr ""
+
+#: includes/Modules/Elementor/ElementorModule.php:132
 msgid "Show me the structure of this page"
+msgstr ""
+
+#: src/admin/workflowPresets.js:154
+msgid "Single AI step: 8 Q&A pairs in markdown."
+msgstr ""
+
+#: src/admin/workflowPresets.js:92
+#: src/admin/workflowPresets.js:95
+msgid "Site Health Snapshot"
 msgstr ""
 
 #: src/admin/pages/Memory.jsx:182
@@ -1505,17 +1968,33 @@ msgstr ""
 msgid "Site info retrieved."
 msgstr ""
 
-#: includes/Modules/Admin/ClassicEditorToolbar.php:165
-#: includes/Modules/Admin/PostFeaturedImage.php:139
-msgid "Square (1024×1024)"
+#: includes/Agents/AgentEngine.php:460
+msgid "Staff member: %s"
 msgstr ""
 
 #: src/admin/pages/Dashboard.jsx:78
 msgid "Start AI Chat"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:321
-#: src/admin/pages/Workflows.jsx:111
+#: src/admin/pages/Workflows.jsx:641
+msgid "Start from a ready-made template, customize steps, then save and run."
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:681
+msgid "Status"
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:436
+msgid "Step"
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:97
+msgid "Step label"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:323
+#: src/admin/pages/Workflows.jsx:411
+#: src/admin/pages/Workflows.jsx:683
 msgid "Steps"
 msgstr ""
 
@@ -1533,35 +2012,59 @@ msgstr ""
 msgid "Storefront Sales Chats"
 msgstr ""
 
-#: includes/Core/Settings.php:305
+#: includes/Core/Settings.php:338
 msgid "Storefront sales chat behavior:"
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:15
+#: src/admin/components/ChatInterface.jsx:17
 msgid "Suggest a landing page structure"
 msgstr ""
 
-#: src/frontend/Widget.jsx:235
+#: includes/Agents/TaskTemplates.php:37
+msgid "Suggest products in article"
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:235
+msgid "Suggest related products"
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:234
+msgid "Suggest related services"
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:36
+msgid "Suggest services in article"
+msgstr ""
+
+#: src/admin/workflowPresets.js:81
+msgid "Summarize the completed SEO article batch in 2–3 sentences for the site admin."
+msgstr ""
+
+#: src/frontend/Widget.jsx:265
 msgid "Talk to a human"
+msgstr ""
+
+#: includes/Modules/Elementor/ElementorDocumentService.php:348
+msgid "Target column not found."
 msgstr ""
 
 #: includes/Agents/TaskRunner.php:164
 msgid "Task \"%s\" completed successfully."
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:312
+#: src/admin/pages/Tasks.jsx:314
 msgid "Task Details:"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:224
+#: src/admin/pages/Tasks.jsx:226
 msgid "Task Queue"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:155
+#: src/admin/pages/Tasks.jsx:157
 msgid "Task Template"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:199
+#: src/admin/pages/Tasks.jsx:201
 msgid "Task Title"
 msgstr ""
 
@@ -1573,6 +2076,10 @@ msgstr ""
 msgid "Task cannot be paused or resumed in its current state."
 msgstr ""
 
+#: src/admin/pages/Workflows.jsx:172
+msgid "Task description"
+msgstr ""
+
 #: includes/REST/TaskController.php:218
 #: includes/REST/TaskController.php:245
 #: includes/REST/TaskController.php:272
@@ -1581,8 +2088,12 @@ msgstr ""
 msgid "Task not found."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:185
+#: includes/Agents/TaskStepExecutor.php:186
 msgid "Task plan created."
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:164
+msgid "Task title"
 msgstr ""
 
 #: includes/REST/TaskController.php:170
@@ -1593,7 +2104,11 @@ msgstr ""
 msgid "Tasks Completed"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:248
+#: src/admin/workflowPresets.js:196
+msgid "Taxonomy recommendations"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:250
 msgid "Template"
 msgstr ""
 
@@ -1601,12 +2116,12 @@ msgstr ""
 msgid "Term name is required."
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:297
+#: src/admin/pages/Settings.jsx:299
 msgid "Text Model"
 msgstr ""
 
 #: includes/REST/TextController.php:150
-#: src/post-editor/GenerateTextModal.jsx:47
+#: src/post-editor/GenerateTextModal.jsx:39
 msgid "Text generation failed."
 msgstr ""
 
@@ -1614,7 +2129,7 @@ msgstr ""
 msgid "Text prompt is required."
 msgstr ""
 
-#: includes/Agents/AgentEngine.php:212
+#: includes/Agents/AgentEngine.php:214
 msgid "The following actions require your confirmation before proceeding."
 msgstr ""
 
@@ -1626,8 +2141,8 @@ msgstr ""
 msgid "Things the assistant must do when helping customers."
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:180
-#: src/elementor/Panel.jsx:186
+#: src/admin/components/ChatInterface.jsx:272
+#: src/elementor/Panel.jsx:180
 msgid "Thinking..."
 msgstr ""
 
@@ -1635,7 +2150,7 @@ msgstr ""
 msgid "This action is not available in the storefront chat."
 msgstr ""
 
-#: includes/Security/PermissionValidator.php:213
+#: includes/Security/PermissionValidator.php:220
 msgid "This action requires administrator privileges."
 msgstr ""
 
@@ -1647,8 +2162,13 @@ msgstr ""
 msgid "This feature requires an Enterprise license."
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:247
-#: src/admin/pages/Workflows.jsx:109
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:122
+msgid "This post type does not support featured images."
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:249
+#: src/admin/pages/Workflows.jsx:367
+#: src/admin/pages/Workflows.jsx:680
 msgid "Title"
 msgstr ""
 
@@ -1660,8 +2180,20 @@ msgstr ""
 msgid "Tone and sales rules for customer replies"
 msgstr ""
 
+#: src/admin/pages/Workflows.jsx:17
+msgid "Tool Call"
+msgstr ""
+
 #: src/admin/pages/Analytics.jsx:60
 msgid "Tool Executions"
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:142
+msgid "Tool arguments (JSON)"
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:133
+msgid "Tool name"
 msgstr ""
 
 #: includes/REST/McpController.php:101
@@ -1672,6 +2204,26 @@ msgstr ""
 msgid "Tool:"
 msgstr ""
 
+#: src/admin/workflowPresets.js:96
+msgid "Tool: get_site_info → AI report."
+msgstr ""
+
+#: src/admin/workflowPresets.js:125
+msgid "Tool: list_posts (drafts) → AI publishing plan."
+msgstr ""
+
+#: src/admin/workflowPresets.js:176
+msgid "Tool: list_terms → AI taxonomy recommendations."
+msgstr ""
+
+#: includes/Modules/Sales/Tools/GetBestSellersTool.php:98
+msgid "Top %d best sellers for the selected period."
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:186
+msgid "Topic"
+msgstr ""
+
 #: includes/Agents/TaskTemplates.php:30
 msgid "Topic / niche"
 msgstr ""
@@ -1680,15 +2232,20 @@ msgstr ""
 msgid "Total Tasks"
 msgstr ""
 
-#: includes/Modules/Sales/SalesModule.php:115
+#: includes/Modules/Sales/SalesModule.php:152
 msgid "Track my order"
 msgstr ""
 
-#: src/admin/pages/Workflows.jsx:110
+#: src/admin/pages/Workflows.jsx:398
+#: src/admin/pages/Workflows.jsx:682
 msgid "Trigger"
 msgstr ""
 
-#: src/frontend/Widget.jsx:217
+#: src/admin/workflowPresets.js:26
+msgid "Two-step AI chain: strategy analysis → post ideas list."
+msgstr ""
+
+#: src/frontend/Widget.jsx:247
 msgid "Type a message..."
 msgstr ""
 
@@ -1696,36 +2253,40 @@ msgstr ""
 msgid "Unassigned"
 msgstr ""
 
-#: includes/Modules/Elementor/ElementorModule.php:122
+#: includes/Modules/Elementor/ElementorModule.php:134
 msgid "Update the selected widget heading text"
 msgstr ""
 
-#: src/admin/components/FileUpload.jsx:24
+#: src/shared/FileUpload.jsx:25
 msgid "Upload failed."
 msgstr ""
 
-#: src/admin/components/FileUpload.jsx:46
+#: src/shared/FileUpload.jsx:48
 msgid "Upload file"
 msgstr ""
 
-#: src/admin/pages/Settings.jsx:395
+#: src/admin/pages/Settings.jsx:417
 msgid "Use Authorization: Bearer agp_... for /external/* and /mcp/* endpoints."
 msgstr ""
 
-#: src/post-editor/FeaturedImageModal.jsx:187
+#: src/post-editor/FeaturedImageModal.jsx:173
 msgid "Use Image"
 msgstr ""
 
-#: includes/Core/Settings.php:283
+#: includes/Core/Settings.php:316
 msgid "Use a polite, respectful tone. Address customers courteously and with warmth."
 msgstr ""
 
-#: includes/Core/Settings.php:285
+#: includes/Core/Settings.php:318
 msgid "Use a professional, confident business tone. Be clear, structured, and expert without being stiff."
 msgstr ""
 
-#: includes/Core/Settings.php:284
+#: includes/Core/Settings.php:317
 msgid "Use a warm, casual, conversational tone. Be approachable and relatable while staying helpful."
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:664
+msgid "Use this example"
 msgstr ""
 
 #: includes/Modules/Admin/Tools/GetUserTool.php:45
@@ -1745,7 +2306,7 @@ msgstr ""
 msgid "View Tasks"
 msgstr ""
 
-#: src/frontend/formatMessage.js:49
+#: src/frontend/formatMessage.js:54
 msgid "View product"
 msgstr ""
 
@@ -1753,25 +2314,30 @@ msgstr ""
 msgid "Warm and conversational"
 msgstr ""
 
-#: src/frontend/Widget.jsx:175
+#: src/frontend/Widget.jsx:186
 msgid "Welcome back! I remember our previous chats. How can I help you today?"
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:18
-msgid "What are our best-selling products?"
-msgstr ""
-
-#: includes/Modules/Sales/SalesModule.php:112
+#: includes/Modules/Sales/SalesModule.php:149
 msgid "What are your best-selling products?"
 msgstr ""
 
-#: includes/Modules/Sales/SalesModule.php:114
+#: includes/Modules/Sales/SalesModule.php:151
 msgid "What is in my cart?"
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:121
-#: src/admin/components/ChatInterface.jsx:9
+#: includes/Modules/Admin/AdminModule.php:137
+#: src/admin/components/ChatInterface.jsx:10
 msgid "What posts do I have on my site?"
+msgstr ""
+
+#: includes/Modules/Sales/SalesModule.php:164
+#: src/admin/components/ChatInterface.jsx:20
+msgid "What were the best-selling products this month?"
+msgstr ""
+
+#: includes/Modules/Sales/SalesModule.php:167
+msgid "Which products are low on stock?"
 msgstr ""
 
 #: src/admin/pages/SalesChatSettings.jsx:8
@@ -1790,6 +2356,10 @@ msgstr ""
 msgid "Widget Title"
 msgstr ""
 
+#: includes/Modules/Elementor/ElementorDocumentService.php:410
+msgid "Widget created."
+msgstr ""
+
 #: src/admin/pages/SalesChatSettings.jsx:174
 msgid "Widget disabled"
 msgstr ""
@@ -1798,7 +2368,11 @@ msgstr ""
 msgid "Widget enabled"
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:542
+#: includes/Modules/Elementor/ElementorDocumentService.php:358
+msgid "Widget type is required."
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:771
 #: includes/Modules/Admin/Tools/CreateProductTool.php:44
 #: includes/Modules/Admin/Tools/DeleteProductTool.php:61
 #: includes/Modules/Admin/Tools/GetProductTool.php:39
@@ -1811,26 +2385,38 @@ msgstr ""
 msgid "WooCommerce is not active."
 msgstr ""
 
-#: src/admin/pages/Workflows.jsx:89
-msgid "Workflow name"
+#: src/admin/pages/Workflows.jsx:329
+msgid "Workflow title is required."
 msgstr ""
 
 #: src/admin/App.jsx:31
 #: src/admin/components/Sidebar.jsx:8
-#: src/admin/pages/Workflows.jsx:99
+#: src/admin/pages/Workflows.jsx:624
 msgid "Workflows"
 msgstr ""
 
-#: src/admin/pages/Workflows.jsx:40
+#: src/admin/pages/Workflows.jsx:518
 msgid "Workflows require an Enterprise license. Update the license tier in Settings to enable automation workflows."
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:123
-#: src/admin/components/ChatInterface.jsx:10
+#: src/admin/workflowPresets.js:110
+msgid "Write a brief WordPress site health report for the administrator. Cover content overview, technical context, and 5 actionable recommendations. Use markdown headings and bullet points. Keep it under 400 words."
+msgstr ""
+
+#: includes/Modules/Admin/AdminModule.php:139
+#: src/admin/components/ChatInterface.jsx:11
 msgid "Write an SEO-optimized blog post about [topic]"
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:246
+#: src/admin/workflowPresets.js:109
+msgid "Write health report"
+msgstr ""
+
+#: src/admin/workflowPresets.js:257
+msgid "Write product description"
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:250
 msgid "Writing product description %d"
 msgstr ""
 
@@ -1838,7 +2424,7 @@ msgstr ""
 msgid "You do not have permission to access this module."
 msgstr ""
 
-#: includes/Security/PermissionValidator.php:205
+#: includes/Security/PermissionValidator.php:212
 msgid "You do not have permission to perform this action."
 msgstr ""
 
@@ -1850,7 +2436,7 @@ msgstr ""
 msgid "Your API key"
 msgstr ""
 
-#: src/frontend/Widget.jsx:122
+#: src/frontend/Widget.jsx:133
 msgid "Your request has been sent to our team. We will get back to you soon."
 msgstr ""
 
@@ -1858,7 +2444,7 @@ msgstr ""
 msgid "days"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:204
+#: src/admin/pages/Tasks.jsx:206
 msgid "e.g. Generate 10 SEO articles about WordPress"
 msgstr ""
 
@@ -1866,7 +2452,15 @@ msgstr ""
 msgid "e.g. brand_name, primary_color"
 msgstr ""
 
+#: src/admin/workflowPresets.js:244
+msgid "list_products → 3× product_description steps."
+msgstr ""
+
 #: includes/Agents/TaskQueue.php:336
 msgid "re-run"
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:649
+msgid "steps"
 msgstr ""
 

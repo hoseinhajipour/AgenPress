@@ -7,8 +7,29 @@
                 "lang": "fa-IR",
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
+            "  File excerpt:": [
+                "  File excerpt:"
+            ],
             "%d recommendations.": [
                 "%d پیشنهاد."
+            ],
+            "16:9 (Landscape)": [
+                "۱۶:۹ (افقی)"
+            ],
+            "1:1 (Square)": [
+                "۱:۱ (مربع)"
+            ],
+            "3 SEO Articles Batch": [
+                "3 SEO Articles Batch"
+            ],
+            "3:2 (Landscape)": [
+                "۳:۲ (افقی)"
+            ],
+            "4:3 (Landscape)": [
+                "۴:۳ (افقی)"
+            ],
+            "9:16 (Portrait)": [
+                "۹:۱۶ (عمودی)"
             ],
             "A team member will follow up shortly.": [
                 "یک عضو تیم به زودی پیگیری خواهد کرد."
@@ -37,8 +58,23 @@
             "AI Language": [
                 "زبان هوش مصنوعی"
             ],
+            "AI Planning": [
+                "AI Planning"
+            ],
+            "AI Prompt": [
+                "AI Prompt"
+            ],
             "AI Provider": [
                 "ارائه‌دهنده هوش مصنوعی"
+            ],
+            "AI analyzes your site context, then turns the strategy into 10 concrete post ideas. Edit the topic in step 1 if needed.": [
+                "AI analyzes your site context, then turns the strategy into 10 concrete post ideas. Edit the topic in step 1 if needed."
+            ],
+            "AI breaks a goal into action items, then executes. Edit title and description in step 1.": [
+                "AI breaks a goal into action items, then executes. Edit title and description in step 1."
+            ],
+            "AI plan → AI execution pattern for open-ended admin work.": [
+                "AI plan → AI execution pattern for open-ended admin work."
             ],
             "AI planning task steps": [
                 "برنامه‌ریزی مراحل وظیفه با هوش مصنوعی"
@@ -73,6 +109,15 @@
             "Add Memory Entry": [
                 "افزودن ورودی حافظه"
             ],
+            "Add a CTA button below the hero": [
+                "Add a CTA button below the hero"
+            ],
+            "Add at least one step before saving.": [
+                "Add at least one step before saving."
+            ],
+            "Add my uploaded image to this page": [
+                "Add my uploaded image to this page"
+            ],
             "Additional instructions for the agent...": [
                 "دستورالعمل‌های اضافی برای عامل..."
             ],
@@ -81,6 +126,9 @@
             ],
             "Admin Assistant": [
                 "دستیار مدیریت"
+            ],
+            "Admin panel": [
+                "Admin panel"
             ],
             "AgenPress": [
                 "AgenPress"
@@ -118,6 +166,12 @@
             "Analytics requires an Enterprise license. Update the license tier in Settings to enable usage reporting.": [
                 "تحلیل‌ها نیاز به مجوز Enterprise دارند. سطح مجوز را در تنظیمات به‌روز کنید تا گزارش‌دهی مصرف فعال شود."
             ],
+            "Analyze content strategy": [
+                "Analyze content strategy"
+            ],
+            "Analyze what types of content would help this WordPress site grow. Consider SEO, audience engagement, and conversions. Write 3–5 paragraphs of plain text only (no JSON, no bullet lists).": [
+                "Analyze what types of content would help this WordPress site grow. Consider SEO, audience engagement, and conversions. Write 3–5 paragraphs of plain text only (no JSON, no bullet lists)."
+            ],
             "Anthropic Claude models": [
                 "مدل‌های Anthropic Claude"
             ],
@@ -129,6 +183,9 @@
             ],
             "Applying...": [
                 "در حال اعمال..."
+            ],
+            "Article index": [
+                "Article index"
             ],
             "Article sections count": [
                 "Article sections count"
@@ -145,8 +202,17 @@
             "Assistant": [
                 "دستیار"
             ],
+            "Attached files:": [
+                "Attached files:"
+            ],
             "Attachment not found.": [
                 "پیوست یافت نشد."
+            ],
+            "Audience: WordPress admin — the user is a shop employee or manager, NOT a storefront customer.": [
+                "Audience: WordPress admin — the user is a shop employee or manager, NOT a storefront customer."
+            ],
+            "Audit this WordPress site taxonomy. Suggest 5–10 new categories or tags to add, terms to merge or remove, and a simpler structure for editors. Output markdown with sections: Current state, Gaps, Recommendations.": [
+                "Audit this WordPress site taxonomy. Suggest 5–10 new categories or tags to add, terms to merge or remove, and a simpler structure for editors. Output markdown with sections: Current state, Gaps, Recommendations."
             ],
             "Authentication required.": [
                 "احراز هویت الزامی است."
@@ -154,11 +220,20 @@
             "Auto-Extract Brand Info": [
                 "استخراج خودکار اطلاعات برند"
             ],
+            "Back to list": [
+                "Back to list"
+            ],
             "Base language for AI responses and generated content.": [
                 "زبان پایه برای پاسخ‌های هوش مصنوعی و محتوای تولیدشده."
             ],
+            "Based on this content strategy:\\n\\n{{strategy}}\\n\\nList exactly 10 specific blog post titles the site should publish next. Use a plain numbered list only (1. Title…). No JSON.": [
+                "Based on this content strategy:\\n\\n{{strategy}}\\n\\nList exactly 10 specific blog post titles the site should publish next. Use a plain numbered list only (1. Title…). No JSON."
+            ],
             "Basic": [
                 "پایه"
+            ],
+            "Batch summary": [
+                "Batch summary"
             ],
             "Bottom Left": [
                 "پایین چپ"
@@ -187,6 +262,9 @@
             "Category": [
                 "دسته‌بندی"
             ],
+            "Category & Tag Audit": [
+                "Category & Tag Audit"
+            ],
             "Chat with us": [
                 "با ما چت کنید"
             ],
@@ -201,6 +279,12 @@
             ],
             "Clear and business-like": [
                 "واضح و حرفه‌ای"
+            ],
+            "Clear chat": [
+                "Clear chat"
+            ],
+            "Clear this chat and start over?": [
+                "Clear this chat and start over?"
             ],
             "Close": [
                 "بستن"
@@ -241,6 +325,9 @@
             "Contact": [
                 "تماس"
             ],
+            "Content Strategy Brief": [
+                "Content Strategy Brief"
+            ],
             "Controls how the sales assistant speaks to customers.": [
                 "نحوه صحبت دستیار فروش با مشتریان را کنترل می‌کند."
             ],
@@ -274,20 +361,20 @@
             "Courteous and respectful": [
                 "مودبانه و محترمانه"
             ],
-            "Create": [
-                "ایجاد"
-            ],
             "Create Agent Task": [
                 "ایجاد وظیفه عامل"
             ],
             "Create FAQ schema markup for [topic]": [
                 "ایجاد نشانه‌گذاری طرحواره FAQ برای [topic]"
             ],
-            "Create Workflow": [
-                "ایجاد گردش کار"
+            "Create SEO article": [
+                "Create SEO article"
             ],
             "Create a new product draft for [product name]": [
                 "ایجاد پیش‌نویس محصول جدید برای [product name]"
+            ],
+            "Create an AI hero image for a landing page": [
+                "Create an AI hero image for a landing page"
             ],
             "Created \"%s\" successfully.": [
                 "\"%s\" با موفقیت ایجاد شد."
@@ -310,6 +397,9 @@
             "Custom AI agent API key and base URL are not configured.": [
                 "کلید API عامل هوش مصنوعی سفارشی و آدرس پایه پیکربندی نشده‌اند."
             ],
+            "Custom Planned Task": [
+                "Custom Planned Task"
+            ],
             "Custom Task": [
                 "وظیفه سفارشی"
             ],
@@ -328,6 +418,15 @@
             "Dashboard": [
                 "داشبورد"
             ],
+            "Default Image Dimensions": [
+                "ابعاد پیش‌فرض تصویر"
+            ],
+            "Default aspect ratio used when generating AI images across the plugin.": [
+                "نسبت تصویر پیش‌فرض برای تولید تصویر در سراسر افزونه."
+            ],
+            "Define reusable multi-step automations and run them on demand.": [
+                "Define reusable multi-step automations and run them on demand."
+            ],
             "Delete": [
                 "حذف"
             ],
@@ -337,6 +436,9 @@
             "Delete Elementor element \"%s\"? This cannot be undone.": [
                 "حذف عنصر المنتور \"%s\"؟ این عمل قابل بازگشت نیست."
             ],
+            "Delete message": [
+                "Delete message"
+            ],
             "Delete product \"%s\"? This cannot be undone.": [
                 "حذف محصول \"%s\"؟ این عمل قابل بازگشت نیست."
             ],
@@ -345,6 +447,9 @@
             ],
             "Delete this product? This cannot be undone.": [
                 "حذف این محصول؟ این عمل قابل بازگشت نیست."
+            ],
+            "Delete this workflow?": [
+                "Delete this workflow?"
             ],
             "Deleted \"%s\".": [
                 "\"%s\" حذف شد."
@@ -364,29 +469,32 @@
             "Design": [
                 "طراحی"
             ],
-            "Design a hero section using my brand colors": [
-                "یک بخش هیرو با رنگ‌های برند من طراحی کن"
-            ],
             "Details": [
                 "جزئیات"
             ],
             "Dimensions": [
                 "ابعاد"
             ],
+            "Disabled": [
+                "Disabled"
+            ],
             "Do you have any active discount codes?": [
                 "آیا کدهای تخفیف فعالی دارید؟"
             ],
-            "Draft a customer support response": [
-                "پیش‌نویس پاسخ پشتیبانی مشتری"
+            "Draft Posts Review": [
+                "Draft Posts Review"
             ],
             "Draft a new page with a hero section and CTA": [
                 "پیش‌نویس صفحه جدید با بخش هیرو و CTA"
             ],
-            "Duplicate this section and adjust the copy": [
-                "این بخش را تکثیر کن و متن را تنظیم کن"
-            ],
             "Edit": [
                 "ویرایش"
+            ],
+            "Edit Workflow": [
+                "Edit Workflow"
+            ],
+            "Edit post": [
+                "Edit post"
             ],
             "Element deleted.": [
                 "عنصر حذف شد."
@@ -415,6 +523,9 @@
             "Elementor page not found.": [
                 "صفحه المنتور یافت نشد."
             ],
+            "Enabled": [
+                "Enabled"
+            ],
             "Enterprise": [
                 "سازمانی"
             ],
@@ -423,6 +534,15 @@
             ],
             "Escalated": [
                 "ارجاع‌شده"
+            ],
+            "Example Workflows": [
+                "Example Workflows"
+            ],
+            "Execute planned work": [
+                "Execute planned work"
+            ],
+            "Execute this WordPress admin task and describe what was done. Title: Improve site content quality. Description: Review content gaps and suggest concrete improvements.": [
+                "Execute this WordPress admin task and describe what was done. Title: Improve site content quality. Description: Review content gaps and suggest concrete improvements."
             ],
             "Executing planned work": [
                 "در حال اجرای کارهای برنامه‌ریزی‌شده"
@@ -436,8 +556,14 @@
             "Extracting...": [
                 "در حال استخراج..."
             ],
+            "FAQ Content Pack": [
+                "FAQ Content Pack"
+            ],
             "Failed": [
                 "ناموفق"
+            ],
+            "Failed to clear chat.": [
+                "Failed to clear chat."
             ],
             "Failed to confirm action.": [
                 "تأیید اقدام ناموفق بود."
@@ -460,11 +586,17 @@
             "Failed to create workflow.": [
                 "ایجاد گردش کار ناموفق بود."
             ],
+            "Failed to delete message.": [
+                "Failed to delete message."
+            ],
             "Failed to delete post.": [
                 "حذف پست ناموفق بود."
             ],
             "Failed to delete product.": [
                 "حذف محصول ناموفق بود."
+            ],
+            "Failed to insert widget.": [
+                "Failed to insert widget."
             ],
             "Failed to load analytics.": [
                 "بارگذاری تحلیل‌ها ناموفق بود."
@@ -490,14 +622,38 @@
             "Featured image set.": [
                 "Featured image set."
             ],
+            "Fetch products": [
+                "Fetch products"
+            ],
+            "Fetch site info": [
+                "Fetch site info"
+            ],
+            "Fetches WooCommerce products and rewrites descriptions for the first 3. Requires WooCommerce.": [
+                "Fetches WooCommerce products and rewrites descriptions for the first 3. Requires WooCommerce."
+            ],
+            "Fetches real site info via tool, then AI writes a short health report with recommendations.": [
+                "Fetches real site info via tool, then AI writes a short health report with recommendations."
+            ],
             "Fetching existing products": [
                 "در حال دریافت محصولات موجود"
+            ],
+            "File": [
+                "File"
+            ],
+            "Find all heading widgets on this page": [
+                "Find all heading widgets on this page"
+            ],
+            "For Elementor: call add_attached_image_to_page with attachment_id to insert an image widget. Use apply_media_to_element only for existing widgets.": [
+                "For Elementor: call add_attached_image_to_page with attachment_id to insert an image widget. Use apply_media_to_element only for existing widgets."
             ],
             "Found %d Elementor pages.": [
                 "%d صفحه المنتور یافت شد."
             ],
             "Found %d coupons.": [
                 "%d کوپن یافت شد."
+            ],
+            "Found %d matching elements.": [
+                "Found %d matching elements."
             ],
             "Found %d orders.": [
                 "%d سفارش یافت شد."
@@ -532,6 +688,12 @@
             "Generate": [
                 "تولید"
             ],
+            "Generate 8 frequently asked questions and detailed answers about \"YOUR TOPIC HERE\" for a WordPress site. Format as markdown: ## Question followed by answer paragraphs. Suitable for FAQ schema and an FAQ page.": [
+                "Generate 8 frequently asked questions and detailed answers about \"YOUR TOPIC HERE\" for a WordPress site. Format as markdown: ## Question followed by answer paragraphs. Suitable for FAQ schema and an FAQ page."
+            ],
+            "Generate FAQ pairs": [
+                "Generate FAQ pairs"
+            ],
             "Generate Image": [
                 "تولید تصویر"
             ],
@@ -544,8 +706,8 @@
             "Generate Text": [
                 "تولید متن"
             ],
-            "Generate a background image for this section": [
-                "یک تصویر پس‌زمینه برای این بخش تولید کن"
+            "Generate a featured image for my latest post": [
+                "Generate a featured image for my latest post"
             ],
             "Generate featured image": [
                 "Generate featured image"
@@ -559,8 +721,14 @@
             "Generate multiple SEO-optimized articles with categories and tags": [
                 "چندین مقاله بهینه‌شده برای سئو با دسته‌بندی‌ها و برچسب‌ها تولید کن"
             ],
+            "Generate post ideas": [
+                "Generate post ideas"
+            ],
             "Generated preview": [
                 "پیش‌نمایش تولیدشده"
+            ],
+            "Generates 8 FAQ pairs for a topic — useful for schema markup or a new FAQ page. Edit the topic in the prompt.": [
+                "Generates 8 FAQ pairs for a topic — useful for schema markup or a new FAQ page. Edit the topic in the prompt."
             ],
             "Generating image...": [
                 "در حال تولید تصویر..."
@@ -574,6 +742,9 @@
             "Generating...": [
                 "در حال تولید..."
             ],
+            "Give me a sales overview for this week": [
+                "Give me a sales overview for this week"
+            ],
             "Give me an overview of my WordPress site": [
                 "یک مرور کلی از سایت وردپرس من بده"
             ],
@@ -586,11 +757,20 @@
             "How can I help you manage your site?": [
                 "چطور می‌توانم در مدیریت سایتتان کمک کنم؟"
             ],
+            "Image": [
+                "Image"
+            ],
+            "Image Generator": [
+                "تصویر ساز"
+            ],
             "Image Model": [
                 "مدل تصویر"
             ],
             "Image generated and applied to element.": [
                 "تصویر تولید و به عنصر اعمال شد."
+            ],
+            "Image generated and saved to media library (ID: %d).": [
+                "Image generated and saved to media library (ID: %d)."
             ],
             "Image generated and saved to media library.": [
                 "تصویر تولید و در کتابخانه رسانه ذخیره شد."
@@ -604,6 +784,12 @@
             "Image prompt is required.": [
                 "پرامپت تصویر الزامی است."
             ],
+            "Image widget added to the page.": [
+                "Image widget added to the page."
+            ],
+            "Improve site content quality": [
+                "Improve site content quality"
+            ],
             "Include FAQ section": [
                 "Include FAQ section"
             ],
@@ -616,8 +802,17 @@
             "Insert Text": [
                 "درج متن"
             ],
+            "Inserted into content of \"%s\".": [
+                "Inserted into content of \"%s\"."
+            ],
+            "Instructions for the AI. Use {{output_key}} to reference prior step outputs.": [
+                "Instructions for the AI. Use {{output_key}} to reference prior step outputs."
+            ],
             "Invalid API key.": [
                 "کلید API نامعتبر است."
+            ],
+            "Invalid JSON in tool arguments.": [
+                "Invalid JSON in tool arguments."
             ],
             "Invalid conversation for this action.": [
                 "مکالمه نامعتبر برای این اقدام."
@@ -646,9 +841,6 @@
             "Key name and value are required.": [
                 "نام کلید و مقدار الزامی هستند."
             ],
-            "Landscape (1792×1024)": [
-                "افقی (۱۷۹۲×۱۰۲۴)"
-            ],
             "Last": [
                 "آخرین"
             ],
@@ -661,8 +853,26 @@
             "List all categories and suggest new ones": [
                 "همه دسته‌بندی‌ها را فهرست کن و دسته‌های جدید پیشنهاد بده"
             ],
+            "List categories": [
+                "List categories"
+            ],
+            "List draft posts": [
+                "List draft posts"
+            ],
             "List my WooCommerce products and their stock levels": [
                 "محصولات ووکامرس و سطح موجودی آن‌ها را فهرست کن"
+            ],
+            "List recent orders": [
+                "List recent orders"
+            ],
+            "List tags": [
+                "List tags"
+            ],
+            "Lists categories, then AI suggests new terms and a cleaner taxonomy structure.": [
+                "Lists categories, then AI suggests new terms and a cleaner taxonomy structure."
+            ],
+            "Lists recent drafts, then AI suggests a 7-day publishing plan and priorities.": [
+                "Lists recent drafts, then AI suggests a 7-day publishing plan and priorities."
             ],
             "Loading analytics...": [
                 "در حال بارگذاری تحلیل‌ها..."
@@ -685,8 +895,14 @@
             "Manage Memory": [
                 "مدیریت حافظه"
             ],
+            "Manual run": [
+                "Manual run"
+            ],
             "Mark Resolved": [
                 "علامت‌گذاری به عنوان حل‌شده"
+            ],
+            "Media library": [
+                "Media library"
             ],
             "Media updated.": [
                 "رسانه به‌روز شد."
@@ -718,8 +934,17 @@
             "Message is required.": [
                 "پیام الزامی است."
             ],
+            "Message not found.": [
+                "Message not found."
+            ],
             "Messages": [
                 "پیام‌ها"
+            ],
+            "Move down": [
+                "Move down"
+            ],
+            "Move up": [
+                "Move up"
             ],
             "Multi-Agent": [
                 "چند عامله"
@@ -732,6 +957,9 @@
             ],
             "No active sales chats.": [
                 "چت فروش فعالی وجود ندارد."
+            ],
+            "No column found to insert the image widget.": [
+                "No column found to insert the image widget."
             ],
             "No element selected": [
                 "هیچ عنصری انتخاب نشده"
@@ -748,11 +976,17 @@
             "No memory entries yet.": [
                 "هنوز ورودی حافظه‌ای وجود ندارد."
             ],
+            "No paid orders found for this period.": [
+                "No paid orders found for this period."
+            ],
             "No resolved conversations.": [
                 "چت حل‌شده‌ای وجود ندارد."
             ],
             "No response from AI provider.": [
                 "هیچ پاسخی از ارائه‌دهنده هوش مصنوعی دریافت نشد."
+            ],
+            "No steps yet. Add a step type above.": [
+                "No steps yet. Add a step type above."
             ],
             "No storefront sales chats yet.": [
                 "هنوز چت فروش فروشگاهی ثبت نشده است."
@@ -787,6 +1021,12 @@
             "OpenAI-compatible base URL including \/v1 path.": [
                 "آدرس پایه سازگار با OpenAI شامل مسیر \/v1."
             ],
+            "Optional display label": [
+                "Optional display label"
+            ],
+            "Optional notes about what this workflow does": [
+                "Optional notes about what this workflow does"
+            ],
             "Order not found for that email.": [
                 "سفارشی برای این ایمیل یافت نشد."
             ],
@@ -798,6 +1038,12 @@
             ],
             "Order status: %s": [
                 "وضعیت سفارش: %s"
+            ],
+            "Our Services": [
+                "Our Services"
+            ],
+            "Output key": [
+                "Output key"
             ],
             "Page structure retrieved.": [
                 "ساختار صفحه دریافت شد."
@@ -823,8 +1069,23 @@
             "Permission denied.": [
                 "دسترسی رد شد."
             ],
+            "Plan 3 unique SEO blog article titles about \"YOUR TOPIC HERE\". Return ONLY a JSON array of 3 strings. No markdown.": [
+                "Plan 3 unique SEO blog article titles about \"YOUR TOPIC HERE\". Return ONLY a JSON array of 3 strings. No markdown."
+            ],
+            "Plan actions": [
+                "Plan actions"
+            ],
+            "Plan article titles": [
+                "Plan article titles"
+            ],
+            "Plan titles → create 3 SEO drafts → summary.": [
+                "Plan titles → create 3 SEO drafts → summary."
+            ],
             "Planning article topics": [
                 "برنامه‌ریزی موضوعات مقاله"
+            ],
+            "Plans 3 article titles, writes each as a draft with FAQ and featured image. Change YOUR TOPIC in steps 1 and 2–4.": [
+                "Plans 3 article titles, writes each as a draft with FAQ and featured image. Change YOUR TOPIC in steps 1 and 2–4."
             ],
             "Please enter a prompt.": [
                 "لطفاً یک پرامپت وارد کنید."
@@ -835,8 +1096,8 @@
             "Polite": [
                 "مودبانه"
             ],
-            "Portrait (1024×1792)": [
-                "عمودی (۱۰۲۴×۱۷۹۲)"
+            "Post not found or permission denied.": [
+                "Post not found or permission denied."
             ],
             "Post not found.": [
                 "پست یافت نشد."
@@ -856,11 +1117,20 @@
             "Pro": [
                 "حرفه‌ای"
             ],
+            "Product Description": [
+                "Product Description"
+            ],
+            "Product Description Refresh": [
+                "Product Description Refresh"
+            ],
             "Product Descriptions": [
                 "توضیحات محصول"
             ],
             "Product details retrieved.": [
                 "جزئیات محصول دریافت شد."
+            ],
+            "Product index": [
+                "Product index"
             ],
             "Product niche": [
                 "حوزه محصول"
@@ -885,6 +1155,9 @@
             ],
             "Publish when done": [
                 "انتشار پس از اتمام"
+            ],
+            "Publishing plan": [
+                "Publishing plan"
             ],
             "Queue Task": [
                 "افزودن وظیفه به صف"
@@ -913,6 +1186,9 @@
             "Recommend products for [occasion]": [
                 "محصولات را برای [occasion] پیشنهاد بده"
             ],
+            "Recommended Products": [
+                "Recommended Products"
+            ],
             "Reindex Embeddings": [
                 "ایندکس‌گذاری مجدد جاسازی‌ها"
             ],
@@ -922,14 +1198,26 @@
             "Reindexing...": [
                 "در حال ایندکس‌گذاری مجدد..."
             ],
+            "Remove": [
+                "Remove"
+            ],
             "Resolved": [
                 "حل‌شده"
+            ],
+            "Respond with internal sales analytics and operational insights. Do not pitch products to this user.": [
+                "Respond with internal sales analytics and operational insights. Do not pitch products to this user."
             ],
             "Resume": [
                 "ادامه"
             ],
             "Retry": [
                 "تکرار"
+            ],
+            "Review content gaps and suggest concrete improvements for the WordPress site (posts, pages, meta, internal links).": [
+                "Review content gaps and suggest concrete improvements for the WordPress site (posts, pages, meta, internal links)."
+            ],
+            "Review the draft posts situation on this WordPress site and suggest priorities: which drafts to finish first, common content gaps, and a practical 7-day publishing plan. Use markdown with clear sections.": [
+                "Review the draft posts situation on this WordPress site and suggest priorities: which drafts to finish first, common content gaps, and a practical 7-day publishing plan. Use markdown with clear sections."
             ],
             "Revoke": [
                 "لغو دسترسی"
@@ -945,6 +1233,9 @@
             ],
             "SEO": [
                 "سئو"
+            ],
+            "SEO Article": [
+                "SEO Article"
             ],
             "SEO Articles Batch": [
                 "دسته مقالات سئو"
@@ -964,6 +1255,9 @@
             "Sales chat": [
                 "چت فروش"
             ],
+            "Sales overview: %1$d paid orders (%2$s).": [
+                "Sales overview: %1$d paid orders (%2$s)."
+            ],
             "Sales rules — DO NOT:": [
                 "قوانین فروش — نبایدها:"
             ],
@@ -978,6 +1272,9 @@
             ],
             "Save Settings": [
                 "ذخیره تنظیمات"
+            ],
+            "Save Workflow": [
+                "Save Workflow"
             ],
             "Save the post as a draft first to set a featured image.": [
                 "ابتدا پست را به عنوان پیش‌نویس ذخیره کنید تا بتوانید تصویر شاخص تنظیم کنید."
@@ -997,6 +1294,9 @@
             "Section created.": [
                 "بخش ایجاد شد."
             ],
+            "Sections count": [
+                "Sections count"
+            ],
             "Select a conversation to view.": [
                 "یک مکالمه برای مشاهده انتخاب کنید."
             ],
@@ -1015,6 +1315,9 @@
             "Send": [
                 "ارسال"
             ],
+            "Set as featured image on \"%s\".": [
+                "Set as featured image on \"%s\"."
+            ],
             "Settings": [
                 "تنظیمات"
             ],
@@ -1024,8 +1327,17 @@
             "Settings saved successfully.": [
                 "تنظیمات با موفقیت ذخیره شد."
             ],
+            "Show active discount codes": [
+                "Show active discount codes"
+            ],
             "Show me the structure of this page": [
                 "ساختار این صفحه را به من نشان بده"
+            ],
+            "Single AI step: 8 Q&A pairs in markdown.": [
+                "Single AI step: 8 Q&A pairs in markdown."
+            ],
+            "Site Health Snapshot": [
+                "Site Health Snapshot"
             ],
             "Site Memory": [
                 "حافظه سایت"
@@ -1033,11 +1345,23 @@
             "Site info retrieved.": [
                 "اطلاعات سایت دریافت شد."
             ],
-            "Square (1024×1024)": [
-                "مربع (۱۰۲۴×۱۰۲۴)"
+            "Staff member: %s": [
+                "Staff member: %s"
             ],
             "Start AI Chat": [
                 "شروع چت هوش مصنوعی"
+            ],
+            "Start from a ready-made template, customize steps, then save and run.": [
+                "Start from a ready-made template, customize steps, then save and run."
+            ],
+            "Status": [
+                "Status"
+            ],
+            "Step": [
+                "Step"
+            ],
+            "Step label": [
+                "Step label"
             ],
             "Steps": [
                 "مراحل"
@@ -1057,8 +1381,26 @@
             "Suggest a landing page structure": [
                 "یک ساختار صفحه فرود پیشنهاد بده"
             ],
+            "Suggest products in article": [
+                "Suggest products in article"
+            ],
+            "Suggest related products": [
+                "Suggest related products"
+            ],
+            "Suggest related services": [
+                "Suggest related services"
+            ],
+            "Suggest services in article": [
+                "Suggest services in article"
+            ],
+            "Summarize the completed SEO article batch in 2–3 sentences for the site admin.": [
+                "Summarize the completed SEO article batch in 2–3 sentences for the site admin."
+            ],
             "Talk to a human": [
                 "صحبت با یک انسان"
+            ],
+            "Target column not found.": [
+                "Target column not found."
             ],
             "Task \"%s\" completed successfully.": [
                 "وظیفه \"%s\" با موفقیت تکمیل شد."
@@ -1081,17 +1423,26 @@
             "Task cannot be paused or resumed in its current state.": [
                 "وظیفه در وضعیت فعلی قابل توقف یا ادامه نیست."
             ],
+            "Task description": [
+                "Task description"
+            ],
             "Task not found.": [
                 "وظیفه یافت نشد."
             ],
             "Task plan created.": [
                 "برنامه وظیفه ایجاد شد."
             ],
+            "Task title": [
+                "Task title"
+            ],
             "Task title is required.": [
                 "عنوان وظیفه الزامی است."
             ],
             "Tasks Completed": [
                 "وظایف تکمیل‌شده"
+            ],
+            "Taxonomy recommendations": [
+                "Taxonomy recommendations"
             ],
             "Template": [
                 "قالب"
@@ -1132,6 +1483,9 @@
             "This feature requires an Enterprise license.": [
                 "این ویژگی نیاز به مجوز Enterprise دارد."
             ],
+            "This post type does not support featured images.": [
+                "This post type does not support featured images."
+            ],
             "Title": [
                 "عنوان"
             ],
@@ -1141,14 +1495,38 @@
             "Tone and sales rules for customer replies": [
                 "لحن و قوانین فروش برای پاسخ به مشتریان"
             ],
+            "Tool Call": [
+                "Tool Call"
+            ],
             "Tool Executions": [
                 "اجراهای ابزار"
+            ],
+            "Tool arguments (JSON)": [
+                "Tool arguments (JSON)"
+            ],
+            "Tool name": [
+                "Tool name"
             ],
             "Tool name is required.": [
                 "نام ابزار الزامی است."
             ],
             "Tool:": [
                 "ابزار:"
+            ],
+            "Tool: get_site_info → AI report.": [
+                "Tool: get_site_info → AI report."
+            ],
+            "Tool: list_posts (drafts) → AI publishing plan.": [
+                "Tool: list_posts (drafts) → AI publishing plan."
+            ],
+            "Tool: list_terms → AI taxonomy recommendations.": [
+                "Tool: list_terms → AI taxonomy recommendations."
+            ],
+            "Top %d best sellers for the selected period.": [
+                "Top %d best sellers for the selected period."
+            ],
+            "Topic": [
+                "Topic"
             ],
             "Topic \/ niche": [
                 "موضوع \/ حوزه"
@@ -1161,6 +1539,9 @@
             ],
             "Trigger": [
                 "محرک"
+            ],
+            "Two-step AI chain: strategy analysis → post ideas list.": [
+                "Two-step AI chain: strategy analysis → post ideas list."
             ],
             "Type a message...": [
                 "یک پیام بنویسید..."
@@ -1192,6 +1573,9 @@
             "Use a warm, casual, conversational tone. Be approachable and relatable while staying helpful.": [
                 "از لحن گرم، خودمونی و گفتگومحور استفاده کن. صمیمی و قابل ارتباط باش در عین حفظ مفید بودن."
             ],
+            "Use this example": [
+                "Use this example"
+            ],
             "User not found.": [
                 "کاربر یافت نشد."
             ],
@@ -1213,9 +1597,6 @@
             "Welcome back! I remember our previous chats. How can I help you today?": [
                 "خوش برگشتی! مکالمات قبلی‌مان را به خاطر دارم. امروز چطور می‌توانم کمکت کنم؟"
             ],
-            "What are our best-selling products?": [
-                "محصولات پرفروش ما کدامند؟"
-            ],
             "What are your best-selling products?": [
                 "محصولات پرفروش شما کدامند؟"
             ],
@@ -1224,6 +1605,12 @@
             ],
             "What posts do I have on my site?": [
                 "چه پست‌هایی در سایتم دارم؟"
+            ],
+            "What were the best-selling products this month?": [
+                "What were the best-selling products this month?"
+            ],
+            "Which products are low on stock?": [
+                "Which products are low on stock?"
             ],
             "Widget": [
                 "ابزارک"
@@ -1237,17 +1624,23 @@
             "Widget Title": [
                 "عنوان ابزارک"
             ],
+            "Widget created.": [
+                "Widget created."
+            ],
             "Widget disabled": [
                 "ابزارک غیرفعال"
             ],
             "Widget enabled": [
                 "ابزارک فعال"
             ],
+            "Widget type is required.": [
+                "Widget type is required."
+            ],
             "WooCommerce is not active.": [
                 "ووکامرس فعال نیست."
             ],
-            "Workflow name": [
-                "نام گردش کار"
+            "Workflow title is required.": [
+                "Workflow title is required."
             ],
             "Workflows": [
                 "گردش‌های کار"
@@ -1255,8 +1648,17 @@
             "Workflows require an Enterprise license. Update the license tier in Settings to enable automation workflows.": [
                 "گردش‌های کار نیاز به مجوز Enterprise دارند. سطح مجوز را در تنظیمات به‌روز کنید تا گردش‌های کار اتوماسیون فعال شود."
             ],
+            "Write a brief WordPress site health report for the administrator. Cover content overview, technical context, and 5 actionable recommendations. Use markdown headings and bullet points. Keep it under 400 words.": [
+                "Write a brief WordPress site health report for the administrator. Cover content overview, technical context, and 5 actionable recommendations. Use markdown headings and bullet points. Keep it under 400 words."
+            ],
             "Write an SEO-optimized blog post about [topic]": [
                 "یک پست وبلاگ بهینه‌شده برای سئو درباره [topic] بنویس"
+            ],
+            "Write health report": [
+                "Write health report"
+            ],
+            "Write product description": [
+                "Write product description"
             ],
             "Writing product description %d": [
                 "در حال نوشتن توضیحات محصول %d"
@@ -1285,8 +1687,14 @@
             "e.g. brand_name, primary_color": [
                 "مثال: brand_name, primary_color"
             ],
+            "list_products → 3× product_description steps.": [
+                "list_products → 3× product_description steps."
+            ],
             "re-run": [
                 "اجرای مجدد"
+            ],
+            "steps": [
+                "steps"
             ]
         }
     }

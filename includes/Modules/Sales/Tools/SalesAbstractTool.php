@@ -24,6 +24,24 @@ abstract class SalesAbstractTool extends AbstractTool {
 	}
 
 	/**
+	 * Require shop staff capabilities for analytics tools.
+	 *
+	 * @param int $user_id User ID.
+	 * @return array{success: bool, data: null, message: string}|null
+	 */
+	protected function require_shop_staff( int $user_id ): ?array {
+		if (
+			! user_can( $user_id, 'manage_woocommerce' )
+			&& ! user_can( $user_id, 'view_woocommerce_reports' )
+			&& ! user_can( $user_id, 'edit_shop_orders' )
+		) {
+			return $this->fail( __( 'Permission denied.', 'agenpress' ) );
+		}
+
+		return null;
+	}
+
+	/**
 	 * Format a product for customer-facing output.
 	 *
 	 * @param \WC_Product $product Product.

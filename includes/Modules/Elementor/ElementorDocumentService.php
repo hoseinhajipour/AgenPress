@@ -88,6 +88,24 @@ class ElementorDocumentService {
 	}
 
 	/**
+	 * Get raw Elementor elements data for editor sync.
+	 *
+	 * @param int $post_id Post ID.
+	 * @return array<int, array<string, mixed>>|null
+	 */
+	public function get_raw_elements( int $post_id ): ?array {
+		$document = $this->get_document( $post_id );
+
+		if ( ! $document ) {
+			return null;
+		}
+
+		$elements = $document->get_elements_data();
+
+		return is_array( $elements ) ? $elements : array();
+	}
+
+	/**
 	 * Get page element tree summary.
 	 *
 	 * @param int  $post_id Post ID.
@@ -268,6 +286,281 @@ class ElementorDocumentService {
 	}
 
 	/**
+	 * Search elements on a page by widget type or text query.
+	 *
+	 * @param int         $post_id     Post ID.
+	 * @param string      $query       Search query.
+	 * @param string|null $widget_type Widget type slug.
+	 * @param int         $limit       Max results.
+	 * @return array<int, array<string, mixed>>|null
+	 */
+	public function search_elements( int $post_id, string $query = '', ?string $widget_type = null, int $limit = 20 ): ?array {
+		$document = $this->get_document( $post_id );
+
+		if ( ! $document ) {
+			return null;
+		}
+
+		$elements = $document->get_elements_data();
+		$matches  = array();
+		$query    = strtolower( trim( $query ) );
+		$type     = $widget_type ? sanitize_key( $widget_type ) : '';
+
+		$this->collect_search_matches( is_array( $elements ) ? $elements : array(), $matches, $query, $type, $limit );
+
+		return $matches;
+	}
+
+	/**
+	 * Create a widget inside a column.
+	 *
+	 * @param int                  $post_id          Post ID.
+	 * @param string               $column_id        Parent column element ID.
+	 * @param string               $widget_type      Widget type slug.
+	 * @param array<string, mixed> $settings         Widget settings.
+	 * @param string|null          $after_element_id Insert after sibling element ID.
+	 * @return array{success: bool, element_id: string|null, message: string}
+	 */
+	public function create_widget(
+		int $post_id,
+		string $column_id,
+		string $widget_type,
+		array $settings = array(),
+		?string $after_element_id = null
+	): array {
+		$document = $this->get_document( $post_id );
+
+		if ( ! $document ) {
+			return array(
+				'success'    => false,
+				'element_id' => null,
+				'message'    => __( 'Elementor document not found.', 'agenpress' ),
+			);
+		}
+
+		$elements = $document->get_elements_data();
+		$parent   = $this->find_element( $elements, $column_id );
+
+		if ( ! $parent || 'column' !== ( $parent['elType'] ?? '' ) ) {
+			return array(
+				'success'    => false,
+				'element_id' => null,
+				'message'    => __( 'Target column not found.', 'agenpress' ),
+			);
+		}
+
+		$widget_type = sanitize_key( $widget_type );
+
+		if ( '' === $widget_type ) {
+			return array(
+				'success'    => false,
+				'element_id' => null,
+				'message'    => __( 'Widget type is required.', 'agenpress' ),
+			);
+		}
+
+		$new_widget = array(
+			'id'         => $this->generate_id(),
+			'elType'     => 'widget',
+			'widgetType' => $widget_type,
+			'settings'   => $settings,
+			'elements'   => array(),
+			'isInner'    => false,
+		);
+
+		$inserted = false;
+
+		$this->walk_elements(
+			$elements,
+			function ( array &$element ) use ( $column_id, $new_widget, $after_element_id, &$inserted ): bool {
+				if ( ( $element['id'] ?? '' ) !== $column_id ) {
+					return false;
+				}
+
+				if ( ! isset( $element['elements'] ) || ! is_array( $element['elements'] ) ) {
+					$element['elements'] = array();
+				}
+
+				if ( $after_element_id ) {
+					$inserted = $this->insert_after( $element['elements'], $after_element_id, $new_widget );
+				}
+
+				if ( ! $inserted ) {
+					$element['elements'][] = $new_widget;
+					$inserted              = true;
+				}
+
+				return true;
+			}
+		);
+
+		if ( ! $inserted ) {
+			return array(
+				'success'    => false,
+				'element_id' => null,
+				'message'    => __( 'Failed to insert widget.', 'agenpress' ),
+			);
+		}
+
+		$this->save_elements( $document, $elements );
+
+		return array(
+			'success'    => true,
+			'element_id' => $new_widget['id'],
+			'message'    => __( 'Widget created.', 'agenpress' ),
+		);
+	}
+
+	/**
+	 * Add an image widget using a media library attachment.
+	 *
+	 * @param int         $post_id            Post ID.
+	 * @param int         $attachment_id      Attachment ID.
+	 * @param string|null $column_id          Target column ID.
+	 * @param string|null $context_element_id Selected or contextual element ID.
+	 * @param string|null $after_element_id   Insert after sibling element ID.
+	 * @return array{success: bool, element_id: string|null, message: string, data?: array<string, mixed>}
+	 */
+	public function add_attached_image_widget(
+		int $post_id,
+		int $attachment_id,
+		?string $column_id = null,
+		?string $context_element_id = null,
+		?string $after_element_id = null
+	): array {
+		if ( ! get_post( $attachment_id ) || ! wp_attachment_is_image( $attachment_id ) ) {
+			return array(
+				'success'    => false,
+				'element_id' => null,
+				'message'    => __( 'Invalid image attachment.', 'agenpress' ),
+			);
+		}
+
+		$target_column = $this->resolve_target_column( $post_id, $column_id, $context_element_id );
+
+		if ( ! $target_column ) {
+			return array(
+				'success'    => false,
+				'element_id' => null,
+				'message'    => __( 'No column found to insert the image widget.', 'agenpress' ),
+			);
+		}
+
+		$image_url = (string) wp_get_attachment_url( $attachment_id );
+		$alt_text  = (string) get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
+
+		$settings = array(
+			'image'       => array(
+				'id'  => $attachment_id,
+				'url' => $image_url,
+			),
+			'image_size'  => 'full',
+			'align'       => 'center',
+		);
+
+		if ( '' !== $alt_text ) {
+			$settings['caption'] = $alt_text;
+		}
+
+		$result = $this->create_widget(
+			$post_id,
+			$target_column,
+			'image',
+			$settings,
+			$after_element_id ? sanitize_text_field( $after_element_id ) : null
+		);
+
+		if ( ! $result['success'] ) {
+			return $result;
+		}
+
+		return array(
+			'success'    => true,
+			'element_id' => $result['element_id'],
+			'message'    => __( 'Image widget added to the page.', 'agenpress' ),
+			'data'       => array(
+				'post_id'       => $post_id,
+				'column_id'     => $target_column,
+				'attachment_id' => $attachment_id,
+				'url'           => $image_url,
+			),
+		);
+	}
+
+	/**
+	 * Resolve the column that should receive a new widget.
+	 *
+	 * @param int         $post_id            Post ID.
+	 * @param string|null $column_id          Explicit column ID.
+	 * @param string|null $context_element_id Context element ID.
+	 * @return string|null
+	 */
+	public function resolve_target_column( int $post_id, ?string $column_id = null, ?string $context_element_id = null ): ?string {
+		$document = $this->get_document( $post_id );
+
+		if ( ! $document ) {
+			return null;
+		}
+
+		$elements = $document->get_elements_data();
+
+		if ( ! is_array( $elements ) ) {
+			return null;
+		}
+
+		if ( $column_id ) {
+			$column = $this->find_element( $elements, sanitize_text_field( $column_id ) );
+
+			if ( $column && 'column' === ( $column['elType'] ?? '' ) ) {
+				return (string) $column['id'];
+			}
+		}
+
+		if ( $context_element_id ) {
+			$resolved = $this->resolve_column_from_element( $elements, sanitize_text_field( $context_element_id ) );
+
+			if ( $resolved ) {
+				return $resolved;
+			}
+		}
+
+		return $this->find_first_column_id( $elements );
+	}
+
+	/**
+	 * Apply a media library attachment to an image widget or section background.
+	 *
+	 * @param int    $post_id       Post ID.
+	 * @param string $element_id    Element ID.
+	 * @param int    $attachment_id Attachment ID.
+	 * @return array{success: bool, message: string}
+	 */
+	public function apply_attachment_to_element( int $post_id, string $element_id, int $attachment_id ): array {
+		$attachment = get_post( $attachment_id );
+
+		if ( ! $attachment || ! wp_attachment_is_image( $attachment_id ) ) {
+			return array(
+				'success' => false,
+				'message' => __( 'Invalid image attachment.', 'agenpress' ),
+			);
+		}
+
+		$image_url = (string) wp_get_attachment_url( $attachment_id );
+		$element   = $this->get_element( $post_id, $element_id );
+
+		if ( ! $element ) {
+			return array(
+				'success' => false,
+				'message' => __( 'Element not found.', 'agenpress' ),
+			);
+		}
+
+		$settings = $this->media_settings_for_element( $element, $attachment_id, $image_url );
+
+		return $this->update_element_settings( $post_id, $element_id, $settings );
+	}
+
+	/**
 	 * Delete an element from a page.
 	 *
 	 * @param int    $post_id    Post ID.
@@ -310,14 +603,23 @@ class ElementorDocumentService {
 	 * @return void
 	 */
 	private function save_elements( \Elementor\Core\Base\Document $document, array $elements ): void {
+		$post_id = (int) $document->get_main_id();
+
 		$document->save(
 			array(
 				'elements' => $elements,
 			)
 		);
 
+		delete_post_meta( $post_id, '_elementor_css' );
+
 		if ( class_exists( '\Elementor\Plugin' ) ) {
-			\Elementor\Plugin::$instance->files_manager->clear_cache();
+			$plugin = \Elementor\Plugin::$instance;
+			$plugin->files_manager->clear_cache();
+
+			if ( method_exists( $plugin->documents, 'remove' ) ) {
+				$plugin->documents->remove( $post_id );
+			}
 		}
 	}
 
@@ -470,6 +772,231 @@ class ElementorDocumentService {
 				$this->walk_elements( $element['elements'], $callback );
 			}
 		}
+	}
+
+	/**
+	 * Find the first column ID in the document tree.
+	 *
+	 * @param array<int, array<string, mixed>> $elements Elements.
+	 * @return string|null
+	 */
+	private function find_first_column_id( array $elements ): ?string {
+		foreach ( $elements as $element ) {
+			if ( 'column' === ( $element['elType'] ?? '' ) && ! empty( $element['id'] ) ) {
+				return (string) $element['id'];
+			}
+
+			if ( ! empty( $element['elements'] ) && is_array( $element['elements'] ) ) {
+				$found = $this->find_first_column_id( $element['elements'] );
+
+				if ( $found ) {
+					return $found;
+				}
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Resolve a column ID from a selected section, column, or widget.
+	 *
+	 * @param array<int, array<string, mixed>> $elements   Elements.
+	 * @param string                           $element_id Element ID.
+	 * @return string|null
+	 */
+	private function resolve_column_from_element( array $elements, string $element_id ): ?string {
+		return $this->resolve_column_walker( $elements, $element_id );
+	}
+
+	/**
+	 * Walk the tree to resolve a column from a contextual element.
+	 *
+	 * @param array<int, array<string, mixed>> $elements         Elements.
+	 * @param string                           $target_element_id Target element ID.
+	 * @param string|null                      $parent_column_id  Parent column ID.
+	 * @return string|null
+	 */
+	private function resolve_column_walker( array $elements, string $target_element_id, ?string $parent_column_id = null ): ?string {
+		foreach ( $elements as $element ) {
+			$id      = (string) ( $element['id'] ?? '' );
+			$el_type = (string) ( $element['elType'] ?? '' );
+			$column  = 'column' === $el_type ? $id : $parent_column_id;
+
+			if ( $id === $target_element_id ) {
+				if ( 'column' === $el_type ) {
+					return $id;
+				}
+
+				if ( 'section' === $el_type ) {
+					foreach ( $element['elements'] ?? array() as $child ) {
+						if ( 'column' === ( $child['elType'] ?? '' ) && ! empty( $child['id'] ) ) {
+							return (string) $child['id'];
+						}
+					}
+				}
+
+				return $parent_column_id;
+			}
+
+			if ( ! empty( $element['elements'] ) && is_array( $element['elements'] ) ) {
+				$found = $this->resolve_column_walker( $element['elements'], $target_element_id, $column );
+
+				if ( $found ) {
+					return $found;
+				}
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Collect search matches from the element tree.
+	 *
+	 * @param array<int, array<string, mixed>> $elements    Elements.
+	 * @param array<int, array<string, mixed>> $matches     Matches (by ref).
+	 * @param string                             $query       Query.
+	 * @param string                             $widget_type Widget type.
+	 * @param int                                $limit       Limit.
+	 * @param array<int, string>                 $path        Path labels.
+	 * @return void
+	 */
+	private function collect_search_matches(
+		array $elements,
+		array &$matches,
+		string $query,
+		string $widget_type,
+		int $limit,
+		array $path = array()
+	): void {
+		if ( count( $matches ) >= $limit ) {
+			return;
+		}
+
+		foreach ( $elements as $element ) {
+			if ( count( $matches ) >= $limit ) {
+				return;
+			}
+
+			$el_type     = (string) ( $element['elType'] ?? '' );
+			$widget      = (string) ( $element['widgetType'] ?? '' );
+			$element_id  = (string) ( $element['id'] ?? '' );
+			$label       = 'widget' === $el_type && $widget ? $widget : $el_type;
+			$current_path = array_merge( $path, array( $label ) );
+			$haystack    = strtolower(
+				$element_id . ' ' . $label . ' ' . $this->settings_search_blob( $element['settings'] ?? array() )
+			);
+
+			$type_match  = '' === $widget_type || $widget === $widget_type;
+			$query_match = '' === $query || str_contains( $haystack, $query );
+
+			if ( $type_match && $query_match && in_array( $el_type, array( 'widget', 'section', 'column' ), true ) ) {
+				$matches[] = array(
+					'element_id'  => $element_id,
+					'elType'      => $el_type,
+					'widgetType'  => $widget ?: null,
+					'path'        => implode( ' > ', $current_path ),
+					'preview'     => $this->settings_preview( $element ),
+				);
+			}
+
+			if ( ! empty( $element['elements'] ) && is_array( $element['elements'] ) ) {
+				$this->collect_search_matches(
+					$element['elements'],
+					$matches,
+					$query,
+					$widget_type,
+					$limit,
+					$current_path
+				);
+			}
+		}
+	}
+
+	/**
+	 * Flatten settings into searchable text.
+	 *
+	 * @param mixed $settings Settings.
+	 * @return string
+	 */
+	private function settings_search_blob( mixed $settings ): string {
+		if ( ! is_array( $settings ) ) {
+			return is_scalar( $settings ) ? (string) $settings : '';
+		}
+
+		$parts = array();
+
+		foreach ( $settings as $key => $value ) {
+			if ( is_scalar( $value ) ) {
+				$parts[] = (string) $key . ' ' . (string) $value;
+			} elseif ( is_array( $value ) ) {
+				$parts[] = (string) $key . ' ' . $this->settings_search_blob( $value );
+			}
+		}
+
+		return implode( ' ', $parts );
+	}
+
+	/**
+	 * Build a short preview string from element settings.
+	 *
+	 * @param array<string, mixed> $element Element.
+	 * @return string
+	 */
+	private function settings_preview( array $element ): string {
+		$settings = $element['settings'] ?? array();
+
+		if ( ! is_array( $settings ) ) {
+			return '';
+		}
+
+		foreach ( array( 'title', 'editor', 'text', 'caption', 'heading_title' ) as $key ) {
+			if ( ! empty( $settings[ $key ] ) && is_string( $settings[ $key ] ) ) {
+				return wp_trim_words( wp_strip_all_tags( $settings[ $key ] ), 12 );
+			}
+		}
+
+		return '';
+	}
+
+	/**
+	 * Build media settings for an element type.
+	 *
+	 * @param array<string, mixed> $element       Element summary.
+	 * @param int                  $attachment_id Attachment ID.
+	 * @param string               $url           Image URL.
+	 * @return array<string, mixed>
+	 */
+	private function media_settings_for_element( array $element, int $attachment_id, string $url ): array {
+		$el_type     = $element['elType'] ?? '';
+		$widget_type = $element['widgetType'] ?? '';
+
+		if ( 'widget' === $el_type && 'image' === $widget_type ) {
+			return array(
+				'image' => array(
+					'id'  => $attachment_id,
+					'url' => $url,
+				),
+			);
+		}
+
+		if ( 'section' === $el_type || 'column' === $el_type ) {
+			return array(
+				'background_background' => 'classic',
+				'background_image'      => array(
+					'id'  => $attachment_id,
+					'url' => $url,
+				),
+			);
+		}
+
+		return array(
+			'image' => array(
+				'id'  => $attachment_id,
+				'url' => $url,
+			),
+		);
 	}
 
 	/**

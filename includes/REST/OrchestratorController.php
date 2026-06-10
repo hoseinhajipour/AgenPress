@@ -122,6 +122,7 @@ class OrchestratorController extends RestController {
 		return $this->success(
 			array(
 				'conversation_id' => $conversation_id,
+				'user_message'    => $response['user_message'] ?? array(),
 				'message'         => $response['message'],
 				'specialist'      => $response['specialist'],
 				'module'          => $response['module'],

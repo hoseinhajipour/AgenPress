@@ -77,6 +77,25 @@ class ModelRegistry {
 	}
 
 	/**
+	 * Find a model entry by ID.
+	 *
+	 * @param string $id   Model ID.
+	 * @param string $type Model type: text or image.
+	 * @return array{id: string, label: string, providers: array<int, string>}|null
+	 */
+	public static function find_model( string $id, string $type = 'text' ): ?array {
+		$models = 'image' === $type ? self::image_models() : self::text_models();
+
+		foreach ( $models as $model ) {
+			if ( $model['id'] === $id ) {
+				return $model;
+			}
+		}
+
+		return null;
+	}
+
+	/**
 	 * Filter models by provider slug.
 	 *
 	 * @param string $provider Provider slug.

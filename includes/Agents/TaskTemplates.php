@@ -33,6 +33,8 @@ class TaskTemplates {
 					array( 'key' => 'section_images', 'label' => __( 'Generate image for each section', 'agenpress' ), 'type' => 'boolean', 'default' => false ),
 					array( 'key' => 'include_faq', 'label' => __( 'Include FAQ section', 'agenpress' ), 'type' => 'boolean', 'default' => true ),
 					array( 'key' => 'include_conclusion', 'label' => __( 'Include conclusion', 'agenpress' ), 'type' => 'boolean', 'default' => true ),
+					array( 'key' => 'suggest_services', 'label' => __( 'Suggest services in article', 'agenpress' ), 'type' => 'boolean', 'default' => false ),
+					array( 'key' => 'suggest_products', 'label' => __( 'Suggest products in article', 'agenpress' ), 'type' => 'boolean', 'default' => false ),
 					array( 'key' => 'publish', 'label' => __( 'Publish when done', 'agenpress' ), 'type' => 'boolean', 'default' => false ),
 				),
 			),
@@ -162,6 +164,8 @@ class TaskTemplates {
 			'section_images'     => ! empty( $params['section_images'] ),
 			'include_faq'        => array_key_exists( 'include_faq', $params ) ? ! empty( $params['include_faq'] ) : true,
 			'include_conclusion' => array_key_exists( 'include_conclusion', $params ) ? ! empty( $params['include_conclusion'] ) : true,
+			'suggest_services'   => ! empty( $params['suggest_services'] ),
+			'suggest_products'   => ! empty( $params['suggest_products'] ),
 		);
 
 		$steps = array(

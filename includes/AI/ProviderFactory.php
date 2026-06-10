@@ -65,19 +65,27 @@ class ProviderFactory {
 	/**
 	 * Get the best configured provider for image generation.
 	 *
+	 * Picks a provider that supports the configured default image model.
+	 *
 	 * @return ProviderInterface
 	 */
 	public function get_image_provider(): ProviderInterface {
-		$image_capable = array( 'openai', 'gapgpt', 'custom' );
-		$preferred     = array_unique(
-			array_merge(
-				array( $this->settings->get_default_provider() ),
-				$image_capable
+		$image_model = $this->settings->get_default_image_model();
+		$model_entry = ModelRegistry::find_model( $image_model, 'image' );
+		$candidates  = $model_entry['providers'] ?? array( 'openai', 'gapgpt', 'custom' );
+
+		$default_provider = $this->settings->get_default_provider();
+		$preferred        = array_values(
+			array_unique(
+				array_merge(
+					in_array( $default_provider, $candidates, true ) ? array( $default_provider ) : array(),
+					$candidates
+				)
 			)
 		);
 
 		foreach ( $preferred as $slug ) {
-			if ( ! in_array( $slug, $image_capable, true ) ) {
+			if ( 'claude' === $slug ) {
 				continue;
 			}
 

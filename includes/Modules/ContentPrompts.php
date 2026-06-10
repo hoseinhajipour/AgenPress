@@ -29,6 +29,8 @@ class ContentPrompts {
 				'- FAQ Schema: generate JSON-LD FAQPage markup from topic Q&A pairs.',
 				'- Hashtags: relevant social hashtags for the content topic.',
 				'- Alt text: descriptive, accessible image alt text.',
+				'- AI images: use generate_image for featured images, in-content images, or media library assets on any post type.',
+				'- Links: use [title](url) markdown with a short clickable title; never output bare URLs.',
 				'- When creating content, use create_post tool with status "draft" unless user asks to publish.',
 				'- Suggest internal links to existing posts when relevant.',
 			)

@@ -8,6 +8,7 @@
 namespace AgenPress\Modules\Admin;
 
 use AgenPress\Agents\ToolRegistry;
+use AgenPress\AI\ProviderFactory;
 use AgenPress\Modules\Admin\Tools\CreatePostTool;
 use AgenPress\Modules\Admin\Tools\CreateProductTool;
 use AgenPress\Modules\Admin\Tools\CreateTermTool;
@@ -15,6 +16,7 @@ use AgenPress\Modules\Admin\Tools\DeletePostTool;
 use AgenPress\Modules\Admin\Tools\DeleteProductTool;
 use AgenPress\Modules\Admin\Tools\GetPostTool;
 use AgenPress\Modules\Admin\Tools\GetProductTool;
+use AgenPress\Modules\Admin\Tools\GenerateImageTool;
 use AgenPress\Modules\Admin\Tools\GetSiteInfoTool;
 use AgenPress\Modules\Admin\Tools\GetUserTool;
 use AgenPress\Modules\Admin\Tools\ListPostsTool;
@@ -42,12 +44,21 @@ class AdminModule implements ModuleInterface {
 	private ToolRegistry $tool_registry;
 
 	/**
+	 * Provider factory.
+	 *
+	 * @var ProviderFactory
+	 */
+	private ProviderFactory $provider_factory;
+
+	/**
 	 * Constructor.
 	 *
-	 * @param ToolRegistry $tool_registry Tool registry.
+	 * @param ToolRegistry    $tool_registry    Tool registry.
+	 * @param ProviderFactory $provider_factory Provider factory.
 	 */
-	public function __construct( ToolRegistry $tool_registry ) {
-		$this->tool_registry = $tool_registry;
+	public function __construct( ToolRegistry $tool_registry, ProviderFactory $provider_factory ) {
+		$this->tool_registry    = $tool_registry;
+		$this->provider_factory = $provider_factory;
 	}
 
 	/**
@@ -79,6 +90,7 @@ class AdminModule implements ModuleInterface {
 			new ListUsersTool(),
 			new GetUserTool(),
 			new UpdateMediaTool(),
+			new GenerateImageTool( $this->provider_factory ),
 			new GetSiteInfoTool(),
 		);
 
@@ -108,6 +120,10 @@ class AdminModule implements ModuleInterface {
 				'You are AgenPress Admin Assistant. You help manage WordPress content, users, media, and site settings.',
 				'Always use available tools to fetch real data before answering. Never invent post IDs or product data.',
 				'For destructive actions (delete_post, delete_product), the user will be asked to confirm before execution.',
+				'Use generate_image to create AI images for any post type: save to media library, set as featured image, or insert into post content. Include descriptive alt text.',
+				'When showing generated images in replies, use markdown image syntax so the user can preview them.',
+				'For links, always use markdown format [short descriptive title](url). Never paste raw URLs alone. Keep link titles concise (post title, product name, or action like "Edit post").',
+				'When the user attaches files, use attachment_id and url from the message. Apply images via generate_image or reference them in content updates.',
 				ContentPrompts::admin_instructions(),
 			)
 		);
@@ -125,6 +141,8 @@ class AdminModule implements ModuleInterface {
 			__( 'Create FAQ schema markup for [topic]', 'agenpress' ),
 			__( 'List all categories and suggest new ones', 'agenpress' ),
 			__( 'Draft a new page with a hero section and CTA', 'agenpress' ),
+			__( 'Generate a featured image for my latest post', 'agenpress' ),
+			__( 'Create an AI hero image for a landing page', 'agenpress' ),
 		);
 
 		if ( class_exists( 'WooCommerce' ) ) {

@@ -1,12 +1,12 @@
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import apiFetch from '@wordpress/api-fetch';
+import { generateImage } from './api';
 
 const data = window.agenpressPostEditorData || {};
 
 export default function InsertImageModal( { isOpen, onClose, onInsert } ) {
 	const [ prompt, setPrompt ] = useState( '' );
-	const [ size, setSize ] = useState( '1024x1024' );
+	const [ size, setSize ] = useState( data.defaultSize || '1:1' );
 	const [ generating, setGenerating ] = useState( false );
 	const [ error, setError ] = useState( null );
 	const [ preview, setPreview ] = useState( null );
@@ -16,9 +16,10 @@ export default function InsertImageModal( { isOpen, onClose, onInsert } ) {
 	}
 
 	const sizes = data.sizes || [
-		{ value: '1024x1024', label: 'Square (1024×1024)' },
-		{ value: '1792x1024', label: 'Landscape (1792×1024)' },
-		{ value: '1024x1792', label: 'Portrait (1024×1792)' },
+		{ value: '1:1', label: '1:1 (Square)' },
+		{ value: '16:9', label: '16:9 (Landscape)' },
+		{ value: '9:16', label: '9:16 (Portrait)' },
+		{ value: '4:3', label: '4:3 (Landscape)' },
 	];
 
 	const handleClose = () => {
@@ -42,16 +43,8 @@ export default function InsertImageModal( { isOpen, onClose, onInsert } ) {
 		setPreview( null );
 
 		try {
-			const response = await apiFetch( {
-				path: '/generate-image',
-				method: 'POST',
-				data: {
-					prompt: prompt.trim(),
-					size,
-				},
-			} );
-
-			setPreview( response.data );
+			const previewData = await generateImage( prompt.trim(), size );
+			setPreview( previewData );
 		} catch ( err ) {
 			setError( err.message || __( 'Image generation failed.', 'agenpress' ) );
 		} finally {

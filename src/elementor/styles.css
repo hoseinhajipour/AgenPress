@@ -108,11 +108,37 @@
 	border-color: #2271b1;
 }
 
+.ap-el-attachments {
+	padding: 0 14px 6px;
+	font-size: 11px;
+	color: #646970;
+}
+
+.ap-el-upload {
+	background: #f6f7f7;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	padding: 6px 10px;
+	cursor: pointer;
+	font-size: 14px;
+	line-height: 1;
+}
+
+.ap-el-upload:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.ap-el-msg .ap-chat-md p {
+	margin: 0 0 6px;
+}
+
 .ap-el-input-row {
 	display: flex;
 	gap: 6px;
 	padding: 10px 14px;
 	border-top: 1px solid #dcdcde;
+	align-items: flex-end;
 }
 
 .ap-el-input {

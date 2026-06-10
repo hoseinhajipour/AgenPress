@@ -1,34 +1,12 @@
 import { useState, useEffect, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import apiFetch from '@wordpress/api-fetch';
 import { getElementorSelection, subscribeToSelection } from './selection';
+import { confirmElementorAction, sendElementorMessage, uploadFile } from './api';
+import { refreshElementorDocument } from './refreshDocument';
+import FileUpload from '../shared/FileUpload';
+import MessageContent from '../frontend/MessageContent';
 
 const data = window.agenpressElementorData || {};
-
-async function sendElementorMessage( message, conversationId, context ) {
-	const res = await apiFetch( {
-		path: '/chat/elementor',
-		method: 'POST',
-		data: {
-			message,
-			conversation_id: conversationId,
-			context,
-		},
-	} );
-	return res.data;
-}
-
-async function confirmElementorAction( pendingId, conversationId ) {
-	const res = await apiFetch( {
-		path: '/chat/elementor/confirm',
-		method: 'POST',
-		data: {
-			pending_id: pendingId,
-			conversation_id: conversationId,
-		},
-	} );
-	return res.data;
-}
 
 function formatSelection( selection ) {
 	if ( ! selection.element_id ) {
@@ -53,14 +31,10 @@ export default function Panel() {
 	const [ conversationId, setConversationId ] = useState( 0 );
 	const [ selection, setSelection ] = useState( getElementorSelection );
 	const [ pendingAction, setPendingAction ] = useState( null );
+	const [ attachments, setAttachments ] = useState( [] );
 	const messagesEndRef = useRef( null );
 
 	const suggestions = data.suggestions || [];
-
-	useEffect( () => {
-		apiFetch.use( apiFetch.createNonceMiddleware( data.nonce ) );
-		apiFetch.use( apiFetch.createRootURLMiddleware( data.apiUrl ) );
-	}, [] );
 
 	useEffect( () => subscribeToSelection( setSelection ), [] );
 
@@ -88,23 +62,38 @@ export default function Panel() {
 			return;
 		}
 
-		const context = getElementorSelection();
-		setMessages( ( prev ) => [ ...prev, { role: 'user', content: text.trim() } ] );
+		const context = {
+			...getElementorSelection(),
+			attachments: [ ...attachments ],
+		};
+		setMessages( ( prev ) => [
+			...prev,
+			{
+				role: 'user',
+				content: text.trim(),
+				attachments: [ ...attachments ],
+			},
+		] );
 		setInput( '' );
 		setLoading( true );
 		setError( null );
 		setPendingAction( null );
 
 		try {
-			const response = await sendElementorMessage( text.trim(), conversationId, context );
+			const response = await sendElementorMessage(
+				text.trim(),
+				conversationId,
+				context,
+				attachments
+			);
 			handleResponse( response );
+			setAttachments( [] );
 
 			if ( response.pending_actions?.length ) {
 				return;
 			}
 
-			// Reload preview after structural changes.
-			window.elementor?.reloadPreview?.();
+			await refreshElementorDocument( context.post_id );
 		} catch ( err ) {
 			setError( err.message || __( 'Failed to send message.', 'agenpress' ) );
 		} finally {
@@ -124,7 +113,7 @@ export default function Panel() {
 			const response = await confirmElementorAction( pendingAction.id, conversationId );
 			setPendingAction( null );
 			handleResponse( response );
-			window.elementor?.reloadPreview?.();
+			await refreshElementorDocument( getElementorSelection().post_id );
 		} catch ( err ) {
 			setError( err.message );
 		} finally {
@@ -155,7 +144,12 @@ export default function Panel() {
 						) }
 						{ messages.map( ( msg, i ) => (
 							<div key={ i } className={ `ap-el-msg ${ msg.role }` }>
-								{ msg.content }
+								<MessageContent content={ msg.content } role={ msg.role } />
+								{ msg.attachments?.length > 0 && (
+									<div className="ap-el-attachments">
+										📎 { msg.attachments.map( ( a ) => a.name ).join( ', ' ) }
+									</div>
+								) }
 							</div>
 						) ) }
 						{ pendingAction && (
@@ -185,7 +179,19 @@ export default function Panel() {
 
 					{ loading && <div className="ap-el-loading">{ __( 'Thinking...', 'agenpress' ) }</div> }
 
+					{ attachments.length > 0 && (
+						<div className="ap-el-attachments">
+							📎 { attachments.map( ( a ) => a.name ).join( ', ' ) }
+						</div>
+					) }
+
 					<div className="ap-el-input-row">
+						<FileUpload
+							uploadFile={ uploadFile }
+							onUploaded={ ( file ) => setAttachments( ( prev ) => [ ...prev, file ] ) }
+							className="ap-el-upload"
+							disabled={ loading }
+						/>
 						<textarea
 							className="ap-el-input"
 							value={ input }

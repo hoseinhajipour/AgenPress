@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { escalateConversation, getSalesSession, sendSalesMessage } from './api';
+import { escalateConversation, getSalesSession, sendSalesMessage, uploadFile } from './api';
+import FileUpload from '../shared/FileUpload';
 import MessageContent from './MessageContent';
 
 const data = window.agenpressChatData || {};
@@ -17,7 +18,9 @@ export default function Widget( { inline = false } ) {
 	const [ conversationId, setConversationId ] = useState( 0 );
 	const [ escalated, setEscalated ] = useState( false );
 	const [ hasHistory, setHasHistory ] = useState( false );
+	const [ attachments, setAttachments ] = useState( [] );
 	const endRef = useRef( null );
+	const canUpload = !! data.canUpload;
 
 	const color = config.color || '#2271b1';
 	const title = config.title || __( 'Chat with us', 'agenpress' );
@@ -82,13 +85,21 @@ export default function Widget( { inline = false } ) {
 	const handleSend = async ( text = input ) => {
 		if ( ! text.trim() || loading || escalated ) return;
 
-		setMessages( ( prev ) => [ ...prev, { role: 'user', content: text.trim() } ] );
+		setMessages( ( prev ) => [
+			...prev,
+			{
+				role: 'user',
+				content: text.trim(),
+				attachments: [ ...attachments ],
+			},
+		] );
 		setInput( '' );
 		setLoading( true );
 		setError( null );
 
 		try {
-			const response = await sendSalesMessage( text.trim(), conversationId );
+			const response = await sendSalesMessage( text.trim(), conversationId, attachments );
+			setAttachments( [] );
 			if ( response.conversation_id ) {
 				setConversationId( response.conversation_id );
 			}
@@ -181,6 +192,11 @@ export default function Widget( { inline = false } ) {
 				{ messages.map( ( msg, i ) => (
 					<div key={ i } className={ `ap-chat-msg ${ msg.role }` }>
 						<MessageContent role={ msg.role } content={ msg.content } />
+						{ msg.attachments?.length > 0 && (
+							<div className="ap-chat-attachments">
+								📎 { msg.attachments.map( ( a ) => a.name ).join( ', ' ) }
+							</div>
+						) }
 					</div>
 				) ) }
 				{ loading && (
@@ -203,7 +219,21 @@ export default function Widget( { inline = false } ) {
 				</div>
 			) }
 
+			{ attachments.length > 0 && (
+				<div className="ap-chat-attachments">
+					📎 { attachments.map( ( a ) => a.name ).join( ', ' ) }
+				</div>
+			) }
+
 			<div className="ap-chat-input-row">
+				{ canUpload && (
+					<FileUpload
+						uploadFile={ uploadFile }
+						onUploaded={ ( file ) => setAttachments( ( prev ) => [ ...prev, file ] ) }
+						className="ap-chat-upload"
+						disabled={ loading || escalated || sessionLoading }
+					/>
+				) }
 				<textarea
 					className="ap-chat-input"
 					value={ input }

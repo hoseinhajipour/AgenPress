@@ -7,6 +7,7 @@
 
 namespace AgenPress\Agents;
 
+use AgenPress\AI\ImageSizeRegistry;
 use AgenPress\AI\ProviderFactory;
 use AgenPress\Media\AiImageSideloader;
 use AgenPress\Memory\ContextBuilder;
@@ -319,6 +320,8 @@ class TaskStepExecutor {
 		$include_conclusion = ! empty( $options['include_conclusion'] );
 		$section_images     = ! empty( $options['section_images'] );
 		$featured_image     = ! empty( $options['featured_image'] );
+		$suggest_services   = ! empty( $options['suggest_services'] );
+		$suggest_products   = ! empty( $options['suggest_products'] );
 
 		$lines   = array(
 			'Write a full SEO-optimized blog article.',
@@ -335,6 +338,26 @@ class TaskStepExecutor {
 
 		if ( $include_conclusion ) {
 			$lines[] = '- Include a conclusion that summarizes key takeaways.';
+		}
+
+		if ( $suggest_services ) {
+			$services = $this->get_suggestable_services( $topic );
+
+			if ( ! empty( $services ) ) {
+				$lines[] = '';
+				$lines[] = 'Available services on this site (pick 1-3 relevant items; link naturally in section HTML using <a href="url">title</a>):';
+				$lines[] = $this->format_suggestion_catalog_for_prompt( $services );
+			}
+		}
+
+		if ( $suggest_products ) {
+			$products = $this->get_suggestable_products( $topic );
+
+			if ( ! empty( $products ) ) {
+				$lines[] = '';
+				$lines[] = 'Available products on this site (pick 1-3 relevant items; link naturally in section HTML using <a href="url">title</a>):';
+				$lines[] = $this->format_suggestion_catalog_for_prompt( $products );
+			}
 		}
 
 		$json_keys = array(
@@ -361,6 +384,14 @@ class TaskStepExecutor {
 
 		if ( $featured_image ) {
 			$json_keys[] = 'featured_image_prompt (detailed hero image prompt, no text in image)';
+		}
+
+		if ( $suggest_services ) {
+			$json_keys[] = 'suggested_services (array of objects with title, url, description — only from the services catalog above)';
+		}
+
+		if ( $suggest_products ) {
+			$json_keys[] = 'suggested_products (array of objects with title, url, description — only from the products catalog above)';
 		}
 
 		$lines[] = '';
@@ -435,6 +466,204 @@ class TaskStepExecutor {
 			$html .= wp_kses_post( (string) $article['conclusion'] );
 		}
 
+		if ( ! empty( $options['suggest_services'] ) && ! empty( $article['suggested_services'] ) && is_array( $article['suggested_services'] ) ) {
+			$html .= $this->build_suggestions_section(
+				__( 'Our Services', 'agenpress' ),
+				$article['suggested_services']
+			);
+		}
+
+		if ( ! empty( $options['suggest_products'] ) && ! empty( $article['suggested_products'] ) && is_array( $article['suggested_products'] ) ) {
+			$html .= $this->build_suggestions_section(
+				__( 'Recommended Products', 'agenpress' ),
+				$article['suggested_products']
+			);
+		}
+
+		return $html;
+	}
+
+	/**
+	 * Fetch published service posts for article suggestions.
+	 *
+	 * @param string $topic Article topic for relevance search.
+	 * @return array<int, array{title: string, url: string, description: string}>
+	 */
+	private function get_suggestable_services( string $topic ): array {
+		$post_type = (string) apply_filters( 'agenpress_seo_article_service_post_type', 'service' );
+
+		if ( ! post_type_exists( $post_type ) ) {
+			return array();
+		}
+
+		$posts = get_posts(
+			array(
+				'post_type'      => $post_type,
+				'post_status'    => 'publish',
+				'posts_per_page' => 15,
+				's'              => $topic,
+				'orderby'        => 'relevance',
+			)
+		);
+
+		if ( empty( $posts ) ) {
+			$posts = get_posts(
+				array(
+					'post_type'      => $post_type,
+					'post_status'    => 'publish',
+					'posts_per_page' => 15,
+					'orderby'        => 'date',
+					'order'          => 'DESC',
+				)
+			);
+		}
+
+		return $this->map_posts_to_suggestions( $posts );
+	}
+
+	/**
+	 * Fetch published WooCommerce products for article suggestions.
+	 *
+	 * @param string $topic Article topic for relevance search.
+	 * @return array<int, array{title: string, url: string, description: string}>
+	 */
+	private function get_suggestable_products( string $topic ): array {
+		if ( ! class_exists( 'WooCommerce' ) ) {
+			return array();
+		}
+
+		$query_args = array(
+			'limit'   => 15,
+			'status'  => 'publish',
+			'return'  => 'objects',
+			'orderby' => 'popularity',
+			'order'   => 'DESC',
+		);
+
+		$topic = trim( $topic );
+
+		if ( '' !== $topic ) {
+			$query_args['search'] = $topic;
+		}
+
+		$products = ( new \WC_Product_Query( $query_args ) )->get_products();
+
+		if ( empty( $products ) && '' !== $topic ) {
+			unset( $query_args['search'] );
+			$products = ( new \WC_Product_Query( $query_args ) )->get_products();
+		}
+
+		$suggestions = array();
+
+		foreach ( $products as $product ) {
+			if ( ! $product instanceof \WC_Product ) {
+				continue;
+			}
+
+			$url = get_permalink( $product->get_id() );
+
+			if ( ! is_string( $url ) || '' === $url ) {
+				continue;
+			}
+
+			$description = $product->get_short_description() ?: $product->get_description();
+			$description = wp_trim_words( wp_strip_all_tags( (string) $description ), 25 );
+
+			$suggestions[] = array(
+				'title'       => $product->get_name(),
+				'url'         => $url,
+				'description' => $description,
+			);
+		}
+
+		return $suggestions;
+	}
+
+	/**
+	 * Map WP posts to suggestion catalog entries.
+	 *
+	 * @param array<int, \WP_Post> $posts Posts.
+	 * @return array<int, array{title: string, url: string, description: string}>
+	 */
+	private function map_posts_to_suggestions( array $posts ): array {
+		$suggestions = array();
+
+		foreach ( $posts as $post ) {
+			if ( ! $post instanceof \WP_Post ) {
+				continue;
+			}
+
+			$url = get_permalink( $post );
+
+			if ( ! is_string( $url ) || '' === $url ) {
+				continue;
+			}
+
+			$suggestions[] = array(
+				'title'       => $post->post_title,
+				'url'         => $url,
+				'description' => wp_trim_words( wp_strip_all_tags( $post->post_excerpt ?: $post->post_content ), 25 ),
+			);
+		}
+
+		return $suggestions;
+	}
+
+	/**
+	 * Format suggestion catalog for the AI prompt.
+	 *
+	 * @param array<int, array{title: string, url: string, description: string}> $items Catalog items.
+	 * @return string
+	 */
+	private function format_suggestion_catalog_for_prompt( array $items ): string {
+		$lines = array();
+
+		foreach ( $items as $item ) {
+			$lines[] = sprintf(
+				'- %s — %s%s',
+				$item['title'],
+				$item['url'],
+				'' !== $item['description'] ? ' — ' . $item['description'] : ''
+			);
+		}
+
+		return implode( "\n", $lines );
+	}
+
+	/**
+	 * Build an HTML section for suggested services or products.
+	 *
+	 * @param string                                                              $heading Section heading.
+	 * @param array<int, array<string, string>|array{title?: string, url?: string, description?: string}> $items   Suggested items.
+	 * @return string
+	 */
+	private function build_suggestions_section( string $heading, array $items ): string {
+		$html = '<h2>' . esc_html( $heading ) . '</h2><ul>';
+
+		foreach ( $items as $item ) {
+			if ( ! is_array( $item ) ) {
+				continue;
+			}
+
+			$title = trim( (string) ( $item['title'] ?? '' ) );
+			$url   = trim( (string) ( $item['url'] ?? '' ) );
+
+			if ( '' === $title || '' === $url ) {
+				continue;
+			}
+
+			$description = trim( (string) ( $item['description'] ?? '' ) );
+			$html       .= '<li><a href="' . esc_url( $url ) . '">' . esc_html( $title ) . '</a>';
+
+			if ( '' !== $description ) {
+				$html .= ': ' . esc_html( $description );
+			}
+
+			$html .= '</li>';
+		}
+
+		$html .= '</ul>';
+
 		return $html;
 	}
 
@@ -504,14 +733,14 @@ class TaskStepExecutor {
 
 			$image = $provider->generate_image(
 				$prompt,
-				array( 'size' => '1792x1024' )
+				array( 'size' => ImageSizeRegistry::resolve_size() )
 			);
 
-			if ( empty( $image['url'] ) ) {
+			if ( empty( $image['url'] ) && empty( $image['b64_json'] ) ) {
 				return null;
 			}
 
-			$attachment_id = AiImageSideloader::sideload( $image['url'], $prompt );
+			$attachment_id = AiImageSideloader::sideload_result( $image, $prompt );
 
 			if ( ! $attachment_id ) {
 				return null;

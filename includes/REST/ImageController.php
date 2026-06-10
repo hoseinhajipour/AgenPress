@@ -7,6 +7,7 @@
 
 namespace AgenPress\REST;
 
+use AgenPress\AI\ImageSizeRegistry;
 use AgenPress\AI\ProviderFactory;
 use AgenPress\Core\Container;
 use AgenPress\Media\AiImageSideloader;
@@ -18,13 +19,6 @@ defined( 'ABSPATH' ) || exit;
  * Class ImageController
  */
 class ImageController extends RestController {
-
-	/**
-	 * Allowed image sizes.
-	 *
-	 * @var array<string>
-	 */
-	private const ALLOWED_SIZES = array( '1024x1024', '1792x1024', '1024x1792' );
 
 	/**
 	 * Register routes.
@@ -47,7 +41,7 @@ class ImageController extends RestController {
 					),
 					'size'   => array(
 						'type'              => 'string',
-						'default'           => '1024x1024',
+						'default'           => '',
 						'sanitize_callback' => 'sanitize_text_field',
 					),
 				),
@@ -125,11 +119,9 @@ class ImageController extends RestController {
 			);
 		}
 
-		$size = sanitize_text_field( $request->get_param( 'size' ) ?? '1024x1024' );
-
-		if ( ! in_array( $size, self::ALLOWED_SIZES, true ) ) {
-			$size = '1024x1024';
-		}
+		$size = ImageSizeRegistry::resolve_size(
+			sanitize_text_field( (string) ( $request->get_param( 'size' ) ?? '' ) )
+		);
 
 		/** @var ProviderFactory $provider_factory */
 		$provider_factory = $this->container->get( 'provider_factory' );
@@ -160,7 +152,7 @@ class ImageController extends RestController {
 			);
 		}
 
-		if ( empty( $image['url'] ) ) {
+		if ( empty( $image['url'] ) && empty( $image['b64_json'] ) ) {
 			return $this->error(
 				new \WP_Error(
 					'agenpress_image_generation_failed',
@@ -170,7 +162,7 @@ class ImageController extends RestController {
 			);
 		}
 
-		$attachment_id = AiImageSideloader::sideload( $image['url'], $prompt );
+		$attachment_id = AiImageSideloader::sideload_result( $image, $prompt );
 
 		if ( ! $attachment_id ) {
 			return $this->error(

@@ -9,6 +9,7 @@ namespace AgenPress\Agents;
 
 use AgenPress\AI\ProviderFactory;
 use AgenPress\Chat\MessageRepository;
+use AgenPress\Media\AttachmentContext;
 use AgenPress\Memory\ContextBuilder;
 use AgenPress\Sales\ProductLinkFixer;
 use AgenPress\Security\AuditLogger;
@@ -135,7 +136,7 @@ class AgentEngine {
 		array $attachments = array(),
 		array $context = array()
 	): array {
-		$this->message_repository->create(
+		$user_message_record = $this->message_repository->create(
 			$conversation_id,
 			'user',
 			$user_message,
@@ -153,7 +154,7 @@ class AgentEngine {
 		try {
 			$response = $provider->chat( $messages, $tools );
 		} catch ( \Exception $e ) {
-			return $this->error_response( $conversation_id, $e->getMessage() );
+			return $this->error_response( $conversation_id, $e->getMessage(), $user_message_record );
 		}
 
 		$total_tokens += $response['tokens_used'];
@@ -231,7 +232,7 @@ class AgentEngine {
 			try {
 				$response = $provider->chat( $messages, $tools );
 			} catch ( \Exception $e ) {
-				return $this->error_response( $conversation_id, $e->getMessage() );
+				return $this->error_response( $conversation_id, $e->getMessage(), $user_message_record );
 			}
 
 			$total_tokens += $response['tokens_used'];
@@ -263,9 +264,10 @@ class AgentEngine {
 		);
 
 		$result = array(
-			'message'     => $assistant_message ?? array(),
-			'tokens_used' => $total_tokens,
-			'model'       => $model,
+			'user_message' => $user_message_record ?? array(),
+			'message'      => $assistant_message ?? array(),
+			'tokens_used'  => $total_tokens,
+			'model'        => $model,
 		);
 
 		if ( ! empty( $pending ) ) {
@@ -398,6 +400,10 @@ class AgentEngine {
 		}
 
 		if ( 'sales' === $module ) {
+			if ( 'admin' === sanitize_key( (string) ( $context['audience'] ?? '' ) ) ) {
+				return $this->build_admin_sales_context( $context );
+			}
+
 			return $this->build_sales_context( $context );
 		}
 
@@ -424,6 +430,43 @@ class AgentEngine {
 		} else {
 			$lines[] = 'No element selected. Use get_page_structure to inspect the page before editing.';
 		}
+
+		if ( ! empty( $context['attachments'] ) && is_array( $context['attachments'] ) ) {
+			$attachment_block = AttachmentContext::format_context_block( $context['attachments'] );
+
+			if ( '' !== trim( $attachment_block ) ) {
+				$lines[] = '';
+				$lines[] = trim( $attachment_block );
+			}
+		}
+
+		return implode( "\n", $lines );
+	}
+
+	/**
+	 * Build wp-admin sales staff context for prompts.
+	 *
+	 * @param array<string, mixed> $context Context payload.
+	 * @return string
+	 */
+	private function build_admin_sales_context( array $context ): string {
+		$user    = wp_get_current_user();
+		$lines   = array( 'Shop Staff Context:' );
+		$lines[] = __( 'Audience: WordPress admin — the user is a shop employee or manager, NOT a storefront customer.', 'agenpress' );
+
+		if ( $user instanceof \WP_User && $user->exists() ) {
+			$lines[] = sprintf(
+				/* translators: %s: user display name */
+				__( 'Staff member: %s', 'agenpress' ),
+				$user->display_name
+			);
+		}
+
+		if ( ! empty( $context['conversation_id'] ) ) {
+			$lines[] = sprintf( 'Conversation ID: %d', (int) $context['conversation_id'] );
+		}
+
+		$lines[] = __( 'Respond with internal sales analytics and operational insights. Do not pitch products to this user.', 'agenpress' );
 
 		return implode( "\n", $lines );
 	}
@@ -472,11 +515,19 @@ class AgentEngine {
 	 * @return string
 	 */
 	private function finalize_assistant_content( string $content, string $module ): string {
-		if ( 'sales' !== $module || '' === trim( $content ) ) {
+		if ( '' === trim( $content ) ) {
 			return $content;
 		}
 
-		return ( new ProductLinkFixer() )->fix( $content );
+		if ( 'sales' === $module ) {
+			return ( new ProductLinkFixer() )->fix( $content );
+		}
+
+		if ( in_array( $module, array( 'admin', 'elementor' ), true ) ) {
+			return ( new \AgenPress\Content\MarkdownLinkFormatter() )->format( $content );
+		}
+
+		return $content;
 	}
 
 	/**
@@ -486,7 +537,7 @@ class AgentEngine {
 	 * @param string $error_message   Error message.
 	 * @return array{message: array<string, mixed>, tokens_used: int, model: string}
 	 */
-	private function error_response( int $conversation_id, string $error_message ): array {
+	private function error_response( int $conversation_id, string $error_message, ?array $user_message = null ): array {
 		$assistant_message = $this->message_repository->create(
 			$conversation_id,
 			'assistant',
@@ -498,9 +549,10 @@ class AgentEngine {
 		);
 
 		return array(
-			'message'     => $assistant_message ?? array(),
-			'tokens_used' => 0,
-			'model'       => '',
+			'user_message' => $user_message ?? array(),
+			'message'      => $assistant_message ?? array(),
+			'tokens_used'  => 0,
+			'model'        => '',
 		);
 	}
 }

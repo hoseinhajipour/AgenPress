@@ -7,6 +7,8 @@
 
 namespace AgenPress\Modules\Admin;
 
+use AgenPress\AI\ImageSizeRegistry;
+use AgenPress\Core\Settings;
 use AgenPress\Security\Capabilities;
 
 defined( 'ABSPATH' ) || exit;
@@ -126,27 +128,20 @@ class PostFeaturedImage {
 			true
 		);
 
+		/** @var Settings $settings */
+		$settings   = function_exists( 'agenpress' ) ? agenpress()->container()->get( 'settings' ) : new Settings();
+		$image_data = ImageSizeRegistry::editor_localize_data( $settings->get_default_image_aspect() );
+
 		wp_localize_script(
 			'agenpress-post-editor',
 			'agenpressPostEditorData',
-			array(
-				'apiUrl' => rest_url( 'agenpress/v1' ),
-				'nonce'  => wp_create_nonce( 'wp_rest' ),
-				'postId' => $this->get_post_id(),
-				'sizes'  => array(
-					array(
-						'value' => '1024x1024',
-						'label' => __( 'Square (1024×1024)', 'agenpress' ),
-					),
-					array(
-						'value' => '1792x1024',
-						'label' => __( 'Landscape (1792×1024)', 'agenpress' ),
-					),
-					array(
-						'value' => '1024x1792',
-						'label' => __( 'Portrait (1024×1792)', 'agenpress' ),
-					),
+			array_merge(
+				array(
+					'apiUrl' => rest_url( 'agenpress/v1' ),
+					'nonce'  => wp_create_nonce( 'wp_rest' ),
+					'postId' => $this->get_post_id(),
 				),
+				$image_data
 			)
 		);
 

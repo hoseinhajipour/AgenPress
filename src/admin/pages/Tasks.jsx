@@ -36,6 +36,8 @@ export default function Tasks() {
 		section_images: false,
 		include_faq: true,
 		include_conclusion: true,
+		suggest_services: false,
+		suggest_products: false,
 		publish: false,
 	} );
 	const [ newTitle, setNewTitle ] = useState( '' );

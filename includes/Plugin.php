@@ -371,7 +371,10 @@ class Plugin {
 		$manager = $this->container->get( 'module_manager' );
 
 		$modules = array(
-			new AdminModule( $this->container->get( 'tool_registry' ) ),
+			new AdminModule(
+				$this->container->get( 'tool_registry' ),
+				$this->container->get( 'provider_factory' )
+			),
 			new ElementorModule(
 				$this->container->get( 'tool_registry' ),
 				$this->container->get( 'elementor_documents' ),
@@ -451,6 +454,12 @@ class Plugin {
 		$this->loader->add_action(
 			'rest_api_init',
 			new UploadController( $this->container ),
+			'register_routes'
+		);
+
+		$this->loader->add_action(
+			'rest_api_init',
+			new REST\ElementorController( $this->container ),
 			'register_routes'
 		);
 

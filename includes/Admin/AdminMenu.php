@@ -83,7 +83,7 @@ class AdminMenu {
 		if ( function_exists( 'agenpress' ) ) {
 			/** @var \AgenPress\Modules\ModuleManager $manager */
 			$manager = agenpress()->container()->get( 'module_manager' );
-			$api_modules = $manager->list_for_api();
+			$api_modules = $manager->list_for_admin_api();
 
 			if ( ! empty( $api_modules ) ) {
 				$modules = $api_modules;

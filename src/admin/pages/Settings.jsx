@@ -114,6 +114,8 @@ export default function Settings() {
 		default_provider: 'openai',
 		default_model: 'gpt-4o-mini',
 		default_image_model: 'dall-e-3',
+		default_image_aspect: '1:1',
+		image_aspect_catalog: [],
 		custom_api_base_url: '',
 		rate_limit: 60,
 		license_tier: 'basic',
@@ -314,6 +316,26 @@ export default function Settings() {
 							onChange={ ( value ) => handleChange( 'default_image_model', value ) }
 						/>
 					) }
+				</div>
+
+				<h3 className="ap-settings-section-title">{ __( 'Image Generator', 'agenpress' ) }</h3>
+
+				<div className="ap-form-group">
+					<label className="ap-form-label">{ __( 'Default Image Dimensions', 'agenpress' ) }</label>
+					<select
+						className="ap-form-select"
+						value={ settings.default_image_aspect || '1:1' }
+						onChange={ ( e ) => handleChange( 'default_image_aspect', e.target.value ) }
+					>
+						{ ( settings.image_aspect_catalog || [] ).map( ( aspect ) => (
+							<option key={ aspect.id } value={ aspect.id }>
+								{ aspect.label }
+							</option>
+						) ) }
+					</select>
+					<p className="ap-form-hint">
+						{ __( 'Default aspect ratio used when generating AI images across the plugin.', 'agenpress' ) }
+					</p>
 				</div>
 
 				<h3 className="ap-settings-section-title">{ __( 'General', 'agenpress' ) }</h3>

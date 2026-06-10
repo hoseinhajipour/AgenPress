@@ -1,22 +1,25 @@
 import { useState, useRef, useEffect, useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { sendMessage, confirmAction, orchestrateChat } from '../api';
+import { sendMessage, confirmAction, orchestrateChat, deleteConversation, deleteMessage } from '../api';
 import FileUpload from './FileUpload';
 import ConfirmationModal from './ConfirmationModal';
+import MessageContent from './MessageContent';
 
 const DEFAULT_SUGGESTIONS = {
 	admin: [
 		__( 'What posts do I have on my site?', 'agenpress' ),
 		__( 'Write an SEO-optimized blog post about [topic]', 'agenpress' ),
 		__( 'Generate meta title and description for my latest post', 'agenpress' ),
+		__( 'Generate a featured image for my latest post', 'agenpress' ),
 	],
 	elementor: [
 		__( 'Help me design a hero section', 'agenpress' ),
 		__( 'Suggest a landing page structure', 'agenpress' ),
 	],
 	sales: [
-		__( 'What are our best-selling products?', 'agenpress' ),
-		__( 'Draft a customer support response', 'agenpress' ),
+		__( 'What were the best-selling products this month?', 'agenpress' ),
+		__( 'Give me a sales overview for this week', 'agenpress' ),
+		__( 'List recent orders', 'agenpress' ),
 	],
 };
 
@@ -41,23 +44,45 @@ export default function ChatInterface( { module = 'admin', orchestrate = false }
 		messagesEndRef.current?.scrollIntoView( { behavior: 'smooth' } );
 	}, [ messages, pendingAction ] );
 
+	const attachMessageIds = ( prev, response ) => {
+		const next = [ ...prev ];
+
+		if ( response.user_message?.id ) {
+			for ( let i = next.length - 1; i >= 0; i-- ) {
+				if ( next[ i ].role === 'user' && ! next[ i ].id ) {
+					next[ i ] = { ...next[ i ], id: response.user_message.id };
+					break;
+				}
+			}
+		}
+
+		return next;
+	};
+
 	const handleResponse = ( response ) => {
 		if ( response.conversation_id ) {
 			setConversationId( response.conversation_id );
 		}
 
-		if ( response.message ) {
-			const prefix = response.specialist
-				? `[${ response.specialist }] `
-				: '';
-			setMessages( ( prev ) => [
-				...prev,
-				{
-					role: 'assistant',
-					content: prefix + response.message.content,
-				},
-			] );
-		}
+		setMessages( ( prev ) => {
+			let next = attachMessageIds( prev, response );
+
+			if ( response.message ) {
+				const prefix = response.specialist
+					? `[${ response.specialist }] `
+					: '';
+				next = [
+					...next,
+					{
+						id: response.message.id,
+						role: 'assistant',
+						content: prefix + response.message.content,
+					},
+				];
+			}
+
+			return next;
+		} );
 
 		if ( response.pending_actions?.length > 0 ) {
 			setPendingAction( response.pending_actions[ 0 ] );
@@ -68,6 +93,7 @@ export default function ChatInterface( { module = 'admin', orchestrate = false }
 		if ( ! text.trim() || loading ) return;
 
 		const userMessage = {
+			id: `local-${ Date.now() }`,
 			role: 'user',
 			content: text.trim(),
 			attachments: [ ...attachments ],
@@ -124,6 +150,47 @@ export default function ChatInterface( { module = 'admin', orchestrate = false }
 		setAttachments( ( prev ) => [ ...prev, file ] );
 	};
 
+	const handleDeleteMessage = async ( index ) => {
+		const msg = messages[ index ];
+
+		if ( ! msg ) {
+			return;
+		}
+
+		if ( msg.id && conversationId && typeof msg.id === 'number' ) {
+			try {
+				await deleteMessage( conversationId, msg.id );
+			} catch ( err ) {
+				setError( err.message || __( 'Failed to delete message.', 'agenpress' ) );
+				return;
+			}
+		}
+
+		setMessages( ( prev ) => prev.filter( ( _, i ) => i !== index ) );
+		setError( null );
+	};
+
+	const handleClearChat = async () => {
+		if ( ! window.confirm( __( 'Clear this chat and start over?', 'agenpress' ) ) ) {
+			return;
+		}
+
+		if ( conversationId ) {
+			try {
+				await deleteConversation( conversationId );
+			} catch ( err ) {
+				setError( err.message || __( 'Failed to clear chat.', 'agenpress' ) );
+				return;
+			}
+		}
+
+		setMessages( [] );
+		setConversationId( 0 );
+		setPendingAction( null );
+		setAttachments( [] );
+		setError( null );
+	};
+
 	return (
 		<div className="ap-chat-container">
 			<ConfirmationModal
@@ -135,6 +202,19 @@ export default function ChatInterface( { module = 'admin', orchestrate = false }
 
 			{ error && (
 				<div className="ap-alert ap-alert-error">{ error }</div>
+			) }
+
+			{ messages.length > 0 && (
+				<div className="ap-chat-toolbar">
+					<button
+						type="button"
+						className="ap-btn ap-btn-secondary ap-chat-clear-btn"
+						onClick={ handleClearChat }
+						disabled={ loading || confirming }
+					>
+						{ __( 'Clear chat', 'agenpress' ) }
+					</button>
+				</div>
 			) }
 
 			<div className="ap-chat-messages">
@@ -158,17 +238,29 @@ export default function ChatInterface( { module = 'admin', orchestrate = false }
 				) }
 
 				{ messages.map( ( msg, i ) => (
-					<div key={ i } className={ `ap-message ${ msg.role }` }>
+					<div key={ msg.id || i } className={ `ap-message ${ msg.role }` }>
 						<div className="ap-message-avatar">
 							{ msg.role === 'user' ? 'U' : 'AI' }
 						</div>
-						<div className="ap-message-bubble">
-							{ msg.content }
-							{ msg.attachments?.length > 0 && (
-								<div style={ { marginTop: '8px', fontSize: '11px', opacity: 0.7 } }>
-									📎 { msg.attachments.map( ( a ) => a.name ).join( ', ' ) }
-								</div>
-							) }
+						<div className="ap-message-body">
+							<div className="ap-message-bubble">
+								<MessageContent content={ msg.content } role={ msg.role } />
+								{ msg.attachments?.length > 0 && (
+									<div style={ { marginTop: '8px', fontSize: '11px', opacity: 0.7 } }>
+										📎 { msg.attachments.map( ( a ) => a.name ).join( ', ' ) }
+									</div>
+								) }
+							</div>
+							<button
+								type="button"
+								className="ap-message-delete"
+								onClick={ () => handleDeleteMessage( i ) }
+								disabled={ loading || confirming }
+								aria-label={ __( 'Delete message', 'agenpress' ) }
+								title={ __( 'Delete message', 'agenpress' ) }
+							>
+								×
+							</button>
 						</div>
 					</div>
 				) ) }

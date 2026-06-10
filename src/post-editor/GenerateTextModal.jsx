@@ -1,6 +1,6 @@
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import apiFetch from '@wordpress/api-fetch';
+import { generateText } from './api';
 
 export default function GenerateTextModal( { isOpen, selection, onClose, onInsert } ) {
 	const [ prompt, setPrompt ] = useState( '' );
@@ -33,16 +33,8 @@ export default function GenerateTextModal( { isOpen, selection, onClose, onInser
 		setPreview( '' );
 
 		try {
-			const response = await apiFetch( {
-				path: '/generate-text',
-				method: 'POST',
-				data: {
-					prompt: prompt.trim(),
-					context: selection || '',
-				},
-			} );
-
-			setPreview( response.data?.content || '' );
+			const result = await generateText( prompt.trim(), selection || '' );
+			setPreview( result?.content || '' );
 		} catch ( err ) {
 			setError( err.message || __( 'Text generation failed.', 'agenpress' ) );
 		} finally {

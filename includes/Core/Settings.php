@@ -7,6 +7,7 @@
 
 namespace AgenPress\Core;
 
+use AgenPress\AI\ImageSizeRegistry;
 use AgenPress\AI\LanguageRegistry;
 use AgenPress\AI\ModelRegistry;
 
@@ -34,6 +35,8 @@ class Settings {
 			'default_provider'      => $settings['default_provider'] ?? 'openai',
 			'default_model'         => $settings['default_model'] ?? 'gpt-4o-mini',
 			'default_image_model'   => $settings['default_image_model'] ?? 'dall-e-3',
+			'default_image_aspect'  => $this->get_default_image_aspect(),
+			'image_aspect_catalog'  => ImageSizeRegistry::catalog(),
 			'ai_language'           => $this->get_ai_language(),
 			'custom_api_base_url'   => $settings['custom_api_base_url'] ?? '',
 			'rate_limit'            => (int) ( $settings['rate_limit'] ?? 60 ),
@@ -71,6 +74,7 @@ class Settings {
 			'default_provider',
 			'default_model',
 			'default_image_model',
+			'default_image_aspect',
 			'ai_language',
 			'custom_api_base_url',
 			'rate_limit',
@@ -111,6 +115,14 @@ class Settings {
 				$language = sanitize_text_field( (string) $data[ $key ] );
 				if ( LanguageRegistry::is_valid( $language ) ) {
 					$current[ $key ] = $language;
+				}
+				continue;
+			}
+
+			if ( 'default_image_aspect' === $key ) {
+				$aspect = sanitize_text_field( (string) $data[ $key ] );
+				if ( ImageSizeRegistry::is_valid_aspect( $aspect ) ) {
+					$current[ $key ] = $aspect;
 				}
 				continue;
 			}
@@ -187,6 +199,27 @@ class Settings {
 		$settings = $this->get_raw();
 
 		return $settings['default_image_model'] ?? 'dall-e-3';
+	}
+
+	/**
+	 * Get default image aspect ratio key.
+	 *
+	 * @return string
+	 */
+	public function get_default_image_aspect(): string {
+		$settings = $this->get_raw();
+		$aspect   = $settings['default_image_aspect'] ?? '1:1';
+
+		return ImageSizeRegistry::is_valid_aspect( $aspect ) ? $aspect : '1:1';
+	}
+
+	/**
+	 * Get default image pixel size for API requests.
+	 *
+	 * @return string
+	 */
+	public function get_default_image_size(): string {
+		return ImageSizeRegistry::to_pixel_size( $this->get_default_image_aspect() );
 	}
 
 	/**

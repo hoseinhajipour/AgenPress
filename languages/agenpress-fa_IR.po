@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AgenPress\n"
 "Report-Msgid-Bugs-To: https://github.com/agenpress/agenpress\n"
-"POT-Creation-Date: 2026-06-10 08:16+0000\n"
-"PO-Revision-Date: 2026-06-10 08:16+0000\n"
+"POT-Creation-Date: 2026-06-10 10:50+0000\n"
+"PO-Revision-Date: 2026-06-10 10:50+0000\n"
 "Last-Translator: AgenPress <support@agenpress.io>\n"
 "Language-Team: Persian\n"
 "Language: fa-IR\n"
@@ -13,19 +13,48 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Domain: agenpress\n"
 
+#: includes/Media/AttachmentContext.php:71
+msgid "  File excerpt:"
+msgstr "  File excerpt:"
+
 #: includes/Modules/Sales/Tools/RecommendProductsTool.php:74
 msgid "%d recommendations."
 msgstr "%d پیشنهاد."
+
+#: includes/AI/ImageSizeRegistry.php:30
+msgid "16:9 (Landscape)"
+msgstr "۱۶:۹ (افقی)"
+
+#: includes/AI/ImageSizeRegistry.php:26
+msgid "1:1 (Square)"
+msgstr "۱:۱ (مربع)"
+
+#: src/admin/workflowPresets.js:53
+#: src/admin/workflowPresets.js:56
+msgid "3 SEO Articles Batch"
+msgstr "3 SEO Articles Batch"
+
+#: includes/AI/ImageSizeRegistry.php:42
+msgid "3:2 (Landscape)"
+msgstr "۳:۲ (افقی)"
+
+#: includes/AI/ImageSizeRegistry.php:38
+msgid "4:3 (Landscape)"
+msgstr "۴:۳ (افقی)"
+
+#: includes/AI/ImageSizeRegistry.php:34
+msgid "9:16 (Portrait)"
+msgstr "۹:۱۶ (عمودی)"
 
 #: includes/Modules/Sales/Tools/EscalateToHumanTool.php:78
 msgid "A team member will follow up shortly."
 msgstr "یک عضو تیم به زودی پیگیری خواهد کرد."
 
-#: src/frontend/Widget.jsx:157
+#: src/frontend/Widget.jsx:168
 msgid "A team member will follow up with you."
 msgstr "یک عضو تیم با شما پیگیری خواهد کرد."
 
-#: includes/AI/OpenAICompatibleProvider.php:259
+#: includes/AI/OpenAICompatibleProvider.php:255
 msgid "AI API error."
 msgstr "خطای API هوش مصنوعی."
 
@@ -38,12 +67,12 @@ msgstr "رفتار هوش مصنوعی"
 msgid "AI Chat"
 msgstr "چت هوش مصنوعی"
 
-#: src/post-editor/FeaturedImageModal.jsx:100
-#: src/post-editor/InsertImageModal.jsx:86
+#: src/post-editor/FeaturedImageModal.jsx:86
+#: src/post-editor/InsertImageModal.jsx:79
 msgid "AI Generate Image"
 msgstr "تولید تصویر با هوش مصنوعی"
 
-#: src/post-editor/GenerateTextModal.jsx:73
+#: src/post-editor/GenerateTextModal.jsx:65
 msgid "AI Generate Text"
 msgstr "تولید متن با هوش مصنوعی"
 
@@ -52,31 +81,51 @@ msgstr "تولید متن با هوش مصنوعی"
 msgid "AI Generate image"
 msgstr "تولید تصویر با هوش مصنوعی"
 
-#: src/admin/pages/Settings.jsx:322
+#: src/admin/pages/Settings.jsx:344
 msgid "AI Language"
 msgstr "زبان هوش مصنوعی"
 
-#: src/admin/pages/Settings.jsx:228
+#: src/admin/pages/Workflows.jsx:18
+msgid "AI Planning"
+msgstr "AI Planning"
+
+#: src/admin/pages/Workflows.jsx:16
+msgid "AI Prompt"
+msgstr "AI Prompt"
+
+#: src/admin/pages/Settings.jsx:230
 msgid "AI Provider"
 msgstr "ارائه‌دهنده هوش مصنوعی"
 
-#: includes/Agents/TaskTemplates.php:270
+#: src/admin/workflowPresets.js:23
+msgid "AI analyzes your site context, then turns the strategy into 10 concrete post ideas. Edit the topic in step 1 if needed."
+msgstr "AI analyzes your site context, then turns the strategy into 10 concrete post ideas. Edit the topic in step 1 if needed."
+
+#: src/admin/workflowPresets.js:209
+msgid "AI breaks a goal into action items, then executes. Edit title and description in step 1."
+msgstr "AI breaks a goal into action items, then executes. Edit title and description in step 1."
+
+#: src/admin/workflowPresets.js:212
+msgid "AI plan → AI execution pattern for open-ended admin work."
+msgstr "AI plan → AI execution pattern for open-ended admin work."
+
+#: includes/Agents/TaskTemplates.php:274
 msgid "AI planning task steps"
 msgstr "برنامه‌ریزی مراحل وظیفه با هوش مصنوعی"
 
-#: includes/Agents/TaskTemplates.php:51
+#: includes/Agents/TaskTemplates.php:53
 msgid "AI-planned multi-step task from your description"
 msgstr "وظیفه چند مرحله‌ای برنامه‌ریزی‌شده توسط هوش مصنوعی از توضیحات شما"
 
-#: src/admin/pages/Settings.jsx:257
+#: src/admin/pages/Settings.jsx:259
 msgid "API Base URL"
 msgstr "آدرس پایه API"
 
-#: src/admin/pages/Settings.jsx:270
+#: src/admin/pages/Settings.jsx:272
 msgid "API Endpoint"
 msgstr "نقطه پایانی API"
 
-#: src/admin/pages/Settings.jsx:276
+#: src/admin/pages/Settings.jsx:278
 msgid "API Key"
 msgstr "کلید API"
 
@@ -92,7 +141,7 @@ msgstr "کلید API الزامی است. از Authorization: Bearer agp_... ا�
 msgid "About AgenPress"
 msgstr "درباره AgenPress"
 
-#: src/admin/pages/Tasks.jsx:250
+#: src/admin/pages/Tasks.jsx:252
 msgid "Actions"
 msgstr "اقدامات"
 
@@ -105,7 +154,19 @@ msgstr "فعال"
 msgid "Add Memory Entry"
 msgstr "افزودن ورودی حافظه"
 
-#: src/admin/pages/Tasks.jsx:213
+#: includes/Modules/Elementor/ElementorModule.php:135
+msgid "Add a CTA button below the hero"
+msgstr "Add a CTA button below the hero"
+
+#: src/admin/pages/Workflows.jsx:334
+msgid "Add at least one step before saving."
+msgstr "Add at least one step before saving."
+
+#: includes/Modules/Elementor/ElementorModule.php:136
+msgid "Add my uploaded image to this page"
+msgstr "Add my uploaded image to this page"
+
+#: src/admin/pages/Tasks.jsx:215
 msgid "Additional instructions for the agent..."
 msgstr "دستورالعمل‌های اضافی برای عامل..."
 
@@ -113,16 +174,20 @@ msgstr "دستورالعمل‌های اضافی برای عامل..."
 msgid "Admin AI"
 msgstr "هوش مصنوعی مدیریت"
 
-#: includes/Modules/Admin/AdminModule.php:64
+#: includes/Modules/Admin/AdminModule.php:75
 msgid "Admin Assistant"
 msgstr "دستیار مدیریت"
+
+#: src/frontend/formatMessage.js:49
+msgid "Admin panel"
+msgstr "Admin panel"
 
 #: includes/Admin/AdminMenu.php:24
 #: includes/Admin/AdminMenu.php:25
 msgid "AgenPress"
 msgstr "AgenPress"
 
-#: src/elementor/Panel.jsx:138
+#: src/elementor/Panel.jsx:127
 msgid "AgenPress AI"
 msgstr "AgenPress AI"
 
@@ -153,8 +218,9 @@ msgstr "همچنین از طریق کد کوتاه موجود است: [agenpress
 msgid "An AI provider API key is required."
 msgstr "کلید API ارائه‌دهنده هوش مصنوعی الزامی است."
 
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:74
-#: includes/REST/ImageController.php:142
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:76
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:75
+#: includes/REST/ImageController.php:134
 msgid "An image-capable AI provider API key is required (OpenAI, GapGPT, or Custom)."
 msgstr "کلید API ارائه‌دهنده هوش مصنوعی با قابلیت تصویر الزامی است (OpenAI، GapGPT، یا سفارشی)."
 
@@ -172,6 +238,14 @@ msgstr "داده‌های تحلیل در دسترس نیست."
 msgid "Analytics requires an Enterprise license. Update the license tier in Settings to enable usage reporting."
 msgstr "تحلیل‌ها نیاز به مجوز Enterprise دارند. سطح مجوز را در تنظیمات به‌روز کنید تا گزارش‌دهی مصرف فعال شود."
 
+#: src/admin/workflowPresets.js:32
+msgid "Analyze content strategy"
+msgstr "Analyze content strategy"
+
+#: src/admin/workflowPresets.js:33
+msgid "Analyze what types of content would help this WordPress site grow. Consider SEO, audience engagement, and conversions. Write 3–5 paragraphs of plain text only (no JSON, no bullet lists)."
+msgstr "Analyze what types of content would help this WordPress site grow. Consider SEO, audience engagement, and conversions. Write 3–5 paragraphs of plain text only (no JSON, no bullet lists)."
+
 #: src/admin/pages/Settings.jsx:26
 msgid "Anthropic Claude models"
 msgstr "مدل‌های Anthropic Claude"
@@ -184,23 +258,27 @@ msgstr "هر نقطه پایانی سازگار با OpenAI"
 msgid "Appearance and placement on the storefront"
 msgstr "ظاهر و جایگاه در فروشگاه"
 
-#: src/post-editor/FeaturedImageModal.jsx:187
+#: src/post-editor/FeaturedImageModal.jsx:173
 msgid "Applying..."
 msgstr "در حال اعمال..."
+
+#: src/admin/pages/Workflows.jsx:194
+msgid "Article index"
+msgstr "Article index"
 
 #: includes/Agents/TaskTemplates.php:31
 msgid "Article sections count"
 msgstr "Article sections count"
 
-#: src/admin/components/ChatInterface.jsx:201
+#: src/admin/components/ChatInterface.jsx:293
 msgid "Ask AgenPress anything..."
 msgstr "هر چیزی از AgenPress بپرسید..."
 
-#: src/elementor/Panel.jsx:199
+#: src/elementor/Panel.jsx:205
 msgid "Ask about this page..."
 msgstr "درباره این صفحه بپرسید..."
 
-#: src/elementor/Panel.jsx:153
+#: src/elementor/Panel.jsx:142
 msgid "Ask me to design sections, update widgets, or generate images for your page."
 msgstr "از من بخواهید بخش‌ها را طراحی کنم، ویجت‌ها را به‌روز کنم، یا تصاویری برای صفحه شما تولید کنم."
 
@@ -209,9 +287,21 @@ msgstr "از من بخواهید بخش‌ها را طراحی کنم، ویجت
 msgid "Assistant"
 msgstr "دستیار"
 
+#: includes/Media/AttachmentContext.php:29
+msgid "Attached files:"
+msgstr "Attached files:"
+
 #: includes/Modules/Admin/Tools/UpdateMediaTool.php:48
 msgid "Attachment not found."
 msgstr "پیوست یافت نشد."
+
+#: includes/Agents/AgentEngine.php:455
+msgid "Audience: WordPress admin — the user is a shop employee or manager, NOT a storefront customer."
+msgstr "Audience: WordPress admin — the user is a shop employee or manager, NOT a storefront customer."
+
+#: src/admin/workflowPresets.js:197
+msgid "Audit this WordPress site taxonomy. Suggest 5–10 new categories or tags to add, terms to merge or remove, and a simpler structure for editors. Output markdown with sections: Current state, Gaps, Recommendations."
+msgstr "Audit this WordPress site taxonomy. Suggest 5–10 new categories or tags to add, terms to merge or remove, and a simpler structure for editors. Output markdown with sections: Current state, Gaps, Recommendations."
 
 #: includes/REST/RestController.php:54
 msgid "Authentication required."
@@ -221,13 +311,25 @@ msgstr "احراز هویت الزامی است."
 msgid "Auto-Extract Brand Info"
 msgstr "استخراج خودکار اطلاعات برند"
 
-#: src/admin/pages/Settings.jsx:335
+#: src/admin/pages/Workflows.jsx:359
+msgid "Back to list"
+msgstr "Back to list"
+
+#: src/admin/pages/Settings.jsx:357
 msgid "Base language for AI responses and generated content."
 msgstr "زبان پایه برای پاسخ‌های هوش مصنوعی و محتوای تولیدشده."
 
-#: src/admin/pages/Settings.jsx:346
+#: src/admin/workflowPresets.js:42
+msgid "Based on this content strategy:\\n\\n{{strategy}}\\n\\nList exactly 10 specific blog post titles the site should publish next. Use a plain numbered list only (1. Title…). No JSON."
+msgstr "Based on this content strategy:\\n\\n{{strategy}}\\n\\nList exactly 10 specific blog post titles the site should publish next. Use a plain numbered list only (1. Title…). No JSON."
+
+#: src/admin/pages/Settings.jsx:368
 msgid "Basic"
 msgstr "پایه"
+
+#: src/admin/workflowPresets.js:80
+msgid "Batch summary"
+msgstr "Batch summary"
 
 #: src/admin/pages/SalesChatSettings.jsx:237
 msgid "Bottom Left"
@@ -247,10 +349,11 @@ msgstr "اطلاعات برند وارد شد: %1$d ایجاد شد، %2$d به�
 
 #: src/admin/components/ConfirmationModal.jsx:36
 #: src/admin/pages/Memory.jsx:339
-#: src/admin/pages/Tasks.jsx:280
-#: src/post-editor/FeaturedImageModal.jsx:165
-#: src/post-editor/GenerateTextModal.jsx:132
-#: src/post-editor/InsertImageModal.jsx:151
+#: src/admin/pages/Tasks.jsx:282
+#: src/admin/pages/Workflows.jsx:480
+#: src/post-editor/FeaturedImageModal.jsx:151
+#: src/post-editor/GenerateTextModal.jsx:124
+#: src/post-editor/InsertImageModal.jsx:144
 msgid "Cancel"
 msgstr "لغو"
 
@@ -271,12 +374,17 @@ msgstr "خلاصه سبد خرید دریافت شد."
 msgid "Category"
 msgstr "دسته‌بندی"
 
-#: includes/Core/Settings.php:42
-#: includes/Core/Settings.php:344
+#: src/admin/workflowPresets.js:172
+#: src/admin/workflowPresets.js:175
+msgid "Category & Tag Audit"
+msgstr "Category & Tag Audit"
+
+#: includes/Core/Settings.php:45
+#: includes/Core/Settings.php:377
 #: src/admin/pages/SalesChatSettings.jsx:75
 #: src/admin/pages/SalesChatSettings.jsx:86
 #: src/admin/pages/SalesChatSettings.jsx:212
-#: src/frontend/Widget.jsx:23
+#: src/frontend/Widget.jsx:26
 msgid "Chat with us"
 msgstr "با ما چت کنید"
 
@@ -296,10 +404,18 @@ msgstr "کلید API کلود پیکربندی نشده است."
 msgid "Clear and business-like"
 msgstr "واضح و حرفه‌ای"
 
-#: src/admin/pages/Tasks.jsx:315
-#: src/post-editor/FeaturedImageModal.jsx:106
-#: src/post-editor/GenerateTextModal.jsx:79
-#: src/post-editor/InsertImageModal.jsx:92
+#: src/admin/components/ChatInterface.jsx:215
+msgid "Clear chat"
+msgstr "Clear chat"
+
+#: src/admin/components/ChatInterface.jsx:174
+msgid "Clear this chat and start over?"
+msgstr "Clear this chat and start over?"
+
+#: src/admin/pages/Tasks.jsx:317
+#: src/post-editor/FeaturedImageModal.jsx:92
+#: src/post-editor/GenerateTextModal.jsx:71
+#: src/post-editor/InsertImageModal.jsx:85
 msgid "Close"
 msgstr "بستن"
 
@@ -307,7 +423,7 @@ msgstr "بستن"
 msgid "Completed"
 msgstr "تکمیل‌شده"
 
-#: includes/Agents/TaskStepExecutor.php:434
+#: includes/Agents/TaskStepExecutor.php:465
 msgid "Conclusion"
 msgstr "Conclusion"
 
@@ -328,7 +444,7 @@ msgid "Configured"
 msgstr "پیکربندی‌شده"
 
 #: src/admin/components/ConfirmationModal.jsx:43
-#: src/elementor/Panel.jsx:165
+#: src/elementor/Panel.jsx:159
 msgid "Confirm"
 msgstr "تأیید"
 
@@ -344,7 +460,7 @@ msgstr "آیا اجرای \"%s\" را تأیید می‌کنید؟"
 msgid "Confirm this action?"
 msgstr "آیا این اقدام را تأیید می‌کنید؟"
 
-#: includes/Agents/AgentEngine.php:312
+#: includes/Agents/AgentEngine.php:317
 msgid "Confirmed action **%1$s**: %2$s"
 msgstr "اقدام **%1$s** تأیید شد: %2$s"
 
@@ -352,12 +468,17 @@ msgstr "اقدام **%1$s** تأیید شد: %2$s"
 msgid "Contact"
 msgstr "تماس"
 
+#: src/admin/workflowPresets.js:22
+#: src/admin/workflowPresets.js:25
+msgid "Content Strategy Brief"
+msgstr "Content Strategy Brief"
+
 #: src/admin/pages/SalesChatSettings.jsx:279
 msgid "Controls how the sales assistant speaks to customers."
 msgstr "نحوه صحبت دستیار فروش با مشتریان را کنترل می‌کند."
 
 #: includes/Modules/Sales/Tools/EscalateToHumanTool.php:58
-#: includes/REST/SalesChatController.php:339
+#: includes/REST/SalesChatController.php:341
 msgid "Conversation ID is required."
 msgstr "شناسه مکالمه الزامی است."
 
@@ -366,19 +487,20 @@ msgid "Conversation Tone"
 msgstr "لحن گفتگو"
 
 #: includes/Modules/Sales/Tools/EscalateToHumanTool.php:64
-#: includes/REST/ChatController.php:176
-#: includes/REST/ChatController.php:206
-#: includes/REST/ChatController.php:292
+#: includes/REST/ChatController.php:186
+#: includes/REST/ChatController.php:216
+#: includes/REST/ChatController.php:248
+#: includes/REST/ChatController.php:351
 #: includes/REST/InboxController.php:138
 #: includes/REST/InboxController.php:190
 #: includes/REST/InboxController.php:216
 #: includes/REST/SalesChatController.php:141
-#: includes/REST/SalesChatController.php:312
-#: includes/REST/SalesChatController.php:353
+#: includes/REST/SalesChatController.php:314
+#: includes/REST/SalesChatController.php:355
 msgid "Conversation not found."
 msgstr "مکالمه یافت نشد."
 
-#: includes/Core/Settings.php:289
+#: includes/Core/Settings.php:322
 msgid "Conversation tone:"
 msgstr "لحن گفتگو:"
 
@@ -390,7 +512,7 @@ msgstr "مکالمات"
 msgid "Conversations by Module"
 msgstr "مکالمات بر اساس ماژول"
 
-#: src/admin/pages/Settings.jsx:359
+#: src/admin/pages/Settings.jsx:381
 msgid "Copy your key now — it won't be shown again:"
 msgstr "کلید خود را اکنون کپی کنید — دیگر نمایش داده نخواهد شد:"
 
@@ -406,25 +528,25 @@ msgstr "کوپن یافت نشد."
 msgid "Courteous and respectful"
 msgstr "مودبانه و محترمانه"
 
-#: src/admin/pages/Workflows.jsx:92
-msgid "Create"
-msgstr "ایجاد"
-
-#: src/admin/pages/Tasks.jsx:151
+#: src/admin/pages/Tasks.jsx:153
 msgid "Create Agent Task"
 msgstr "ایجاد وظیفه عامل"
 
-#: includes/Modules/Admin/AdminModule.php:125
+#: includes/Modules/Admin/AdminModule.php:141
 msgid "Create FAQ schema markup for [topic]"
 msgstr "ایجاد نشانه‌گذاری طرحواره FAQ برای [topic]"
 
-#: src/admin/pages/Workflows.jsx:82
-msgid "Create Workflow"
-msgstr "ایجاد گردش کار"
+#: src/admin/workflowPresets.js:72
+msgid "Create SEO article"
+msgstr "Create SEO article"
 
-#: includes/Modules/Admin/AdminModule.php:132
+#: includes/Modules/Admin/AdminModule.php:150
 msgid "Create a new product draft for [product name]"
 msgstr "ایجاد پیش‌نویس محصول جدید برای [product name]"
+
+#: includes/Modules/Admin/AdminModule.php:145
+msgid "Create an AI hero image for a landing page"
+msgstr "Create an AI hero image for a landing page"
 
 #: includes/Modules/Admin/Tools/CreatePostTool.php:103
 msgid "Created \"%s\" successfully."
@@ -438,11 +560,11 @@ msgstr "محصول \"%s\" ایجاد شد."
 msgid "Created term \"%s\"."
 msgstr "اصطلاح \"%s\" ایجاد شد."
 
-#: includes/Agents/TaskTemplates.php:190
+#: includes/Agents/TaskTemplates.php:194
 msgid "Creating SEO article %d"
 msgstr "در حال ایجاد مقاله سئو %d"
 
-#: src/admin/pages/Tasks.jsx:217
+#: src/admin/pages/Tasks.jsx:219
 msgid "Creating..."
 msgstr "در حال ایجاد..."
 
@@ -454,7 +576,12 @@ msgstr "عامل هوش مصنوعی سفارشی"
 msgid "Custom AI agent API key and base URL are not configured."
 msgstr "کلید API عامل هوش مصنوعی سفارشی و آدرس پایه پیکربندی نشده‌اند."
 
-#: includes/Agents/TaskTemplates.php:50
+#: src/admin/workflowPresets.js:208
+#: src/admin/workflowPresets.js:211
+msgid "Custom Planned Task"
+msgstr "Custom Planned Task"
+
+#: includes/Agents/TaskTemplates.php:52
 msgid "Custom Task"
 msgstr "وظیفه سفارشی"
 
@@ -463,11 +590,11 @@ msgstr "وظیفه سفارشی"
 msgid "Customer"
 msgstr "مشتری"
 
-#: includes/Agents/AgentEngine.php:457
+#: includes/Agents/AgentEngine.php:503
 msgid "Customer conversation history:"
 msgstr "تاریخچه مکالمات مشتری:"
 
-#: includes/REST/SalesChatController.php:364
+#: includes/REST/SalesChatController.php:366
 msgid "Customer requested human support"
 msgstr "مشتری پشتیبانی انسانی درخواست کرد"
 
@@ -480,9 +607,21 @@ msgstr "پیام‌های روزانه"
 msgid "Dashboard"
 msgstr "داشبورد"
 
+#: src/admin/pages/Settings.jsx:324
+msgid "Default Image Dimensions"
+msgstr "ابعاد پیش‌فرض تصویر"
+
+#: src/admin/pages/Settings.jsx:337
+msgid "Default aspect ratio used when generating AI images across the plugin."
+msgstr "نسبت تصویر پیش‌فرض برای تولید تصویر در سراسر افزونه."
+
+#: src/admin/pages/Workflows.jsx:627
+msgid "Define reusable multi-step automations and run them on demand."
+msgstr "Define reusable multi-step automations and run them on demand."
+
 #: src/admin/pages/Memory.jsx:376
-#: src/admin/pages/Tasks.jsx:297
-#: src/admin/pages/Workflows.jsx:128
+#: src/admin/pages/Tasks.jsx:299
+#: src/admin/pages/Workflows.jsx:728
 msgid "Delete"
 msgstr "حذف"
 
@@ -493,6 +632,11 @@ msgstr "حذف %2$s \"%1$s\"؟ این عمل قابل بازگشت نیست."
 #: includes/Modules/Elementor/Tools/DeleteElementTool.php:28
 msgid "Delete Elementor element \"%s\"? This cannot be undone."
 msgstr "حذف عنصر المنتور \"%s\"؟ این عمل قابل بازگشت نیست."
+
+#: src/admin/components/ChatInterface.jsx:259
+#: src/admin/components/ChatInterface.jsx:260
+msgid "Delete message"
+msgstr "Delete message"
 
 #: includes/Modules/Admin/Tools/DeleteProductTool.php:37
 msgid "Delete product \"%s\"? This cannot be undone."
@@ -507,6 +651,10 @@ msgstr "حذف این پست؟ این عمل قابل بازگشت نیست."
 msgid "Delete this product? This cannot be undone."
 msgstr "حذف این محصول؟ این عمل قابل بازگشت نیست."
 
+#: src/admin/pages/Workflows.jsx:587
+msgid "Delete this workflow?"
+msgstr "Delete this workflow?"
+
 #: includes/Modules/Admin/Tools/DeletePostTool.php:79
 msgid "Deleted \"%s\"."
 msgstr "\"%s\" حذف شد."
@@ -515,16 +663,17 @@ msgstr "\"%s\" حذف شد."
 msgid "Deleted product \"%s\"."
 msgstr "محصول \"%s\" حذف شد."
 
-#: src/post-editor/FeaturedImageModal.jsx:123
-#: src/post-editor/InsertImageModal.jsx:109
+#: src/post-editor/FeaturedImageModal.jsx:109
+#: src/post-editor/InsertImageModal.jsx:102
 msgid "Describe the image you want to generate..."
 msgstr "تصویری را که می‌خواهید تولید کنید توضیح دهید..."
 
-#: src/post-editor/GenerateTextModal.jsx:103
+#: src/post-editor/GenerateTextModal.jsx:95
 msgid "Describe the text you want to generate..."
 msgstr "متنی را که می‌خواهید تولید کنید توضیح دهید..."
 
-#: src/admin/pages/Tasks.jsx:208
+#: src/admin/pages/Tasks.jsx:210
+#: src/admin/pages/Workflows.jsx:377
 msgid "Description"
 msgstr "توضیحات"
 
@@ -532,50 +681,57 @@ msgstr "توضیحات"
 msgid "Design"
 msgstr "طراحی"
 
-#: includes/Modules/Elementor/ElementorModule.php:121
-msgid "Design a hero section using my brand colors"
-msgstr "یک بخش هیرو با رنگ‌های برند من طراحی کن"
-
-#: src/admin/pages/Tasks.jsx:294
+#: src/admin/pages/Tasks.jsx:296
 msgid "Details"
 msgstr "جزئیات"
 
-#: src/post-editor/FeaturedImageModal.jsx:129
-#: src/post-editor/InsertImageModal.jsx:115
+#: src/post-editor/FeaturedImageModal.jsx:115
+#: src/post-editor/InsertImageModal.jsx:108
 msgid "Dimensions"
 msgstr "ابعاد"
 
-#: includes/Modules/Sales/SalesModule.php:113
+#: src/admin/pages/Workflows.jsx:701
+msgid "Disabled"
+msgstr "Disabled"
+
+#: includes/Modules/Sales/SalesModule.php:150
 msgid "Do you have any active discount codes?"
 msgstr "آیا کدهای تخفیف فعالی دارید؟"
 
-#: src/admin/components/ChatInterface.jsx:19
-msgid "Draft a customer support response"
-msgstr "پیش‌نویس پاسخ پشتیبانی مشتری"
+#: src/admin/workflowPresets.js:121
+#: src/admin/workflowPresets.js:124
+msgid "Draft Posts Review"
+msgstr "Draft Posts Review"
 
-#: includes/Modules/Admin/AdminModule.php:127
+#: includes/Modules/Admin/AdminModule.php:143
 msgid "Draft a new page with a hero section and CTA"
 msgstr "پیش‌نویس صفحه جدید با بخش هیرو و CTA"
 
-#: includes/Modules/Elementor/ElementorModule.php:124
-msgid "Duplicate this section and adjust the copy"
-msgstr "این بخش را تکثیر کن و متن را تنظیم کن"
-
 #: src/admin/pages/Memory.jsx:369
+#: src/admin/pages/Workflows.jsx:713
 msgid "Edit"
 msgstr "ویرایش"
 
-#: includes/Modules/Elementor/ElementorDocumentService.php:301
+#: src/admin/pages/Workflows.jsx:356
+msgid "Edit Workflow"
+msgstr "Edit Workflow"
+
+#: src/frontend/formatMessage.js:44
+msgid "Edit post"
+msgstr "Edit post"
+
+#: includes/Modules/Elementor/ElementorDocumentService.php:594
 msgid "Element deleted."
 msgstr "عنصر حذف شد."
 
-#: includes/Modules/Elementor/ElementorDocumentService.php:266
+#: includes/Modules/Elementor/ElementorDocumentService.php:284
 msgid "Element duplicated."
 msgstr "عنصر تکثیر شد."
 
-#: includes/Modules/Elementor/ElementorDocumentService.php:214
-#: includes/Modules/Elementor/ElementorDocumentService.php:251
-#: includes/Modules/Elementor/ElementorDocumentService.php:293
+#: includes/Modules/Elementor/ElementorDocumentService.php:232
+#: includes/Modules/Elementor/ElementorDocumentService.php:269
+#: includes/Modules/Elementor/ElementorDocumentService.php:554
+#: includes/Modules/Elementor/ElementorDocumentService.php:586
 #: includes/Modules/Elementor/Tools/GetElementTool.php:47
 msgid "Element not found."
 msgstr "عنصر یافت نشد."
@@ -584,18 +740,20 @@ msgstr "عنصر یافت نشد."
 msgid "Element retrieved."
 msgstr "عنصر دریافت شد."
 
-#: includes/Modules/Elementor/ElementorDocumentService.php:222
+#: includes/Modules/Elementor/ElementorDocumentService.php:240
 msgid "Element settings updated."
 msgstr "تنظیمات عنصر به‌روز شد."
 
-#: includes/Modules/Elementor/ElementorModule.php:78
+#: includes/Modules/Elementor/ElementorModule.php:82
 msgid "Elementor Assistant"
 msgstr "دستیار المنتور"
 
-#: includes/Modules/Elementor/ElementorDocumentService.php:151
-#: includes/Modules/Elementor/ElementorDocumentService.php:190
-#: includes/Modules/Elementor/ElementorDocumentService.php:240
-#: includes/Modules/Elementor/ElementorDocumentService.php:283
+#: includes/Modules/Elementor/ElementorDocumentService.php:169
+#: includes/Modules/Elementor/ElementorDocumentService.php:208
+#: includes/Modules/Elementor/ElementorDocumentService.php:258
+#: includes/Modules/Elementor/ElementorDocumentService.php:337
+#: includes/Modules/Elementor/ElementorDocumentService.php:576
+#: includes/REST/ElementorController.php:73
 msgid "Elementor document not found."
 msgstr "سند المنتور یافت نشد."
 
@@ -604,14 +762,20 @@ msgid "Elementor is not active."
 msgstr "المنتور فعال نیست."
 
 #: includes/Modules/Elementor/Tools/GetPageStructureTool.php:49
+#: includes/Modules/Elementor/Tools/SearchElementsTool.php:53
 msgid "Elementor page not found."
 msgstr "صفحه المنتور یافت نشد."
 
-#: src/admin/pages/Settings.jsx:348
+#: src/admin/pages/Workflows.jsx:394
+#: src/admin/pages/Workflows.jsx:701
+msgid "Enabled"
+msgstr "Enabled"
+
+#: src/admin/pages/Settings.jsx:370
 msgid "Enterprise"
 msgstr "سازمانی"
 
-#: includes/Agents/AgentEngine.php:477
+#: includes/Agents/AgentEngine.php:546
 msgid "Error: %s"
 msgstr "خطا: %s"
 
@@ -620,7 +784,19 @@ msgstr "خطا: %s"
 msgid "Escalated"
 msgstr "ارجاع‌شده"
 
-#: includes/Agents/TaskTemplates.php:280
+#: src/admin/pages/Workflows.jsx:638
+msgid "Example Workflows"
+msgstr "Example Workflows"
+
+#: src/admin/workflowPresets.js:227
+msgid "Execute planned work"
+msgstr "Execute planned work"
+
+#: src/admin/workflowPresets.js:228
+msgid "Execute this WordPress admin task and describe what was done. Title: Improve site content quality. Description: Review content gaps and suggest concrete improvements."
+msgstr "Execute this WordPress admin task and describe what was done. Title: Improve site content quality. Description: Review content gaps and suggest concrete improvements."
+
+#: includes/Agents/TaskTemplates.php:284
 msgid "Executing planned work"
 msgstr "در حال اجرای کارهای برنامه‌ریزی‌شده"
 
@@ -628,7 +804,7 @@ msgstr "در حال اجرای کارهای برنامه‌ریزی‌شده"
 msgid "Executing..."
 msgstr "در حال اجرا..."
 
-#: src/admin/pages/Settings.jsx:355
+#: src/admin/pages/Settings.jsx:377
 msgid "External API Keys"
 msgstr "کلیدهای API خارجی"
 
@@ -636,11 +812,20 @@ msgstr "کلیدهای API خارجی"
 msgid "Extracting..."
 msgstr "در حال استخراج..."
 
+#: src/admin/workflowPresets.js:150
+#: src/admin/workflowPresets.js:153
+msgid "FAQ Content Pack"
+msgstr "FAQ Content Pack"
+
 #: src/admin/pages/Tasks.jsx:21
 msgid "Failed"
 msgstr "ناموفق"
 
-#: src/admin/components/ChatInterface.jsx:110
+#: src/admin/components/ChatInterface.jsx:182
+msgid "Failed to clear chat."
+msgstr "Failed to clear chat."
+
+#: src/admin/components/ChatInterface.jsx:136
 msgid "Failed to confirm action."
 msgstr "تأیید اقدام ناموفق بود."
 
@@ -648,8 +833,8 @@ msgstr "تأیید اقدام ناموفق بود."
 msgid "Failed to create API key."
 msgstr "ایجاد کلید API ناموفق بود."
 
-#: includes/REST/ChatController.php:148
-#: includes/REST/ChatController.php:278
+#: includes/REST/ChatController.php:158
+#: includes/REST/ChatController.php:337
 #: includes/REST/ExternalApiController.php:92
 #: includes/REST/OrchestratorController.php:110
 msgid "Failed to create conversation."
@@ -671,6 +856,11 @@ msgstr "ایجاد وظیفه ناموفق بود."
 msgid "Failed to create workflow."
 msgstr "ایجاد گردش کار ناموفق بود."
 
+#: includes/REST/ChatController.php:268
+#: src/admin/components/ChatInterface.jsx:164
+msgid "Failed to delete message."
+msgstr "Failed to delete message."
+
 #: includes/Modules/Admin/Tools/DeletePostTool.php:72
 msgid "Failed to delete post."
 msgstr "حذف پست ناموفق بود."
@@ -679,12 +869,16 @@ msgstr "حذف پست ناموفق بود."
 msgid "Failed to delete product."
 msgstr "حذف محصول ناموفق بود."
 
+#: includes/Modules/Elementor/ElementorDocumentService.php:401
+msgid "Failed to insert widget."
+msgstr "Failed to insert widget."
+
 #: src/admin/pages/Analytics.jsx:26
 msgid "Failed to load analytics."
 msgstr "بارگذاری تحلیل‌ها ناموفق بود."
 
-#: includes/Agents/TaskStepExecutor.php:222
-#: includes/Agents/TaskStepExecutor.php:250
+#: includes/Agents/TaskStepExecutor.php:223
+#: includes/Agents/TaskStepExecutor.php:251
 msgid "Failed to parse generated article."
 msgstr "تجزیه مقاله تولیدشده ناموفق بود."
 
@@ -692,19 +886,20 @@ msgstr "تجزیه مقاله تولیدشده ناموفق بود."
 msgid "Failed to run workflow."
 msgstr "اجرای گردش کار ناموفق بود."
 
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:95
-#: includes/REST/ImageController.php:179
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:97
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:96
+#: includes/REST/ImageController.php:171
 msgid "Failed to save image to media library."
 msgstr "ذخیره تصویر در کتابخانه رسانه ناموفق بود."
 
-#: src/admin/components/ChatInterface.jsx:89
-#: src/elementor/Panel.jsx:109
-#: src/frontend/Widget.jsx:105
+#: src/admin/components/ChatInterface.jsx:115
+#: src/elementor/Panel.jsx:98
+#: src/frontend/Widget.jsx:116
 msgid "Failed to send message."
 msgstr "ارسال پیام ناموفق بود."
 
-#: includes/REST/ImageController.php:231
-#: src/post-editor/FeaturedImageModal.jsx:84
+#: includes/REST/ImageController.php:223
+#: src/post-editor/FeaturedImageModal.jsx:70
 msgid "Failed to set featured image."
 msgstr "تنظیم تصویر شاخص ناموفق بود."
 
@@ -712,13 +907,41 @@ msgstr "تنظیم تصویر شاخص ناموفق بود."
 msgid "Failed to start conversation."
 msgstr "شروع مکالمه ناموفق بود."
 
-#: includes/Agents/TaskStepExecutor.php:290
+#: includes/Agents/TaskStepExecutor.php:291
 msgid "Featured image set."
 msgstr "Featured image set."
 
-#: includes/Agents/TaskTemplates.php:232
+#: src/admin/workflowPresets.js:250
+msgid "Fetch products"
+msgstr "Fetch products"
+
+#: src/admin/workflowPresets.js:102
+msgid "Fetch site info"
+msgstr "Fetch site info"
+
+#: src/admin/workflowPresets.js:240
+msgid "Fetches WooCommerce products and rewrites descriptions for the first 3. Requires WooCommerce."
+msgstr "Fetches WooCommerce products and rewrites descriptions for the first 3. Requires WooCommerce."
+
+#: src/admin/workflowPresets.js:93
+msgid "Fetches real site info via tool, then AI writes a short health report with recommendations."
+msgstr "Fetches real site info via tool, then AI writes a short health report with recommendations."
+
+#: includes/Agents/TaskTemplates.php:236
 msgid "Fetching existing products"
 msgstr "در حال دریافت محصولات موجود"
+
+#: includes/Media/AttachmentContext.php:62
+msgid "File"
+msgstr "File"
+
+#: includes/Modules/Elementor/ElementorModule.php:133
+msgid "Find all heading widgets on this page"
+msgstr "Find all heading widgets on this page"
+
+#: includes/Media/AttachmentContext.php:79
+msgid "For Elementor: call add_attached_image_to_page with attachment_id to insert an image widget. Use apply_media_to_element only for existing widgets."
+msgstr "For Elementor: call add_attached_image_to_page with attachment_id to insert an image widget. Use apply_media_to_element only for existing widgets."
 
 #: includes/Modules/Elementor/Tools/ListElementorPagesTool.php:49
 msgid "Found %d Elementor pages."
@@ -728,7 +951,12 @@ msgstr "%d صفحه المنتور یافت شد."
 msgid "Found %d coupons."
 msgstr "%d کوپن یافت شد."
 
+#: includes/Modules/Elementor/Tools/SearchElementsTool.php:60
+msgid "Found %d matching elements."
+msgstr "Found %d matching elements."
+
 #: includes/Modules/Sales/Tools/GetMyOrdersTool.php:50
+#: includes/Modules/Sales/Tools/ListOrdersTool.php:99
 msgid "Found %d orders."
 msgstr "%d سفارش یافت شد."
 
@@ -749,7 +977,7 @@ msgstr "%d اصطلاح یافت شد."
 msgid "Found %d users."
 msgstr "%d کاربر یافت شد."
 
-#: includes/Agents/TaskStepExecutor.php:412
+#: includes/Agents/TaskStepExecutor.php:443
 msgid "Frequently Asked Questions"
 msgstr "Frequently Asked Questions"
 
@@ -766,46 +994,57 @@ msgid "GapGPT API key is not configured."
 msgstr "کلید API GapGPT پیکربندی نشده است."
 
 #: src/admin/pages/Memory.jsx:18
-#: src/admin/pages/Settings.jsx:319
+#: src/admin/pages/Settings.jsx:341
 msgid "General"
 msgstr "عمومی"
 
-#: src/post-editor/FeaturedImageModal.jsx:173
-#: src/post-editor/GenerateTextModal.jsx:140
-#: src/post-editor/InsertImageModal.jsx:159
+#: src/post-editor/FeaturedImageModal.jsx:159
+#: src/post-editor/GenerateTextModal.jsx:132
+#: src/post-editor/InsertImageModal.jsx:152
 msgid "Generate"
 msgstr "تولید"
 
-#: includes/Modules/Admin/ClassicEditorToolbar.php:178
+#: src/admin/workflowPresets.js:161
+msgid "Generate 8 frequently asked questions and detailed answers about \"YOUR TOPIC HERE\" for a WordPress site. Format as markdown: ## Question followed by answer paragraphs. Suitable for FAQ schema and an FAQ page."
+msgstr "Generate 8 frequently asked questions and detailed answers about \"YOUR TOPIC HERE\" for a WordPress site. Format as markdown: ## Question followed by answer paragraphs. Suitable for FAQ schema and an FAQ page."
+
+#: src/admin/workflowPresets.js:160
+msgid "Generate FAQ pairs"
+msgstr "Generate FAQ pairs"
+
+#: includes/Modules/Admin/ClassicEditorToolbar.php:171
 msgid "Generate Image"
 msgstr "تولید تصویر"
 
-#: src/admin/pages/Settings.jsx:380
+#: src/admin/pages/Settings.jsx:402
 msgid "Generate Key"
 msgstr "تولید کلید"
 
-#: includes/Agents/TaskTemplates.php:42
+#: includes/Agents/TaskTemplates.php:44
 msgid "Generate SEO product descriptions for WooCommerce products"
 msgstr "تولید توضیحات سئو محصول برای محصولات ووکامرس"
 
-#: includes/Modules/Admin/ClassicEditorToolbar.php:177
+#: includes/Modules/Admin/ClassicEditorToolbar.php:170
 msgid "Generate Text"
 msgstr "تولید متن"
 
-#: includes/Modules/Elementor/ElementorModule.php:123
-msgid "Generate a background image for this section"
-msgstr "یک تصویر پس‌زمینه برای این بخش تولید کن"
+#: includes/Modules/Admin/AdminModule.php:144
+#: src/admin/components/ChatInterface.jsx:13
+msgid "Generate a featured image for my latest post"
+msgstr "Generate a featured image for my latest post"
 
 #: includes/Agents/TaskTemplates.php:32
+#: src/admin/pages/Workflows.jsx:230
 msgid "Generate featured image"
 msgstr "Generate featured image"
 
 #: includes/Agents/TaskTemplates.php:33
+#: src/admin/pages/Workflows.jsx:231
 msgid "Generate image for each section"
 msgstr "Generate image for each section"
 
-#: includes/Modules/Admin/AdminModule.php:124
-#: src/admin/components/ChatInterface.jsx:11
+#: includes/Modules/Admin/AdminModule.php:140
+#: src/admin/components/ChatInterface.jsx:12
 msgid "Generate meta title and description for my latest post"
 msgstr "عنوان متا و توضیحات برای آخرین پست من تولید کن"
 
@@ -813,62 +1052,88 @@ msgstr "عنوان متا و توضیحات برای آخرین پست من تو
 msgid "Generate multiple SEO-optimized articles with categories and tags"
 msgstr "چندین مقاله بهینه‌شده برای سئو با دسته‌بندی‌ها و برچسب‌ها تولید کن"
 
-#: src/post-editor/FeaturedImageModal.jsx:147
-#: src/post-editor/InsertImageModal.jsx:133
+#: src/admin/workflowPresets.js:41
+msgid "Generate post ideas"
+msgstr "Generate post ideas"
+
+#: src/post-editor/FeaturedImageModal.jsx:133
+#: src/post-editor/InsertImageModal.jsx:126
 msgid "Generated preview"
 msgstr "پیش‌نمایش تولیدشده"
 
-#: src/post-editor/FeaturedImageModal.jsx:153
-#: src/post-editor/InsertImageModal.jsx:139
+#: src/admin/workflowPresets.js:151
+msgid "Generates 8 FAQ pairs for a topic — useful for schema markup or a new FAQ page. Edit the topic in the prompt."
+msgstr "Generates 8 FAQ pairs for a topic — useful for schema markup or a new FAQ page. Edit the topic in the prompt."
+
+#: src/post-editor/FeaturedImageModal.jsx:139
+#: src/post-editor/InsertImageModal.jsx:132
 msgid "Generating image..."
 msgstr "در حال تولید تصویر..."
 
-#: includes/Agents/TaskTemplates.php:206
+#: includes/Agents/TaskTemplates.php:210
 msgid "Generating task summary"
 msgstr "در حال تولید خلاصه وظیفه"
 
-#: src/post-editor/GenerateTextModal.jsx:120
+#: src/post-editor/GenerateTextModal.jsx:112
 msgid "Generating text..."
 msgstr "در حال تولید متن..."
 
-#: src/post-editor/FeaturedImageModal.jsx:173
-#: src/post-editor/GenerateTextModal.jsx:140
-#: src/post-editor/InsertImageModal.jsx:159
+#: src/post-editor/FeaturedImageModal.jsx:159
+#: src/post-editor/GenerateTextModal.jsx:132
+#: src/post-editor/InsertImageModal.jsx:152
 msgid "Generating..."
 msgstr "در حال تولید..."
 
-#: includes/Modules/Admin/AdminModule.php:122
+#: includes/Modules/Sales/SalesModule.php:165
+#: src/admin/components/ChatInterface.jsx:21
+msgid "Give me a sales overview for this week"
+msgstr "Give me a sales overview for this week"
+
+#: includes/Modules/Admin/AdminModule.php:138
 msgid "Give me an overview of my WordPress site"
 msgstr "یک مرور کلی از سایت وردپرس من بده"
 
-#: src/admin/components/ChatInterface.jsx:14
+#: src/admin/components/ChatInterface.jsx:16
 msgid "Help me design a hero section"
 msgstr "در طراحی یک بخش هیرو کمکم کن"
 
-#: src/frontend/Widget.jsx:176
+#: src/frontend/Widget.jsx:187
 msgid "Hi! How can I help you today?"
 msgstr "سلام! چطور می‌توانم امروز کمکتان کنم؟"
 
-#: src/admin/components/ChatInterface.jsx:144
+#: src/admin/components/ChatInterface.jsx:224
 msgid "How can I help you manage your site?"
 msgstr "چطور می‌توانم در مدیریت سایتتان کمک کنم؟"
 
-#: src/admin/pages/Settings.jsx:308
+#: includes/Media/AttachmentContext.php:52
+msgid "Image"
+msgstr "Image"
+
+#: src/admin/pages/Settings.jsx:321
+msgid "Image Generator"
+msgstr "تصویر ساز"
+
+#: src/admin/pages/Settings.jsx:310
 msgid "Image Model"
 msgstr "مدل تصویر"
 
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:122
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:123
 msgid "Image generated and applied to element."
 msgstr "تصویر تولید و به عنصر اعمال شد."
 
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:123
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:188
+msgid "Image generated and saved to media library (ID: %d)."
+msgstr "Image generated and saved to media library (ID: %d)."
+
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:124
 msgid "Image generated and saved to media library."
 msgstr "تصویر تولید و در کتابخانه رسانه ذخیره شد."
 
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:89
-#: includes/REST/ImageController.php:167
-#: src/post-editor/FeaturedImageModal.jsx:56
-#: src/post-editor/InsertImageModal.jsx:56
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:91
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:90
+#: includes/REST/ImageController.php:159
+#: src/post-editor/FeaturedImageModal.jsx:49
+#: src/post-editor/InsertImageModal.jsx:49
 msgid "Image generation failed."
 msgstr "تولید تصویر ناموفق بود."
 
@@ -876,32 +1141,55 @@ msgstr "تولید تصویر ناموفق بود."
 msgid "Image generation is not supported by Claude provider."
 msgstr "تولید تصویر توسط ارائه‌دهنده کلود پشتیبانی نمی‌شود."
 
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:68
-#: includes/REST/ImageController.php:122
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:70
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:69
+#: includes/REST/ImageController.php:116
 msgid "Image prompt is required."
 msgstr "پرامپت تصویر الزامی است."
 
+#: includes/Modules/Elementor/ElementorDocumentService.php:480
+msgid "Image widget added to the page."
+msgstr "Image widget added to the page."
+
+#: src/admin/workflowPresets.js:219
+msgid "Improve site content quality"
+msgstr "Improve site content quality"
+
 #: includes/Agents/TaskTemplates.php:34
+#: src/admin/pages/Workflows.jsx:232
 msgid "Include FAQ section"
 msgstr "Include FAQ section"
 
 #: includes/Agents/TaskTemplates.php:35
+#: src/admin/pages/Workflows.jsx:233
 msgid "Include conclusion"
 msgstr "Include conclusion"
 
-#: src/post-editor/InsertImageModal.jsx:168
+#: src/post-editor/InsertImageModal.jsx:161
 msgid "Insert Image"
 msgstr "درج تصویر"
 
-#: src/post-editor/GenerateTextModal.jsx:149
+#: src/post-editor/GenerateTextModal.jsx:141
 msgid "Insert Text"
 msgstr "درج متن"
+
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:209
+msgid "Inserted into content of \"%s\"."
+msgstr "Inserted into content of \"%s\"."
+
+#: src/admin/pages/Workflows.jsx:115
+msgid "Instructions for the AI. Use {{output_key}} to reference prior step outputs."
+msgstr "Instructions for the AI. Use {{output_key}} to reference prior step outputs."
 
 #: includes/REST/ExternalAuth.php:54
 msgid "Invalid API key."
 msgstr "کلید API نامعتبر است."
 
-#: includes/Agents/AgentEngine.php:291
+#: src/admin/pages/Workflows.jsx:78
+msgid "Invalid JSON in tool arguments."
+msgstr "Invalid JSON in tool arguments."
+
+#: includes/Agents/AgentEngine.php:296
 msgid "Invalid conversation for this action."
 msgstr "مکالمه نامعتبر برای این اقدام."
 
@@ -909,11 +1197,13 @@ msgstr "مکالمه نامعتبر برای این اقدام."
 msgid "Invalid data."
 msgstr "داده نامعتبر."
 
-#: includes/REST/ImageController.php:219
+#: includes/Modules/Elementor/ElementorDocumentService.php:435
+#: includes/Modules/Elementor/ElementorDocumentService.php:544
+#: includes/REST/ImageController.php:211
 msgid "Invalid image attachment."
 msgstr "پیوست تصویر نامعتبر."
 
-#: includes/REST/ChatController.php:231
+#: includes/REST/ChatController.php:290
 msgid "Invalid module."
 msgstr "ماژول نامعتبر."
 
@@ -926,11 +1216,11 @@ msgstr "داده تنظیمات نامعتبر."
 msgid "Key"
 msgstr "کلید"
 
-#: src/admin/pages/Settings.jsx:291
+#: src/admin/pages/Settings.jsx:293
 msgid "Key is saved. Paste a new value to replace it."
 msgstr "کلید ذخیره شده است. مقدار جدیدی را برای جایگزینی وارد کنید."
 
-#: src/admin/pages/Settings.jsx:368
+#: src/admin/pages/Settings.jsx:390
 msgid "Key name"
 msgstr "نام کلید"
 
@@ -938,47 +1228,67 @@ msgstr "نام کلید"
 msgid "Key name and value are required."
 msgstr "نام کلید و مقدار الزامی هستند."
 
-#: includes/Modules/Admin/ClassicEditorToolbar.php:169
-#: includes/Modules/Admin/PostFeaturedImage.php:143
-msgid "Landscape (1792×1024)"
-msgstr "افقی (۱۷۹۲×۱۰۲۴)"
-
 #: src/admin/pages/Analytics.jsx:66
 msgid "Last"
 msgstr "آخرین"
 
-#: src/admin/pages/Workflows.jsx:112
+#: src/admin/pages/Workflows.jsx:684
 msgid "Last Run"
 msgstr "آخرین اجرا"
 
-#: src/admin/pages/Settings.jsx:340
+#: src/admin/pages/Settings.jsx:362
 msgid "License Tier"
 msgstr "سطح مجوز"
 
-#: includes/Modules/Admin/AdminModule.php:126
+#: includes/Modules/Admin/AdminModule.php:142
 msgid "List all categories and suggest new ones"
 msgstr "همه دسته‌بندی‌ها را فهرست کن و دسته‌های جدید پیشنهاد بده"
 
-#: includes/Modules/Admin/AdminModule.php:131
+#: src/admin/workflowPresets.js:182
+msgid "List categories"
+msgstr "List categories"
+
+#: src/admin/workflowPresets.js:131
+msgid "List draft posts"
+msgstr "List draft posts"
+
+#: includes/Modules/Admin/AdminModule.php:149
 msgid "List my WooCommerce products and their stock levels"
 msgstr "محصولات ووکامرس و سطح موجودی آن‌ها را فهرست کن"
+
+#: includes/Modules/Sales/SalesModule.php:166
+#: src/admin/components/ChatInterface.jsx:22
+msgid "List recent orders"
+msgstr "List recent orders"
+
+#: src/admin/workflowPresets.js:189
+msgid "List tags"
+msgstr "List tags"
+
+#: src/admin/workflowPresets.js:173
+msgid "Lists categories, then AI suggests new terms and a cleaner taxonomy structure."
+msgstr "Lists categories, then AI suggests new terms and a cleaner taxonomy structure."
+
+#: src/admin/workflowPresets.js:122
+msgid "Lists recent drafts, then AI suggests a 7-day publishing plan and priorities."
+msgstr "Lists recent drafts, then AI suggests a 7-day publishing plan and priorities."
 
 #: src/admin/pages/Analytics.jsx:44
 msgid "Loading analytics..."
 msgstr "در حال بارگذاری تحلیل‌ها..."
 
 #: src/admin/pages/SalesChatSettings.jsx:147
-#: src/admin/pages/Settings.jsx:217
+#: src/admin/pages/Settings.jsx:219
 msgid "Loading settings..."
 msgstr "در حال بارگذاری تنظیمات..."
 
-#: src/admin/pages/Tasks.jsx:240
+#: src/admin/pages/Tasks.jsx:242
 msgid "Loading tasks..."
 msgstr "در حال بارگذاری وظایف..."
 
 #: src/admin/pages/Inbox.jsx:130
 #: src/admin/pages/Memory.jsx:288
-#: src/admin/pages/Workflows.jsx:102
+#: src/admin/pages/Workflows.jsx:673
 msgid "Loading..."
 msgstr "در حال بارگذاری..."
 
@@ -986,7 +1296,7 @@ msgstr "در حال بارگذاری..."
 msgid "Logged-in customer"
 msgstr "مشتری واردشده"
 
-#: src/admin/pages/Tasks.jsx:333
+#: src/admin/pages/Tasks.jsx:335
 msgid "Logs"
 msgstr "گزارش‌ها"
 
@@ -994,9 +1304,17 @@ msgstr "گزارش‌ها"
 msgid "Manage Memory"
 msgstr "مدیریت حافظه"
 
+#: src/admin/pages/Workflows.jsx:404
+msgid "Manual run"
+msgstr "Manual run"
+
 #: src/admin/pages/Inbox.jsx:191
 msgid "Mark Resolved"
 msgstr "علامت‌گذاری به عنوان حل‌شده"
+
+#: src/frontend/formatMessage.js:47
+msgid "Media library"
+msgstr "Media library"
 
 #: includes/Modules/Admin/Tools/UpdateMediaTool.php:79
 msgid "Media updated."
@@ -1032,7 +1350,7 @@ msgstr "ورودی حافظه ذخیره شد."
 msgid "Memory entry updated."
 msgstr "ورودی حافظه به‌روز شد."
 
-#: includes/REST/ChatController.php:258
+#: includes/REST/ChatController.php:317
 #: includes/REST/SalesChatController.php:114
 msgid "Message cannot be empty."
 msgstr "پیام نمی‌تواند خالی باشد."
@@ -1042,9 +1360,21 @@ msgstr "پیام نمی‌تواند خالی باشد."
 msgid "Message is required."
 msgstr "پیام الزامی است."
 
+#: includes/REST/ChatController.php:258
+msgid "Message not found."
+msgstr "Message not found."
+
 #: src/admin/pages/Analytics.jsx:57
 msgid "Messages"
 msgstr "پیام‌ها"
+
+#: src/admin/pages/Workflows.jsx:455
+msgid "Move down"
+msgstr "Move down"
+
+#: src/admin/pages/Workflows.jsx:445
+msgid "Move up"
+msgstr "Move up"
 
 #: src/admin/pages/Chat.jsx:31
 msgid "Multi-Agent"
@@ -1055,6 +1385,8 @@ msgid "Multi-model gateway (OpenAI-compatible)"
 msgstr "دروازه چند مدلی (سازگار با OpenAI)"
 
 #: includes/REST/WorkflowController.php:129
+#: src/admin/pages/Workflows.jsx:356
+#: src/admin/pages/Workflows.jsx:631
 msgid "New Workflow"
 msgstr "گردش کار جدید"
 
@@ -1062,7 +1394,11 @@ msgstr "گردش کار جدید"
 msgid "No active sales chats."
 msgstr "چت فروش فعالی وجود ندارد."
 
-#: src/elementor/Panel.jsx:35
+#: includes/Modules/Elementor/ElementorDocumentService.php:445
+msgid "No column found to insert the image widget."
+msgstr "No column found to insert the image widget."
+
+#: src/elementor/Panel.jsx:13
 msgid "No element selected"
 msgstr "هیچ عنصری انتخاب نشده"
 
@@ -1074,13 +1410,17 @@ msgstr "هیچ مکالمه ارتقایافته‌ای وجود ندارد."
 msgid "No file uploaded."
 msgstr "هیچ فایلی آپلود نشد."
 
-#: src/admin/pages/Tasks.jsx:347
+#: src/admin/pages/Tasks.jsx:349
 msgid "No logs yet."
 msgstr "هنوز گزارشی وجود ندارد."
 
 #: src/admin/pages/Memory.jsx:290
 msgid "No memory entries yet."
 msgstr "هنوز ورودی حافظه‌ای وجود ندارد."
+
+#: includes/Modules/Sales/Tools/GetBestSellersTool.php:56
+msgid "No paid orders found for this period."
+msgstr "No paid orders found for this period."
 
 #: src/admin/pages/Inbox.jsx:97
 msgid "No resolved conversations."
@@ -1090,15 +1430,19 @@ msgstr "چت حل‌شده‌ای وجود ندارد."
 msgid "No response from AI provider."
 msgstr "هیچ پاسخی از ارائه‌دهنده هوش مصنوعی دریافت نشد."
 
+#: src/admin/pages/Workflows.jsx:429
+msgid "No steps yet. Add a step type above."
+msgstr "No steps yet. Add a step type above."
+
 #: src/admin/pages/Inbox.jsx:94
 msgid "No storefront sales chats yet."
 msgstr "هنوز چت فروش فروشگاهی ثبت نشده است."
 
-#: src/admin/pages/Tasks.jsx:242
+#: src/admin/pages/Tasks.jsx:244
 msgid "No tasks yet. Create one above."
 msgstr "هنوز وظیفه‌ای وجود ندارد. یکی را در بالا ایجاد کنید."
 
-#: src/admin/pages/Workflows.jsx:104
+#: src/admin/pages/Workflows.jsx:675
 msgid "No workflows yet."
 msgstr "هنوز گردش کاری وجود ندارد."
 
@@ -1106,7 +1450,7 @@ msgstr "هنوز گردش کاری وجود ندارد."
 msgid "Number of articles"
 msgstr "تعداد مقالات"
 
-#: includes/Agents/TaskTemplates.php:44
+#: includes/Agents/TaskTemplates.php:46
 msgid "Number of products"
 msgstr "تعداد محصولات"
 
@@ -1122,7 +1466,7 @@ msgstr "هر قانون در یک خط، مثال: هرگز بدون بررسی 
 msgid "Only failed tasks can be retried."
 msgstr "فقط وظایف ناموفق قابل تکرار هستند."
 
-#: src/frontend/formatMessage.js:52
+#: src/frontend/formatMessage.js:66
 msgid "Open link"
 msgstr "Open link"
 
@@ -1130,9 +1474,17 @@ msgstr "Open link"
 msgid "OpenAI API key is not configured."
 msgstr "کلید API OpenAI پیکربندی نشده است."
 
-#: src/admin/pages/Settings.jsx:265
+#: src/admin/pages/Settings.jsx:267
 msgid "OpenAI-compatible base URL including /v1 path."
 msgstr "آدرس پایه سازگار با OpenAI شامل مسیر /v1."
+
+#: src/admin/pages/Workflows.jsx:102
+msgid "Optional display label"
+msgstr "Optional display label"
+
+#: src/admin/pages/Workflows.jsx:383
+msgid "Optional notes about what this workflow does"
+msgstr "Optional notes about what this workflow does"
 
 #: includes/Modules/Sales/Tools/GetOrderStatusTool.php:75
 msgid "Order not found for that email."
@@ -1151,15 +1503,24 @@ msgstr "شماره سفارش و ایمیل الزامی هستند."
 msgid "Order status: %s"
 msgstr "وضعیت سفارش: %s"
 
+#: includes/Agents/TaskStepExecutor.php:471
+msgid "Our Services"
+msgstr "Our Services"
+
+#: src/admin/pages/Workflows.jsx:119
+#: src/admin/pages/Workflows.jsx:151
+msgid "Output key"
+msgstr "Output key"
+
 #: includes/Modules/Elementor/Tools/GetPageStructureTool.php:52
 msgid "Page structure retrieved."
 msgstr "ساختار صفحه دریافت شد."
 
-#: src/admin/pages/Settings.jsx:292
+#: src/admin/pages/Settings.jsx:294
 msgid "Paste your API key here."
 msgstr "کلید API خود را اینجا وارد کنید."
 
-#: src/admin/pages/Tasks.jsx:275
+#: src/admin/pages/Tasks.jsx:277
 msgid "Pause"
 msgstr "توقف"
 
@@ -1171,11 +1532,11 @@ msgstr "متوقف‌شده"
 msgid "Pending"
 msgstr "در انتظار"
 
-#: includes/REST/ChatController.php:346
+#: includes/REST/ChatController.php:407
 msgid "Pending action ID and conversation ID are required."
 msgstr "شناسه اقدام معلق و شناسه مکالمه الزامی هستند."
 
-#: includes/Agents/AgentEngine.php:287
+#: includes/Agents/AgentEngine.php:292
 msgid "Pending action not found or expired."
 msgstr "اقدام معلق یافت نشد یا منقضی شده است."
 
@@ -1184,6 +1545,7 @@ msgstr "اقدام معلق یافت نشد یا منقضی شده است."
 #: includes/Modules/Admin/Tools/CreateTermTool.php:41
 #: includes/Modules/Admin/Tools/DeletePostTool.php:58
 #: includes/Modules/Admin/Tools/DeleteProductTool.php:65
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:64
 #: includes/Modules/Admin/Tools/GetPostTool.php:39
 #: includes/Modules/Admin/Tools/GetProductTool.php:43
 #: includes/Modules/Admin/Tools/GetUserTool.php:39
@@ -1194,24 +1556,52 @@ msgstr "اقدام معلق یافت نشد یا منقضی شده است."
 #: includes/Modules/Admin/Tools/UpdateMediaTool.php:42
 #: includes/Modules/Admin/Tools/UpdatePostTool.php:45
 #: includes/Modules/Admin/Tools/UpdateProductTool.php:49
+#: includes/Modules/Elementor/Tools/AddAttachedImageTool.php:41
+#: includes/Modules/Elementor/Tools/AddAttachedImageTool.php:48
+#: includes/Modules/Elementor/Tools/ApplyMediaToElementTool.php:39
+#: includes/Modules/Elementor/Tools/ApplyMediaToElementTool.php:47
 #: includes/Modules/Elementor/Tools/CreateSectionTool.php:44
+#: includes/Modules/Elementor/Tools/CreateWidgetTool.php:50
 #: includes/Modules/Elementor/Tools/DeleteElementTool.php:53
 #: includes/Modules/Elementor/Tools/DuplicateElementTool.php:41
-#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:62
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:63
 #: includes/Modules/Elementor/Tools/GetElementTool.php:41
 #: includes/Modules/Elementor/Tools/GetPageStructureTool.php:40
 #: includes/Modules/Elementor/Tools/ListElementorPagesTool.php:36
+#: includes/Modules/Elementor/Tools/SearchElementsTool.php:42
 #: includes/Modules/Elementor/Tools/UpdateWidgetSettingsTool.php:50
+#: includes/Modules/Sales/Tools/SalesAbstractTool.php:38
+#: includes/REST/ElementorController.php:59
 msgid "Permission denied."
 msgstr "دسترسی رد شد."
 
-#: includes/Agents/TaskTemplates.php:171
+#: src/admin/workflowPresets.js:64
+msgid "Plan 3 unique SEO blog article titles about \"YOUR TOPIC HERE\". Return ONLY a JSON array of 3 strings. No markdown."
+msgstr "Plan 3 unique SEO blog article titles about \"YOUR TOPIC HERE\". Return ONLY a JSON array of 3 strings. No markdown."
+
+#: src/admin/workflowPresets.js:218
+msgid "Plan actions"
+msgstr "Plan actions"
+
+#: src/admin/workflowPresets.js:63
+msgid "Plan article titles"
+msgstr "Plan article titles"
+
+#: src/admin/workflowPresets.js:57
+msgid "Plan titles → create 3 SEO drafts → summary."
+msgstr "Plan titles → create 3 SEO drafts → summary."
+
+#: includes/Agents/TaskTemplates.php:175
 msgid "Planning article topics"
 msgstr "برنامه‌ریزی موضوعات مقاله"
 
-#: src/post-editor/FeaturedImageModal.jsx:36
+#: src/admin/workflowPresets.js:54
+msgid "Plans 3 article titles, writes each as a draft with FAQ and featured image. Change YOUR TOPIC in steps 1 and 2–4."
+msgstr "Plans 3 article titles, writes each as a draft with FAQ and featured image. Change YOUR TOPIC in steps 1 and 2–4."
+
+#: src/post-editor/FeaturedImageModal.jsx:37
 #: src/post-editor/GenerateTextModal.jsx:27
-#: src/post-editor/InsertImageModal.jsx:36
+#: src/post-editor/InsertImageModal.jsx:37
 msgid "Please enter a prompt."
 msgstr "لطفاً یک پرامپت وارد کنید."
 
@@ -1223,15 +1613,14 @@ msgstr "لطفاً برای مشاهده سفارشات وارد شوید، یا
 msgid "Polite"
 msgstr "مودبانه"
 
-#: includes/Modules/Admin/ClassicEditorToolbar.php:173
-#: includes/Modules/Admin/PostFeaturedImage.php:147
-msgid "Portrait (1024×1792)"
-msgstr "عمودی (۱۰۲۴×۱۷۹۲)"
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:117
+msgid "Post not found or permission denied."
+msgstr "Post not found or permission denied."
 
 #: includes/Modules/Admin/Tools/DeletePostTool.php:65
 #: includes/Modules/Admin/Tools/GetPostTool.php:45
 #: includes/Modules/Admin/Tools/UpdatePostTool.php:52
-#: includes/REST/ImageController.php:209
+#: includes/REST/ImageController.php:201
 msgid "Post not found."
 msgstr "پست یافت نشد."
 
@@ -1243,20 +1632,29 @@ msgstr "پست دریافت شد."
 msgid "Post updated successfully."
 msgstr "پست با موفقیت به‌روز شد."
 
-#: src/frontend/Widget.jsx:232
+#: src/frontend/Widget.jsx:262
 msgid "Powered by AgenPress"
 msgstr "قدرت‌گرفته از AgenPress"
 
 #: src/admin/pages/SalesChatSettings.jsx:65
-#: src/post-editor/GenerateTextModal.jsx:110
+#: src/post-editor/GenerateTextModal.jsx:102
 msgid "Preview"
 msgstr "پیش‌نمایش"
 
-#: src/admin/pages/Settings.jsx:347
+#: src/admin/pages/Settings.jsx:369
 msgid "Pro"
 msgstr "حرفه‌ای"
 
-#: includes/Agents/TaskTemplates.php:41
+#: src/admin/pages/Workflows.jsx:20
+msgid "Product Description"
+msgstr "Product Description"
+
+#: src/admin/workflowPresets.js:239
+#: src/admin/workflowPresets.js:243
+msgid "Product Description Refresh"
+msgstr "Product Description Refresh"
+
+#: includes/Agents/TaskTemplates.php:43
 msgid "Product Descriptions"
 msgstr "توضیحات محصول"
 
@@ -1264,7 +1662,12 @@ msgstr "توضیحات محصول"
 msgid "Product details retrieved."
 msgstr "جزئیات محصول دریافت شد."
 
-#: includes/Agents/TaskTemplates.php:45
+#: src/admin/pages/Workflows.jsx:264
+msgid "Product index"
+msgstr "Product index"
+
+#: includes/Agents/TaskTemplates.php:47
+#: src/admin/pages/Workflows.jsx:256
 msgid "Product niche"
 msgstr "حوزه محصول"
 
@@ -1287,21 +1690,27 @@ msgstr "محصول به‌روز شد."
 msgid "Professional"
 msgstr "حرفه‌ای"
 
-#: src/admin/pages/Tasks.jsx:249
+#: src/admin/pages/Tasks.jsx:251
 msgid "Progress"
 msgstr "پیشرفت"
 
-#: src/post-editor/FeaturedImageModal.jsx:116
-#: src/post-editor/GenerateTextModal.jsx:96
-#: src/post-editor/InsertImageModal.jsx:102
+#: src/admin/pages/Workflows.jsx:109
+#: src/post-editor/FeaturedImageModal.jsx:102
+#: src/post-editor/GenerateTextModal.jsx:88
+#: src/post-editor/InsertImageModal.jsx:95
 msgid "Prompt"
 msgstr "پرامپت"
 
-#: includes/Agents/TaskTemplates.php:36
+#: includes/Agents/TaskTemplates.php:38
+#: src/admin/pages/Workflows.jsx:209
 msgid "Publish when done"
 msgstr "انتشار پس از اتمام"
 
-#: src/admin/pages/Tasks.jsx:217
+#: src/admin/workflowPresets.js:138
+msgid "Publishing plan"
+msgstr "Publishing plan"
+
+#: src/admin/pages/Tasks.jsx:219
 msgid "Queue Task"
 msgstr "افزودن وظیفه به صف"
 
@@ -1313,7 +1722,7 @@ msgstr "اقدامات سریع"
 msgid "RAG"
 msgstr "RAG"
 
-#: src/admin/pages/Settings.jsx:401
+#: src/admin/pages/Settings.jsx:423
 msgid "Rate Limit (requests/hour)"
 msgstr "محدودیت نرخ (درخواست/ساعت)"
 
@@ -1325,7 +1734,7 @@ msgstr "محدودیت نرخ تجاوز کرده است. لطفاً بعداً 
 msgid "Rate limiting requires a user or visitor key."
 msgstr "محدودیت نرخ نیاز به کلید کاربر یا بازدیدکننده دارد."
 
-#: src/admin/pages/Tasks.jsx:290
+#: src/admin/pages/Tasks.jsx:292
 msgid "Re-run"
 msgstr "اجرای مجدد"
 
@@ -1333,9 +1742,13 @@ msgstr "اجرای مجدد"
 msgid "Reason:"
 msgstr "دلیل:"
 
-#: includes/Modules/Sales/SalesModule.php:116
+#: includes/Modules/Sales/SalesModule.php:153
 msgid "Recommend products for [occasion]"
 msgstr "محصولات را برای [occasion] پیشنهاد بده"
+
+#: includes/Agents/TaskStepExecutor.php:478
+msgid "Recommended Products"
+msgstr "Recommended Products"
 
 #: src/admin/pages/Memory.jsx:197
 msgid "Reindex Embeddings"
@@ -1349,24 +1762,40 @@ msgstr "جاسازی‌ها مجدداً ایندکس‌گذاری شدند: %1$
 msgid "Reindexing..."
 msgstr "در حال ایندکس‌گذاری مجدد..."
 
+#: src/admin/pages/Workflows.jsx:465
+msgid "Remove"
+msgstr "Remove"
+
 #: src/admin/pages/Inbox.jsx:9
 #: src/admin/pages/Inbox.jsx:15
 msgid "Resolved"
 msgstr "حل‌شده"
 
-#: src/admin/pages/Tasks.jsx:275
+#: includes/Agents/AgentEngine.php:469
+msgid "Respond with internal sales analytics and operational insights. Do not pitch products to this user."
+msgstr "Respond with internal sales analytics and operational insights. Do not pitch products to this user."
+
+#: src/admin/pages/Tasks.jsx:277
 msgid "Resume"
 msgstr "ادامه"
 
-#: src/admin/pages/Tasks.jsx:285
+#: src/admin/pages/Tasks.jsx:287
 msgid "Retry"
 msgstr "تکرار"
 
-#: src/admin/pages/Settings.jsx:390
+#: src/admin/workflowPresets.js:220
+msgid "Review content gaps and suggest concrete improvements for the WordPress site (posts, pages, meta, internal links)."
+msgstr "Review content gaps and suggest concrete improvements for the WordPress site (posts, pages, meta, internal links)."
+
+#: src/admin/workflowPresets.js:139
+msgid "Review the draft posts situation on this WordPress site and suggest priorities: which drafts to finish first, common content gaps, and a practical 7-day publishing plan. Use markdown with clear sections."
+msgstr "Review the draft posts situation on this WordPress site and suggest priorities: which drafts to finish first, common content gaps, and a practical 7-day publishing plan. Use markdown with clear sections."
+
+#: src/admin/pages/Settings.jsx:412
 msgid "Revoke"
 msgstr "لغو دسترسی"
 
-#: src/admin/pages/Workflows.jsx:125
+#: src/admin/pages/Workflows.jsx:721
 msgid "Run"
 msgstr "اجرا"
 
@@ -1382,11 +1811,15 @@ msgstr "عاملان در حال اجرا"
 msgid "SEO"
 msgstr "سئو"
 
+#: src/admin/pages/Workflows.jsx:19
+msgid "SEO Article"
+msgstr "SEO Article"
+
 #: includes/Agents/TaskTemplates.php:26
 msgid "SEO Articles Batch"
 msgstr "دسته مقالات سئو"
 
-#: includes/Modules/Sales/SalesModule.php:66
+#: includes/Modules/Sales/SalesModule.php:69
 msgid "Sales Assistant"
 msgstr "دستیار فروش"
 
@@ -1408,11 +1841,15 @@ msgstr "قوانین فروش — نبایدها"
 msgid "Sales chat"
 msgstr "چت فروش"
 
-#: includes/Core/Settings.php:298
+#: includes/Modules/Sales/Tools/GetSalesOverviewTool.php:81
+msgid "Sales overview: %1$d paid orders (%2$s)."
+msgstr "Sales overview: %1$d paid orders (%2$s)."
+
+#: includes/Core/Settings.php:331
 msgid "Sales rules — DO NOT:"
 msgstr "قوانین فروش — نبایدها:"
 
-#: includes/Core/Settings.php:293
+#: includes/Core/Settings.php:326
 msgid "Sales rules — DO:"
 msgstr "قوانین فروش — بایدها:"
 
@@ -1425,17 +1862,22 @@ msgid "Save Memory"
 msgstr "ذخیره حافظه"
 
 #: src/admin/pages/SalesChatSettings.jsx:331
-#: src/admin/pages/Settings.jsx:413
+#: src/admin/pages/Settings.jsx:435
 msgid "Save Settings"
 msgstr "ذخیره تنظیمات"
 
-#: src/post-editor/FeaturedImageModal.jsx:177
+#: src/admin/pages/Workflows.jsx:477
+msgid "Save Workflow"
+msgstr "Save Workflow"
+
+#: src/post-editor/FeaturedImageModal.jsx:163
 msgid "Save the post as a draft first to set a featured image."
 msgstr "ابتدا پست را به عنوان پیش‌نویس ذخیره کنید تا بتوانید تصویر شاخص تنظیم کنید."
 
 #: src/admin/pages/Memory.jsx:246
 #: src/admin/pages/SalesChatSettings.jsx:331
-#: src/admin/pages/Settings.jsx:413
+#: src/admin/pages/Settings.jsx:435
+#: src/admin/pages/Workflows.jsx:477
 msgid "Saving..."
 msgstr "در حال ذخیره..."
 
@@ -1451,19 +1893,23 @@ msgstr "عبارت جستجو الزامی است."
 msgid "Search..."
 msgstr "جستجو..."
 
-#: includes/Modules/Elementor/ElementorDocumentService.php:172
+#: includes/Modules/Elementor/ElementorDocumentService.php:190
 msgid "Section created."
 msgstr "بخش ایجاد شد."
+
+#: src/admin/pages/Workflows.jsx:212
+msgid "Sections count"
+msgstr "Sections count"
 
 #: src/admin/pages/Inbox.jsx:161
 msgid "Select a conversation to view."
 msgstr "یک مکالمه برای مشاهده انتخاب کنید."
 
-#: src/post-editor/GenerateTextModal.jsx:90
+#: src/post-editor/GenerateTextModal.jsx:82
 msgid "Selected text"
 msgstr "متن انتخاب‌شده"
 
-#: src/elementor/Panel.jsx:145
+#: src/elementor/Panel.jsx:134
 msgid "Selection:"
 msgstr "انتخاب:"
 
@@ -1475,11 +1921,15 @@ msgstr "معنایی"
 msgid "Semantic search..."
 msgstr "جستجوی معنایی..."
 
-#: src/admin/components/ChatInterface.jsx:210
-#: src/elementor/Panel.jsx:207
-#: src/frontend/Widget.jsx:227
+#: src/admin/components/ChatInterface.jsx:302
+#: src/elementor/Panel.jsx:213
+#: src/frontend/Widget.jsx:257
 msgid "Send"
 msgstr "ارسال"
+
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:200
+msgid "Set as featured image on \"%s\"."
+msgstr "Set as featured image on \"%s\"."
 
 #: src/admin/App.jsx:34
 #: src/admin/components/Sidebar.jsx:11
@@ -1491,13 +1941,26 @@ msgid "Settings are required."
 msgstr "تنظیمات الزامی هستند."
 
 #: src/admin/pages/SalesChatSettings.jsx:130
-#: src/admin/pages/Settings.jsx:182
+#: src/admin/pages/Settings.jsx:184
 msgid "Settings saved successfully."
 msgstr "تنظیمات با موفقیت ذخیره شد."
 
-#: includes/Modules/Elementor/ElementorModule.php:120
+#: includes/Modules/Sales/SalesModule.php:168
+msgid "Show active discount codes"
+msgstr "Show active discount codes"
+
+#: includes/Modules/Elementor/ElementorModule.php:132
 msgid "Show me the structure of this page"
 msgstr "ساختار این صفحه را به من نشان بده"
+
+#: src/admin/workflowPresets.js:154
+msgid "Single AI step: 8 Q&A pairs in markdown."
+msgstr "Single AI step: 8 Q&A pairs in markdown."
+
+#: src/admin/workflowPresets.js:92
+#: src/admin/workflowPresets.js:95
+msgid "Site Health Snapshot"
+msgstr "Site Health Snapshot"
 
 #: src/admin/pages/Memory.jsx:182
 msgid "Site Memory"
@@ -1507,17 +1970,33 @@ msgstr "حافظه سایت"
 msgid "Site info retrieved."
 msgstr "اطلاعات سایت دریافت شد."
 
-#: includes/Modules/Admin/ClassicEditorToolbar.php:165
-#: includes/Modules/Admin/PostFeaturedImage.php:139
-msgid "Square (1024×1024)"
-msgstr "مربع (۱۰۲۴×۱۰۲۴)"
+#: includes/Agents/AgentEngine.php:460
+msgid "Staff member: %s"
+msgstr "Staff member: %s"
 
 #: src/admin/pages/Dashboard.jsx:78
 msgid "Start AI Chat"
 msgstr "شروع چت هوش مصنوعی"
 
-#: src/admin/pages/Tasks.jsx:321
-#: src/admin/pages/Workflows.jsx:111
+#: src/admin/pages/Workflows.jsx:641
+msgid "Start from a ready-made template, customize steps, then save and run."
+msgstr "Start from a ready-made template, customize steps, then save and run."
+
+#: src/admin/pages/Workflows.jsx:681
+msgid "Status"
+msgstr "Status"
+
+#: src/admin/pages/Workflows.jsx:436
+msgid "Step"
+msgstr "Step"
+
+#: src/admin/pages/Workflows.jsx:97
+msgid "Step label"
+msgstr "Step label"
+
+#: src/admin/pages/Tasks.jsx:323
+#: src/admin/pages/Workflows.jsx:411
+#: src/admin/pages/Workflows.jsx:683
 msgid "Steps"
 msgstr "مراحل"
 
@@ -1535,35 +2014,59 @@ msgstr "چت فروش فروشگاه"
 msgid "Storefront Sales Chats"
 msgstr "چت‌های فروش فروشگاه"
 
-#: includes/Core/Settings.php:305
+#: includes/Core/Settings.php:338
 msgid "Storefront sales chat behavior:"
 msgstr "رفتار چت فروش فروشگاه:"
 
-#: src/admin/components/ChatInterface.jsx:15
+#: src/admin/components/ChatInterface.jsx:17
 msgid "Suggest a landing page structure"
 msgstr "یک ساختار صفحه فرود پیشنهاد بده"
 
-#: src/frontend/Widget.jsx:235
+#: includes/Agents/TaskTemplates.php:37
+msgid "Suggest products in article"
+msgstr "Suggest products in article"
+
+#: src/admin/pages/Workflows.jsx:235
+msgid "Suggest related products"
+msgstr "Suggest related products"
+
+#: src/admin/pages/Workflows.jsx:234
+msgid "Suggest related services"
+msgstr "Suggest related services"
+
+#: includes/Agents/TaskTemplates.php:36
+msgid "Suggest services in article"
+msgstr "Suggest services in article"
+
+#: src/admin/workflowPresets.js:81
+msgid "Summarize the completed SEO article batch in 2–3 sentences for the site admin."
+msgstr "Summarize the completed SEO article batch in 2–3 sentences for the site admin."
+
+#: src/frontend/Widget.jsx:265
 msgid "Talk to a human"
 msgstr "صحبت با یک انسان"
+
+#: includes/Modules/Elementor/ElementorDocumentService.php:348
+msgid "Target column not found."
+msgstr "Target column not found."
 
 #: includes/Agents/TaskRunner.php:164
 msgid "Task \"%s\" completed successfully."
 msgstr "وظیفه \"%s\" با موفقیت تکمیل شد."
 
-#: src/admin/pages/Tasks.jsx:312
+#: src/admin/pages/Tasks.jsx:314
 msgid "Task Details:"
 msgstr "جزئیات وظیفه:"
 
-#: src/admin/pages/Tasks.jsx:224
+#: src/admin/pages/Tasks.jsx:226
 msgid "Task Queue"
 msgstr "صف وظایف"
 
-#: src/admin/pages/Tasks.jsx:155
+#: src/admin/pages/Tasks.jsx:157
 msgid "Task Template"
 msgstr "قالب وظیفه"
 
-#: src/admin/pages/Tasks.jsx:199
+#: src/admin/pages/Tasks.jsx:201
 msgid "Task Title"
 msgstr "عنوان وظیفه"
 
@@ -1575,6 +2078,10 @@ msgstr "وظیفه در وضعیت فعلی قابل لغو نیست."
 msgid "Task cannot be paused or resumed in its current state."
 msgstr "وظیفه در وضعیت فعلی قابل توقف یا ادامه نیست."
 
+#: src/admin/pages/Workflows.jsx:172
+msgid "Task description"
+msgstr "Task description"
+
 #: includes/REST/TaskController.php:218
 #: includes/REST/TaskController.php:245
 #: includes/REST/TaskController.php:272
@@ -1583,9 +2090,13 @@ msgstr "وظیفه در وضعیت فعلی قابل توقف یا ادامه ن
 msgid "Task not found."
 msgstr "وظیفه یافت نشد."
 
-#: includes/Agents/TaskStepExecutor.php:185
+#: includes/Agents/TaskStepExecutor.php:186
 msgid "Task plan created."
 msgstr "برنامه وظیفه ایجاد شد."
+
+#: src/admin/pages/Workflows.jsx:164
+msgid "Task title"
+msgstr "Task title"
 
 #: includes/REST/TaskController.php:170
 msgid "Task title is required."
@@ -1595,7 +2106,11 @@ msgstr "عنوان وظیفه الزامی است."
 msgid "Tasks Completed"
 msgstr "وظایف تکمیل‌شده"
 
-#: src/admin/pages/Tasks.jsx:248
+#: src/admin/workflowPresets.js:196
+msgid "Taxonomy recommendations"
+msgstr "Taxonomy recommendations"
+
+#: src/admin/pages/Tasks.jsx:250
 msgid "Template"
 msgstr "قالب"
 
@@ -1603,12 +2118,12 @@ msgstr "قالب"
 msgid "Term name is required."
 msgstr "نام اصطلاح الزامی است."
 
-#: src/admin/pages/Settings.jsx:297
+#: src/admin/pages/Settings.jsx:299
 msgid "Text Model"
 msgstr "مدل متن"
 
 #: includes/REST/TextController.php:150
-#: src/post-editor/GenerateTextModal.jsx:47
+#: src/post-editor/GenerateTextModal.jsx:39
 msgid "Text generation failed."
 msgstr "تولید متن ناموفق بود."
 
@@ -1616,7 +2131,7 @@ msgstr "تولید متن ناموفق بود."
 msgid "Text prompt is required."
 msgstr "پرامپت متن الزامی است."
 
-#: includes/Agents/AgentEngine.php:212
+#: includes/Agents/AgentEngine.php:214
 msgid "The following actions require your confirmation before proceeding."
 msgstr "اقدامات زیر قبل از ادامه نیاز به تأیید شما دارند."
 
@@ -1628,8 +2143,8 @@ msgstr "مواردی که دستیار باید در پاسخ‌ها از آن�
 msgid "Things the assistant must do when helping customers."
 msgstr "مواردی که دستیار باید هنگام کمک به مشتریان انجام دهد."
 
-#: src/admin/components/ChatInterface.jsx:180
-#: src/elementor/Panel.jsx:186
+#: src/admin/components/ChatInterface.jsx:272
+#: src/elementor/Panel.jsx:180
 msgid "Thinking..."
 msgstr "در حال تفکر..."
 
@@ -1637,7 +2152,7 @@ msgstr "در حال تفکر..."
 msgid "This action is not available in the storefront chat."
 msgstr "این اقدام در چت فروشگاه در دسترس نیست."
 
-#: includes/Security/PermissionValidator.php:213
+#: includes/Security/PermissionValidator.php:220
 msgid "This action requires administrator privileges."
 msgstr "این اقدام نیاز به دسترسی مدیر دارد."
 
@@ -1649,8 +2164,13 @@ msgstr "این مشتری قبلاً با شما چت کرده است. از مک
 msgid "This feature requires an Enterprise license."
 msgstr "این ویژگی نیاز به مجوز Enterprise دارد."
 
-#: src/admin/pages/Tasks.jsx:247
-#: src/admin/pages/Workflows.jsx:109
+#: includes/Modules/Admin/Tools/GenerateImageTool.php:122
+msgid "This post type does not support featured images."
+msgstr "This post type does not support featured images."
+
+#: src/admin/pages/Tasks.jsx:249
+#: src/admin/pages/Workflows.jsx:367
+#: src/admin/pages/Workflows.jsx:680
 msgid "Title"
 msgstr "عنوان"
 
@@ -1662,9 +2182,21 @@ msgstr "توکن‌های مصرف‌شده"
 msgid "Tone and sales rules for customer replies"
 msgstr "لحن و قوانین فروش برای پاسخ به مشتریان"
 
+#: src/admin/pages/Workflows.jsx:17
+msgid "Tool Call"
+msgstr "Tool Call"
+
 #: src/admin/pages/Analytics.jsx:60
 msgid "Tool Executions"
 msgstr "اجراهای ابزار"
+
+#: src/admin/pages/Workflows.jsx:142
+msgid "Tool arguments (JSON)"
+msgstr "Tool arguments (JSON)"
+
+#: src/admin/pages/Workflows.jsx:133
+msgid "Tool name"
+msgstr "Tool name"
 
 #: includes/REST/McpController.php:101
 msgid "Tool name is required."
@@ -1674,6 +2206,26 @@ msgstr "نام ابزار الزامی است."
 msgid "Tool:"
 msgstr "ابزار:"
 
+#: src/admin/workflowPresets.js:96
+msgid "Tool: get_site_info → AI report."
+msgstr "Tool: get_site_info → AI report."
+
+#: src/admin/workflowPresets.js:125
+msgid "Tool: list_posts (drafts) → AI publishing plan."
+msgstr "Tool: list_posts (drafts) → AI publishing plan."
+
+#: src/admin/workflowPresets.js:176
+msgid "Tool: list_terms → AI taxonomy recommendations."
+msgstr "Tool: list_terms → AI taxonomy recommendations."
+
+#: includes/Modules/Sales/Tools/GetBestSellersTool.php:98
+msgid "Top %d best sellers for the selected period."
+msgstr "Top %d best sellers for the selected period."
+
+#: src/admin/pages/Workflows.jsx:186
+msgid "Topic"
+msgstr "Topic"
+
 #: includes/Agents/TaskTemplates.php:30
 msgid "Topic / niche"
 msgstr "موضوع / حوزه"
@@ -1682,15 +2234,20 @@ msgstr "موضوع / حوزه"
 msgid "Total Tasks"
 msgstr "مجموع وظایف"
 
-#: includes/Modules/Sales/SalesModule.php:115
+#: includes/Modules/Sales/SalesModule.php:152
 msgid "Track my order"
 msgstr "سفارش من را ردیابی کن"
 
-#: src/admin/pages/Workflows.jsx:110
+#: src/admin/pages/Workflows.jsx:398
+#: src/admin/pages/Workflows.jsx:682
 msgid "Trigger"
 msgstr "محرک"
 
-#: src/frontend/Widget.jsx:217
+#: src/admin/workflowPresets.js:26
+msgid "Two-step AI chain: strategy analysis → post ideas list."
+msgstr "Two-step AI chain: strategy analysis → post ideas list."
+
+#: src/frontend/Widget.jsx:247
 msgid "Type a message..."
 msgstr "یک پیام بنویسید..."
 
@@ -1698,37 +2255,41 @@ msgstr "یک پیام بنویسید..."
 msgid "Unassigned"
 msgstr "تخصیص‌نیافته"
 
-#: includes/Modules/Elementor/ElementorModule.php:122
+#: includes/Modules/Elementor/ElementorModule.php:134
 msgid "Update the selected widget heading text"
 msgstr "متن عنوان ابزارک انتخاب‌شده را به‌روز کن"
 
-#: src/admin/components/FileUpload.jsx:24
+#: src/shared/FileUpload.jsx:25
 msgid "Upload failed."
 msgstr "آپلود ناموفق بود."
 
-#: src/admin/components/FileUpload.jsx:46
+#: src/shared/FileUpload.jsx:48
 msgid "Upload file"
 msgstr "آپلود فایل"
 
-#: src/admin/pages/Settings.jsx:395
+#: src/admin/pages/Settings.jsx:417
 msgid "Use Authorization: Bearer agp_... for /external/* and /mcp/* endpoints."
 msgstr "از Authorization: Bearer agp_... برای نقاط پایانی /external/* و /mcp/* استفاده کنید."
 
-#: src/post-editor/FeaturedImageModal.jsx:187
+#: src/post-editor/FeaturedImageModal.jsx:173
 msgid "Use Image"
 msgstr "استفاده از تصویر"
 
-#: includes/Core/Settings.php:283
+#: includes/Core/Settings.php:316
 msgid "Use a polite, respectful tone. Address customers courteously and with warmth."
 msgstr "از لحن مودبانه و محترمانه استفاده کن. با مشتریان با ادب و گرمی صحبت کن."
 
-#: includes/Core/Settings.php:285
+#: includes/Core/Settings.php:318
 msgid "Use a professional, confident business tone. Be clear, structured, and expert without being stiff."
 msgstr "از لحن حرفه‌ای و مطمئن کسب‌وکار استفاده کن. واضح، منظم و متخصص باش بدون خشکی."
 
-#: includes/Core/Settings.php:284
+#: includes/Core/Settings.php:317
 msgid "Use a warm, casual, conversational tone. Be approachable and relatable while staying helpful."
 msgstr "از لحن گرم، خودمونی و گفتگومحور استفاده کن. صمیمی و قابل ارتباط باش در عین حفظ مفید بودن."
+
+#: src/admin/pages/Workflows.jsx:664
+msgid "Use this example"
+msgstr "Use this example"
 
 #: includes/Modules/Admin/Tools/GetUserTool.php:45
 msgid "User not found."
@@ -1747,7 +2308,7 @@ msgstr "مقدار"
 msgid "View Tasks"
 msgstr "مشاهده وظایف"
 
-#: src/frontend/formatMessage.js:49
+#: src/frontend/formatMessage.js:54
 msgid "View product"
 msgstr "View product"
 
@@ -1755,26 +2316,31 @@ msgstr "View product"
 msgid "Warm and conversational"
 msgstr "گرم و گفتگومحور"
 
-#: src/frontend/Widget.jsx:175
+#: src/frontend/Widget.jsx:186
 msgid "Welcome back! I remember our previous chats. How can I help you today?"
 msgstr "خوش برگشتی! مکالمات قبلی‌مان را به خاطر دارم. امروز چطور می‌توانم کمکت کنم؟"
 
-#: src/admin/components/ChatInterface.jsx:18
-msgid "What are our best-selling products?"
-msgstr "محصولات پرفروش ما کدامند؟"
-
-#: includes/Modules/Sales/SalesModule.php:112
+#: includes/Modules/Sales/SalesModule.php:149
 msgid "What are your best-selling products?"
 msgstr "محصولات پرفروش شما کدامند؟"
 
-#: includes/Modules/Sales/SalesModule.php:114
+#: includes/Modules/Sales/SalesModule.php:151
 msgid "What is in my cart?"
 msgstr "چه چیزی در سبد خرید من است؟"
 
-#: includes/Modules/Admin/AdminModule.php:121
-#: src/admin/components/ChatInterface.jsx:9
+#: includes/Modules/Admin/AdminModule.php:137
+#: src/admin/components/ChatInterface.jsx:10
 msgid "What posts do I have on my site?"
 msgstr "چه پست‌هایی در سایتم دارم؟"
+
+#: includes/Modules/Sales/SalesModule.php:164
+#: src/admin/components/ChatInterface.jsx:20
+msgid "What were the best-selling products this month?"
+msgstr "What were the best-selling products this month?"
+
+#: includes/Modules/Sales/SalesModule.php:167
+msgid "Which products are low on stock?"
+msgstr "Which products are low on stock?"
 
 #: src/admin/pages/SalesChatSettings.jsx:8
 msgid "Widget"
@@ -1792,6 +2358,10 @@ msgstr "موقعیت ابزارک"
 msgid "Widget Title"
 msgstr "عنوان ابزارک"
 
+#: includes/Modules/Elementor/ElementorDocumentService.php:410
+msgid "Widget created."
+msgstr "Widget created."
+
 #: src/admin/pages/SalesChatSettings.jsx:174
 msgid "Widget disabled"
 msgstr "ابزارک غیرفعال"
@@ -1800,7 +2370,11 @@ msgstr "ابزارک غیرفعال"
 msgid "Widget enabled"
 msgstr "ابزارک فعال"
 
-#: includes/Agents/TaskStepExecutor.php:542
+#: includes/Modules/Elementor/ElementorDocumentService.php:358
+msgid "Widget type is required."
+msgstr "Widget type is required."
+
+#: includes/Agents/TaskStepExecutor.php:771
 #: includes/Modules/Admin/Tools/CreateProductTool.php:44
 #: includes/Modules/Admin/Tools/DeleteProductTool.php:61
 #: includes/Modules/Admin/Tools/GetProductTool.php:39
@@ -1813,26 +2387,38 @@ msgstr "ابزارک فعال"
 msgid "WooCommerce is not active."
 msgstr "ووکامرس فعال نیست."
 
-#: src/admin/pages/Workflows.jsx:89
-msgid "Workflow name"
-msgstr "نام گردش کار"
+#: src/admin/pages/Workflows.jsx:329
+msgid "Workflow title is required."
+msgstr "Workflow title is required."
 
 #: src/admin/App.jsx:31
 #: src/admin/components/Sidebar.jsx:8
-#: src/admin/pages/Workflows.jsx:99
+#: src/admin/pages/Workflows.jsx:624
 msgid "Workflows"
 msgstr "گردش‌های کار"
 
-#: src/admin/pages/Workflows.jsx:40
+#: src/admin/pages/Workflows.jsx:518
 msgid "Workflows require an Enterprise license. Update the license tier in Settings to enable automation workflows."
 msgstr "گردش‌های کار نیاز به مجوز Enterprise دارند. سطح مجوز را در تنظیمات به‌روز کنید تا گردش‌های کار اتوماسیون فعال شود."
 
-#: includes/Modules/Admin/AdminModule.php:123
-#: src/admin/components/ChatInterface.jsx:10
+#: src/admin/workflowPresets.js:110
+msgid "Write a brief WordPress site health report for the administrator. Cover content overview, technical context, and 5 actionable recommendations. Use markdown headings and bullet points. Keep it under 400 words."
+msgstr "Write a brief WordPress site health report for the administrator. Cover content overview, technical context, and 5 actionable recommendations. Use markdown headings and bullet points. Keep it under 400 words."
+
+#: includes/Modules/Admin/AdminModule.php:139
+#: src/admin/components/ChatInterface.jsx:11
 msgid "Write an SEO-optimized blog post about [topic]"
 msgstr "یک پست وبلاگ بهینه‌شده برای سئو درباره [topic] بنویس"
 
-#: includes/Agents/TaskTemplates.php:246
+#: src/admin/workflowPresets.js:109
+msgid "Write health report"
+msgstr "Write health report"
+
+#: src/admin/workflowPresets.js:257
+msgid "Write product description"
+msgstr "Write product description"
+
+#: includes/Agents/TaskTemplates.php:250
 msgid "Writing product description %d"
 msgstr "در حال نوشتن توضیحات محصول %d"
 
@@ -1840,7 +2426,7 @@ msgstr "در حال نوشتن توضیحات محصول %d"
 msgid "You do not have permission to access this module."
 msgstr "شما اجازه دسترسی به این ماژول را ندارید."
 
-#: includes/Security/PermissionValidator.php:205
+#: includes/Security/PermissionValidator.php:212
 msgid "You do not have permission to perform this action."
 msgstr "شما اجازه انجام این اقدام را ندارید."
 
@@ -1852,7 +2438,7 @@ msgstr "شما باید وارد شوید."
 msgid "Your API key"
 msgstr "کلید API شما"
 
-#: src/frontend/Widget.jsx:122
+#: src/frontend/Widget.jsx:133
 msgid "Your request has been sent to our team. We will get back to you soon."
 msgstr "درخواست شما به تیم ما ارسال شد. به زودی با شما در تماس خواهیم بود."
 
@@ -1860,7 +2446,7 @@ msgstr "درخواست شما به تیم ما ارسال شد. به زودی ب
 msgid "days"
 msgstr "روز"
 
-#: src/admin/pages/Tasks.jsx:204
+#: src/admin/pages/Tasks.jsx:206
 msgid "e.g. Generate 10 SEO articles about WordPress"
 msgstr "مثال: ۱۰ مقاله سئو درباره وردپرس تولید کن"
 
@@ -1868,7 +2454,15 @@ msgstr "مثال: ۱۰ مقاله سئو درباره وردپرس تولید ک
 msgid "e.g. brand_name, primary_color"
 msgstr "مثال: brand_name, primary_color"
 
+#: src/admin/workflowPresets.js:244
+msgid "list_products → 3× product_description steps."
+msgstr "list_products → 3× product_description steps."
+
 #: includes/Agents/TaskQueue.php:336
 msgid "re-run"
 msgstr "اجرای مجدد"
+
+#: src/admin/pages/Workflows.jsx:649
+msgid "steps"
+msgstr "steps"
 

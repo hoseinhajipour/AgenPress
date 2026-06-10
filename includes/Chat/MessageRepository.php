@@ -7,6 +7,8 @@
 
 namespace AgenPress\Chat;
 
+use AgenPress\Media\AttachmentContext;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -126,13 +128,67 @@ class MessageRepository {
 		$formatted = array();
 
 		foreach ( $messages as $message ) {
+			$content = (string) ( $message['content'] ?? '' );
+
+			if ( 'user' === ( $message['role'] ?? '' ) && ! empty( $message['attachments'] ) ) {
+				$content = AttachmentContext::append_to_content( $content, $message['attachments'] );
+			}
+
 			$formatted[] = array(
 				'role'    => $message['role'],
-				'content' => $message['content'],
+				'content' => $content,
 			);
 		}
 
 		return $formatted;
+	}
+
+	/**
+	 * Delete a single message.
+	 *
+	 * @param int $id Message ID.
+	 * @return bool
+	 */
+	public function delete( int $id ): bool {
+		global $wpdb;
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$deleted = $wpdb->delete(
+			$this->table(),
+			array( 'id' => $id ),
+			array( '%d' )
+		);
+
+		return (bool) $deleted;
+	}
+
+	/**
+	 * Check whether a message belongs to a user's conversation.
+	 *
+	 * @param int $message_id      Message ID.
+	 * @param int $user_id           User ID.
+	 * @param int $conversation_id   Conversation ID.
+	 * @return bool
+	 */
+	public function belongs_to_user( int $message_id, int $user_id, int $conversation_id ): bool {
+		global $wpdb;
+
+		$messages_table        = $this->table();
+		$conversations_table   = $wpdb->prefix . 'agenpress_conversations';
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$owner_id = $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT c.user_id
+				FROM {$messages_table} m
+				INNER JOIN {$conversations_table} c ON c.id = m.conversation_id
+				WHERE m.id = %d AND m.conversation_id = %d",
+				$message_id,
+				$conversation_id
+			)
+		);
+
+		return (int) $owner_id === $user_id;
 	}
 
 	/**

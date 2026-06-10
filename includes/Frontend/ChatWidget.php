@@ -149,6 +149,7 @@ class ChatWidget {
 				'apiUrl'      => rest_url( 'agenpress/v1' ),
 				'nonce'       => wp_create_nonce( 'wp_rest' ),
 				'isLoggedIn'  => is_user_logged_in(),
+				'canUpload'   => is_user_logged_in() && current_user_can( 'upload_files' ),
 				'config'      => $config,
 				'suggestions' => $sales_module ? $sales_module->get_suggestions() : array(),
 			)

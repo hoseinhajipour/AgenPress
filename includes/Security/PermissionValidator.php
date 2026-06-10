@@ -197,6 +197,13 @@ class PermissionValidator {
 			'update_product'      => 'edit_products',
 			'delete_product'      => 'delete_products',
 			'get_site_info'       => 'read',
+			'get_best_sellers'    => 'view_woocommerce_reports',
+			'get_sales_overview'  => 'view_woocommerce_reports',
+			'list_orders'         => 'edit_shop_orders',
+			'search_elements'     => 'edit_posts',
+			'create_widget'       => 'edit_posts',
+			'apply_media_to_element' => 'upload_files',
+			'add_attached_image_to_page' => 'upload_files',
 		);
 
 		if ( isset( $cap_map[ $tool_name ] ) && ! user_can( $user_id, $cap_map[ $tool_name ] ) ) {

@@ -11,11 +11,14 @@ use AgenPress\Agents\ToolRegistry;
 use AgenPress\Chat\ConversationRepository;
 use AgenPress\Modules\ModuleInterface;
 use AgenPress\Modules\Sales\Tools\EscalateToHumanTool;
+use AgenPress\Modules\Sales\Tools\GetBestSellersTool;
 use AgenPress\Modules\Sales\Tools\GetCartSummaryTool;
 use AgenPress\Modules\Sales\Tools\GetMyOrdersTool;
 use AgenPress\Modules\Sales\Tools\GetOrderStatusTool;
 use AgenPress\Modules\Sales\Tools\GetProductDetailsTool;
+use AgenPress\Modules\Sales\Tools\GetSalesOverviewTool;
 use AgenPress\Modules\Sales\Tools\ListCouponsTool;
+use AgenPress\Modules\Sales\Tools\ListOrdersTool;
 use AgenPress\Modules\Sales\Tools\RecommendProductsTool;
 use AgenPress\Modules\Sales\Tools\SearchProductsTool;
 use AgenPress\Modules\Sales\Tools\ValidateCouponTool;
@@ -80,6 +83,9 @@ class SalesModule implements ModuleInterface {
 			new GetMyOrdersTool(),
 			new GetOrderStatusTool(),
 			new EscalateToHumanTool( $this->conversations ),
+			new GetBestSellersTool(),
+			new GetSalesOverviewTool(),
+			new ListOrdersTool(),
 		);
 	}
 
@@ -87,6 +93,15 @@ class SalesModule implements ModuleInterface {
 	 * {@inheritdoc}
 	 */
 	public function get_system_prompt(): string {
+		return $this->get_storefront_system_prompt();
+	}
+
+	/**
+	 * System prompt for storefront customer chat.
+	 *
+	 * @return string
+	 */
+	public function get_storefront_system_prompt(): string {
 		return implode(
 			"\n\n",
 			array(
@@ -105,6 +120,28 @@ class SalesModule implements ModuleInterface {
 	}
 
 	/**
+	 * System prompt for wp-admin sales staff chat.
+	 *
+	 * @return string
+	 */
+	public function get_admin_system_prompt(): string {
+		return implode(
+			"\n\n",
+			array(
+				'You are AgenPress Sales Staff Assistant inside WordPress admin.',
+				'You help the shop owner, manager, or sales employee analyze the store — NOT a customer on the storefront.',
+				'The user is a colleague on your team. Never try to sell products to them, never use shopper phrases like "Would you like to buy?" or "Add to cart".',
+				'Answer as an internal sales analyst: report facts, trends, inventory, orders, coupons, and product performance.',
+				'For best sellers, sales totals, or revenue questions, use get_best_sellers, get_sales_overview, and list_orders with the right period (week, month, year).',
+				'For product lookup or stock, use search_products and get_product_details. For coupons use list_coupons.',
+				'Use tools for real WooCommerce data. Never invent product IDs, sales figures, or order details.',
+				'Format replies in Markdown: **bold** for product names and key metrics, bullet lists for rankings and order lists, short paragraphs. Use [title](url) for links — never raw URLs.',
+				'When listing products or orders, include rank/quantity/revenue/stock where available. Be concise and actionable for staff decisions.',
+			)
+		);
+	}
+
+	/**
 	 * {@inheritdoc}
 	 */
 	public function get_suggestions(): array {
@@ -114,6 +151,21 @@ class SalesModule implements ModuleInterface {
 			__( 'What is in my cart?', 'agenpress' ),
 			__( 'Track my order', 'agenpress' ),
 			__( 'Recommend products for [occasion]', 'agenpress' ),
+		);
+	}
+
+	/**
+	 * Prompt suggestions for wp-admin sales staff chat.
+	 *
+	 * @return array<int, string>
+	 */
+	public function get_admin_suggestions(): array {
+		return array(
+			__( 'What were the best-selling products this month?', 'agenpress' ),
+			__( 'Give me a sales overview for this week', 'agenpress' ),
+			__( 'List recent orders', 'agenpress' ),
+			__( 'Which products are low on stock?', 'agenpress' ),
+			__( 'Show active discount codes', 'agenpress' ),
 		);
 	}
 

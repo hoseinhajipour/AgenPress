@@ -7,8 +7,7 @@ import './styles.css';
 
 const data = window.agenpressPostEditorData || {};
 
-apiFetch.use( apiFetch.createNonceMiddleware( data.nonce ) );
-apiFetch.use( apiFetch.createRootURLMiddleware( data.apiUrl ) );
+apiFetch.use( apiFetch.createNonceMiddleware( data.nonce || '' ) );
 
 const classicMount = document.getElementById( 'agenpress-featured-image-root' );
 

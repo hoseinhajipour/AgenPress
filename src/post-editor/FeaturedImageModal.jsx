@@ -1,12 +1,12 @@
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import apiFetch from '@wordpress/api-fetch';
+import { generateImage, setFeaturedImage } from './api';
 
 const data = window.agenpressPostEditorData || {};
 
 export default function FeaturedImageModal( { postId, isOpen, onClose, onApplied } ) {
 	const [ prompt, setPrompt ] = useState( '' );
-	const [ size, setSize ] = useState( '1024x1024' );
+	const [ size, setSize ] = useState( data.defaultSize || '1:1' );
 	const [ generating, setGenerating ] = useState( false );
 	const [ applying, setApplying ] = useState( false );
 	const [ error, setError ] = useState( null );
@@ -17,9 +17,10 @@ export default function FeaturedImageModal( { postId, isOpen, onClose, onApplied
 	}
 
 	const sizes = data.sizes || [
-		{ value: '1024x1024', label: 'Square (1024×1024)' },
-		{ value: '1792x1024', label: 'Landscape (1792×1024)' },
-		{ value: '1024x1792', label: 'Portrait (1024×1792)' },
+		{ value: '1:1', label: '1:1 (Square)' },
+		{ value: '16:9', label: '16:9 (Landscape)' },
+		{ value: '9:16', label: '9:16 (Portrait)' },
+		{ value: '4:3', label: '4:3 (Landscape)' },
 	];
 
 	const handleClose = () => {
@@ -42,16 +43,8 @@ export default function FeaturedImageModal( { postId, isOpen, onClose, onApplied
 		setPreview( null );
 
 		try {
-			const response = await apiFetch( {
-				path: '/generate-image',
-				method: 'POST',
-				data: {
-					prompt: prompt.trim(),
-					size,
-				},
-			} );
-
-			setPreview( response.data );
+			const previewData = await generateImage( prompt.trim(), size );
+			setPreview( previewData );
 		} catch ( err ) {
 			setError( err.message || __( 'Image generation failed.', 'agenpress' ) );
 		} finally {
@@ -68,15 +61,8 @@ export default function FeaturedImageModal( { postId, isOpen, onClose, onApplied
 		setError( null );
 
 		try {
-			const response = await apiFetch( {
-				path: `/posts/${ postId }/featured-image`,
-				method: 'POST',
-				data: {
-					attachment_id: preview.attachment_id,
-				},
-			} );
-
-			onApplied( response.data );
+			const applied = await setFeaturedImage( postId, preview.attachment_id );
+			onApplied( applied );
 			setPreview( null );
 			setPrompt( '' );
 			onClose();

@@ -124,12 +124,7 @@ abstract class OpenAICompatibleProvider implements ProviderInterface {
 			throw new \RuntimeException( $this->get_not_configured_message() );
 		}
 
-		$size = $options['size'] ?? '1024x1024';
-		$allowed_sizes = array( '1024x1024', '1792x1024', '1024x1792' );
-
-		if ( ! in_array( $size, $allowed_sizes, true ) ) {
-			$size = '1024x1024';
-		}
+		$size = ImageSizeRegistry::resolve_size( (string) ( $options['size'] ?? '' ) );
 
 		$model = $options['model'] ?? $this->settings->get_default_image_model();
 
@@ -147,6 +142,7 @@ abstract class OpenAICompatibleProvider implements ProviderInterface {
 
 		return array(
 			'url'            => $item['url'] ?? '',
+			'b64_json'       => $item['b64_json'] ?? '',
 			'revised_prompt' => $item['revised_prompt'] ?? $prompt,
 		);
 	}

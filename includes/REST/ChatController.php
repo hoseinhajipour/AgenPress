@@ -79,6 +79,16 @@ class ChatController extends RestController {
 
 		register_rest_route(
 			$this->namespace,
+			'/conversations/(?P<id>\d+)/messages/(?P<message_id>\d+)',
+			array(
+				'methods'             => \WP_REST_Server::DELETABLE,
+				'callback'            => array( $this, 'delete_message' ),
+				'permission_callback' => array( $this, 'check_auth' ),
+			)
+		);
+
+		register_rest_route(
+			$this->namespace,
 			'/chat/(?P<module>[a-z]+)/confirm',
 			array(
 				'methods'             => \WP_REST_Server::CREATABLE,
@@ -216,6 +226,55 @@ class ChatController extends RestController {
 	}
 
 	/**
+	 * DELETE /conversations/{id}/messages/{message_id}
+	 *
+	 * @param \WP_REST_Request $request Request object.
+	 * @return \WP_REST_Response
+	 */
+	public function delete_message( \WP_REST_Request $request ): \WP_REST_Response {
+		/** @var ConversationRepository $repo */
+		$repo = $this->container->get( 'conversation_repository' );
+		/** @var MessageRepository $messages */
+		$messages = $this->container->get( 'message_repository' );
+
+		$conversation_id = (int) $request->get_param( 'id' );
+		$message_id      = (int) $request->get_param( 'message_id' );
+		$conversation    = $repo->find( $conversation_id );
+
+		if ( ! $conversation || (int) $conversation['user_id'] !== get_current_user_id() ) {
+			return $this->error(
+				new \WP_Error(
+					'agenpress_not_found',
+					__( 'Conversation not found.', 'agenpress' ),
+					array( 'status' => 404 )
+				)
+			);
+		}
+
+		if ( ! $messages->belongs_to_user( $message_id, get_current_user_id(), $conversation_id ) ) {
+			return $this->error(
+				new \WP_Error(
+					'agenpress_not_found',
+					__( 'Message not found.', 'agenpress' ),
+					array( 'status' => 404 )
+				)
+			);
+		}
+
+		if ( ! $messages->delete( $message_id ) ) {
+			return $this->error(
+				new \WP_Error(
+					'agenpress_delete_failed',
+					__( 'Failed to delete message.', 'agenpress' ),
+					array( 'status' => 500 )
+				)
+			);
+		}
+
+		return $this->success( array( 'deleted' => true ) );
+	}
+
+	/**
 	 * POST /chat/{module}
 	 *
 	 * @param \WP_REST_Request $request Request object.
@@ -298,7 +357,8 @@ class ChatController extends RestController {
 
 		/** @var ModuleManager $module_manager */
 		$module_manager = $this->container->get( 'module_manager' );
-		$system_prompt  = $module_manager->get_system_prompt( $module );
+		$chat_context   = is_array( $context ) ? $context : array();
+		$system_prompt  = $module_manager->get_system_prompt( $module, $chat_context );
 
 		/** @var AgentEngine $engine */
 		$engine   = $this->container->get( 'agent_engine' );
@@ -316,6 +376,7 @@ class ChatController extends RestController {
 
 		$data = array(
 			'conversation_id' => $conversation_id,
+			'user_message'    => $response['user_message'] ?? array(),
 			'message'         => $response['message'],
 			'tokens_used'     => $response['tokens_used'],
 			'model'           => $response['model'],

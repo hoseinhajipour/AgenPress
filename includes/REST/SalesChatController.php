@@ -196,13 +196,15 @@ class SalesChatController extends RestController {
 		$permissions = $this->container->get( 'permission_validator' );
 		$permissions->set_sales_customer_mode( true );
 
+		$attachments = $request->get_param( 'attachments' ) ?? array();
+
 		$response = $engine->chat(
 			$conversation_id,
 			'sales',
 			$content,
 			$user_id,
 			$system_prompt,
-			array(),
+			is_array( $attachments ) ? $attachments : array(),
 			$context
 		);
 

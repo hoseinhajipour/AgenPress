@@ -16,6 +16,18 @@
             "%d recommendations.": [
                 "%d پیشنهاد."
             ],
+            "%s page created.": [
+                "%s page created."
+            ],
+            "- Call generate_section_image ONCE with reference_attachment_id and a detailed prompt (layout left\/right, exact text inside the image, icons, 3D style, size).": [
+                "- Call generate_section_image ONCE with reference_attachment_id and a detailed prompt (layout left\/right, exact text inside the image, icons, 3D style, size)."
+            ],
+            "- Do NOT call add_attached_image_to_page for design requests — that only places the raw file.": [
+                "- Do NOT call add_attached_image_to_page for design requests — that only places the raw file."
+            ],
+            "- Do NOT create separate heading or text widgets when the user wants a designed banner — text must be baked into the generated image.": [
+                "- Do NOT create separate heading or text widgets when the user wants a designed banner — text must be baked into the generated image."
+            ],
             "16:9 (Landscape)": [
                 "۱۶:۹ (افقی)"
             ],
@@ -121,6 +133,15 @@
             "About AgenPress": [
                 "درباره AgenPress"
             ],
+            "About Us": [
+                "About Us"
+            ],
+            "About our store.": [
+                "About our store."
+            ],
+            "About page created.": [
+                "About page created."
+            ],
             "Actions": [
                 "اقدامات"
             ],
@@ -129,6 +150,9 @@
             ],
             "Add Memory Entry": [
                 "افزودن ورودی حافظه"
+            ],
+            "Add WooCommerce products to display the latest items here.": [
+                "Add WooCommerce products to display the latest items here."
             ],
             "Add a CTA button below the hero": [
                 "Add a CTA button below the hero"
@@ -141,6 +165,9 @@
             ],
             "Additional instructions for the agent...": [
                 "دستورالعمل‌های اضافی برای عامل..."
+            ],
+            "Address": [
+                "Address"
             ],
             "Admin AI": [
                 "هوش مصنوعی مدیریت"
@@ -163,11 +190,17 @@
             "Agent Tasks": [
                 "وظایف عامل"
             ],
+            "Agent tasks queued": [
+                "Agent tasks queued"
+            ],
             "All": [
                 "همه"
             ],
             "All AI sales chats from the storefront widget. Escalated chats need human follow-up.": [
                 "همه چت‌های فروش هوش مصنوعی از ویجت فروشگاه. چت‌های ارجاع‌شده نیاز به پیگیری انسانی دارند."
+            ],
+            "Already attached": [
+                "Already attached"
             ],
             "Also available via shortcode: [agenpress_chat]": [
                 "همچنین از طریق کد کوتاه موجود است: [agenpress_chat]"
@@ -232,8 +265,14 @@
             "Assistant": [
                 "دستیار"
             ],
+            "Attach internal link": [
+                "Attach internal link"
+            ],
             "Attached files:": [
                 "Attached files:"
+            ],
+            "Attached internal links:": [
+                "Attached internal links:"
             ],
             "Attachment not found.": [
                 "پیوست یافت نشد."
@@ -253,6 +292,12 @@
             "Back to list": [
                 "Back to list"
             ],
+            "Banner \/ graphic design with an attached image:": [
+                "Banner \/ graphic design with an attached image:"
+            ],
+            "Banner image generated from the reference photo and added to the page.": [
+                "Banner image generated from the reference photo and added to the page."
+            ],
             "Base language for AI responses and generated content.": [
                 "زبان پایه برای پاسخ‌های هوش مصنوعی و محتوای تولیدشده."
             ],
@@ -265,6 +310,12 @@
             "Batch summary": [
                 "Batch summary"
             ],
+            "Blog": [
+                "Blog"
+            ],
+            "Blog posts will appear here after articles are published.": [
+                "Blog posts will appear here after articles are published."
+            ],
             "Bottom Left": [
                 "پایین چپ"
             ],
@@ -274,8 +325,20 @@
             "Brand": [
                 "برند"
             ],
+            "Brand colors": [
+                "Brand colors"
+            ],
             "Brand info imported: %1$d created, %2$d updated.": [
                 "اطلاعات برند وارد شد: %1$d ایجاد شد، %2$d به‌روز شد."
+            ],
+            "Build Elementor store pages": [
+                "Build Elementor store pages"
+            ],
+            "Building Elementor page: %s": [
+                "Building Elementor page: %s"
+            ],
+            "Built Elementor page \"%1$s\": %2$s": [
+                "Built Elementor page \"%1$s\": %2$s"
             ],
             "Cancel": [
                 "لغو"
@@ -358,6 +421,15 @@
             "Contact": [
                 "تماس"
             ],
+            "Contact Us": [
+                "Contact Us"
+            ],
+            "Contact page created.": [
+                "Contact page created."
+            ],
+            "Container created (id: %s). Add widgets using this id as column_id.": [
+                "Container created (id: %s). Add widgets using this id as column_id."
+            ],
             "Content Strategy Brief": [
                 "Content Strategy Brief"
             ],
@@ -394,6 +466,12 @@
             "Could not decode JSON from AI response.": [
                 "Could not decode JSON from AI response."
             ],
+            "Could not find a column or container for widgets (id: %s). Use column_id from create_section or get_page_structure.": [
+                "Could not find a column or container for widgets (id: %s). Use column_id from create_section or get_page_structure."
+            ],
+            "Could not read reference image file.": [
+                "Could not read reference image file."
+            ],
             "Could not write temporary image file.": [
                 "Could not write temporary image file."
             ],
@@ -406,8 +484,17 @@
             "Courteous and respectful": [
                 "مودبانه و محترمانه"
             ],
+            "Create %d SEO blog posts": [
+                "Create %d SEO blog posts"
+            ],
+            "Create %d WooCommerce products": [
+                "Create %d WooCommerce products"
+            ],
             "Create Agent Task": [
                 "ایجاد وظیفه عامل"
+            ],
+            "Create Elementor pages with AI banners, sections, and widgets": [
+                "Create Elementor pages with AI banners, sections, and widgets"
             ],
             "Create FAQ schema markup for [topic]": [
                 "ایجاد نشانه‌گذاری طرحواره FAQ برای [topic]"
@@ -421,6 +508,12 @@
             "Create an AI hero image for a landing page": [
                 "Create an AI hero image for a landing page"
             ],
+            "Create new products (with images)": [
+                "Create new products (with images)"
+            ],
+            "Create or update WooCommerce products with SEO copy and AI images": [
+                "Create or update WooCommerce products with SEO copy and AI images"
+            ],
             "Created \"%s\" successfully.": [
                 "\"%s\" با موفقیت ایجاد شد."
             ],
@@ -432,6 +525,9 @@
             ],
             "Creating SEO article %d": [
                 "در حال ایجاد مقاله سئو %d"
+            ],
+            "Creating product %d with image": [
+                "Creating product %d with image"
             ],
             "Creating...": [
                 "در حال ایجاد..."
@@ -562,11 +658,17 @@
             "Elementor Assistant": [
                 "دستیار المنتور"
             ],
+            "Elementor Site Pages": [
+                "Elementor Site Pages"
+            ],
             "Elementor document not found.": [
                 "سند المنتور یافت نشد."
             ],
             "Elementor is not active.": [
                 "المنتور فعال نیست."
+            ],
+            "Elementor is not active. Cannot build pages.": [
+                "Elementor is not active. Cannot build pages."
             ],
             "Elementor page not found.": [
                 "صفحه المنتور یافت نشد."
@@ -610,6 +712,9 @@
             "Extracting...": [
                 "در حال استخراج..."
             ],
+            "FAILED": [
+                "FAILED"
+            ],
             "FAQ": [
                 "FAQ"
             ],
@@ -640,11 +745,26 @@
             "Failed to create API key.": [
                 "ایجاد کلید API ناموفق بود."
             ],
+            "Failed to create WordPress page.": [
+                "Failed to create WordPress page."
+            ],
+            "Failed to create about section.": [
+                "Failed to create about section."
+            ],
+            "Failed to create category section.": [
+                "Failed to create category section."
+            ],
+            "Failed to create contact section.": [
+                "Failed to create contact section."
+            ],
             "Failed to create conversation.": [
                 "ایجاد مکالمه ناموفق بود."
             ],
             "Failed to create memory entry.": [
                 "ایجاد ورودی حافظه ناموفق بود."
+            ],
+            "Failed to create page section.": [
+                "Failed to create page section."
             ],
             "Failed to create product.": [
                 "ایجاد محصول ناموفق بود."
@@ -667,6 +787,9 @@
             "Failed to download image: %s": [
                 "Failed to download image: %s"
             ],
+            "Failed to enable Elementor on the page.": [
+                "Failed to enable Elementor on the page."
+            ],
             "Failed to insert widget.": [
                 "Failed to insert widget."
             ],
@@ -675,6 +798,9 @@
             ],
             "Failed to parse generated article: %s": [
                 "Failed to parse generated article: %s"
+            ],
+            "Failed to queue agent task.": [
+                "Failed to queue agent task."
             ],
             "Failed to run workflow.": [
                 "اجرای گردش کار ناموفق بود."
@@ -723,9 +849,6 @@
             ],
             "Find all heading widgets on this page": [
                 "Find all heading widgets on this page"
-            ],
-            "For Elementor: call add_attached_image_to_page with attachment_id to insert an image widget. Use apply_media_to_element only for existing widgets.": [
-                "For Elementor: call add_attached_image_to_page with attachment_id to insert an image widget. Use apply_media_to_element only for existing widgets."
             ],
             "Found %d Elementor pages.": [
                 "%d صفحه المنتور یافت شد."
@@ -781,9 +904,6 @@
             "Generate Key": [
                 "تولید کلید"
             ],
-            "Generate SEO product descriptions for WooCommerce products": [
-                "تولید توضیحات سئو محصول برای محصولات ووکامرس"
-            ],
             "Generate Text": [
                 "تولید متن"
             ],
@@ -837,6 +957,15 @@
             ],
             "Hi! How can I help you today?": [
                 "سلام! چطور می‌توانم امروز کمکتان کنم؟"
+            ],
+            "Home": [
+                "Home"
+            ],
+            "Home page banner count": [
+                "Home page banner count"
+            ],
+            "Home page sections created.": [
+                "Home page sections created."
             ],
             "How can I help you manage your site?": [
                 "چطور می‌توانم در مدیریت سایتتان کمک کنم؟"
@@ -922,6 +1051,9 @@
             "Inserted into content of \"%s\".": [
                 "Inserted into content of \"%s\"."
             ],
+            "Install WooCommerce to show products here.": [
+                "Install WooCommerce to show products here."
+            ],
             "Instructions for the AI. Use {{output_key}} to reference prior step outputs.": [
                 "Instructions for the AI. Use {{output_key}} to reference prior step outputs."
             ],
@@ -967,8 +1099,17 @@
             "Last Run": [
                 "آخرین اجرا"
             ],
+            "Latest Articles": [
+                "Latest Articles"
+            ],
+            "Latest Products": [
+                "Latest Products"
+            ],
             "License Tier": [
                 "سطح مجوز"
+            ],
+            "Link": [
+                "Link"
             ],
             "List all categories and suggest new ones": [
                 "همه دسته‌بندی‌ها را فهرست کن و دسته‌های جدید پیشنهاد بده"
@@ -1048,6 +1189,12 @@
             "Memory entry updated.": [
                 "ورودی حافظه به‌روز شد."
             ],
+            "Men Bags": [
+                "Men Bags"
+            ],
+            "Men Shoes": [
+                "Men Shoes"
+            ],
             "Message cannot be empty.": [
                 "پیام نمی‌تواند خالی باشد."
             ],
@@ -1117,6 +1264,9 @@
             "No response from AI provider.": [
                 "هیچ پاسخی از ارائه‌دهنده هوش مصنوعی دریافت نشد."
             ],
+            "No results found.": [
+                "No results found."
+            ],
             "No steps yet. Add a step type above.": [
                 "No steps yet. Add a step type above."
             ],
@@ -1144,8 +1294,17 @@
             "Only failed tasks can be retried.": [
                 "فقط وظایف ناموفق قابل تکرار هستند."
             ],
+            "Only use add_attached_image_to_page when the user explicitly wants the uploaded file placed as-is without AI design.": [
+                "Only use add_attached_image_to_page when the user explicitly wants the uploaded file placed as-is without AI design."
+            ],
             "Open": [
                 "Open"
+            ],
+            "Open **Agent Tasks** to watch progress, pause, or cancel individual tasks. Elementor layout work still needs the Elementor assistant in the page editor.": [
+                "Open **Agent Tasks** to watch progress, pause, or cancel individual tasks. Elementor layout work still needs the Elementor assistant in the page editor."
+            ],
+            "Open Agent Tasks": [
+                "Open Agent Tasks"
             ],
             "Open link": [
                 "Open link"
@@ -1180,11 +1339,17 @@
             "Output key": [
                 "Output key"
             ],
+            "Page": [
+                "Page"
+            ],
             "Page ID was missing; image saved to media library only.": [
                 "Page ID was missing; image saved to media library only."
             ],
             "Page structure retrieved.": [
                 "ساختار صفحه دریافت شد."
+            ],
+            "Pages": [
+                "Pages"
             ],
             "Paste your API key here.": [
                 "کلید API خود را اینجا وارد کنید."
@@ -1206,6 +1371,9 @@
             ],
             "Permission denied.": [
                 "دسترسی رد شد."
+            ],
+            "Phone": [
+                "Phone"
             ],
             "Plan 3 unique SEO blog article titles about \"YOUR TOPIC HERE\". Return ONLY a JSON array of 3 strings. No markdown.": [
                 "Plan 3 unique SEO blog article titles about \"YOUR TOPIC HERE\". Return ONLY a JSON array of 3 strings. No markdown."
@@ -1255,14 +1423,23 @@
             "Post updated successfully.": [
                 "پست با موفقیت به‌روز شد."
             ],
+            "Posts": [
+                "Posts"
+            ],
             "Powered by AgenPress": [
                 "قدرت‌گرفته از AgenPress"
             ],
             "Preview": [
                 "پیش‌نمایش"
             ],
+            "Price:": [
+                "Price:"
+            ],
             "Pro": [
                 "حرفه‌ای"
+            ],
+            "Product": [
+                "Product"
             ],
             "Product Description": [
                 "Product Description"
@@ -1291,6 +1468,9 @@
             "Product updated.": [
                 "محصول به‌روز شد."
             ],
+            "Products": [
+                "Products"
+            ],
             "Professional": [
                 "حرفه‌ای"
             ],
@@ -1311,6 +1491,12 @@
             ],
             "Queue Task": [
                 "افزودن وظیفه به صف"
+            ],
+            "Queued agent task \"%s\". It will run step-by-step in Agent Tasks.": [
+                "Queued agent task \"%s\". It will run step-by-step in Agent Tasks."
+            ],
+            "Queued tasks:": [
+                "Queued tasks:"
             ],
             "Quick Actions": [
                 "اقدامات سریع"
@@ -1339,6 +1525,9 @@
             "Recommended Products": [
                 "Recommended Products"
             ],
+            "Reference image edit failed.": [
+                "Reference image edit failed."
+            ],
             "Reindex Embeddings": [
                 "ایندکس‌گذاری مجدد جاسازی‌ها"
             ],
@@ -1350,6 +1539,9 @@
             ],
             "Remove": [
                 "Remove"
+            ],
+            "Remove attachment": [
+                "Remove attachment"
             ],
             "Resolved": [
                 "حل‌شده"
@@ -1435,17 +1627,26 @@
             "Score": [
                 "امتیاز"
             ],
+            "Search failed.": [
+                "Search failed."
+            ],
+            "Search posts, pages, products...": [
+                "Search posts, pages, products..."
+            ],
             "Search query is required.": [
                 "عبارت جستجو الزامی است."
             ],
             "Search...": [
                 "جستجو..."
             ],
+            "Searching...": [
+                "Searching..."
+            ],
             "Section %d": [
                 "Section %d"
             ],
-            "Section created.": [
-                "بخش ایجاد شد."
+            "Section created (id: %1$s). Add widgets using column_id: %2$s.": [
+                "Section created (id: %1$s). Add widgets using column_id: %2$s."
             ],
             "Section headings:": [
                 "Section headings:"
@@ -1467,6 +1668,9 @@
             ],
             "Sections: %1$d | Section images: %2$d\/%3$d | FAQ: %4$d": [
                 "Sections: %1$d | Section images: %2$d\/%3$d | FAQ: %4$d"
+            ],
+            "See attached items.": [
+                "See attached items."
             ],
             "Select a conversation to view.": [
                 "یک مکالمه برای مشاهده انتخاب کنید."
@@ -1497,6 +1701,12 @@
             ],
             "Settings saved successfully.": [
                 "تنظیمات با موفقیت ذخیره شد."
+            ],
+            "Shop": [
+                "Shop"
+            ],
+            "Shop by Category": [
+                "Shop by Category"
             ],
             "Show active discount codes": [
                 "Show active discount codes"
@@ -1546,6 +1756,9 @@
             "Stop": [
                 "Stop"
             ],
+            "Store \/ brand name": [
+                "Store \/ brand name"
+            ],
             "Store brand info, design rules, SEO keywords...": [
                 "اطلاعات برند، قوانین طراحی، کلمات کلیدی سئو... را ذخیره کنید"
             ],
@@ -1584,9 +1797,6 @@
             ],
             "Talk to a human": [
                 "صحبت با یک انسان"
-            ],
-            "Target column or container not found.": [
-                "Target column or container not found."
             ],
             "Task \"%s\" completed successfully.": [
                 "وظیفه \"%s\" با موفقیت تکمیل شد."
@@ -1690,6 +1900,9 @@
             "Tool arguments (JSON)": [
                 "Tool arguments (JSON)"
             ],
+            "Tool execution failed: %s": [
+                "Tool execution failed: %s"
+            ],
             "Tool name": [
                 "Tool name"
             ],
@@ -1735,8 +1948,14 @@
             "Type a message...": [
                 "یک پیام بنویسید..."
             ],
+            "Type to search or browse recent items.": [
+                "Type to search or browse recent items."
+            ],
             "Unassigned": [
                 "تخصیص‌نیافته"
+            ],
+            "Untitled": [
+                "Untitled"
             ],
             "Update the selected widget heading text": [
                 "متن عنوان ابزارک انتخاب‌شده را به‌روز کن"
@@ -1765,6 +1984,9 @@
             "Use a warm, casual, conversational tone. Be approachable and relatable while staying helpful.": [
                 "از لحن گرم، خودمونی و گفتگومحور استفاده کن. صمیمی و قابل ارتباط باش در عین حفظ مفید بودن."
             ],
+            "Use get_post or get_product with this post_id when the user refers to this attached item.": [
+                "Use get_post or get_product with this post_id when the user refers to this attached item."
+            ],
             "Use this example": [
                 "Use this example"
             ],
@@ -1773,6 +1995,9 @@
             ],
             "User retrieved.": [
                 "کاربر دریافت شد."
+            ],
+            "Using the attached reference photo as visual inspiration (preserve the subject appearance and placement described below), create one complete banner image: %s": [
+                "Using the attached reference photo as visual inspiration (preserve the subject appearance and placement described below), create one complete banner image: %s"
             ],
             "Value": [
                 "مقدار"
@@ -1831,6 +2056,12 @@
             "Widget type is required.": [
                 "Widget type is required."
             ],
+            "Women Bags": [
+                "Women Bags"
+            ],
+            "Women Shoes": [
+                "Women Shoes"
+            ],
             "WooCommerce is not active.": [
                 "ووکامرس فعال نیست."
             ],
@@ -1867,6 +2098,9 @@
             "You do not have permission to perform this action.": [
                 "شما اجازه انجام این اقدام را ندارید."
             ],
+            "You do not have permission to queue agent tasks.": [
+                "You do not have permission to queue agent tasks."
+            ],
             "You must be logged in.": [
                 "شما باید وارد شوید."
             ],
@@ -1875,6 +2109,9 @@
             ],
             "Your request has been sent to our team. We will get back to you soon.": [
                 "درخواست شما به تیم ما ارسال شد. به زودی با شما در تماس خواهیم بود."
+            ],
+            "Your request was split into background agent tasks and queued for step-by-step execution.": [
+                "Your request was split into background agent tasks and queued for step-by-step execution."
             ],
             "days": [
                 "روز"

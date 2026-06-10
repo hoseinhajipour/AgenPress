@@ -56,6 +56,8 @@ class TaskRunner {
 			return;
 		}
 
+		$this->impersonate_task_user( (int) ( $task['user_id'] ?? 0 ) );
+
 		if ( in_array( $task['status'], array( TaskState::PAUSED, TaskState::CANCELLED, TaskState::COMPLETED, TaskState::FAILED ), true ) ) {
 			return;
 		}
@@ -209,8 +211,9 @@ class TaskRunner {
 			),
 			'template'       => $runtime['template'] ?? 'custom',
 			'steps_completed' => (int) ( $task['total_steps'] ?? 0 ),
-			'created_posts'  => $context['created_posts'] ?? array(),
-			'summary'        => $context['summary'] ?? '',
+			'created_posts'    => $context['created_posts'] ?? array(),
+			'created_products' => $context['created_products'] ?? array(),
+			'summary'          => $context['summary'] ?? '',
 		);
 
 		$queue->set_result( $task_id, wp_json_encode( $final ) );
@@ -231,5 +234,19 @@ class TaskRunner {
 		}
 
 		return (int) round( ( $current / $total ) * 100 );
+	}
+
+	/**
+	 * Run the task as the user who queued it (Action Scheduler has no login session).
+	 *
+	 * @param int $user_id Task owner user ID.
+	 * @return void
+	 */
+	private function impersonate_task_user( int $user_id ): void {
+		if ( $user_id <= 0 ) {
+			return;
+		}
+
+		wp_set_current_user( $user_id );
 	}
 }

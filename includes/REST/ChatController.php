@@ -386,6 +386,10 @@ class ChatController extends RestController {
 			$data['pending_actions'] = $response['pending_actions'];
 		}
 
+		if ( ! empty( $response['created_tasks'] ) ) {
+			$data['created_tasks'] = $response['created_tasks'];
+		}
+
 		return $this->success( $data );
 	}
 

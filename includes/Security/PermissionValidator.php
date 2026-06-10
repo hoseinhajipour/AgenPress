@@ -154,6 +154,35 @@ class PermissionValidator {
 	}
 
 	/**
+	 * Validate module access for a specific user (supports background agent tasks).
+	 *
+	 * @param string $module  Module slug.
+	 * @param int    $user_id User ID.
+	 * @return true|\WP_Error
+	 */
+	public function validate_module_access_for_user( string $module, int $user_id = 0 ) {
+		if ( 'sales' === $module && $this->sales_customer_mode ) {
+			return true;
+		}
+
+		if ( $user_id > 0 && ! is_user_logged_in() ) {
+			$cap = Capabilities::for_module( $module );
+
+			if ( ! user_can( $user_id, $cap ) ) {
+				return new \WP_Error(
+					'agenpress_forbidden',
+					__( 'You do not have permission to access this module.', 'agenpress' ),
+					array( 'status' => 403 )
+				);
+			}
+
+			return true;
+		}
+
+		return $this->validate_module_access( $module );
+	}
+
+	/**
 	 * Validate a tool action.
 	 *
 	 * @param string $tool_name Tool name.
@@ -174,7 +203,7 @@ class PermissionValidator {
 			return true;
 		}
 
-		$module_check = $this->validate_module_access( $module );
+		$module_check = $this->validate_module_access_for_user( $module, $user_id );
 
 		if ( is_wp_error( $module_check ) ) {
 			return $module_check;
@@ -200,10 +229,15 @@ class PermissionValidator {
 			'get_best_sellers'    => 'view_woocommerce_reports',
 			'get_sales_overview'  => 'view_woocommerce_reports',
 			'list_orders'         => 'edit_shop_orders',
-			'search_elements'     => 'edit_posts',
-			'create_widget'       => 'edit_posts',
-			'apply_media_to_element' => 'upload_files',
+			'search_elements'            => 'edit_posts',
+			'create_widget'              => 'edit_posts',
+			'create_section'             => 'edit_posts',
+			'generate_section_image'     => 'upload_files',
+			'get_page_structure'         => 'edit_posts',
+			'apply_media_to_element'     => 'upload_files',
 			'add_attached_image_to_page' => 'upload_files',
+			'create_agent_task'          => Capabilities::RUN_AGENTS,
+			'generate_image'             => 'upload_files',
 		);
 
 		if ( isset( $cap_map[ $tool_name ] ) && ! user_can( $user_id, $cap_map[ $tool_name ] ) ) {

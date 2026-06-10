@@ -41,10 +41,23 @@ class TaskTemplates {
 			array(
 				'id'          => 'product_descriptions',
 				'name'        => __( 'Product Descriptions', 'agenpress' ),
-				'description' => __( 'Generate SEO product descriptions for WooCommerce products', 'agenpress' ),
+				'description' => __( 'Create or update WooCommerce products with SEO copy and AI images', 'agenpress' ),
 				'fields'      => array(
 					array( 'key' => 'count', 'label' => __( 'Number of products', 'agenpress' ), 'type' => 'number', 'default' => 5 ),
 					array( 'key' => 'niche', 'label' => __( 'Product niche', 'agenpress' ), 'type' => 'text', 'default' => '' ),
+					array( 'key' => 'create_new', 'label' => __( 'Create new products (with images)', 'agenpress' ), 'type' => 'boolean', 'default' => true ),
+					array( 'key' => 'publish', 'label' => __( 'Publish when done', 'agenpress' ), 'type' => 'boolean', 'default' => false ),
+				),
+			),
+			array(
+				'id'          => 'site_pages',
+				'name'        => __( 'Elementor Site Pages', 'agenpress' ),
+				'description' => __( 'Create Elementor pages with AI banners, sections, and widgets', 'agenpress' ),
+				'fields'      => array(
+					array( 'key' => 'brand', 'label' => __( 'Store / brand name', 'agenpress' ), 'type' => 'text', 'default' => '' ),
+					array( 'key' => 'colors', 'label' => __( 'Brand colors', 'agenpress' ), 'type' => 'text', 'default' => '' ),
+					array( 'key' => 'banner_count', 'label' => __( 'Home page banner count', 'agenpress' ), 'type' => 'number', 'default' => 2 ),
+					array( 'key' => 'publish', 'label' => __( 'Publish when done', 'agenpress' ), 'type' => 'boolean', 'default' => false ),
 				),
 			),
 			array(
@@ -79,6 +92,10 @@ class TaskTemplates {
 			return 'product_descriptions';
 		}
 
+		if ( class_exists( '\Elementor\Plugin' ) && self::looks_like_site_pages_request( $text ) ) {
+			return 'site_pages';
+		}
+
 		return 'custom';
 	}
 
@@ -95,6 +112,7 @@ class TaskTemplates {
 		return match ( $template_id ) {
 			'seo_articles'         => self::seo_article_steps( $title, $description, $params ),
 			'product_descriptions' => self::product_description_steps( $description, $params ),
+			'site_pages'           => self::site_pages_steps( $title, $description, $params ),
 			default                => self::custom_steps( $title, $description ),
 		};
 	}
@@ -116,18 +134,102 @@ class TaskTemplates {
 	}
 
 	/**
-	 * Parse count from text.
+	 * Parse count from text (articles/posts).
 	 *
 	 * @param string $text Text.
 	 * @param int    $default Default count.
 	 * @return int
 	 */
-	public static function parse_count( string $text, int $default = 5 ): int {
-		if ( preg_match( '/(\d+)\s*(?:seo\s+)?(?:article|post|مقاله|blog)/iu', $text, $matches ) ) {
-			return min( 20, max( 1, (int) $matches[1] ) );
+	public static function parse_count( string $text, int $default = 1 ): int {
+		$parsed = self::parse_article_count( $text );
+
+		return null !== $parsed ? $parsed : min( 20, max( 1, (int) $default ) );
+	}
+
+	/**
+	 * Parse product count from text (supports Persian: یک عدد محصول).
+	 *
+	 * @param string $text Text.
+	 * @return int|null
+	 */
+	public static function parse_product_count( string $text ): ?int {
+		return self::parse_quantity_near_keyword( $text, array( 'محصول', 'محصولات', 'product', 'products' ) );
+	}
+
+	/**
+	 * Parse article/post count from text.
+	 *
+	 * @param string $text Text.
+	 * @return int|null
+	 */
+	public static function parse_article_count( string $text ): ?int {
+		return self::parse_quantity_near_keyword( $text, array( 'پست', 'پست‌ها', 'مقاله', 'مقالات', 'article', 'articles', 'post', 'posts', 'blog' ) );
+	}
+
+	/**
+	 * Parse a quantity near a keyword in Persian or English.
+	 *
+	 * @param string              $text     Text.
+	 * @param array<int, string>  $keywords Keywords.
+	 * @return int|null
+	 */
+	private static function parse_quantity_near_keyword( string $text, array $keywords ): ?int {
+		$keyword_pattern = implode( '|', array_map( 'preg_quote', $keywords ) );
+		$number_pattern  = self::number_token_pattern();
+
+		$patterns = array(
+			'/(' . $number_pattern . ')\s*(?:عدد\s*)?(?:' . $keyword_pattern . ')/iu',
+			'/(?:' . $keyword_pattern . ').{0,30}?(' . $number_pattern . ')\s*عدد/iu',
+			'/(\d+)\s*(?:' . $keyword_pattern . ')/iu',
+		);
+
+		foreach ( $patterns as $pattern ) {
+			if ( preg_match( $pattern, $text, $matches ) ) {
+				$token = trim( (string) ( $matches[1] ?? '' ) );
+
+				if ( '' !== $token ) {
+					return min( 20, max( 1, self::normalize_number_token( $token ) ) );
+				}
+			}
 		}
 
-		return min( 20, max( 1, (int) $default ) );
+		return null;
+	}
+
+	/**
+	 * Regex fragment for Persian/English number tokens.
+	 *
+	 * @return string
+	 */
+	private static function number_token_pattern(): string {
+		return '\d+|یک|دو|سه|چهار|پنج|شش|هفت|هشت|نه|ده';
+	}
+
+	/**
+	 * Convert a number token to integer.
+	 *
+	 * @param string $token Token.
+	 * @return int
+	 */
+	private static function normalize_number_token( string $token ): int {
+		$map = array(
+			'یک'   => 1,
+			'دو'   => 2,
+			'سه'   => 3,
+			'چهار' => 4,
+			'پنج'  => 5,
+			'شش'   => 6,
+			'هفت'  => 7,
+			'هشت'  => 8,
+			'نه'   => 9,
+			'ده'   => 10,
+		);
+
+		if ( isset( $map[ $token ] ) ) {
+			return $map[ $token ];
+		}
+
+		return (int) $token;
 	}
 
 	/**
@@ -226,11 +328,17 @@ class TaskTemplates {
 	 * @return array<int, array<string, mixed>>
 	 */
 	private static function product_description_steps( string $description, array $params ): array {
-		$count = (int) ( $params['count'] ?? self::parse_count( $description, 3 ) );
-		$niche = sanitize_text_field( (string) ( $params['niche'] ?? self::parse_topic( $description ) ) );
+		$count      = (int) ( $params['count'] ?? self::parse_count( $description, 3 ) );
+		$niche      = sanitize_text_field( (string) ( $params['niche'] ?? self::parse_topic( $description ) ) );
+		$create_new = array_key_exists( 'create_new', $params )
+			? ! empty( $params['create_new'] )
+			: self::should_create_products( $description );
+		$publish    = ! empty( $params['publish'] );
 
-		$steps = array(
-			array(
+		$steps = array();
+
+		if ( ! $create_new ) {
+			$steps[] = array(
 				'type'        => 'tool',
 				'name'        => 'list_products',
 				'label'       => __( 'Fetching existing products', 'agenpress' ),
@@ -240,23 +348,226 @@ class TaskTemplates {
 				'tool'        => 'list_products',
 				'args'        => array( 'limit' => $count, 'status' => 'any' ),
 				'output_key'  => 'products',
-			),
-		);
+			);
+		}
 
 		for ( $i = 1; $i <= $count; $i++ ) {
 			$steps[] = array(
 				'type'        => 'product_description',
 				'name'        => 'product_' . $i,
-				'label'       => sprintf( __( 'Writing product description %d', 'agenpress' ), $i ),
+				'label'       => $create_new
+					? sprintf( __( 'Creating product %d with image', 'agenpress' ), $i )
+					: sprintf( __( 'Writing product description %d', 'agenpress' ), $i ),
 				'status'      => 'pending',
 				'retries'     => 0,
 				'max_retries' => 2,
 				'index'       => $i - 1,
 				'niche'       => $niche,
+				'brief'       => $description,
+				'create_new'  => $create_new,
+				'publish'     => $publish,
 			);
 		}
 
 		return $steps;
+	}
+
+	/**
+	 * Whether the request asks to create new products (not update existing).
+	 *
+	 * @param string $text Text.
+	 * @return bool
+	 */
+	public static function should_create_products( string $text ): bool {
+		return (bool) preg_match(
+			'/(?:ایجاد|ساخت|create|add|new|نمونه|پیش‌فرض|sample).{0,40}(?:محصول|product)|(?:محصول|product).{0,40}(?:ایجاد|ساخت|create|new|نمونه|پیش‌فرض|sample)/iu',
+			$text
+		);
+	}
+
+	/**
+	 * Elementor site pages build steps.
+	 *
+	 * @param string               $title       Title.
+	 * @param string               $description Description.
+	 * @param array<string, mixed> $params      Params.
+	 * @return array<int, array<string, mixed>>
+	 */
+	private static function site_pages_steps( string $title, string $description, array $params ): array {
+		$text         = $title . "\n" . $description;
+		$brief        = (string) ( $params['brief'] ?? $description );
+		$brand        = sanitize_text_field( (string) ( $params['brand'] ?? self::parse_brand( $text ) ) );
+		$colors       = sanitize_text_field( (string) ( $params['colors'] ?? self::parse_colors( $text ) ) );
+		$banner_count = (int) ( $params['banner_count'] ?? self::parse_banner_count( $text ) );
+		$publish      = ! empty( $params['publish'] );
+		$pages        = is_array( $params['pages'] ?? null ) ? $params['pages'] : self::detect_site_pages( $text );
+
+		if ( empty( $pages ) ) {
+			$pages = self::default_site_pages();
+		}
+
+		$steps = array();
+
+		foreach ( $pages as $page ) {
+			if ( ! is_array( $page ) ) {
+				continue;
+			}
+
+			$page_type  = sanitize_key( (string) ( $page['type'] ?? 'page' ) );
+			$page_title = sanitize_text_field( (string) ( $page['title'] ?? ucfirst( $page_type ) ) );
+			$page_slug  = sanitize_title( (string) ( $page['slug'] ?? $page_type ) );
+
+			$steps[] = array(
+				'type'         => 'site_page',
+				'name'         => 'page_' . $page_slug,
+				'label'        => sprintf(
+					/* translators: %s: page title */
+					__( 'Building Elementor page: %s', 'agenpress' ),
+					$page_title
+				),
+				'status'       => 'pending',
+				'retries'      => 0,
+				'max_retries'  => 2,
+				'page_type'    => $page_type,
+				'page_title'   => $page_title,
+				'page_slug'    => $page_slug,
+				'brief'        => $brief,
+				'brand'        => $brand,
+				'colors'       => $colors,
+				'banner_count' => 'home' === $page_type ? max( 0, $banner_count ) : 0,
+				'publish'      => $publish,
+			);
+		}
+
+		return $steps;
+	}
+
+	/**
+	 * Whether text describes a multi-page site build.
+	 *
+	 * @param string $text Lowercased text.
+	 * @return bool
+	 */
+	public static function looks_like_site_pages_request( string $text ): bool {
+		if ( preg_match( '/\b(?:site_pages|elementor\s*pages?)\b/', $text ) ) {
+			return true;
+		}
+
+		$signals = 0;
+		$patterns = array(
+			'/\b(?:صفحه|pages?)\b/u',
+			'/\b(?:خانه|home|فروشگاه|shop|وبلاگ|blog|تماس|contact|درباره|about)\b/u',
+			'/\b(?:طراحی|design|layout|elementor|بنر|banner|اسلایدر|slider)\b/u',
+		);
+
+		foreach ( $patterns as $pattern ) {
+			if ( preg_match( $pattern, $text ) ) {
+				++$signals;
+			}
+		}
+
+		return $signals >= 2;
+	}
+
+	/**
+	 * Detect pages requested in text.
+	 *
+	 * @param string $text Text.
+	 * @return array<int, array{type: string, title: string, slug: string}>
+	 */
+	public static function detect_site_pages( string $text ): array {
+		$map = array(
+			array( 'pattern' => '/(?:صفحه\s*خانه|home\s*page|صفحه\s*اصلی)/iu', 'type' => 'home', 'title' => __( 'Home', 'agenpress' ), 'slug' => 'home' ),
+			array( 'pattern' => '/(?:صفحه\s*فروشگاه|shop\s*page|فروشگاه\s*آنلاین)/iu', 'type' => 'shop', 'title' => __( 'Shop', 'agenpress' ), 'slug' => 'shop' ),
+			array( 'pattern' => '/(?:صفحه\s*وبلاگ|blog\s*page)/iu', 'type' => 'blog', 'title' => __( 'Blog', 'agenpress' ), 'slug' => 'blog' ),
+			array( 'pattern' => '/(?:تماس\s*با\s*ما|contact\s*us|contact\s*page)/iu', 'type' => 'contact', 'title' => __( 'Contact Us', 'agenpress' ), 'slug' => 'contact' ),
+			array( 'pattern' => '/(?:درباره\s*(?:ما|ی)?|about\s*us|about\s*page)/iu', 'type' => 'about', 'title' => __( 'About Us', 'agenpress' ), 'slug' => 'about' ),
+		);
+
+		$pages = array();
+
+		foreach ( $map as $item ) {
+			if ( preg_match( $item['pattern'], $text ) ) {
+				$pages[] = array(
+					'type'  => $item['type'],
+					'title' => $item['title'],
+					'slug'  => $item['slug'],
+				);
+			}
+		}
+
+		return $pages;
+	}
+
+	/**
+	 * Default store pages.
+	 *
+	 * @return array<int, array{type: string, title: string, slug: string}>
+	 */
+	public static function default_site_pages(): array {
+		return array(
+			array( 'type' => 'home', 'title' => __( 'Home', 'agenpress' ), 'slug' => 'home' ),
+			array( 'type' => 'shop', 'title' => __( 'Shop', 'agenpress' ), 'slug' => 'shop' ),
+			array( 'type' => 'blog', 'title' => __( 'Blog', 'agenpress' ), 'slug' => 'blog' ),
+			array( 'type' => 'contact', 'title' => __( 'Contact Us', 'agenpress' ), 'slug' => 'contact' ),
+			array( 'type' => 'about', 'title' => __( 'About Us', 'agenpress' ), 'slug' => 'about' ),
+		);
+	}
+
+	/**
+	 * Parse brand name from text.
+	 *
+	 * @param string $text Text.
+	 * @return string
+	 */
+	public static function parse_brand( string $text ): string {
+		if ( preg_match( '/(?:نام\s*فروشگاه|store\s*name|brand)\s*[:：]\s*(.+?)(?:\n|$)/iu', $text, $matches ) ) {
+			return sanitize_text_field( trim( $matches[1] ) );
+		}
+
+		return '';
+	}
+
+	/**
+	 * Parse brand colors from text.
+	 *
+	 * @param string $text Text.
+	 * @return string
+	 */
+	public static function parse_colors( string $text ): string {
+		if ( preg_match( '/(?:رنگ\s*سازمانی|brand\s*colors?)\s*[:：]\s*(.+?)(?:\n|$)/iu', $text, $matches ) ) {
+			return sanitize_text_field( trim( $matches[1] ) );
+		}
+
+		return '';
+	}
+
+	/**
+	 * Parse home banner count from text.
+	 *
+	 * @param string $text Text.
+	 * @return int
+	 */
+	public static function parse_banner_count( string $text, int $default = 2 ): int {
+		$number_pattern = self::number_token_pattern();
+
+		if ( preg_match( '/اسلایدر\s*\(?\s*(' . $number_pattern . ')/iu', $text, $matches ) ) {
+			return min( 5, max( 0, self::normalize_number_token( trim( $matches[1] ) ) ) );
+		}
+
+		if ( preg_match( '/\((\s*(' . $number_pattern . ')\s*عدد\s*)\)/iu', $text, $matches ) ) {
+			return min( 5, max( 0, self::normalize_number_token( trim( $matches[2] ) ) ) );
+		}
+
+		if ( preg_match( '/(' . $number_pattern . ')\s*عدد\s*(?:banner|بنر|اسلایدر)/iu', $text, $matches ) ) {
+			return min( 5, max( 0, self::normalize_number_token( trim( $matches[1] ) ) ) );
+		}
+
+		if ( preg_match( '/(\d+)\s*(?:عدد|banner|بنر)/iu', $text, $matches ) ) {
+			return min( 5, max( 0, (int) $matches[1] ) );
+		}
+
+		return $default;
 	}
 
 	/**

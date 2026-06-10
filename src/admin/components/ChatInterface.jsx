@@ -3,7 +3,16 @@ import { __ } from '@wordpress/i18n';
 import { sendMessage, confirmAction, orchestrateChat, deleteConversation, deleteMessage } from '../api';
 import FileUpload from './FileUpload';
 import ConfirmationModal from './ConfirmationModal';
+import LinkPickerModal from './LinkPickerModal';
 import MessageContent from './MessageContent';
+
+const attachmentLabel = ( attachment ) => {
+	if ( attachment.kind === 'link' || String( attachment.type || '' ).startsWith( 'link/' ) ) {
+		return `@ ${ attachment.title || attachment.name || __( 'Link', 'agenpress' ) }`;
+	}
+
+	return attachment.name || __( 'File', 'agenpress' );
+};
 
 const DEFAULT_SUGGESTIONS = {
 	admin: [
@@ -23,7 +32,7 @@ const DEFAULT_SUGGESTIONS = {
 	],
 };
 
-export default function ChatInterface( { module = 'admin', orchestrate = false } ) {
+export default function ChatInterface( { module = 'admin', orchestrate = false, onNavigateToTasks = null } ) {
 	const [ messages, setMessages ] = useState( [] );
 	const [ input, setInput ] = useState( '' );
 	const [ loading, setLoading ] = useState( false );
@@ -32,6 +41,8 @@ export default function ChatInterface( { module = 'admin', orchestrate = false }
 	const [ error, setError ] = useState( null );
 	const [ pendingAction, setPendingAction ] = useState( null );
 	const [ confirming, setConfirming ] = useState( false );
+	const [ createdTasks, setCreatedTasks ] = useState( [] );
+	const [ linkPickerOpen, setLinkPickerOpen ] = useState( false );
 	const messagesEndRef = useRef( null );
 
 	const suggestions = useMemo( () => {
@@ -87,15 +98,24 @@ export default function ChatInterface( { module = 'admin', orchestrate = false }
 		if ( response.pending_actions?.length > 0 ) {
 			setPendingAction( response.pending_actions[ 0 ] );
 		}
+
+		if ( response.created_tasks?.length > 0 ) {
+			setCreatedTasks( response.created_tasks );
+		}
 	};
 
 	const handleSend = async ( text = input ) => {
-		if ( ! text.trim() || loading ) return;
+		const trimmed = text.trim();
+		const hasAttachments = attachments.length > 0;
+
+		if ( ( ! trimmed && ! hasAttachments ) || loading ) {
+			return;
+		}
 
 		const userMessage = {
 			id: `local-${ Date.now() }`,
 			role: 'user',
-			content: text.trim(),
+			content: trimmed || __( 'See attached items.', 'agenpress' ),
 			attachments: [ ...attachments ],
 		};
 
@@ -104,11 +124,12 @@ export default function ChatInterface( { module = 'admin', orchestrate = false }
 		setLoading( true );
 		setError( null );
 		setPendingAction( null );
+		setCreatedTasks( [] );
 
 		try {
 			const response = orchestrate && module === 'admin'
-				? await orchestrateChat( text.trim(), conversationId )
-				: await sendMessage( module, text.trim(), conversationId, attachments );
+				? await orchestrateChat( trimmed || userMessage.content, conversationId )
+				: await sendMessage( module, trimmed || userMessage.content, conversationId, attachments );
 			handleResponse( response );
 			setAttachments( [] );
 		} catch ( err ) {
@@ -149,6 +170,24 @@ export default function ChatInterface( { module = 'admin', orchestrate = false }
 	const handleFileUploaded = ( file ) => {
 		setAttachments( ( prev ) => [ ...prev, file ] );
 	};
+
+	const handleLinkSelected = ( link ) => {
+		setAttachments( ( prev ) => {
+			if ( prev.some( ( item ) => item.kind === 'link' && item.post_id === link.post_id ) ) {
+				return prev;
+			}
+
+			return [ ...prev, link ];
+		} );
+	};
+
+	const handleRemoveAttachment = ( index ) => {
+		setAttachments( ( prev ) => prev.filter( ( _, i ) => i !== index ) );
+	};
+
+	const attachedLinkIds = attachments
+		.filter( ( item ) => item.kind === 'link' )
+		.map( ( item ) => item.post_id );
 
 	const handleDeleteMessage = async ( index ) => {
 		const msg = messages[ index ];
@@ -200,8 +239,41 @@ export default function ChatInterface( { module = 'admin', orchestrate = false }
 				loading={ confirming }
 			/>
 
+			{ module === 'admin' && (
+				<LinkPickerModal
+					open={ linkPickerOpen }
+					onClose={ () => setLinkPickerOpen( false ) }
+					onSelect={ handleLinkSelected }
+					existingIds={ attachedLinkIds }
+				/>
+			) }
+
 			{ error && (
 				<div className="ap-alert ap-alert-error">{ error }</div>
+			) }
+
+			{ createdTasks.length > 0 && (
+				<div className="ap-alert" style={ { background: '#ecfdf5', border: '1px solid #86efac', color: '#166534', margin: '12px 16px 0' } }>
+					<strong>{ __( 'Agent tasks queued', 'agenpress' ) }</strong>
+					<ul style={ { margin: '8px 0 0', paddingLeft: '18px' } }>
+						{ createdTasks.map( ( task ) => (
+							<li key={ task.id }>
+								{ task.title }
+								{ task.template ? ` (${ task.template })` : '' }
+							</li>
+						) ) }
+					</ul>
+					{ onNavigateToTasks && (
+						<button
+							type="button"
+							className="ap-btn ap-btn-secondary"
+							style={ { marginTop: '10px' } }
+							onClick={ onNavigateToTasks }
+						>
+							{ __( 'Open Agent Tasks', 'agenpress' ) }
+						</button>
+					) }
+				</div>
 			) }
 
 			{ messages.length > 0 && (
@@ -246,8 +318,12 @@ export default function ChatInterface( { module = 'admin', orchestrate = false }
 							<div className="ap-message-bubble">
 								<MessageContent content={ msg.content } role={ msg.role } />
 								{ msg.attachments?.length > 0 && (
-									<div style={ { marginTop: '8px', fontSize: '11px', opacity: 0.7 } }>
-										📎 { msg.attachments.map( ( a ) => a.name ).join( ', ' ) }
+									<div className="ap-message-attachments">
+										{ msg.attachments.map( ( a, attachmentIndex ) => (
+											<span key={ `${ a.post_id || a.id || attachmentIndex }` } className="ap-attachment-chip is-readonly">
+												{ attachmentLabel( a ) }
+											</span>
+										) ) }
 									</div>
 								) }
 							</div>
@@ -279,12 +355,35 @@ export default function ChatInterface( { module = 'admin', orchestrate = false }
 
 			<div className="ap-chat-input-area">
 				{ attachments.length > 0 && (
-					<div style={ { marginBottom: '8px', fontSize: '12px', color: '#64748b' } }>
-						📎 { attachments.map( ( a ) => a.name ).join( ', ' ) }
+					<div className="ap-attachment-list">
+						{ attachments.map( ( a, attachmentIndex ) => (
+							<span key={ `${ a.post_id || a.id || attachmentIndex }` } className="ap-attachment-chip">
+								{ attachmentLabel( a ) }
+								<button
+									type="button"
+									className="ap-attachment-chip-remove"
+									onClick={ () => handleRemoveAttachment( attachmentIndex ) }
+									aria-label={ __( 'Remove attachment', 'agenpress' ) }
+								>
+									×
+								</button>
+							</span>
+						) ) }
 					</div>
 				) }
 				<div className="ap-chat-input-row">
 					<FileUpload onUploaded={ handleFileUploaded } />
+					{ module === 'admin' && (
+						<button
+							type="button"
+							className="ap-btn ap-btn-secondary ap-link-attach-btn"
+							onClick={ () => setLinkPickerOpen( true ) }
+							disabled={ loading }
+							title={ __( 'Attach internal link', 'agenpress' ) }
+						>
+							@
+						</button>
+					) }
 					<textarea
 						className="ap-chat-input"
 						value={ input }
@@ -297,7 +396,7 @@ export default function ChatInterface( { module = 'admin', orchestrate = false }
 					<button
 						className="ap-btn ap-btn-primary"
 						onClick={ () => handleSend() }
-						disabled={ loading || ! input.trim() }
+						disabled={ loading || ( ! input.trim() && attachments.length === 0 ) }
 					>
 						{ __( 'Send', 'agenpress' ) }
 					</button>

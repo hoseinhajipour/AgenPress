@@ -90,6 +90,13 @@ class AgentEngine {
 	private PermissionValidator $permission_validator;
 
 	/**
+	 * Chat task auto-planner.
+	 *
+	 * @var ChatTaskAutoPlanner
+	 */
+	private ChatTaskAutoPlanner $chat_task_planner;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param ProviderFactory      $provider_factory      Provider factory.
@@ -100,6 +107,7 @@ class AgentEngine {
 	 * @param AuditLogger          $audit_logger          Audit logger.
 	 * @param PendingActionStore   $pending_actions       Pending actions.
 	 * @param PermissionValidator  $permission_validator  Permission validator.
+	 * @param ChatTaskAutoPlanner  $chat_task_planner     Chat task auto-planner.
 	 */
 	public function __construct(
 		ProviderFactory $provider_factory,
@@ -109,7 +117,8 @@ class AgentEngine {
 		MessageRepository $message_repository,
 		AuditLogger $audit_logger,
 		PendingActionStore $pending_actions,
-		PermissionValidator $permission_validator
+		PermissionValidator $permission_validator,
+		ChatTaskAutoPlanner $chat_task_planner
 	) {
 		$this->provider_factory     = $provider_factory;
 		$this->tool_registry        = $tool_registry;
@@ -119,6 +128,7 @@ class AgentEngine {
 		$this->audit_logger         = $audit_logger;
 		$this->pending_actions      = $pending_actions;
 		$this->permission_validator = $permission_validator;
+		$this->chat_task_planner    = $chat_task_planner;
 	}
 
 	/**
@@ -148,6 +158,21 @@ class AgentEngine {
 			$user_message,
 			$attachments
 		);
+
+		if ( 'admin' === $module ) {
+			$queued = $this->chat_task_planner->try_queue( $user_message, $user_id );
+
+			if ( null !== $queued && ! empty( $queued['tasks'] ) ) {
+				return $this->queued_tasks_response(
+					$conversation_id,
+					$user_message_record,
+					$queued['tasks'],
+					(string) ( $queued['summary'] ?? '' ),
+					$user_id,
+					$module
+				);
+			}
+		}
 
 		$messages = $this->message_repository->get_ai_messages( $conversation_id );
 		$messages = $this->prepend_system_prompt( $messages, $system_prompt, $module, $user_message, $context );
@@ -573,6 +598,66 @@ class AgentEngine {
 		}
 
 		return $content;
+	}
+
+	/**
+	 * Build a chat response after auto-queuing agent tasks.
+	 *
+	 * @param int                            $conversation_id     Conversation ID.
+	 * @param array<string, mixed>|null      $user_message_record User message record.
+	 * @param array<int, array<string, mixed>> $tasks             Created tasks.
+	 * @param string                         $summary             Assistant summary.
+	 * @param int                            $user_id             User ID.
+	 * @param string                         $module              Module slug.
+	 * @return array{user_message: array<string, mixed>, message: array<string, mixed>, tokens_used: int, model: string, created_tasks: array<int, array<string, mixed>>}
+	 */
+	private function queued_tasks_response(
+		int $conversation_id,
+		?array $user_message_record,
+		array $tasks,
+		string $summary,
+		int $user_id,
+		string $module
+	): array {
+		$content = $this->finalize_assistant_content( $summary, $module );
+
+		$assistant_message = $this->message_repository->create(
+			$conversation_id,
+			'assistant',
+			$content
+		);
+
+		$this->audit_logger->log(
+			$user_id,
+			'chat_tasks_queued',
+			$module,
+			array(
+				'conversation_id' => $conversation_id,
+				'task_ids'        => array_map(
+					static fn( array $task ): int => (int) ( $task['id'] ?? 0 ),
+					$tasks
+				),
+			)
+		);
+
+		return array(
+			'user_message'  => $user_message_record ?? array(),
+			'message'       => $assistant_message ?? array(),
+			'tokens_used'   => 0,
+			'model'         => '',
+			'created_tasks' => array_map(
+				static function ( array $task ): array {
+					return array(
+						'id'          => (int) ( $task['id'] ?? 0 ),
+						'title'       => (string) ( $task['title'] ?? '' ),
+						'template'    => (string) ( $task['template'] ?? 'custom' ),
+						'status'      => (string) ( $task['status'] ?? 'pending' ),
+						'total_steps' => (int) ( $task['total_steps'] ?? 0 ),
+					);
+				},
+				$tasks
+			),
+		);
 	}
 
 	/**

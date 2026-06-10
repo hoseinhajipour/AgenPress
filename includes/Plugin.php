@@ -14,6 +14,7 @@ use AgenPress\Modules\Admin\AdminModule;
 use AgenPress\Modules\Elementor\ElementorModule;
 use AgenPress\Modules\Sales\SalesModule;
 use AgenPress\REST\ChatController;
+use AgenPress\REST\ChatLinksController;
 use AgenPress\REST\MemoryController;
 use AgenPress\REST\SettingsController;
 use AgenPress\REST\TaskController;
@@ -239,6 +240,28 @@ class Plugin {
 		);
 
 		$this->container->register(
+			'chat_task_planner',
+			static function ( Container $c ): Agents\ChatTaskAutoPlanner {
+				return new Agents\ChatTaskAutoPlanner(
+					$c->get( 'provider_factory' ),
+					$c->get( 'task_planner' ),
+					$c->get( 'task_queue' )
+				);
+			}
+		);
+
+		$this->container->register(
+			'site_page_builder',
+			static function ( Container $c ): Agents\SitePageBuilder {
+				return new Agents\SitePageBuilder(
+					$c->get( 'tool_registry' ),
+					$c->get( 'elementor_documents' ),
+					$c->get( 'provider_factory' )
+				);
+			}
+		);
+
+		$this->container->register(
 			'task_step_executor',
 			static function ( Container $c ): Agents\TaskStepExecutor {
 				return new Agents\TaskStepExecutor(
@@ -267,7 +290,8 @@ class Plugin {
 					$c->get( 'message_repository' ),
 					$c->get( 'audit_logger' ),
 					$c->get( 'pending_actions' ),
-					$c->get( 'permission_validator' )
+					$c->get( 'permission_validator' ),
+					$c->get( 'chat_task_planner' )
 				);
 			}
 		);
@@ -418,6 +442,12 @@ class Plugin {
 		$this->loader->add_action(
 			'rest_api_init',
 			new ChatController( $this->container ),
+			'register_routes'
+		);
+
+		$this->loader->add_action(
+			'rest_api_init',
+			new ChatLinksController( $this->container ),
 			'register_routes'
 		);
 

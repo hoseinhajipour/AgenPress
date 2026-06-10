@@ -15,9 +15,14 @@ defined( 'ABSPATH' ) || exit;
 class GapGPTProvider extends OpenAICompatibleProvider {
 
 	/**
-	 * GapGPT API base URL.
+	 * GapGPT API base URL (primary).
 	 */
-	private const BASE_URL = 'https://api.gapgpt.app/v1';
+	private const BASE_URL = 'https://gapgpt.app/api/v1';
+
+	/**
+	 * Alternate GapGPT API base URL.
+	 */
+	private const FALLBACK_BASE_URL = 'https://api.gapgpt.app/v1';
 
 	/**
 	 * {@inheritdoc}
@@ -38,6 +43,13 @@ class GapGPTProvider extends OpenAICompatibleProvider {
 	 */
 	protected function get_base_url(): string {
 		return self::BASE_URL;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function get_fallback_base_urls(): array {
+		return array( self::FALLBACK_BASE_URL );
 	}
 
 	/**

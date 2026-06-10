@@ -9,6 +9,7 @@ namespace AgenPress\Modules\Admin;
 
 use AgenPress\Agents\ToolRegistry;
 use AgenPress\AI\ProviderFactory;
+use AgenPress\Modules\Admin\Tools\CreateAgentTaskTool;
 use AgenPress\Modules\Admin\Tools\CreatePostTool;
 use AgenPress\Modules\Admin\Tools\CreateProductTool;
 use AgenPress\Modules\Admin\Tools\CreateTermTool;
@@ -92,6 +93,7 @@ class AdminModule implements ModuleInterface {
 			new UpdateMediaTool(),
 			new GenerateImageTool( $this->provider_factory ),
 			new GetSiteInfoTool(),
+			new CreateAgentTaskTool(),
 		);
 
 		if ( class_exists( 'WooCommerce' ) ) {
@@ -124,6 +126,10 @@ class AdminModule implements ModuleInterface {
 				'When showing generated images in replies, use markdown image syntax so the user can preview them.',
 				'For links, always use markdown format [short descriptive title](url). Never paste raw URLs alone. Keep link titles concise (post title, product name, or action like "Edit post").',
 				'When the user attaches files, use attachment_id and url from the message. Apply images via generate_image or reference them in content updates.',
+				'When the user attaches internal links (@), each item includes post_id and post_type. Use get_post or get_product with that post_id to load real data before answering or editing.',
+				'For multi-step project requests (multiple pages, products, articles, or site builds), prefer queueing background work with create_agent_task instead of doing everything inline in one chat reply.',
+				'Use create_agent_task with template seo_articles for blog batches, product_descriptions for WooCommerce product batches, or custom for other planned work. Include full instructions in the task description.',
+				'Large site-design prompts are auto-queued as agent tasks when possible; tell the user to check Agent Tasks for progress.',
 				ContentPrompts::admin_instructions(),
 			)
 		);

@@ -38,6 +38,48 @@ class ElementorDocumentService {
 	}
 
 	/**
+	 * Enable Elementor builder mode on a page and ensure an empty document exists.
+	 *
+	 * @param int $post_id Post ID.
+	 * @return bool
+	 */
+	public function ensure_builder_page( int $post_id ): bool {
+		if ( ! $this->is_available() || $post_id <= 0 ) {
+			return false;
+		}
+
+		$post = get_post( $post_id );
+
+		if ( ! $post || 'page' !== $post->post_type ) {
+			return false;
+		}
+
+		$plugin   = \Elementor\Plugin::$instance;
+		$document = $plugin->documents->get( $post_id, false );
+
+		if ( ! $document && method_exists( $plugin->documents, 'create' ) ) {
+			$document = $plugin->documents->create( $post_id );
+		}
+
+		if ( ! $document ) {
+			return false;
+		}
+
+		update_post_meta( $post_id, '_elementor_edit_mode', 'builder' );
+		update_post_meta( $post_id, '_elementor_template_type', 'wp-page' );
+
+		if ( ! $document->is_built_with_elementor() ) {
+			$document->save(
+				array(
+					'elements' => array(),
+				)
+			);
+		}
+
+		return true;
+	}
+
+	/**
 	 * Get Elementor document instance.
 	 *
 	 * @param int $post_id Post ID.

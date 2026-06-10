@@ -2,7 +2,7 @@ import { useState, useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import ChatInterface from '../components/ChatInterface';
 
-export default function Chat() {
+export default function Chat( { onNavigate } ) {
 	const modules = useMemo( () => {
 		return window.agenpressData?.modules || [
 			{ id: 'admin', name: 'Admin AI', suggestions: [] },
@@ -33,7 +33,12 @@ export default function Chat() {
 				) }
 			</div>
 			<div className="ap-card" style={ { padding: 0, overflow: 'hidden' } }>
-				<ChatInterface key={ `${ activeModule }-${ orchestrate }` } module={ activeModule } orchestrate={ orchestrate } />
+				<ChatInterface
+					key={ `${ activeModule }-${ orchestrate }` }
+					module={ activeModule }
+					orchestrate={ orchestrate }
+					onNavigateToTasks={ onNavigate ? () => onNavigate( 'tasks' ) : null }
+				/>
 			</div>
 		</div>
 	);

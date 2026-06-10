@@ -259,6 +259,15 @@ abstract class OpenAICompatibleProvider implements ProviderInterface {
 	}
 
 	/**
+	 * Alternate API base URLs when the primary host cannot be resolved.
+	 *
+	 * @return array<int, string>
+	 */
+	protected function get_fallback_base_urls(): array {
+		return array();
+	}
+
+	/**
 	 * Make an API request.
 	 *
 	 * @param string               $endpoint API endpoint path.
@@ -266,9 +275,8 @@ abstract class OpenAICompatibleProvider implements ProviderInterface {
 	 * @return array<string, mixed>
 	 */
 	private function request( string $endpoint, array $body ): array {
-		$base_url = trailingslashit( $this->get_base_url() );
-		$response = wp_remote_post(
-			$base_url . $endpoint,
+		$response = $this->remote_post(
+			$endpoint,
 			array(
 				'timeout' => 120,
 				'headers' => array(
@@ -278,10 +286,6 @@ abstract class OpenAICompatibleProvider implements ProviderInterface {
 				'body'    => wp_json_encode( $body ),
 			)
 		);
-
-		if ( is_wp_error( $response ) ) {
-			throw new \RuntimeException( $response->get_error_message() );
-		}
 
 		$code = wp_remote_retrieve_response_code( $response );
 		$data = json_decode( wp_remote_retrieve_body( $response ), true );
@@ -424,9 +428,8 @@ abstract class OpenAICompatibleProvider implements ProviderInterface {
 
 		$body .= '--' . $boundary . "--\r\n";
 
-		$base_url = trailingslashit( $this->get_base_url() );
-		$response = wp_remote_post(
-			$base_url . $endpoint,
+		$response = $this->remote_post(
+			$endpoint,
 			array(
 				'timeout' => 180,
 				'headers' => array(
@@ -437,10 +440,6 @@ abstract class OpenAICompatibleProvider implements ProviderInterface {
 			)
 		);
 
-		if ( is_wp_error( $response ) ) {
-			throw new \RuntimeException( $response->get_error_message() );
-		}
-
 		$code = wp_remote_retrieve_response_code( $response );
 		$data = json_decode( wp_remote_retrieve_body( $response ), true );
 
@@ -449,6 +448,92 @@ abstract class OpenAICompatibleProvider implements ProviderInterface {
 		}
 
 		return is_array( $data ) ? $data : array();
+	}
+
+	/**
+	 * POST to the provider, trying fallback base URLs on DNS failures.
+	 *
+	 * @param string               $endpoint API path.
+	 * @param array<string, mixed> $args     wp_remote_post args.
+	 * @return array<string, mixed>
+	 */
+	private function remote_post( string $endpoint, array $args ): array {
+		$last_error = null;
+
+		foreach ( $this->get_request_base_urls() as $base_url ) {
+			$response = wp_remote_post( $base_url . $endpoint, $args );
+
+			if ( ! is_wp_error( $response ) ) {
+				return $response;
+			}
+
+			$last_error = $response;
+
+			if ( ! $this->is_host_resolution_error( $response ) ) {
+				break;
+			}
+		}
+
+		if ( $last_error instanceof \WP_Error ) {
+			throw new \RuntimeException( $this->format_transport_error( $last_error ) );
+		}
+
+		throw new \RuntimeException( __( 'AI API request failed.', 'agenpress' ) );
+	}
+
+	/**
+	 * Primary and fallback API base URLs.
+	 *
+	 * @return array<int, string>
+	 */
+	private function get_request_base_urls(): array {
+		$urls = array( trailingslashit( $this->get_base_url() ) );
+
+		foreach ( $this->get_fallback_base_urls() as $fallback ) {
+			$normalized = trailingslashit( $fallback );
+
+			if ( ! in_array( $normalized, $urls, true ) ) {
+				$urls[] = $normalized;
+			}
+		}
+
+		return $urls;
+	}
+
+	/**
+	 * Whether a transport error is likely DNS / host resolution.
+	 *
+	 * @param \WP_Error $error Transport error.
+	 * @return bool
+	 */
+	private function is_host_resolution_error( \WP_Error $error ): bool {
+		if ( 'http_request_failed' !== $error->get_error_code() ) {
+			return false;
+		}
+
+		$message = strtolower( $error->get_error_message() );
+
+		return str_contains( $message, 'could not resolve host' )
+			|| str_contains( $message, 'name or service not known' )
+			|| str_contains( $message, 'getaddrinfo' );
+	}
+
+	/**
+	 * Format transport-layer API errors for the UI.
+	 *
+	 * @param \WP_Error $error Transport error.
+	 * @return string
+	 */
+	private function format_transport_error( \WP_Error $error ): string {
+		if ( $this->is_host_resolution_error( $error ) ) {
+			return sprintf(
+				/* translators: %s: underlying cURL/DNS error message */
+				__( 'Cannot reach the AI API server (%s). Check your internet connection and DNS settings, or use the alternate GapGPT endpoint in AgenPress settings.', 'agenpress' ),
+				$error->get_error_message()
+			);
+		}
+
+		return $error->get_error_message();
 	}
 
 	/**

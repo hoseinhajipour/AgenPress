@@ -119,15 +119,19 @@ class OrchestratorController extends RestController {
 
 		$repo->touch( $conversation_id );
 
-		return $this->success(
-			array(
-				'conversation_id' => $conversation_id,
-				'user_message'    => $response['user_message'] ?? array(),
-				'message'         => $response['message'],
-				'specialist'      => $response['specialist'],
-				'module'          => $response['module'],
-				'tokens_used'     => $response['tokens_used'],
-			)
+		$data = array(
+			'conversation_id' => $conversation_id,
+			'user_message'    => $response['user_message'] ?? array(),
+			'message'         => $response['message'],
+			'specialist'      => $response['specialist'],
+			'module'          => $response['module'],
+			'tokens_used'     => $response['tokens_used'],
 		);
+
+		if ( ! empty( $response['created_tasks'] ) ) {
+			$data['created_tasks'] = $response['created_tasks'];
+		}
+
+		return $this->success( $data );
 	}
 }

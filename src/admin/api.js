@@ -50,6 +50,16 @@ export async function deleteMessage( conversationId, messageId ) {
 	} );
 }
 
+export async function searchInternalLinks( search = '', type = 'all', limit = 15 ) {
+	const params = new URLSearchParams( {
+		search,
+		type,
+		limit: String( limit ),
+	} );
+	const res = await apiFetch( { path: `${ BASE }/chat/links/search?${ params.toString() }` } );
+	return res.data || [];
+}
+
 export async function sendMessage( module, message, conversationId = 0, attachments = [], context = {} ) {
 	const res = await apiFetch( {
 		path: `${ BASE }/chat/${ module }`,

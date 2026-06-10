@@ -34,7 +34,7 @@ const PROVIDERS = [
 		id: 'gapgpt',
 		label: 'GapGPT',
 		description: __( 'Multi-model gateway (OpenAI-compatible)', 'agenpress' ),
-		endpoint: 'https://api.gapgpt.app/v1',
+		endpoint: 'https://gapgpt.app/api/v1',
 		keyField: 'gapgpt_api_key',
 		hasKeyField: 'has_gapgpt_key',
 		placeholder: 'gapgpt-...',

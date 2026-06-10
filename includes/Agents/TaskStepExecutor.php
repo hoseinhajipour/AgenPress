@@ -73,6 +73,7 @@ class TaskStepExecutor {
 			'ai_plan'             => $this->execute_ai_plan( $step, $context, $module ),
 			'seo_article'         => $this->execute_seo_article( $step, $user_id, $module, $context ),
 			'product_description' => $this->execute_product_description( $step, $user_id, $module, $context ),
+			'site_page'           => $this->execute_site_page( $step, $user_id ),
 			default               => array(
 				'success'         => false,
 				'message'         => sprintf( 'Unknown step type: %s', $type ),
@@ -92,9 +93,10 @@ class TaskStepExecutor {
 	 * @return array{success: bool, message: string, data: mixed, context_updates: array<string, mixed>}
 	 */
 	private function execute_tool( array $step, int $user_id, string $module, array $context ): array {
-		$tool_name = $step['tool'] ?? '';
-		$args      = $this->resolve_args( $step['args'] ?? array(), $context );
-		$result    = $this->tool_registry->execute( $tool_name, $args, $user_id, $module );
+		$tool_name   = $step['tool'] ?? '';
+		$args        = $this->resolve_args( $step['args'] ?? array(), $context );
+		$tool_module = sanitize_key( (string) ( $step['tool_module'] ?? $module ) );
+		$result      = $this->tool_registry->execute( $tool_name, $args, $user_id, $tool_module ?: $module );
 
 		$updates = array();
 		if ( ! empty( $step['output_key'] ) && $result['success'] ) {
@@ -1070,38 +1072,110 @@ class TaskStepExecutor {
 			);
 		}
 
-		$products = $context['products'] ?? array();
-		$index    = (int) ( $step['index'] ?? 0 );
-		$product  = is_array( $products ) ? ( $products[ $index ] ?? null ) : null;
+		$create_new = ! empty( $step['create_new'] );
+		$products   = $context['products'] ?? array();
+		$index      = (int) ( $step['index'] ?? 0 );
+		$niche      = (string) ( $step['niche'] ?? '' );
+		$brief      = (string) ( $step['brief'] ?? '' );
+		$publish    = ! empty( $step['publish'] );
+		$status     = $publish ? 'publish' : 'draft';
+		$product    = ( ! $create_new && is_array( $products ) ) ? ( $products[ $index ] ?? null ) : null;
 
-		if ( ! $product || empty( $product['id'] ) ) {
+		if ( $create_new || ! $product || empty( $product['id'] ) ) {
+			$spec_prompt = sprintf(
+				'Create WooCommerce product #%d for niche "%s". Brief: %s. Return ONLY JSON with keys: name, short_description, description (HTML), regular_price (numeric string), sku, image_prompt (detailed AI photo prompt), image_alt. Use the same language as the brief.',
+				$index + 1,
+				$niche,
+				mb_substr( $brief, 0, 600 )
+			);
+
+			$ai_result = $this->execute_ai( array( 'prompt' => $spec_prompt ), $context, $module );
+
+			if ( ! $ai_result['success'] ) {
+				return $ai_result;
+			}
+
+			$spec = $this->try_parse_json( $ai_result['data'] );
+
+			if ( ! is_array( $spec ) ) {
+				$spec = array(
+					'name'              => sprintf( '%s %d', $niche ?: 'Product', $index + 1 ),
+					'short_description' => wp_trim_words( (string) $ai_result['data'], 20 ),
+					'description'       => (string) $ai_result['data'],
+					'regular_price'     => '99',
+				);
+			}
+
 			$create_result = $this->tool_registry->execute(
 				'create_product',
 				array(
-					'name'              => sprintf( '%s Product %d', $step['niche'] ?? 'Sample', $index + 1 ),
-					'short_description' => 'Draft product',
-					'status'            => 'draft',
+					'name'              => (string) ( $spec['name'] ?? sprintf( 'Product %d', $index + 1 ) ),
+					'description'       => (string) ( $spec['description'] ?? '' ),
+					'short_description' => (string) ( $spec['short_description'] ?? '' ),
+					'regular_price'     => (string) ( $spec['regular_price'] ?? '99' ),
+					'sku'               => (string) ( $spec['sku'] ?? '' ),
+					'status'            => $status,
 				),
 				$user_id,
 				$module
 			);
 
-			if ( ! $create_result['success'] ) {
+			if ( ! $create_result['success'] || empty( $create_result['data']['id'] ) ) {
 				return array(
 					'success'         => false,
-					'message'         => $create_result['message'],
-					'data'            => null,
+					'message'         => $create_result['message'] ?? __( 'Failed to create product.', 'agenpress' ),
+					'data'            => $create_result['data'] ?? null,
 					'context_updates' => array(),
 				);
 			}
 
-			$product = $create_result['data'];
+			$product_id = (int) $create_result['data']['id'];
+			$messages   = array( $create_result['message'] );
+
+			$image_prompt = (string) ( $spec['image_prompt'] ?? sprintf( 'Professional product photo for %s, studio lighting, e-commerce white background', $spec['name'] ?? 'product' ) );
+
+			$image_result = $this->tool_registry->execute(
+				'generate_image',
+				array(
+					'prompt'       => $image_prompt,
+					'post_id'      => $product_id,
+					'set_featured' => true,
+					'alt_text'     => (string) ( $spec['image_alt'] ?? $spec['name'] ?? '' ),
+					'size'         => '1:1',
+				),
+				$user_id,
+				$module
+			);
+
+			$messages[] = $image_result['message'];
+
+			$created_products   = is_array( $context['created_products'] ?? null ) ? $context['created_products'] : array();
+			$created_products[] = array(
+				'id'   => $product_id,
+				'name' => (string) ( $create_result['data']['name'] ?? '' ),
+				'url'  => get_permalink( $product_id ),
+			);
+
+			return array(
+				'success'         => true,
+				'message'         => implode( ' ', array_filter( $messages ) ),
+				'data'            => array(
+					'id'         => $product_id,
+					'name'       => $create_result['data']['name'] ?? '',
+					'url'        => get_permalink( $product_id ),
+					'image'      => $image_result['data'] ?? null,
+					'image_ok'   => ! empty( $image_result['success'] ),
+				),
+				'context_updates' => array(
+					'created_products' => $created_products,
+				),
+			);
 		}
 
 		$prompt = sprintf(
 			'Write an SEO-optimized WooCommerce product description. Product: %s. Niche: %s. Return JSON with keys: description (HTML), short_description.',
 			$product['name'] ?? 'Product',
-			$step['niche'] ?? ''
+			$niche
 		);
 
 		$ai_result = $this->execute_ai( array( 'prompt' => $prompt ), $context, $module );
@@ -1133,6 +1207,20 @@ class TaskStepExecutor {
 			'data'            => $tool_result['data'],
 			'context_updates' => array(),
 		);
+	}
+
+	/**
+	 * Build one Elementor site page.
+	 *
+	 * @param array<string, mixed> $step    Step.
+	 * @param int                  $user_id User ID.
+	 * @return array{success: bool, message: string, data: mixed, context_updates: array<string, mixed>}
+	 */
+	private function execute_site_page( array $step, int $user_id ): array {
+		/** @var SitePageBuilder $builder */
+		$builder = agenpress()->container()->get( 'site_page_builder' );
+
+		return $builder->build( $step, $user_id );
 	}
 
 	/**

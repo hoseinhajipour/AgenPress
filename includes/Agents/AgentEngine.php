@@ -10,6 +10,7 @@ namespace AgenPress\Agents;
 use AgenPress\AI\ProviderFactory;
 use AgenPress\Chat\MessageRepository;
 use AgenPress\Memory\ContextBuilder;
+use AgenPress\Sales\ProductLinkFixer;
 use AgenPress\Security\AuditLogger;
 use AgenPress\Security\PermissionValidator;
 
@@ -241,6 +242,8 @@ class AgentEngine {
 			}
 		}
 
+		$content = $this->finalize_assistant_content( $content, $module );
+
 		$assistant_message = $this->message_repository->create(
 			$conversation_id,
 			'assistant',
@@ -452,7 +455,28 @@ class AgentEngine {
 			$lines[] = sprintf( 'Cart items: %d', WC()->cart->get_cart_contents_count() );
 		}
 
+		if ( ! empty( $context['customer_history'] ) ) {
+			$lines[] = '';
+			$lines[] = __( 'Customer conversation history:', 'agenpress' );
+			$lines[] = (string) $context['customer_history'];
+		}
+
 		return implode( "\n", $lines );
+	}
+
+	/**
+	 * Normalize assistant content before it is stored.
+	 *
+	 * @param string $content Message content.
+	 * @param string $module  Module slug.
+	 * @return string
+	 */
+	private function finalize_assistant_content( string $content, string $module ): string {
+		if ( 'sales' !== $module || '' === trim( $content ) ) {
+			return $content;
+		}
+
+		return ( new ProductLinkFixer() )->fix( $content );
 	}
 
 	/**

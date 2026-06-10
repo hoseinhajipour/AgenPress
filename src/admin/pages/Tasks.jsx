@@ -28,7 +28,16 @@ export default function Tasks() {
 	const [ loading, setLoading ] = useState( true );
 	const [ statusFilter, setStatusFilter ] = useState( '' );
 	const [ selectedTemplate, setSelectedTemplate ] = useState( 'seo_articles' );
-	const [ templateParams, setTemplateParams ] = useState( { count: 5, topic: '', publish: false } );
+	const [ templateParams, setTemplateParams ] = useState( {
+		count: 5,
+		topic: '',
+		sections_count: 4,
+		featured_image: false,
+		section_images: false,
+		include_faq: true,
+		include_conclusion: true,
+		publish: false,
+	} );
 	const [ newTitle, setNewTitle ] = useState( '' );
 	const [ newDescription, setNewDescription ] = useState( '' );
 	const [ creating, setCreating ] = useState( false );
@@ -59,6 +68,19 @@ export default function Tasks() {
 	useEffect( () => {
 		getTaskTemplates().then( setTemplates ).catch( () => {} );
 	}, [] );
+
+	useEffect( () => {
+		const template = templates.find( ( t ) => t.id === selectedTemplate );
+		if ( ! template?.fields?.length ) {
+			return;
+		}
+
+		const defaults = {};
+		template.fields.forEach( ( field ) => {
+			defaults[ field.key ] = field.default ?? ( field.type === 'boolean' ? false : '' );
+		} );
+		setTemplateParams( defaults );
+	}, [ selectedTemplate, templates ] );
 
 	useEffect( () => {
 		loadTasks();

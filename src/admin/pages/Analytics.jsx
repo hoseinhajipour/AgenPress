@@ -2,17 +2,43 @@ import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { getAnalytics } from '../api';
 
+const isEnterprise = window.agenpressData?.licenseTier === 'enterprise';
+
 export default function Analytics() {
 	const [ data, setData ] = useState( null );
 	const [ loading, setLoading ] = useState( true );
 	const [ error, setError ] = useState( null );
 
 	useEffect( () => {
-		getAnalytics()
-			.then( setData )
-			.catch( ( err ) => setError( err.message ) )
-			.finally( () => setLoading( false ) );
+		if ( ! isEnterprise ) {
+			setLoading( false );
+			return;
+		}
+
+		async function load() {
+			try {
+				const summary = await getAnalytics();
+				if ( ! summary ) {
+					throw new Error( __( 'Analytics data is unavailable.', 'agenpress' ) );
+				}
+				setData( summary );
+			} catch ( err ) {
+				setError( err?.message || __( 'Failed to load analytics.', 'agenpress' ) );
+			} finally {
+				setLoading( false );
+			}
+		}
+
+		load();
 	}, [] );
+
+	if ( ! isEnterprise ) {
+		return (
+			<div className="ap-alert ap-alert-error">
+				{ __( 'Analytics requires an Enterprise license. Update the license tier in Settings to enable usage reporting.', 'agenpress' ) }
+			</div>
+		);
+	}
 
 	if ( loading ) {
 		return <p className="ap-empty-state">{ __( 'Loading analytics...', 'agenpress' ) }</p>;
@@ -20,6 +46,10 @@ export default function Analytics() {
 
 	if ( error ) {
 		return <div className="ap-alert ap-alert-error">{ error }</div>;
+	}
+
+	if ( ! data ) {
+		return <div className="ap-alert ap-alert-error">{ __( 'Analytics data is unavailable.', 'agenpress' ) }</div>;
 	}
 
 	const cards = [

@@ -1,0 +1,151 @@
+.ap-fi-button-wrap {
+	margin: 8px 0 0;
+}
+
+.ap-fi-generate-btn {
+	width: 100%;
+	justify-content: center;
+}
+
+.ap-fi-modal-overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.55);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 100000;
+}
+
+.ap-fi-modal {
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+	width: 92%;
+	max-width: 520px;
+	max-height: 90vh;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.ap-fi-modal-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 16px 20px;
+	border-bottom: 1px solid #e2e8f0;
+}
+
+.ap-fi-modal-header h2 {
+	margin: 0;
+	font-size: 16px;
+	font-weight: 600;
+	color: #1e293b;
+}
+
+.ap-fi-modal-close {
+	background: none;
+	border: none;
+	font-size: 24px;
+	line-height: 1;
+	color: #64748b;
+	cursor: pointer;
+	padding: 0 4px;
+}
+
+.ap-fi-modal-close:hover {
+	color: #1e293b;
+}
+
+.ap-fi-modal-body {
+	padding: 16px 20px;
+	overflow-y: auto;
+}
+
+.ap-fi-label {
+	display: block;
+	margin: 0 0 6px;
+	font-size: 13px;
+	font-weight: 600;
+	color: #334155;
+}
+
+.ap-fi-textarea,
+.ap-fi-select {
+	width: 100%;
+	margin-bottom: 14px;
+	box-sizing: border-box;
+}
+
+.ap-fi-textarea {
+	resize: vertical;
+	min-height: 96px;
+}
+
+.ap-fi-preview {
+	margin: 12px 0 4px;
+	border: 1px solid #e2e8f0;
+	border-radius: 6px;
+	overflow: hidden;
+	background: #f8fafc;
+}
+
+.ap-fi-preview img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.ap-fi-error {
+	margin-bottom: 12px;
+	padding: 10px 12px;
+	background: #fef2f2;
+	border: 1px solid #fecaca;
+	border-radius: 6px;
+	color: #b91c1c;
+	font-size: 13px;
+}
+
+.ap-fi-loading {
+	margin-top: 8px;
+	font-size: 13px;
+	color: #64748b;
+	font-style: italic;
+}
+
+.ap-fi-hint {
+	margin: 0;
+	font-size: 12px;
+	color: #64748b;
+	font-style: italic;
+}
+
+.ap-fi-context {
+	margin-bottom: 14px;
+	padding: 10px 12px;
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	border-radius: 6px;
+	font-size: 13px;
+	color: #475569;
+	max-height: 120px;
+	overflow-y: auto;
+	white-space: pre-wrap;
+}
+
+.ap-fi-preview-text {
+	padding: 12px;
+	font-size: 14px;
+	line-height: 1.6;
+	color: #1e293b;
+}
+
+.ap-fi-modal-footer {
+	display: flex;
+	gap: 8px;
+	justify-content: flex-end;
+	padding: 14px 20px;
+	border-top: 1px solid #e2e8f0;
+	background: #f8fafc;
+}

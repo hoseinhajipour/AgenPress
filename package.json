@@ -5,9 +5,14 @@
 	"private": true,
 	"scripts": {
 		"build": "wp-scripts build",
+		"postbuild": "php scripts/i18n.php all fa_IR",
 		"start": "wp-scripts start",
 		"lint:js": "wp-scripts lint-js",
-		"format": "wp-scripts format"
+		"format": "wp-scripts format",
+		"i18n:pot": "php scripts/i18n.php pot",
+		"i18n:po": "php scripts/i18n.php po fa_IR",
+		"i18n:compile": "php scripts/i18n.php all fa_IR",
+		"i18n": "npm run i18n:pot && npm run i18n:compile"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^30.0.0",

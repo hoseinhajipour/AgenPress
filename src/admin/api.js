@@ -1,6 +1,6 @@
 import apiFetch from '@wordpress/api-fetch';
 
-const BASE = '';
+const BASE = '/agenpress/v1';
 
 export async function getSettings() {
 	const res = await apiFetch( { path: `${ BASE }/settings` } );
@@ -190,8 +190,9 @@ export async function reindexMemory() {
 	return res.data;
 }
 
-export async function getInbox() {
-	const res = await apiFetch( { path: `${ BASE }/inbox` } );
+export async function getInbox( status = '' ) {
+	const query = status ? `?status=${ encodeURIComponent( status ) }` : '';
+	const res = await apiFetch( { path: `${ BASE }/inbox${ query }` } );
 	return res.data;
 }
 

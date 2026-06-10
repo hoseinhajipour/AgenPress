@@ -6,6 +6,7 @@ import Chat from './pages/Chat';
 import Tasks from './pages/Tasks';
 import Memory from './pages/Memory';
 import Settings from './pages/Settings';
+import SalesChatSettings from './pages/SalesChatSettings';
 import Inbox from './pages/Inbox';
 import Analytics from './pages/Analytics';
 import Workflows from './pages/Workflows';
@@ -19,6 +20,7 @@ const PAGES = {
 	tasks: Tasks,
 	memory: Memory,
 	settings: Settings,
+	'sales-chat': SalesChatSettings,
 };
 
 const PAGE_TITLES = {
@@ -30,6 +32,7 @@ const PAGE_TITLES = {
 	tasks: __( 'Agent Tasks', 'agenpress' ),
 	memory: __( 'Memory Manager', 'agenpress' ),
 	settings: __( 'Settings', 'agenpress' ),
+	'sales-chat': __( 'Storefront Sales Chat', 'agenpress' ),
 };
 
 export default function App() {

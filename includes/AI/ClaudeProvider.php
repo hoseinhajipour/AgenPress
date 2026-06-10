@@ -57,7 +57,7 @@ class ClaudeProvider implements ProviderInterface {
 		}
 
 		$api_key = $this->settings->get_api_key( 'claude' );
-		$model   = $options['model'] ?? 'claude-3-5-sonnet-20241022';
+		$model   = $options['model'] ?? $this->settings->get_default_model();
 
 		$body = array(
 			'model'      => $model,

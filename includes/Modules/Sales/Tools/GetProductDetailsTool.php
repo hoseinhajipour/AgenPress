@@ -21,13 +21,13 @@ class GetProductDetailsTool extends SalesAbstractTool {
 	public function get_schema(): array {
 		return array(
 			'name'        => 'get_product_details',
-			'description' => 'Get details for a published WooCommerce product',
+			'description' => 'Get full details for a published WooCommerce product including colors, sizes, and other attributes/variations',
 			'parameters'  => array(
 				'type'       => 'object',
 				'properties' => array(
-					'product_id' => array( 'type' => 'integer', 'description' => 'Product ID' ),
+					'product_id' => array( 'type' => 'integer', 'description' => 'Product ID (optional if search is provided)' ),
+					'search'     => array( 'type' => 'string', 'description' => 'Product name, model, or keyword (optional if product_id is provided)' ),
 				),
-				'required'   => array( 'product_id' ),
 			),
 		);
 	}
@@ -37,9 +37,11 @@ class GetProductDetailsTool extends SalesAbstractTool {
 			return $this->fail( __( 'WooCommerce is not active.', 'agenpress' ) );
 		}
 
-		$product = wc_get_product( (int) ( $args['product_id'] ?? 0 ) );
+		$product_id = (int) ( $args['product_id'] ?? 0 );
+		$search     = sanitize_text_field( $args['search'] ?? '' );
+		$product    = $this->find_product( $product_id, $search );
 
-		if ( ! $product || 'publish' !== $product->get_status() ) {
+		if ( ! $product ) {
 			return $this->fail( __( 'Product not found.', 'agenpress' ) );
 		}
 

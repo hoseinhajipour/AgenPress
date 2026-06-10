@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { getWorkflows, createWorkflow, runWorkflow, deleteWorkflow } from '../api';
 
+const isEnterprise = window.agenpressData?.licenseTier === 'enterprise';
+
 const DEFAULT_STEPS = [
 	{ type: 'ai', prompt: 'Summarize the site content strategy as JSON bullet points.', output_key: 'summary' },
 ];
@@ -24,8 +26,21 @@ export default function Workflows() {
 	}, [] );
 
 	useEffect( () => {
+		if ( ! isEnterprise ) {
+			setLoading( false );
+			return;
+		}
+
 		load();
 	}, [ load ] );
+
+	if ( ! isEnterprise ) {
+		return (
+			<div className="ap-alert ap-alert-error">
+				{ __( 'Workflows require an Enterprise license. Update the license tier in Settings to enable automation workflows.', 'agenpress' ) }
+			</div>
+		);
+	}
 
 	const handleCreate = async ( e ) => {
 		e.preventDefault();

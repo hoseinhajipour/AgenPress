@@ -174,11 +174,22 @@ class Plugin {
 		);
 
 		$this->container->register(
+			'customer_memory',
+			static function ( Container $c ): Sales\CustomerMemory {
+				return new Sales\CustomerMemory(
+					$c->get( 'conversation_repository' ),
+					$c->get( 'message_repository' )
+				);
+			}
+		);
+
+		$this->container->register(
 			'context_builder',
 			static function ( Container $c ): Memory\ContextBuilder {
 				return new Memory\ContextBuilder(
 					$c->get( 'memory_store' ),
-					$c->get( 'product_catalog' )
+					$c->get( 'product_catalog' ),
+					$c->get( 'settings' )
 				);
 			}
 		);
@@ -440,6 +451,18 @@ class Plugin {
 		$this->loader->add_action(
 			'rest_api_init',
 			new UploadController( $this->container ),
+			'register_routes'
+		);
+
+		$this->loader->add_action(
+			'rest_api_init',
+			new REST\ImageController( $this->container ),
+			'register_routes'
+		);
+
+		$this->loader->add_action(
+			'rest_api_init',
+			new REST\TextController( $this->container ),
 			'register_routes'
 		);
 

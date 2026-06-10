@@ -12,6 +12,7 @@ use AgenPress\Chat\ConversationRepository;
 use AgenPress\Chat\MessageRepository;
 use AgenPress\Core\Settings;
 use AgenPress\Modules\ModuleManager;
+use AgenPress\Sales\CustomerMemory;
 use AgenPress\Sales\VisitorSession;
 use AgenPress\Security\RateLimiter;
 
@@ -44,6 +45,16 @@ class SalesChatController extends RestController {
 			array(
 				'methods'             => \WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'get_conversation' ),
+				'permission_callback' => array( $this, 'can_chat' ),
+			)
+		);
+
+		register_rest_route(
+			$this->namespace,
+			'/sales/session',
+			array(
+				'methods'             => \WP_REST_Server::READABLE,
+				'callback'            => array( $this, 'get_session' ),
 				'permission_callback' => array( $this, 'can_chat' ),
 			)
 		);
@@ -108,6 +119,10 @@ class SalesChatController extends RestController {
 
 		/** @var ConversationRepository $repo */
 		$repo = $this->container->get( 'conversation_repository' );
+		/** @var CustomerMemory $memory */
+		$memory = $this->container->get( 'customer_memory' );
+
+		$conversation_id = $memory->resolve_conversation_id( $user_id, $conversation_id, $visitor_id );
 
 		if ( $conversation_id > 0 ) {
 			$existing = $repo->find_for_visitor( $conversation_id, $visitor_id );
@@ -157,10 +172,21 @@ class SalesChatController extends RestController {
 		$module_manager = $this->container->get( 'module_manager' );
 		$system_prompt  = $module_manager->get_system_prompt( 'sales' );
 
+		$sales_instructions = $settings->get_sales_chat_prompt_instructions();
+		if ( '' !== $sales_instructions ) {
+			$system_prompt = trim( $system_prompt . "\n\n" . $sales_instructions );
+		}
+
+		$customer_history = '';
+		if ( $user_id > 0 ) {
+			$customer_history = $memory->build_history_prompt( $user_id, $visitor_id, $conversation_id );
+		}
+
 		$context = array(
-			'conversation_id' => $conversation_id,
-			'visitor_id'      => $visitor_id,
-			'user_id'         => $user_id,
+			'conversation_id'  => $conversation_id,
+			'visitor_id'         => $visitor_id,
+			'user_id'            => $user_id,
+			'customer_history'   => $customer_history,
 		);
 
 		/** @var AgentEngine $engine */
@@ -191,6 +217,65 @@ class SalesChatController extends RestController {
 				'tokens_used'     => $response['tokens_used'],
 				'model'           => $response['model'],
 				'escalated'       => 'escalated' === ( $repo->find( $conversation_id )['status'] ?? '' ),
+			)
+		);
+	}
+
+	/**
+	 * GET /sales/session
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function get_session(): \WP_REST_Response {
+		/** @var VisitorSession $session */
+		$session    = $this->container->get( 'visitor_session' );
+		$visitor_id = $session->get_visitor_id();
+		$user_id    = get_current_user_id();
+
+		/** @var ConversationRepository $repo */
+		$repo = $this->container->get( 'conversation_repository' );
+		/** @var MessageRepository $messages */
+		$messages = $this->container->get( 'message_repository' );
+		/** @var CustomerMemory $memory */
+		$memory = $this->container->get( 'customer_memory' );
+
+		$conversation    = null;
+		$conversation_id = 0;
+		$has_history     = false;
+
+		if ( $user_id > 0 ) {
+			$conversation = $memory->find_resumable_conversation( $user_id, $visitor_id );
+		}
+
+		if ( $conversation ) {
+			$conversation_id = (int) $conversation['id'];
+		}
+
+		if ( $user_id > 0 ) {
+			$has_history = '' !== $memory->build_history_prompt( $user_id, $visitor_id, $conversation_id );
+		}
+
+		$chat_messages = array();
+		if ( $conversation_id > 0 ) {
+			foreach ( $messages->get_for_conversation( $conversation_id ) as $message ) {
+				if ( ! in_array( $message['role'] ?? '', array( 'user', 'assistant' ), true ) ) {
+					continue;
+				}
+
+				$chat_messages[] = array(
+					'role'    => $message['role'],
+					'content' => $message['content'],
+				);
+			}
+		}
+
+		return $this->success(
+			array(
+				'conversation_id' => $conversation_id,
+				'messages'        => $chat_messages,
+				'escalated'       => $conversation && 'escalated' === ( $conversation['status'] ?? '' ),
+				'has_history'     => $has_history,
+				'is_logged_in'    => $user_id > 0,
 			)
 		);
 	}

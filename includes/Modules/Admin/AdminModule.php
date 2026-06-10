@@ -149,5 +149,8 @@ class AdminModule implements ModuleInterface {
 		foreach ( $this->get_tools() as $tool ) {
 			$this->tool_registry->register( $tool, 'admin' );
 		}
+
+		( new PostFeaturedImage() )->register();
+		( new ClassicEditorToolbar() )->register();
 	}
 }

@@ -8,6 +8,7 @@
 namespace AgenPress\Agents;
 
 use AgenPress\AI\ProviderFactory;
+use AgenPress\Media\AiImageSideloader;
 use AgenPress\Memory\ContextBuilder;
 use AgenPress\Modules\ContentPrompts;
 
@@ -197,21 +198,16 @@ class TaskStepExecutor {
 	 * @return array{success: bool, message: string, data: mixed, context_updates: array<string, mixed>}
 	 */
 	private function execute_seo_article( array $step, int $user_id, string $module, array $context ): array {
-		$index  = (int) ( $step['index'] ?? 0 );
-		$topic  = $step['topic'] ?? '';
-		$titles = $context['article_titles'] ?? array();
+		$index   = (int) ( $step['index'] ?? 0 );
+		$topic   = $step['topic'] ?? '';
+		$titles  = $context['article_titles'] ?? array();
+		$options = is_array( $step['options'] ?? null ) ? $step['options'] : array();
 
 		$title = is_array( $titles ) && isset( $titles[ $index ] )
 			? (string) $titles[ $index ]
 			: sprintf( '%s — Part %d', $topic, $index + 1 );
 
-		$prompt = sprintf(
-			"Write a full SEO-optimized blog article.\nTitle: %s\nTopic: %s\n\nReturn JSON with keys: title, content (HTML), excerpt, categories (array of strings), tags (array of strings), meta_title, meta_description.\n%s",
-			$title,
-			$topic,
-			ContentPrompts::admin_instructions()
-		);
-
+		$prompt    = $this->build_seo_article_prompt( $title, $topic, $options );
 		$ai_result = $this->execute_ai( array( 'prompt' => $prompt ), $context, $module );
 
 		if ( ! $ai_result['success'] ) {
@@ -220,7 +216,35 @@ class TaskStepExecutor {
 
 		$article = $this->try_parse_json( $ai_result['data'] );
 
-		if ( ! is_array( $article ) || empty( $article['content'] ) ) {
+		if ( ! is_array( $article ) ) {
+			return array(
+				'success'         => false,
+				'message'         => __( 'Failed to parse generated article.', 'agenpress' ),
+				'data'            => null,
+				'context_updates' => array(),
+			);
+		}
+
+		if ( ! empty( $options['section_images'] ) && ! empty( $article['sections'] ) && is_array( $article['sections'] ) ) {
+			foreach ( $article['sections'] as $i => $section ) {
+				if ( empty( $section['image_prompt'] ) ) {
+					continue;
+				}
+
+				$image = $this->generate_image_attachment( (string) $section['image_prompt'] );
+
+				if ( $image ) {
+					$article['sections'][ $i ]['image_url'] = $image['url'];
+					$article['sections'][ $i ]['image_alt'] = $section['heading'] ?? $title;
+				}
+			}
+		}
+
+		$content = ! empty( $article['content'] )
+			? (string) $article['content']
+			: $this->assemble_seo_article_content( $article, $options );
+
+		if ( '' === trim( $content ) ) {
 			return array(
 				'success'         => false,
 				'message'         => __( 'Failed to parse generated article.', 'agenpress' ),
@@ -235,7 +259,7 @@ class TaskStepExecutor {
 			'create_post',
 			array(
 				'title'      => $article['title'] ?? $title,
-				'content'    => $article['content'],
+				'content'    => $content,
 				'excerpt'    => $article['excerpt'] ?? '',
 				'categories' => $article['categories'] ?? array(),
 				'tags'       => $article['tags'] ?? array(),
@@ -246,20 +270,260 @@ class TaskStepExecutor {
 			$module
 		);
 
-		$created = $context['created_posts'] ?? array();
-		if ( $tool_result['success'] && is_array( $tool_result['data'] ) ) {
-			$created[] = $tool_result['data'];
+		if ( ! $tool_result['success'] || ! is_array( $tool_result['data'] ) ) {
+			return array(
+				'success'         => false,
+				'message'         => $tool_result['message'],
+				'data'            => $tool_result['data'],
+				'context_updates' => array(),
+			);
 		}
 
+		$post_id = (int) ( $tool_result['data']['id'] ?? 0 );
+		$message = $tool_result['message'];
+
+		if ( $post_id && ! empty( $options['featured_image'] ) ) {
+			$image_prompt = (string) ( $article['featured_image_prompt'] ?? sprintf( 'Professional blog featured image for article: %s', $title ) );
+			$featured     = $this->generate_image_attachment( $image_prompt );
+
+			if ( $featured && set_post_thumbnail( $post_id, $featured['attachment_id'] ) ) {
+				$message .= ' ' . __( 'Featured image set.', 'agenpress' );
+			}
+		}
+
+		$created = $context['created_posts'] ?? array();
+		$created[] = $tool_result['data'];
+
 		return array(
-			'success'         => $tool_result['success'],
-			'message'         => $tool_result['message'],
+			'success'         => true,
+			'message'         => trim( $message ),
 			'data'            => $tool_result['data'],
 			'context_updates' => array(
 				'created_posts' => $created,
 				'last_article'  => $tool_result['data'],
 			),
 		);
+	}
+
+	/**
+	 * Build SEO article generation prompt from template options.
+	 *
+	 * @param string               $title   Article title.
+	 * @param string               $topic   Article topic.
+	 * @param array<string, mixed> $options Template options.
+	 * @return string
+	 */
+	private function build_seo_article_prompt( string $title, string $topic, array $options ): string {
+		$sections_count     = min( 10, max( 2, (int) ( $options['sections_count'] ?? 4 ) ) );
+		$include_faq        = ! empty( $options['include_faq'] );
+		$include_conclusion = ! empty( $options['include_conclusion'] );
+		$section_images     = ! empty( $options['section_images'] );
+		$featured_image     = ! empty( $options['featured_image'] );
+
+		$lines   = array(
+			'Write a full SEO-optimized blog article.',
+			'Title: ' . $title,
+			'Topic: ' . $topic,
+			'',
+			'Structure requirements:',
+			sprintf( '- Exactly %d main content sections, each with an H2 heading and rich HTML paragraphs.', $sections_count ),
+		);
+
+		if ( $include_faq ) {
+			$lines[] = '- Include at least 4 FAQ question-answer pairs.';
+		}
+
+		if ( $include_conclusion ) {
+			$lines[] = '- Include a conclusion that summarizes key takeaways.';
+		}
+
+		$json_keys = array(
+			'title',
+			'excerpt',
+			'categories (array of strings)',
+			'tags (array of strings)',
+			'meta_title',
+			'meta_description',
+			'sections (array of objects with keys: heading, content as HTML)',
+		);
+
+		if ( $section_images ) {
+			$lines[] = '- For each section, add image_prompt: a detailed illustration prompt (no text in the image).';
+		}
+
+		if ( $include_faq ) {
+			$json_keys[] = 'faq (array of objects with question and answer keys)';
+		}
+
+		if ( $include_conclusion ) {
+			$json_keys[] = 'conclusion (HTML paragraphs)';
+		}
+
+		if ( $featured_image ) {
+			$json_keys[] = 'featured_image_prompt (detailed hero image prompt, no text in image)';
+		}
+
+		$lines[] = '';
+		$lines[] = 'Return JSON with keys: ' . implode( ', ', $json_keys ) . '.';
+		$lines[] = 'Do not include a top-level content key; use the sections array for the article body.';
+		$lines[] = ContentPrompts::admin_instructions();
+
+		return implode( "\n", $lines );
+	}
+
+	/**
+	 * Assemble article HTML from structured AI output.
+	 *
+	 * @param array<string, mixed> $article Article data.
+	 * @param array<string, mixed> $options Template options.
+	 * @return string
+	 */
+	private function assemble_seo_article_content( array $article, array $options ): string {
+		$html     = '';
+		$sections = $article['sections'] ?? array();
+
+		if ( is_array( $sections ) ) {
+			foreach ( $sections as $section ) {
+				if ( ! is_array( $section ) ) {
+					continue;
+				}
+
+				$heading = (string) ( $section['heading'] ?? '' );
+				$content = (string) ( $section['content'] ?? '' );
+
+				if ( '' !== $heading ) {
+					$html .= '<h2>' . esc_html( $heading ) . '</h2>';
+				}
+
+				if ( ! empty( $section['image_url'] ) ) {
+					$alt   = (string) ( $section['image_alt'] ?? $heading );
+					$html .= sprintf(
+						'<figure class="wp-block-image"><img src="%s" alt="%s" /></figure>',
+						esc_url( (string) $section['image_url'] ),
+						esc_attr( $alt )
+					);
+				}
+
+				$html .= wp_kses_post( $content );
+			}
+		}
+
+		if ( ! empty( $options['include_faq'] ) && ! empty( $article['faq'] ) && is_array( $article['faq'] ) ) {
+			$html .= '<h2>' . esc_html__( 'Frequently Asked Questions', 'agenpress' ) . '</h2>';
+
+			foreach ( $article['faq'] as $item ) {
+				if ( ! is_array( $item ) ) {
+					continue;
+				}
+
+				$question = (string) ( $item['question'] ?? '' );
+				$answer   = (string) ( $item['answer'] ?? '' );
+
+				if ( '' === $question ) {
+					continue;
+				}
+
+				$html .= '<h3>' . esc_html( $question ) . '</h3>';
+				$html .= wp_kses_post( $answer );
+			}
+
+			$html .= $this->build_faq_schema_markup( $article['faq'] );
+		}
+
+		if ( ! empty( $options['include_conclusion'] ) && ! empty( $article['conclusion'] ) ) {
+			$html .= '<h2>' . esc_html__( 'Conclusion', 'agenpress' ) . '</h2>';
+			$html .= wp_kses_post( (string) $article['conclusion'] );
+		}
+
+		return $html;
+	}
+
+	/**
+	 * Build FAQPage JSON-LD script tag.
+	 *
+	 * @param array<int, array<string, string>> $faq_items FAQ items.
+	 * @return string
+	 */
+	private function build_faq_schema_markup( array $faq_items ): string {
+		$entities = array();
+
+		foreach ( $faq_items as $item ) {
+			if ( ! is_array( $item ) ) {
+				continue;
+			}
+
+			$question = trim( (string) ( $item['question'] ?? '' ) );
+			$answer   = trim( wp_strip_all_tags( (string) ( $item['answer'] ?? '' ) ) );
+
+			if ( '' === $question || '' === $answer ) {
+				continue;
+			}
+
+			$entities[] = array(
+				'@type'          => 'Question',
+				'name'           => $question,
+				'acceptedAnswer' => array(
+					'@type' => 'Answer',
+					'text'  => $answer,
+				),
+			);
+		}
+
+		if ( empty( $entities ) ) {
+			return '';
+		}
+
+		$schema = array(
+			'@context'   => 'https://schema.org',
+			'@type'      => 'FAQPage',
+			'mainEntity' => $entities,
+		);
+
+		return '<script type="application/ld+json">' . wp_json_encode( $schema ) . '</script>';
+	}
+
+	/**
+	 * Generate an AI image and sideload it into the media library.
+	 *
+	 * @param string $prompt Image prompt.
+	 * @return array{attachment_id: int, url: string}|null
+	 */
+	private function generate_image_attachment( string $prompt ): ?array {
+		$prompt = trim( $prompt );
+
+		if ( '' === $prompt ) {
+			return null;
+		}
+
+		try {
+			$provider = $this->provider_factory->get_image_provider();
+
+			if ( ! $provider->is_configured() ) {
+				return null;
+			}
+
+			$image = $provider->generate_image(
+				$prompt,
+				array( 'size' => '1792x1024' )
+			);
+
+			if ( empty( $image['url'] ) ) {
+				return null;
+			}
+
+			$attachment_id = AiImageSideloader::sideload( $image['url'], $prompt );
+
+			if ( ! $attachment_id ) {
+				return null;
+			}
+
+			return array(
+				'attachment_id' => $attachment_id,
+				'url'           => (string) wp_get_attachment_url( $attachment_id ),
+			);
+		} catch ( \Exception $e ) {
+			return null;
+		}
 	}
 
 	/**

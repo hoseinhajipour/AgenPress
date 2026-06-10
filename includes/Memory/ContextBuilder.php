@@ -7,6 +7,7 @@
 
 namespace AgenPress\Memory;
 
+use AgenPress\Core\Settings;
 use AgenPress\Sales\ProductCatalog;
 
 defined( 'ABSPATH' ) || exit;
@@ -42,14 +43,23 @@ class ContextBuilder {
 	private ProductCatalog $product_catalog;
 
 	/**
+	 * Plugin settings.
+	 *
+	 * @var Settings
+	 */
+	private Settings $settings;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param MemoryStore    $memory_store    Memory store.
 	 * @param ProductCatalog $product_catalog Product catalog.
+	 * @param Settings       $settings        Plugin settings.
 	 */
-	public function __construct( MemoryStore $memory_store, ProductCatalog $product_catalog ) {
+	public function __construct( MemoryStore $memory_store, ProductCatalog $product_catalog, Settings $settings ) {
 		$this->memory_store    = $memory_store;
 		$this->product_catalog = $product_catalog;
+		$this->settings        = $settings;
 	}
 
 	/**
@@ -67,6 +77,7 @@ class ContextBuilder {
 		$parts = array_filter(
 			array(
 				$system_prompt,
+				$this->settings->get_ai_language_instruction(),
 				$memory_context,
 				'sales' === $module ? $this->product_catalog->get_context_string() : '',
 				sprintf( 'Current module: %s', $module ),

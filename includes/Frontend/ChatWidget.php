@@ -153,5 +153,9 @@ class ChatWidget {
 				'suggestions' => $sales_module ? $sales_module->get_suggestions() : array(),
 			)
 		);
+
+		if ( function_exists( 'wp_set_script_translations' ) ) {
+			wp_set_script_translations( 'agenpress-frontend-chat', 'agenpress', AGENPRESS_PLUGIN_DIR . 'languages' );
+		}
 	}
 }

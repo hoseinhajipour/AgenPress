@@ -1,0 +1,1293 @@
+{
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "fa-IR",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "%d recommendations.": [
+                "%d پیشنهاد."
+            ],
+            "A team member will follow up shortly.": [
+                "یک عضو تیم به زودی پیگیری خواهد کرد."
+            ],
+            "A team member will follow up with you.": [
+                "یک عضو تیم با شما پیگیری خواهد کرد."
+            ],
+            "AI API error.": [
+                "خطای API هوش مصنوعی."
+            ],
+            "AI Behavior": [
+                "رفتار هوش مصنوعی"
+            ],
+            "AI Chat": [
+                "چت هوش مصنوعی"
+            ],
+            "AI Generate Image": [
+                "تولید تصویر با هوش مصنوعی"
+            ],
+            "AI Generate Text": [
+                "تولید متن با هوش مصنوعی"
+            ],
+            "AI Generate image": [
+                "تولید تصویر با هوش مصنوعی"
+            ],
+            "AI Language": [
+                "زبان هوش مصنوعی"
+            ],
+            "AI Provider": [
+                "ارائه‌دهنده هوش مصنوعی"
+            ],
+            "AI planning task steps": [
+                "برنامه‌ریزی مراحل وظیفه با هوش مصنوعی"
+            ],
+            "AI-planned multi-step task from your description": [
+                "وظیفه چند مرحله‌ای برنامه‌ریزی‌شده توسط هوش مصنوعی از توضیحات شما"
+            ],
+            "API Base URL": [
+                "آدرس پایه API"
+            ],
+            "API Endpoint": [
+                "نقطه پایانی API"
+            ],
+            "API Key": [
+                "کلید API"
+            ],
+            "API key does not have permission for this scope.": [
+                "کلید API برای این دامنه مجاز نیست."
+            ],
+            "API key required. Use Authorization: Bearer agp_...": [
+                "کلید API الزامی است. از Authorization: Bearer agp_... استفاده کنید"
+            ],
+            "About AgenPress": [
+                "درباره AgenPress"
+            ],
+            "Actions": [
+                "اقدامات"
+            ],
+            "Active": [
+                "فعال"
+            ],
+            "Add Memory Entry": [
+                "افزودن ورودی حافظه"
+            ],
+            "Additional instructions for the agent...": [
+                "دستورالعمل‌های اضافی برای عامل..."
+            ],
+            "Admin AI": [
+                "هوش مصنوعی مدیریت"
+            ],
+            "Admin Assistant": [
+                "دستیار مدیریت"
+            ],
+            "AgenPress": [
+                "AgenPress"
+            ],
+            "AgenPress AI": [
+                "AgenPress AI"
+            ],
+            "AgenPress is your AI Operating System for WordPress. Use the Admin AI to manage content, Agent Tasks for multi-step automation, and Memory to store brand knowledge for smarter responses.": [
+                "AgenPress سیستم عامل هوش مصنوعی شما برای وردپرس است. از هوش مصنوعی مدیریت برای مدیریت محتوا، وظایف عامل برای اتوماسیون چند مرحله‌ای، و حافظه برای ذخیره دانش برند جهت پاسخ‌های هوشمندتر استفاده کنید."
+            ],
+            "Agent Tasks": [
+                "وظایف عامل"
+            ],
+            "All": [
+                "همه"
+            ],
+            "All AI sales chats from the storefront widget. Escalated chats need human follow-up.": [
+                "همه چت‌های فروش هوش مصنوعی از ویجت فروشگاه. چت‌های ارجاع‌شده نیاز به پیگیری انسانی دارند."
+            ],
+            "Also available via shortcode: [agenpress_chat]": [
+                "همچنین از طریق کد کوتاه موجود است: [agenpress_chat]"
+            ],
+            "An AI provider API key is required.": [
+                "کلید API ارائه‌دهنده هوش مصنوعی الزامی است."
+            ],
+            "An image-capable AI provider API key is required (OpenAI, GapGPT, or Custom).": [
+                "کلید API ارائه‌دهنده هوش مصنوعی با قابلیت تصویر الزامی است (OpenAI، GapGPT، یا سفارشی)."
+            ],
+            "Analytics": [
+                "تحلیل‌ها"
+            ],
+            "Analytics data is unavailable.": [
+                "داده‌های تحلیل در دسترس نیست."
+            ],
+            "Analytics requires an Enterprise license. Update the license tier in Settings to enable usage reporting.": [
+                "تحلیل‌ها نیاز به مجوز Enterprise دارند. سطح مجوز را در تنظیمات به‌روز کنید تا گزارش‌دهی مصرف فعال شود."
+            ],
+            "Anthropic Claude models": [
+                "مدل‌های Anthropic Claude"
+            ],
+            "Any OpenAI-compatible endpoint": [
+                "هر نقطه پایانی سازگار با OpenAI"
+            ],
+            "Appearance and placement on the storefront": [
+                "ظاهر و جایگاه در فروشگاه"
+            ],
+            "Applying...": [
+                "در حال اعمال..."
+            ],
+            "Article sections count": [
+                "Article sections count"
+            ],
+            "Ask AgenPress anything...": [
+                "هر چیزی از AgenPress بپرسید..."
+            ],
+            "Ask about this page...": [
+                "درباره این صفحه بپرسید..."
+            ],
+            "Ask me to design sections, update widgets, or generate images for your page.": [
+                "از من بخواهید بخش‌ها را طراحی کنم، ویجت‌ها را به‌روز کنم، یا تصاویری برای صفحه شما تولید کنم."
+            ],
+            "Assistant": [
+                "دستیار"
+            ],
+            "Attachment not found.": [
+                "پیوست یافت نشد."
+            ],
+            "Authentication required.": [
+                "احراز هویت الزامی است."
+            ],
+            "Auto-Extract Brand Info": [
+                "استخراج خودکار اطلاعات برند"
+            ],
+            "Base language for AI responses and generated content.": [
+                "زبان پایه برای پاسخ‌های هوش مصنوعی و محتوای تولیدشده."
+            ],
+            "Basic": [
+                "پایه"
+            ],
+            "Bottom Left": [
+                "پایین چپ"
+            ],
+            "Bottom Right": [
+                "پایین راست"
+            ],
+            "Brand": [
+                "برند"
+            ],
+            "Brand info imported: %1$d created, %2$d updated.": [
+                "اطلاعات برند وارد شد: %1$d ایجاد شد، %2$d به‌روز شد."
+            ],
+            "Cancel": [
+                "لغو"
+            ],
+            "Cart is empty.": [
+                "سبد خرید خالی است."
+            ],
+            "Cart is not available.": [
+                "سبد خرید در دسترس نیست."
+            ],
+            "Cart summary retrieved.": [
+                "خلاصه سبد خرید دریافت شد."
+            ],
+            "Category": [
+                "دسته‌بندی"
+            ],
+            "Chat with us": [
+                "با ما چت کنید"
+            ],
+            "Claude": [
+                "Claude"
+            ],
+            "Claude API error.": [
+                "خطای API کلود."
+            ],
+            "Claude API key is not configured.": [
+                "کلید API کلود پیکربندی نشده است."
+            ],
+            "Clear and business-like": [
+                "واضح و حرفه‌ای"
+            ],
+            "Close": [
+                "بستن"
+            ],
+            "Completed": [
+                "تکمیل‌شده"
+            ],
+            "Conclusion": [
+                "Conclusion"
+            ],
+            "Configure AI": [
+                "پیکربندی هوش مصنوعی"
+            ],
+            "Configure an OpenAI API key in Settings to enable semantic memory search.": [
+                "یک کلید API OpenAI در تنظیمات پیکربندی کنید تا جستجوی حافظه معنایی فعال شود."
+            ],
+            "Configure the floating chat widget and how the sales assistant talks to customers on your store.": [
+                "ابزارک چت شناور و نحوه صحبت دستیار فروش با مشتریان در فروشگاه را پیکربندی کنید."
+            ],
+            "Configured": [
+                "پیکربندی‌شده"
+            ],
+            "Confirm": [
+                "تأیید"
+            ],
+            "Confirm Action": [
+                "تأیید اقدام"
+            ],
+            "Confirm execution of \"%s\"?": [
+                "آیا اجرای \"%s\" را تأیید می‌کنید؟"
+            ],
+            "Confirm this action?": [
+                "آیا این اقدام را تأیید می‌کنید؟"
+            ],
+            "Confirmed action **%1$s**: %2$s": [
+                "اقدام **%1$s** تأیید شد: %2$s"
+            ],
+            "Contact": [
+                "تماس"
+            ],
+            "Controls how the sales assistant speaks to customers.": [
+                "نحوه صحبت دستیار فروش با مشتریان را کنترل می‌کند."
+            ],
+            "Conversation ID is required.": [
+                "شناسه مکالمه الزامی است."
+            ],
+            "Conversation Tone": [
+                "لحن گفتگو"
+            ],
+            "Conversation not found.": [
+                "مکالمه یافت نشد."
+            ],
+            "Conversation tone:": [
+                "لحن گفتگو:"
+            ],
+            "Conversations": [
+                "مکالمات"
+            ],
+            "Conversations by Module": [
+                "مکالمات بر اساس ماژول"
+            ],
+            "Copy your key now — it won't be shown again:": [
+                "کلید خود را اکنون کپی کنید — دیگر نمایش داده نخواهد شد:"
+            ],
+            "Coupon is valid.": [
+                "کوپن معتبر است."
+            ],
+            "Coupon not found.": [
+                "کوپن یافت نشد."
+            ],
+            "Courteous and respectful": [
+                "مودبانه و محترمانه"
+            ],
+            "Create": [
+                "ایجاد"
+            ],
+            "Create Agent Task": [
+                "ایجاد وظیفه عامل"
+            ],
+            "Create FAQ schema markup for [topic]": [
+                "ایجاد نشانه‌گذاری طرحواره FAQ برای [topic]"
+            ],
+            "Create Workflow": [
+                "ایجاد گردش کار"
+            ],
+            "Create a new product draft for [product name]": [
+                "ایجاد پیش‌نویس محصول جدید برای [product name]"
+            ],
+            "Created \"%s\" successfully.": [
+                "\"%s\" با موفقیت ایجاد شد."
+            ],
+            "Created product \"%s\".": [
+                "محصول \"%s\" ایجاد شد."
+            ],
+            "Created term \"%s\".": [
+                "اصطلاح \"%s\" ایجاد شد."
+            ],
+            "Creating SEO article %d": [
+                "در حال ایجاد مقاله سئو %d"
+            ],
+            "Creating...": [
+                "در حال ایجاد..."
+            ],
+            "Custom AI Agent": [
+                "عامل هوش مصنوعی سفارشی"
+            ],
+            "Custom AI agent API key and base URL are not configured.": [
+                "کلید API عامل هوش مصنوعی سفارشی و آدرس پایه پیکربندی نشده‌اند."
+            ],
+            "Custom Task": [
+                "وظیفه سفارشی"
+            ],
+            "Customer": [
+                "مشتری"
+            ],
+            "Customer conversation history:": [
+                "تاریخچه مکالمات مشتری:"
+            ],
+            "Customer requested human support": [
+                "مشتری پشتیبانی انسانی درخواست کرد"
+            ],
+            "Daily Messages": [
+                "پیام‌های روزانه"
+            ],
+            "Dashboard": [
+                "داشبورد"
+            ],
+            "Delete": [
+                "حذف"
+            ],
+            "Delete %2$s \"%1$s\"? This cannot be undone.": [
+                "حذف %2$s \"%1$s\"؟ این عمل قابل بازگشت نیست."
+            ],
+            "Delete Elementor element \"%s\"? This cannot be undone.": [
+                "حذف عنصر المنتور \"%s\"؟ این عمل قابل بازگشت نیست."
+            ],
+            "Delete product \"%s\"? This cannot be undone.": [
+                "حذف محصول \"%s\"؟ این عمل قابل بازگشت نیست."
+            ],
+            "Delete this post? This cannot be undone.": [
+                "حذف این پست؟ این عمل قابل بازگشت نیست."
+            ],
+            "Delete this product? This cannot be undone.": [
+                "حذف این محصول؟ این عمل قابل بازگشت نیست."
+            ],
+            "Deleted \"%s\".": [
+                "\"%s\" حذف شد."
+            ],
+            "Deleted product \"%s\".": [
+                "محصول \"%s\" حذف شد."
+            ],
+            "Describe the image you want to generate...": [
+                "تصویری را که می‌خواهید تولید کنید توضیح دهید..."
+            ],
+            "Describe the text you want to generate...": [
+                "متنی را که می‌خواهید تولید کنید توضیح دهید..."
+            ],
+            "Description": [
+                "توضیحات"
+            ],
+            "Design": [
+                "طراحی"
+            ],
+            "Design a hero section using my brand colors": [
+                "یک بخش هیرو با رنگ‌های برند من طراحی کن"
+            ],
+            "Details": [
+                "جزئیات"
+            ],
+            "Dimensions": [
+                "ابعاد"
+            ],
+            "Do you have any active discount codes?": [
+                "آیا کدهای تخفیف فعالی دارید؟"
+            ],
+            "Draft a customer support response": [
+                "پیش‌نویس پاسخ پشتیبانی مشتری"
+            ],
+            "Draft a new page with a hero section and CTA": [
+                "پیش‌نویس صفحه جدید با بخش هیرو و CTA"
+            ],
+            "Duplicate this section and adjust the copy": [
+                "این بخش را تکثیر کن و متن را تنظیم کن"
+            ],
+            "Edit": [
+                "ویرایش"
+            ],
+            "Element deleted.": [
+                "عنصر حذف شد."
+            ],
+            "Element duplicated.": [
+                "عنصر تکثیر شد."
+            ],
+            "Element not found.": [
+                "عنصر یافت نشد."
+            ],
+            "Element retrieved.": [
+                "عنصر دریافت شد."
+            ],
+            "Element settings updated.": [
+                "تنظیمات عنصر به‌روز شد."
+            ],
+            "Elementor Assistant": [
+                "دستیار المنتور"
+            ],
+            "Elementor document not found.": [
+                "سند المنتور یافت نشد."
+            ],
+            "Elementor is not active.": [
+                "المنتور فعال نیست."
+            ],
+            "Elementor page not found.": [
+                "صفحه المنتور یافت نشد."
+            ],
+            "Enterprise": [
+                "سازمانی"
+            ],
+            "Error: %s": [
+                "خطا: %s"
+            ],
+            "Escalated": [
+                "ارجاع‌شده"
+            ],
+            "Executing planned work": [
+                "در حال اجرای کارهای برنامه‌ریزی‌شده"
+            ],
+            "Executing...": [
+                "در حال اجرا..."
+            ],
+            "External API Keys": [
+                "کلیدهای API خارجی"
+            ],
+            "Extracting...": [
+                "در حال استخراج..."
+            ],
+            "Failed": [
+                "ناموفق"
+            ],
+            "Failed to confirm action.": [
+                "تأیید اقدام ناموفق بود."
+            ],
+            "Failed to create API key.": [
+                "ایجاد کلید API ناموفق بود."
+            ],
+            "Failed to create conversation.": [
+                "ایجاد مکالمه ناموفق بود."
+            ],
+            "Failed to create memory entry.": [
+                "ایجاد ورودی حافظه ناموفق بود."
+            ],
+            "Failed to create product.": [
+                "ایجاد محصول ناموفق بود."
+            ],
+            "Failed to create task.": [
+                "ایجاد وظیفه ناموفق بود."
+            ],
+            "Failed to create workflow.": [
+                "ایجاد گردش کار ناموفق بود."
+            ],
+            "Failed to delete post.": [
+                "حذف پست ناموفق بود."
+            ],
+            "Failed to delete product.": [
+                "حذف محصول ناموفق بود."
+            ],
+            "Failed to load analytics.": [
+                "بارگذاری تحلیل‌ها ناموفق بود."
+            ],
+            "Failed to parse generated article.": [
+                "تجزیه مقاله تولیدشده ناموفق بود."
+            ],
+            "Failed to run workflow.": [
+                "اجرای گردش کار ناموفق بود."
+            ],
+            "Failed to save image to media library.": [
+                "ذخیره تصویر در کتابخانه رسانه ناموفق بود."
+            ],
+            "Failed to send message.": [
+                "ارسال پیام ناموفق بود."
+            ],
+            "Failed to set featured image.": [
+                "تنظیم تصویر شاخص ناموفق بود."
+            ],
+            "Failed to start conversation.": [
+                "شروع مکالمه ناموفق بود."
+            ],
+            "Featured image set.": [
+                "Featured image set."
+            ],
+            "Fetching existing products": [
+                "در حال دریافت محصولات موجود"
+            ],
+            "Found %d Elementor pages.": [
+                "%d صفحه المنتور یافت شد."
+            ],
+            "Found %d coupons.": [
+                "%d کوپن یافت شد."
+            ],
+            "Found %d orders.": [
+                "%d سفارش یافت شد."
+            ],
+            "Found %d posts.": [
+                "%d پست یافت شد."
+            ],
+            "Found %d products.": [
+                "%d محصول یافت شد."
+            ],
+            "Found %d terms.": [
+                "%d اصطلاح یافت شد."
+            ],
+            "Found %d users.": [
+                "%d کاربر یافت شد."
+            ],
+            "Frequently Asked Questions": [
+                "Frequently Asked Questions"
+            ],
+            "Friendly \/ Casual": [
+                "خودمونی"
+            ],
+            "GPT models via OpenAI API": [
+                "مدل‌های GPT از طریق API OpenAI"
+            ],
+            "GapGPT API key is not configured.": [
+                "کلید API GapGPT پیکربندی نشده است."
+            ],
+            "General": [
+                "عمومی"
+            ],
+            "Generate": [
+                "تولید"
+            ],
+            "Generate Image": [
+                "تولید تصویر"
+            ],
+            "Generate Key": [
+                "تولید کلید"
+            ],
+            "Generate SEO product descriptions for WooCommerce products": [
+                "تولید توضیحات سئو محصول برای محصولات ووکامرس"
+            ],
+            "Generate Text": [
+                "تولید متن"
+            ],
+            "Generate a background image for this section": [
+                "یک تصویر پس‌زمینه برای این بخش تولید کن"
+            ],
+            "Generate featured image": [
+                "Generate featured image"
+            ],
+            "Generate image for each section": [
+                "Generate image for each section"
+            ],
+            "Generate meta title and description for my latest post": [
+                "عنوان متا و توضیحات برای آخرین پست من تولید کن"
+            ],
+            "Generate multiple SEO-optimized articles with categories and tags": [
+                "چندین مقاله بهینه‌شده برای سئو با دسته‌بندی‌ها و برچسب‌ها تولید کن"
+            ],
+            "Generated preview": [
+                "پیش‌نمایش تولیدشده"
+            ],
+            "Generating image...": [
+                "در حال تولید تصویر..."
+            ],
+            "Generating task summary": [
+                "در حال تولید خلاصه وظیفه"
+            ],
+            "Generating text...": [
+                "در حال تولید متن..."
+            ],
+            "Generating...": [
+                "در حال تولید..."
+            ],
+            "Give me an overview of my WordPress site": [
+                "یک مرور کلی از سایت وردپرس من بده"
+            ],
+            "Help me design a hero section": [
+                "در طراحی یک بخش هیرو کمکم کن"
+            ],
+            "Hi! How can I help you today?": [
+                "سلام! چطور می‌توانم امروز کمکتان کنم؟"
+            ],
+            "How can I help you manage your site?": [
+                "چطور می‌توانم در مدیریت سایتتان کمک کنم؟"
+            ],
+            "Image Model": [
+                "مدل تصویر"
+            ],
+            "Image generated and applied to element.": [
+                "تصویر تولید و به عنصر اعمال شد."
+            ],
+            "Image generated and saved to media library.": [
+                "تصویر تولید و در کتابخانه رسانه ذخیره شد."
+            ],
+            "Image generation failed.": [
+                "تولید تصویر ناموفق بود."
+            ],
+            "Image generation is not supported by Claude provider.": [
+                "تولید تصویر توسط ارائه‌دهنده کلود پشتیبانی نمی‌شود."
+            ],
+            "Image prompt is required.": [
+                "پرامپت تصویر الزامی است."
+            ],
+            "Include FAQ section": [
+                "Include FAQ section"
+            ],
+            "Include conclusion": [
+                "Include conclusion"
+            ],
+            "Insert Image": [
+                "درج تصویر"
+            ],
+            "Insert Text": [
+                "درج متن"
+            ],
+            "Invalid API key.": [
+                "کلید API نامعتبر است."
+            ],
+            "Invalid conversation for this action.": [
+                "مکالمه نامعتبر برای این اقدام."
+            ],
+            "Invalid data.": [
+                "داده نامعتبر."
+            ],
+            "Invalid image attachment.": [
+                "پیوست تصویر نامعتبر."
+            ],
+            "Invalid module.": [
+                "ماژول نامعتبر."
+            ],
+            "Invalid settings data.": [
+                "داده تنظیمات نامعتبر."
+            ],
+            "Key": [
+                "کلید"
+            ],
+            "Key is saved. Paste a new value to replace it.": [
+                "کلید ذخیره شده است. مقدار جدیدی را برای جایگزینی وارد کنید."
+            ],
+            "Key name": [
+                "نام کلید"
+            ],
+            "Key name and value are required.": [
+                "نام کلید و مقدار الزامی هستند."
+            ],
+            "Landscape (1792×1024)": [
+                "افقی (۱۷۹۲×۱۰۲۴)"
+            ],
+            "Last": [
+                "آخرین"
+            ],
+            "Last Run": [
+                "آخرین اجرا"
+            ],
+            "License Tier": [
+                "سطح مجوز"
+            ],
+            "List all categories and suggest new ones": [
+                "همه دسته‌بندی‌ها را فهرست کن و دسته‌های جدید پیشنهاد بده"
+            ],
+            "List my WooCommerce products and their stock levels": [
+                "محصولات ووکامرس و سطح موجودی آن‌ها را فهرست کن"
+            ],
+            "Loading analytics...": [
+                "در حال بارگذاری تحلیل‌ها..."
+            ],
+            "Loading settings...": [
+                "در حال بارگذاری تنظیمات..."
+            ],
+            "Loading tasks...": [
+                "در حال بارگذاری وظایف..."
+            ],
+            "Loading...": [
+                "در حال بارگذاری..."
+            ],
+            "Logged-in customer": [
+                "مشتری واردشده"
+            ],
+            "Logs": [
+                "گزارش‌ها"
+            ],
+            "Manage Memory": [
+                "مدیریت حافظه"
+            ],
+            "Mark Resolved": [
+                "علامت‌گذاری به عنوان حل‌شده"
+            ],
+            "Media updated.": [
+                "رسانه به‌روز شد."
+            ],
+            "Memory": [
+                "حافظه"
+            ],
+            "Memory Entries": [
+                "ورودی‌های حافظه"
+            ],
+            "Memory Manager": [
+                "مدیریت حافظه"
+            ],
+            "Memory entries are embedded for semantic retrieval in AI prompts.": [
+                "ورودی‌های حافظه برای بازیابی معنایی در پرامپت‌های هوش مصنوعی جاسازی می‌شوند."
+            ],
+            "Memory entry not found.": [
+                "ورودی حافظه یافت نشد."
+            ],
+            "Memory entry saved.": [
+                "ورودی حافظه ذخیره شد."
+            ],
+            "Memory entry updated.": [
+                "ورودی حافظه به‌روز شد."
+            ],
+            "Message cannot be empty.": [
+                "پیام نمی‌تواند خالی باشد."
+            ],
+            "Message is required.": [
+                "پیام الزامی است."
+            ],
+            "Messages": [
+                "پیام‌ها"
+            ],
+            "Multi-Agent": [
+                "چند عامله"
+            ],
+            "Multi-model gateway (OpenAI-compatible)": [
+                "دروازه چند مدلی (سازگار با OpenAI)"
+            ],
+            "New Workflow": [
+                "گردش کار جدید"
+            ],
+            "No active sales chats.": [
+                "چت فروش فعالی وجود ندارد."
+            ],
+            "No element selected": [
+                "هیچ عنصری انتخاب نشده"
+            ],
+            "No escalated conversations.": [
+                "هیچ مکالمه ارتقایافته‌ای وجود ندارد."
+            ],
+            "No file uploaded.": [
+                "هیچ فایلی آپلود نشد."
+            ],
+            "No logs yet.": [
+                "هنوز گزارشی وجود ندارد."
+            ],
+            "No memory entries yet.": [
+                "هنوز ورودی حافظه‌ای وجود ندارد."
+            ],
+            "No resolved conversations.": [
+                "چت حل‌شده‌ای وجود ندارد."
+            ],
+            "No response from AI provider.": [
+                "هیچ پاسخی از ارائه‌دهنده هوش مصنوعی دریافت نشد."
+            ],
+            "No storefront sales chats yet.": [
+                "هنوز چت فروش فروشگاهی ثبت نشده است."
+            ],
+            "No tasks yet. Create one above.": [
+                "هنوز وظیفه‌ای وجود ندارد. یکی را در بالا ایجاد کنید."
+            ],
+            "No workflows yet.": [
+                "هنوز گردش کاری وجود ندارد."
+            ],
+            "Number of articles": [
+                "تعداد مقالات"
+            ],
+            "Number of products": [
+                "تعداد محصولات"
+            ],
+            "One rule per line, e.g. Always mention free shipping over $50": [
+                "هر قانون در یک خط، مثال: همیشه ارسال رایگان بالای ۵۰ دلار را ذکر کن"
+            ],
+            "One rule per line, e.g. Never promise delivery dates without checking": [
+                "هر قانون در یک خط، مثال: هرگز بدون بررسی تاریخ تحویل را قول نده"
+            ],
+            "Only failed tasks can be retried.": [
+                "فقط وظایف ناموفق قابل تکرار هستند."
+            ],
+            "Open link": [
+                "Open link"
+            ],
+            "OpenAI API key is not configured.": [
+                "کلید API OpenAI پیکربندی نشده است."
+            ],
+            "OpenAI-compatible base URL including \/v1 path.": [
+                "آدرس پایه سازگار با OpenAI شامل مسیر \/v1."
+            ],
+            "Order not found for that email.": [
+                "سفارشی برای این ایمیل یافت نشد."
+            ],
+            "Order not found.": [
+                "سفارش یافت نشد."
+            ],
+            "Order number and email are required.": [
+                "شماره سفارش و ایمیل الزامی هستند."
+            ],
+            "Order status: %s": [
+                "وضعیت سفارش: %s"
+            ],
+            "Page structure retrieved.": [
+                "ساختار صفحه دریافت شد."
+            ],
+            "Paste your API key here.": [
+                "کلید API خود را اینجا وارد کنید."
+            ],
+            "Pause": [
+                "توقف"
+            ],
+            "Paused": [
+                "متوقف‌شده"
+            ],
+            "Pending": [
+                "در انتظار"
+            ],
+            "Pending action ID and conversation ID are required.": [
+                "شناسه اقدام معلق و شناسه مکالمه الزامی هستند."
+            ],
+            "Pending action not found or expired.": [
+                "اقدام معلق یافت نشد یا منقضی شده است."
+            ],
+            "Permission denied.": [
+                "دسترسی رد شد."
+            ],
+            "Planning article topics": [
+                "برنامه‌ریزی موضوعات مقاله"
+            ],
+            "Please enter a prompt.": [
+                "لطفاً یک پرامپت وارد کنید."
+            ],
+            "Please log in to view your orders, or provide order number and email.": [
+                "لطفاً برای مشاهده سفارشات وارد شوید، یا شماره سفارش و ایمیل را وارد کنید."
+            ],
+            "Polite": [
+                "مودبانه"
+            ],
+            "Portrait (1024×1792)": [
+                "عمودی (۱۰۲۴×۱۷۹۲)"
+            ],
+            "Post not found.": [
+                "پست یافت نشد."
+            ],
+            "Post retrieved.": [
+                "پست دریافت شد."
+            ],
+            "Post updated successfully.": [
+                "پست با موفقیت به‌روز شد."
+            ],
+            "Powered by AgenPress": [
+                "قدرت‌گرفته از AgenPress"
+            ],
+            "Preview": [
+                "پیش‌نمایش"
+            ],
+            "Pro": [
+                "حرفه‌ای"
+            ],
+            "Product Descriptions": [
+                "توضیحات محصول"
+            ],
+            "Product details retrieved.": [
+                "جزئیات محصول دریافت شد."
+            ],
+            "Product niche": [
+                "حوزه محصول"
+            ],
+            "Product not found.": [
+                "محصول یافت نشد."
+            ],
+            "Product retrieved.": [
+                "محصول دریافت شد."
+            ],
+            "Product updated.": [
+                "محصول به‌روز شد."
+            ],
+            "Professional": [
+                "حرفه‌ای"
+            ],
+            "Progress": [
+                "پیشرفت"
+            ],
+            "Prompt": [
+                "پرامپت"
+            ],
+            "Publish when done": [
+                "انتشار پس از اتمام"
+            ],
+            "Queue Task": [
+                "افزودن وظیفه به صف"
+            ],
+            "Quick Actions": [
+                "اقدامات سریع"
+            ],
+            "RAG": [
+                "RAG"
+            ],
+            "Rate Limit (requests\/hour)": [
+                "محدودیت نرخ (درخواست\/ساعت)"
+            ],
+            "Rate limit exceeded. Please try again later.": [
+                "محدودیت نرخ تجاوز کرده است. لطفاً بعداً دوباره امتحان کنید."
+            ],
+            "Rate limiting requires a user or visitor key.": [
+                "محدودیت نرخ نیاز به کلید کاربر یا بازدیدکننده دارد."
+            ],
+            "Re-run": [
+                "اجرای مجدد"
+            ],
+            "Reason:": [
+                "دلیل:"
+            ],
+            "Recommend products for [occasion]": [
+                "محصولات را برای [occasion] پیشنهاد بده"
+            ],
+            "Reindex Embeddings": [
+                "ایندکس‌گذاری مجدد جاسازی‌ها"
+            ],
+            "Reindexed embeddings: %1$d of %2$d entries.": [
+                "جاسازی‌ها مجدداً ایندکس‌گذاری شدند: %1$d از %2$d ورودی."
+            ],
+            "Reindexing...": [
+                "در حال ایندکس‌گذاری مجدد..."
+            ],
+            "Resolved": [
+                "حل‌شده"
+            ],
+            "Resume": [
+                "ادامه"
+            ],
+            "Retry": [
+                "تکرار"
+            ],
+            "Revoke": [
+                "لغو دسترسی"
+            ],
+            "Run": [
+                "اجرا"
+            ],
+            "Running": [
+                "در حال اجرا"
+            ],
+            "Running Agents": [
+                "عاملان در حال اجرا"
+            ],
+            "SEO": [
+                "سئو"
+            ],
+            "SEO Articles Batch": [
+                "دسته مقالات سئو"
+            ],
+            "Sales Assistant": [
+                "دستیار فروش"
+            ],
+            "Sales Inbox": [
+                "صندوق ورودی فروش"
+            ],
+            "Sales Rules — Do": [
+                "قوانین فروش — بایدها"
+            ],
+            "Sales Rules — Do Not": [
+                "قوانین فروش — نبایدها"
+            ],
+            "Sales chat": [
+                "چت فروش"
+            ],
+            "Sales rules — DO NOT:": [
+                "قوانین فروش — نبایدها:"
+            ],
+            "Sales rules — DO:": [
+                "قوانین فروش — بایدها:"
+            ],
+            "Save": [
+                "ذخیره"
+            ],
+            "Save Memory": [
+                "ذخیره حافظه"
+            ],
+            "Save Settings": [
+                "ذخیره تنظیمات"
+            ],
+            "Save the post as a draft first to set a featured image.": [
+                "ابتدا پست را به عنوان پیش‌نویس ذخیره کنید تا بتوانید تصویر شاخص تنظیم کنید."
+            ],
+            "Saving...": [
+                "در حال ذخیره..."
+            ],
+            "Score": [
+                "امتیاز"
+            ],
+            "Search query is required.": [
+                "عبارت جستجو الزامی است."
+            ],
+            "Search...": [
+                "جستجو..."
+            ],
+            "Section created.": [
+                "بخش ایجاد شد."
+            ],
+            "Select a conversation to view.": [
+                "یک مکالمه برای مشاهده انتخاب کنید."
+            ],
+            "Selected text": [
+                "متن انتخاب‌شده"
+            ],
+            "Selection:": [
+                "انتخاب:"
+            ],
+            "Semantic": [
+                "معنایی"
+            ],
+            "Semantic search...": [
+                "جستجوی معنایی..."
+            ],
+            "Send": [
+                "ارسال"
+            ],
+            "Settings": [
+                "تنظیمات"
+            ],
+            "Settings are required.": [
+                "تنظیمات الزامی هستند."
+            ],
+            "Settings saved successfully.": [
+                "تنظیمات با موفقیت ذخیره شد."
+            ],
+            "Show me the structure of this page": [
+                "ساختار این صفحه را به من نشان بده"
+            ],
+            "Site Memory": [
+                "حافظه سایت"
+            ],
+            "Site info retrieved.": [
+                "اطلاعات سایت دریافت شد."
+            ],
+            "Square (1024×1024)": [
+                "مربع (۱۰۲۴×۱۰۲۴)"
+            ],
+            "Start AI Chat": [
+                "شروع چت هوش مصنوعی"
+            ],
+            "Steps": [
+                "مراحل"
+            ],
+            "Store brand info, design rules, SEO keywords...": [
+                "اطلاعات برند، قوانین طراحی، کلمات کلیدی سئو... را ذخیره کنید"
+            ],
+            "Storefront Sales Chat": [
+                "چت فروش فروشگاه"
+            ],
+            "Storefront Sales Chats": [
+                "چت‌های فروش فروشگاه"
+            ],
+            "Storefront sales chat behavior:": [
+                "رفتار چت فروش فروشگاه:"
+            ],
+            "Suggest a landing page structure": [
+                "یک ساختار صفحه فرود پیشنهاد بده"
+            ],
+            "Talk to a human": [
+                "صحبت با یک انسان"
+            ],
+            "Task \"%s\" completed successfully.": [
+                "وظیفه \"%s\" با موفقیت تکمیل شد."
+            ],
+            "Task Details:": [
+                "جزئیات وظیفه:"
+            ],
+            "Task Queue": [
+                "صف وظایف"
+            ],
+            "Task Template": [
+                "قالب وظیفه"
+            ],
+            "Task Title": [
+                "عنوان وظیفه"
+            ],
+            "Task cannot be cancelled in its current state.": [
+                "وظیفه در وضعیت فعلی قابل لغو نیست."
+            ],
+            "Task cannot be paused or resumed in its current state.": [
+                "وظیفه در وضعیت فعلی قابل توقف یا ادامه نیست."
+            ],
+            "Task not found.": [
+                "وظیفه یافت نشد."
+            ],
+            "Task plan created.": [
+                "برنامه وظیفه ایجاد شد."
+            ],
+            "Task title is required.": [
+                "عنوان وظیفه الزامی است."
+            ],
+            "Tasks Completed": [
+                "وظایف تکمیل‌شده"
+            ],
+            "Template": [
+                "قالب"
+            ],
+            "Term name is required.": [
+                "نام اصطلاح الزامی است."
+            ],
+            "Text Model": [
+                "مدل متن"
+            ],
+            "Text generation failed.": [
+                "تولید متن ناموفق بود."
+            ],
+            "Text prompt is required.": [
+                "پرامپت متن الزامی است."
+            ],
+            "The following actions require your confirmation before proceeding.": [
+                "اقدامات زیر قبل از ادامه نیاز به تأیید شما دارند."
+            ],
+            "Things the assistant must avoid in responses.": [
+                "مواردی که دستیار باید در پاسخ‌ها از آن‌ها اجتناب کند."
+            ],
+            "Things the assistant must do when helping customers.": [
+                "مواردی که دستیار باید هنگام کمک به مشتریان انجام دهد."
+            ],
+            "Thinking...": [
+                "در حال تفکر..."
+            ],
+            "This action is not available in the storefront chat.": [
+                "این اقدام در چت فروشگاه در دسترس نیست."
+            ],
+            "This action requires administrator privileges.": [
+                "این اقدام نیاز به دسترسی مدیر دارد."
+            ],
+            "This customer has chatted with you before. Use the prior conversations below to personalize replies, remember preferences, and avoid repeating questions they already answered. Do not mention that you are reading stored logs unless the customer asks.": [
+                "این مشتری قبلاً با شما چت کرده است. از مکالمات قبلی برای شخصی‌سازی پاسخ‌ها، به‌خاطر سپردن ترجیحات و پرهیز از تکرار سؤال‌هایی که قبلاً پاسخ داده‌اند استفاده کن. مگر اینکه مشتری بپرسد، به خواندن لاگ ذخیره‌شده اشاره نکن."
+            ],
+            "This feature requires an Enterprise license.": [
+                "این ویژگی نیاز به مجوز Enterprise دارد."
+            ],
+            "Title": [
+                "عنوان"
+            ],
+            "Tokens Used": [
+                "توکن‌های مصرف‌شده"
+            ],
+            "Tone and sales rules for customer replies": [
+                "لحن و قوانین فروش برای پاسخ به مشتریان"
+            ],
+            "Tool Executions": [
+                "اجراهای ابزار"
+            ],
+            "Tool name is required.": [
+                "نام ابزار الزامی است."
+            ],
+            "Tool:": [
+                "ابزار:"
+            ],
+            "Topic \/ niche": [
+                "موضوع \/ حوزه"
+            ],
+            "Total Tasks": [
+                "مجموع وظایف"
+            ],
+            "Track my order": [
+                "سفارش من را ردیابی کن"
+            ],
+            "Trigger": [
+                "محرک"
+            ],
+            "Type a message...": [
+                "یک پیام بنویسید..."
+            ],
+            "Unassigned": [
+                "تخصیص‌نیافته"
+            ],
+            "Update the selected widget heading text": [
+                "متن عنوان ابزارک انتخاب‌شده را به‌روز کن"
+            ],
+            "Upload failed.": [
+                "آپلود ناموفق بود."
+            ],
+            "Upload file": [
+                "آپلود فایل"
+            ],
+            "Use Authorization: Bearer agp_... for \/external\/* and \/mcp\/* endpoints.": [
+                "از Authorization: Bearer agp_... برای نقاط پایانی \/external\/* و \/mcp\/* استفاده کنید."
+            ],
+            "Use Image": [
+                "استفاده از تصویر"
+            ],
+            "Use a polite, respectful tone. Address customers courteously and with warmth.": [
+                "از لحن مودبانه و محترمانه استفاده کن. با مشتریان با ادب و گرمی صحبت کن."
+            ],
+            "Use a professional, confident business tone. Be clear, structured, and expert without being stiff.": [
+                "از لحن حرفه‌ای و مطمئن کسب‌وکار استفاده کن. واضح، منظم و متخصص باش بدون خشکی."
+            ],
+            "Use a warm, casual, conversational tone. Be approachable and relatable while staying helpful.": [
+                "از لحن گرم، خودمونی و گفتگومحور استفاده کن. صمیمی و قابل ارتباط باش در عین حفظ مفید بودن."
+            ],
+            "User not found.": [
+                "کاربر یافت نشد."
+            ],
+            "User retrieved.": [
+                "کاربر دریافت شد."
+            ],
+            "Value": [
+                "مقدار"
+            ],
+            "View Tasks": [
+                "مشاهده وظایف"
+            ],
+            "View product": [
+                "View product"
+            ],
+            "Warm and conversational": [
+                "گرم و گفتگومحور"
+            ],
+            "Welcome back! I remember our previous chats. How can I help you today?": [
+                "خوش برگشتی! مکالمات قبلی‌مان را به خاطر دارم. امروز چطور می‌توانم کمکت کنم؟"
+            ],
+            "What are our best-selling products?": [
+                "محصولات پرفروش ما کدامند؟"
+            ],
+            "What are your best-selling products?": [
+                "محصولات پرفروش شما کدامند؟"
+            ],
+            "What is in my cart?": [
+                "چه چیزی در سبد خرید من است؟"
+            ],
+            "What posts do I have on my site?": [
+                "چه پست‌هایی در سایتم دارم؟"
+            ],
+            "Widget": [
+                "ابزارک"
+            ],
+            "Widget Color": [
+                "رنگ ابزارک"
+            ],
+            "Widget Position": [
+                "موقعیت ابزارک"
+            ],
+            "Widget Title": [
+                "عنوان ابزارک"
+            ],
+            "Widget disabled": [
+                "ابزارک غیرفعال"
+            ],
+            "Widget enabled": [
+                "ابزارک فعال"
+            ],
+            "WooCommerce is not active.": [
+                "ووکامرس فعال نیست."
+            ],
+            "Workflow name": [
+                "نام گردش کار"
+            ],
+            "Workflows": [
+                "گردش‌های کار"
+            ],
+            "Workflows require an Enterprise license. Update the license tier in Settings to enable automation workflows.": [
+                "گردش‌های کار نیاز به مجوز Enterprise دارند. سطح مجوز را در تنظیمات به‌روز کنید تا گردش‌های کار اتوماسیون فعال شود."
+            ],
+            "Write an SEO-optimized blog post about [topic]": [
+                "یک پست وبلاگ بهینه‌شده برای سئو درباره [topic] بنویس"
+            ],
+            "Writing product description %d": [
+                "در حال نوشتن توضیحات محصول %d"
+            ],
+            "You do not have permission to access this module.": [
+                "شما اجازه دسترسی به این ماژول را ندارید."
+            ],
+            "You do not have permission to perform this action.": [
+                "شما اجازه انجام این اقدام را ندارید."
+            ],
+            "You must be logged in.": [
+                "شما باید وارد شوید."
+            ],
+            "Your API key": [
+                "کلید API شما"
+            ],
+            "Your request has been sent to our team. We will get back to you soon.": [
+                "درخواست شما به تیم ما ارسال شد. به زودی با شما در تماس خواهیم بود."
+            ],
+            "days": [
+                "روز"
+            ],
+            "e.g. Generate 10 SEO articles about WordPress": [
+                "مثال: ۱۰ مقاله سئو درباره وردپرس تولید کن"
+            ],
+            "e.g. brand_name, primary_color": [
+                "مثال: brand_name, primary_color"
+            ],
+            "re-run": [
+                "اجرای مجدد"
+            ]
+        }
+    }
+}

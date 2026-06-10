@@ -1,36 +1,22 @@
 import { useState, useEffect, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import apiFetch from '@wordpress/api-fetch';
+import { escalateConversation, getSalesSession, sendSalesMessage } from './api';
+import MessageContent from './MessageContent';
 
 const data = window.agenpressChatData || {};
 const config = data.config || {};
-
-async function sendSalesMessage( message, conversationId ) {
-	const res = await apiFetch( {
-		path: '/sales/chat',
-		method: 'POST',
-		data: { message, conversation_id: conversationId },
-	} );
-	return res.data;
-}
-
-async function escalateConversation( conversationId ) {
-	const res = await apiFetch( {
-		path: '/sales/escalate',
-		method: 'POST',
-		data: { conversation_id: conversationId },
-	} );
-	return res.data;
-}
+const STORAGE_KEY = 'agenpress_sales_conversation_id';
 
 export default function Widget( { inline = false } ) {
 	const [ open, setOpen ] = useState( inline );
 	const [ messages, setMessages ] = useState( [] );
 	const [ input, setInput ] = useState( '' );
 	const [ loading, setLoading ] = useState( false );
+	const [ sessionLoading, setSessionLoading ] = useState( !! data.isLoggedIn );
 	const [ error, setError ] = useState( null );
 	const [ conversationId, setConversationId ] = useState( 0 );
 	const [ escalated, setEscalated ] = useState( false );
+	const [ hasHistory, setHasHistory ] = useState( false );
 	const endRef = useRef( null );
 
 	const color = config.color || '#2271b1';
@@ -38,13 +24,60 @@ export default function Widget( { inline = false } ) {
 	const suggestions = data.suggestions || [];
 
 	useEffect( () => {
-		apiFetch.use( apiFetch.createNonceMiddleware( data.nonce || '' ) );
-		apiFetch.use( apiFetch.createRootURLMiddleware( data.apiUrl || '/wp-json/agenpress/v1/' ) );
+		endRef.current?.scrollIntoView( { behavior: 'smooth' } );
+	}, [ messages, open ] );
+
+	useEffect( () => {
+		let cancelled = false;
+
+		const loadSession = async () => {
+			if ( data.isLoggedIn ) {
+				try {
+					const session = await getSalesSession();
+					if ( cancelled ) {
+						return;
+					}
+
+					if ( session.conversation_id ) {
+						setConversationId( session.conversation_id );
+						localStorage.setItem( STORAGE_KEY, String( session.conversation_id ) );
+					}
+
+					if ( Array.isArray( session.messages ) && session.messages.length > 0 ) {
+						setMessages( session.messages );
+					}
+
+					setEscalated( !! session.escalated );
+					setHasHistory( !! session.has_history );
+				} catch {
+					// Session restore is best-effort.
+				} finally {
+					if ( ! cancelled ) {
+						setSessionLoading( false );
+					}
+				}
+				return;
+			}
+
+			const savedId = parseInt( localStorage.getItem( STORAGE_KEY ) || '0', 10 );
+			if ( savedId > 0 ) {
+				setConversationId( savedId );
+			}
+			setSessionLoading( false );
+		};
+
+		loadSession();
+
+		return () => {
+			cancelled = true;
+		};
 	}, [] );
 
 	useEffect( () => {
-		endRef.current?.scrollIntoView( { behavior: 'smooth' } );
-	}, [ messages, open ] );
+		if ( conversationId > 0 ) {
+			localStorage.setItem( STORAGE_KEY, String( conversationId ) );
+		}
+	}, [ conversationId ] );
 
 	const handleSend = async ( text = input ) => {
 		if ( ! text.trim() || loading || escalated ) return;
@@ -126,16 +159,36 @@ export default function Widget( { inline = false } ) {
 			) }
 
 			<div className="ap-chat-messages">
-				{ messages.length === 0 && (
+				{ sessionLoading && (
+					<div className="ap-chat-msg assistant ap-chat-loading">
+						<span className="ap-chat-typing">
+							<span /><span /><span />
+						</span>
+					</div>
+				) }
+				{ ! sessionLoading && messages.length === 0 && (
 					<div className="ap-chat-msg assistant">
-						{ __( 'Hi! How can I help you today?', 'agenpress' ) }
+						<MessageContent
+							role="assistant"
+							content={
+								hasHistory
+									? __( 'Welcome back! I remember our previous chats. How can I help you today?', 'agenpress' )
+									: __( 'Hi! How can I help you today?', 'agenpress' )
+							}
+						/>
 					</div>
 				) }
 				{ messages.map( ( msg, i ) => (
-					<div key={ i } className={ `ap-chat-msg ${ msg.role }` }>{ msg.content }</div>
+					<div key={ i } className={ `ap-chat-msg ${ msg.role }` }>
+						<MessageContent role={ msg.role } content={ msg.content } />
+					</div>
 				) ) }
 				{ loading && (
-					<div className="ap-chat-msg assistant">{ __( 'Thinking...', 'agenpress' ) }</div>
+					<div className="ap-chat-msg assistant ap-chat-loading">
+						<span className="ap-chat-typing">
+							<span /><span /><span />
+						</span>
+					</div>
 				) }
 				<div ref={ endRef } />
 			</div>
@@ -162,14 +215,14 @@ export default function Widget( { inline = false } ) {
 						}
 					} }
 					placeholder={ __( 'Type a message...', 'agenpress' ) }
-					disabled={ loading || escalated }
+					disabled={ loading || escalated || sessionLoading }
 					rows={ 1 }
 				/>
 				<button
 					className="ap-chat-send"
 					style={ { background: color } }
 					onClick={ () => handleSend() }
-					disabled={ loading || escalated || ! input.trim() }
+					disabled={ loading || escalated || sessionLoading || ! input.trim() }
 				>
 					{ __( 'Send', 'agenpress' ) }
 				</button>

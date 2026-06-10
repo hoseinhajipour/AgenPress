@@ -7,6 +7,7 @@
 
 namespace AgenPress\Core;
 
+use AgenPress\AI\LanguageRegistry;
 use AgenPress\Database\Migrations;
 use AgenPress\Security\Capabilities;
 
@@ -33,6 +34,7 @@ class Activator {
 				array(
 					'default_provider' => 'openai',
 					'default_model'    => 'gpt-4o-mini',
+					'ai_language'      => LanguageRegistry::default_from_locale( \function_exists( 'get_locale' ) ? \get_locale() : 'en_US' ),
 					'rate_limit'       => 60,
 					'license_tier'     => 'basic',
 				)

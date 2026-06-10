@@ -97,15 +97,21 @@ class InboxController extends RestController {
 	/**
 	 * GET /inbox
 	 *
+	 * @param \WP_REST_Request $request Request.
 	 * @return \WP_REST_Response
 	 */
-	public function list_inbox(): \WP_REST_Response {
+	public function list_inbox( \WP_REST_Request $request ): \WP_REST_Response {
 		/** @var ConversationRepository $repo */
-		$repo = $this->container->get( 'conversation_repository' );
+		$repo   = $this->container->get( 'conversation_repository' );
+		$status = sanitize_key( (string) ( $request->get_param( 'status' ) ?? '' ) );
+		$allowed = array( 'active', 'escalated', 'resolved' );
+		$filter  = in_array( $status, $allowed, true ) ? $status : null;
 
 		return $this->success(
 			array(
-				'conversations' => $repo->list_escalated(),
+				'conversations' => $repo->list_storefront_sales( $filter ),
+				'counts'        => $repo->count_storefront_sales_by_status(),
+				'status'        => $filter ?? 'all',
 			)
 		);
 	}

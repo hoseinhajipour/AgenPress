@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 
-const NAV_ITEMS = [
+const BASE_NAV_ITEMS = [
 	{ id: 'dashboard', label: __( 'Dashboard', 'agenpress' ), icon: '📊' },
 	{ id: 'chat', label: __( 'AI Chat', 'agenpress' ), icon: '💬' },
 	{ id: 'inbox', label: __( 'Sales Inbox', 'agenpress' ), icon: '📥' },
@@ -11,8 +11,19 @@ const NAV_ITEMS = [
 	{ id: 'settings', label: __( 'Settings', 'agenpress' ), icon: '⚙️' },
 ];
 
+const WOOCOMMERCE_NAV_ITEMS = [
+	{ id: 'sales-chat', label: __( 'Storefront Sales Chat', 'agenpress' ), icon: '🛒' },
+];
+
 export default function Sidebar( { currentPage, onNavigate } ) {
-	const { siteName, version, userName } = window.agenpressData || {};
+	const { siteName, version, userName, woocommerce } = window.agenpressData || {};
+	const navItems = woocommerce
+		? [
+			...BASE_NAV_ITEMS.slice( 0, 3 ),
+			...WOOCOMMERCE_NAV_ITEMS,
+			...BASE_NAV_ITEMS.slice( 3 ),
+		]
+		: BASE_NAV_ITEMS;
 
 	return (
 		<aside className="ap-sidebar">
@@ -21,7 +32,7 @@ export default function Sidebar( { currentPage, onNavigate } ) {
 				<p>{ siteName || 'WordPress AI' } · v{ version }</p>
 			</div>
 			<nav>
-				{ NAV_ITEMS.map( ( item ) => (
+				{ navItems.map( ( item ) => (
 					<button
 						key={ item.id }
 						className={ `ap-nav-item ${ currentPage === item.id ? 'active' : '' }` }

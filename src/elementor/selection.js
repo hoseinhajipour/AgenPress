@@ -1,4 +1,34 @@
 /**
+ * Map an Elementor container to selection context fields.
+ *
+ * @param {object} container Elementor editor container.
+ * @return {object|null} Partial selection context or null.
+ */
+function containerToContext( container ) {
+	if ( ! container ) {
+		return null;
+	}
+
+	const model = container.model;
+	const elementId = container.id || model?.get?.( 'id' );
+	if ( ! elementId ) {
+		return null;
+	}
+
+	const context = {
+		element_id: elementId,
+		el_type: container.type || model?.get?.( 'elType' ),
+	};
+
+	const widgetType = model?.get?.( 'widgetType' );
+	if ( widgetType ) {
+		context.widget_type = widgetType;
+	}
+
+	return context;
+}
+
+/**
  * Read Elementor editor selection state.
  *
  * @return {object} Selection context for API requests.
@@ -8,31 +38,21 @@ export function getElementorSelection() {
 	const context = { post_id: postId };
 
 	try {
-		const preview = window.elementor?.getPreviewView?.();
-		const model = preview?.getSelectedModel?.();
-
-		if ( model ) {
-			context.element_id = model.get( 'id' );
-			context.el_type = model.get( 'elType' );
-			const widgetType = model.get( 'widgetType' );
-			if ( widgetType ) {
-				context.widget_type = widgetType;
+		const elements = window.elementor?.selection?.getElements?.() || [];
+		if ( elements.length > 0 ) {
+			const selected = containerToContext( elements[ 0 ] );
+			if ( selected ) {
+				return { ...context, ...selected };
 			}
-			return context;
 		}
 
-		if ( window.$e?.components ) {
-			const selection = window.$e.components.get( 'selection' );
-			const elements = selection?.getElements?.() || [];
-
-			if ( elements.length > 0 ) {
-				const first = elements[ 0 ];
-				context.element_id = first.id || first.get?.( 'id' );
-				context.el_type = first.elType || first.get?.( 'elType' );
-				const wt = first.widgetType || first.get?.( 'widgetType' );
-				if ( wt ) {
-					context.widget_type = wt;
-				}
+		// Legacy fallback for very old Elementor versions.
+		const preview = window.elementor?.getPreviewView?.();
+		const model = preview?.getSelectedModel?.();
+		if ( model ) {
+			const legacy = containerToContext( { id: model.get( 'id' ), type: model.get( 'elType' ), model } );
+			if ( legacy ) {
+				return { ...context, ...legacy };
 			}
 		}
 	} catch ( err ) {
@@ -61,11 +81,30 @@ export function subscribeToSelection( callback ) {
 	};
 
 	const interval = setInterval( poll, 500 );
+	const cleanups = [];
 
 	const onElementorInit = () => {
 		poll();
+
 		if ( window.elementor?.channels?.editor ) {
 			window.elementor.channels.editor.on( 'change', poll );
+			cleanups.push( () => window.elementor.channels.editor.off( 'change', poll ) );
+		}
+
+		const selectionCommands = [
+			'document/elements/select',
+			'document/elements/deselect',
+			'document/elements/deselect-all',
+		];
+
+		if ( window.$e?.routes?.on ) {
+			const onRoute = ( component, route ) => {
+				if ( selectionCommands.includes( route ) ) {
+					poll();
+				}
+			};
+			window.$e.routes.on( 'run:after', onRoute );
+			cleanups.push( () => window.$e.routes.off( 'run:after', onRoute ) );
 		}
 	};
 
@@ -73,12 +112,11 @@ export function subscribeToSelection( callback ) {
 		onElementorInit();
 	} else {
 		window.jQuery( window ).on( 'elementor:init', onElementorInit );
+		cleanups.push( () => window.jQuery( window ).off( 'elementor:init', onElementorInit ) );
 	}
 
 	return () => {
 		clearInterval( interval );
-		if ( window.elementor?.channels?.editor ) {
-			window.elementor.channels.editor.off( 'change', poll );
-		}
+		cleanups.forEach( ( cleanup ) => cleanup() );
 	};
 }

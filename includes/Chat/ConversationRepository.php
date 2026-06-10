@@ -152,6 +152,54 @@ class ConversationRepository {
 	}
 
 	/**
+	 * List conversations linked to a visitor session.
+	 *
+	 * @param string      $visitor_id Visitor ID.
+	 * @param string|null $module     Optional module filter.
+	 * @param int         $limit      Limit.
+	 * @return array<int, array<string, mixed>>
+	 */
+	public function list_for_visitor( string $visitor_id, ?string $module = null, int $limit = 20 ): array {
+		global $wpdb;
+
+		if ( '' === $visitor_id ) {
+			return array();
+		}
+
+		$table = $this->table();
+		$like  = '%' . $wpdb->esc_like( '"visitor_id":"' . $visitor_id . '"' ) . '%';
+
+		if ( $module ) {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			$rows = $wpdb->get_results(
+				$wpdb->prepare(
+					"SELECT * FROM {$table} WHERE metadata LIKE %s AND module = %s ORDER BY updated_at DESC LIMIT %d",
+					$like,
+					$module,
+					$limit
+				),
+				ARRAY_A
+			);
+		} else {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			$rows = $wpdb->get_results(
+				$wpdb->prepare(
+					"SELECT * FROM {$table} WHERE metadata LIKE %s ORDER BY updated_at DESC LIMIT %d",
+					$like,
+					$limit
+				),
+				ARRAY_A
+			);
+		}
+
+		if ( ! is_array( $rows ) ) {
+			return array();
+		}
+
+		return array_map( array( $this, 'format' ), $rows );
+	}
+
+	/**
 	 * Find conversation owned by a visitor session.
 	 *
 	 * @param int    $id         Conversation ID.
@@ -175,32 +223,107 @@ class ConversationRepository {
 	}
 
 	/**
-	 * List escalated sales conversations for admin inbox.
+	 * List storefront sales conversations for admin inbox.
 	 *
-	 * @param int $limit Limit.
+	 * @param string|null $status Optional status filter (active, escalated, resolved).
+	 * @param int         $limit  Limit.
+	 * @param int         $offset Offset.
 	 * @return array<int, array<string, mixed>>
 	 */
-	public function list_escalated( int $limit = 50 ): array {
+	public function list_storefront_sales( ?string $status = null, int $limit = 50, int $offset = 0 ): array {
 		global $wpdb;
 
-		$table = $this->table();
+		$table   = $this->table();
+		$channel = '%' . $wpdb->esc_like( '"channel":"storefront"' ) . '%';
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-		$rows = $wpdb->get_results(
-			$wpdb->prepare(
-				"SELECT * FROM {$table} WHERE module = %s AND status = %s ORDER BY updated_at DESC LIMIT %d",
-				'sales',
-				'escalated',
-				$limit
-			),
-			ARRAY_A
-		);
+		if ( $status ) {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			$rows = $wpdb->get_results(
+				$wpdb->prepare(
+					"SELECT * FROM {$table} WHERE module = %s AND metadata LIKE %s AND status = %s ORDER BY updated_at DESC LIMIT %d OFFSET %d",
+					'sales',
+					$channel,
+					sanitize_key( $status ),
+					$limit,
+					$offset
+				),
+				ARRAY_A
+			);
+		} else {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			$rows = $wpdb->get_results(
+				$wpdb->prepare(
+					"SELECT * FROM {$table} WHERE module = %s AND metadata LIKE %s ORDER BY updated_at DESC LIMIT %d OFFSET %d",
+					'sales',
+					$channel,
+					$limit,
+					$offset
+				),
+				ARRAY_A
+			);
+		}
 
 		if ( ! is_array( $rows ) ) {
 			return array();
 		}
 
 		return array_map( array( $this, 'format' ), $rows );
+	}
+
+	/**
+	 * Count storefront sales conversations grouped by status.
+	 *
+	 * @return array<string, int>
+	 */
+	public function count_storefront_sales_by_status(): array {
+		global $wpdb;
+
+		$table   = $this->table();
+		$channel = '%' . $wpdb->esc_like( '"channel":"storefront"' ) . '%';
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$rows = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT status, COUNT(*) AS total FROM {$table} WHERE module = %s AND metadata LIKE %s GROUP BY status",
+				'sales',
+				$channel
+			),
+			ARRAY_A
+		);
+
+		$counts = array(
+			'all'       => 0,
+			'active'    => 0,
+			'escalated' => 0,
+			'resolved'  => 0,
+		);
+
+		if ( ! is_array( $rows ) ) {
+			return $counts;
+		}
+
+		foreach ( $rows as $row ) {
+			$status = sanitize_key( (string) ( $row['status'] ?? '' ) );
+			$total  = (int) ( $row['total'] ?? 0 );
+
+			if ( isset( $counts[ $status ] ) ) {
+				$counts[ $status ] = $total;
+			}
+
+			$counts['all'] += $total;
+		}
+
+		return $counts;
+	}
+
+	/**
+	 * List escalated sales conversations for admin inbox.
+	 *
+	 * @param int $limit Limit.
+	 * @return array<int, array<string, mixed>>
+	 */
+	public function list_escalated( int $limit = 50 ): array {
+		return $this->list_storefront_sales( 'escalated', $limit );
 	}
 
 	/**

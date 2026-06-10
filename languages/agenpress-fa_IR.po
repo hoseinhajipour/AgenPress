@@ -1,0 +1,1874 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AgenPress\n"
+"Report-Msgid-Bugs-To: https://github.com/agenpress/agenpress\n"
+"POT-Creation-Date: 2026-06-10 08:16+0000\n"
+"PO-Revision-Date: 2026-06-10 08:16+0000\n"
+"Last-Translator: AgenPress <support@agenpress.io>\n"
+"Language-Team: Persian\n"
+"Language: fa-IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: agenpress\n"
+
+#: includes/Modules/Sales/Tools/RecommendProductsTool.php:74
+msgid "%d recommendations."
+msgstr "%d پیشنهاد."
+
+#: includes/Modules/Sales/Tools/EscalateToHumanTool.php:78
+msgid "A team member will follow up shortly."
+msgstr "یک عضو تیم به زودی پیگیری خواهد کرد."
+
+#: src/frontend/Widget.jsx:157
+msgid "A team member will follow up with you."
+msgstr "یک عضو تیم با شما پیگیری خواهد کرد."
+
+#: includes/AI/OpenAICompatibleProvider.php:259
+msgid "AI API error."
+msgstr "خطای API هوش مصنوعی."
+
+#: src/admin/pages/SalesChatSettings.jsx:14
+msgid "AI Behavior"
+msgstr "رفتار هوش مصنوعی"
+
+#: src/admin/App.jsx:28
+#: src/admin/components/Sidebar.jsx:5
+msgid "AI Chat"
+msgstr "چت هوش مصنوعی"
+
+#: src/post-editor/FeaturedImageModal.jsx:100
+#: src/post-editor/InsertImageModal.jsx:86
+msgid "AI Generate Image"
+msgstr "تولید تصویر با هوش مصنوعی"
+
+#: src/post-editor/GenerateTextModal.jsx:73
+msgid "AI Generate Text"
+msgstr "تولید متن با هوش مصنوعی"
+
+#: src/post-editor/FeaturedImageButton.jsx:50
+#: src/post-editor/FeaturedImageButton.jsx:80
+msgid "AI Generate image"
+msgstr "تولید تصویر با هوش مصنوعی"
+
+#: src/admin/pages/Settings.jsx:322
+msgid "AI Language"
+msgstr "زبان هوش مصنوعی"
+
+#: src/admin/pages/Settings.jsx:228
+msgid "AI Provider"
+msgstr "ارائه‌دهنده هوش مصنوعی"
+
+#: includes/Agents/TaskTemplates.php:270
+msgid "AI planning task steps"
+msgstr "برنامه‌ریزی مراحل وظیفه با هوش مصنوعی"
+
+#: includes/Agents/TaskTemplates.php:51
+msgid "AI-planned multi-step task from your description"
+msgstr "وظیفه چند مرحله‌ای برنامه‌ریزی‌شده توسط هوش مصنوعی از توضیحات شما"
+
+#: src/admin/pages/Settings.jsx:257
+msgid "API Base URL"
+msgstr "آدرس پایه API"
+
+#: src/admin/pages/Settings.jsx:270
+msgid "API Endpoint"
+msgstr "نقطه پایانی API"
+
+#: src/admin/pages/Settings.jsx:276
+msgid "API Key"
+msgstr "کلید API"
+
+#: includes/REST/ExternalAuth.php:62
+msgid "API key does not have permission for this scope."
+msgstr "کلید API برای این دامنه مجاز نیست."
+
+#: includes/REST/ExternalAuth.php:42
+msgid "API key required. Use Authorization: Bearer agp_..."
+msgstr "کلید API الزامی است. از Authorization: Bearer agp_... استفاده کنید"
+
+#: src/admin/pages/Dashboard.jsx:94
+msgid "About AgenPress"
+msgstr "درباره AgenPress"
+
+#: src/admin/pages/Tasks.jsx:250
+msgid "Actions"
+msgstr "اقدامات"
+
+#: src/admin/pages/Inbox.jsx:7
+#: src/admin/pages/Inbox.jsx:13
+msgid "Active"
+msgstr "فعال"
+
+#: src/admin/pages/Memory.jsx:210
+msgid "Add Memory Entry"
+msgstr "افزودن ورودی حافظه"
+
+#: src/admin/pages/Tasks.jsx:213
+msgid "Additional instructions for the agent..."
+msgstr "دستورالعمل‌های اضافی برای عامل..."
+
+#: includes/Admin/AdminMenu.php:78
+msgid "Admin AI"
+msgstr "هوش مصنوعی مدیریت"
+
+#: includes/Modules/Admin/AdminModule.php:64
+msgid "Admin Assistant"
+msgstr "دستیار مدیریت"
+
+#: includes/Admin/AdminMenu.php:24
+#: includes/Admin/AdminMenu.php:25
+msgid "AgenPress"
+msgstr "AgenPress"
+
+#: src/elementor/Panel.jsx:138
+msgid "AgenPress AI"
+msgstr "AgenPress AI"
+
+#: src/admin/pages/Dashboard.jsx:97
+msgid "AgenPress is your AI Operating System for WordPress. Use the Admin AI to manage content, Agent Tasks for multi-step automation, and Memory to store brand knowledge for smarter responses."
+msgstr "AgenPress سیستم عامل هوش مصنوعی شما برای وردپرس است. از هوش مصنوعی مدیریت برای مدیریت محتوا، وظایف عامل برای اتوماسیون چند مرحله‌ای، و حافظه برای ذخیره دانش برند جهت پاسخ‌های هوشمندتر استفاده کنید."
+
+#: src/admin/App.jsx:32
+#: src/admin/components/Sidebar.jsx:9
+msgid "Agent Tasks"
+msgstr "وظایف عامل"
+
+#: src/admin/pages/Inbox.jsx:6
+#: src/admin/pages/Memory.jsx:257
+#: src/admin/pages/Tasks.jsx:17
+msgid "All"
+msgstr "همه"
+
+#: src/admin/pages/Inbox.jsx:105
+msgid "All AI sales chats from the storefront widget. Escalated chats need human follow-up."
+msgstr "همه چت‌های فروش هوش مصنوعی از ویجت فروشگاه. چت‌های ارجاع‌شده نیاز به پیگیری انسانی دارند."
+
+#: src/admin/pages/SalesChatSettings.jsx:261
+msgid "Also available via shortcode: [agenpress_chat]"
+msgstr "همچنین از طریق کد کوتاه موجود است: [agenpress_chat]"
+
+#: includes/REST/TextController.php:94
+msgid "An AI provider API key is required."
+msgstr "کلید API ارائه‌دهنده هوش مصنوعی الزامی است."
+
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:74
+#: includes/REST/ImageController.php:142
+msgid "An image-capable AI provider API key is required (OpenAI, GapGPT, or Custom)."
+msgstr "کلید API ارائه‌دهنده هوش مصنوعی با قابلیت تصویر الزامی است (OpenAI، GapGPT، یا سفارشی)."
+
+#: src/admin/App.jsx:30
+#: src/admin/components/Sidebar.jsx:7
+msgid "Analytics"
+msgstr "تحلیل‌ها"
+
+#: src/admin/pages/Analytics.jsx:22
+#: src/admin/pages/Analytics.jsx:52
+msgid "Analytics data is unavailable."
+msgstr "داده‌های تحلیل در دسترس نیست."
+
+#: src/admin/pages/Analytics.jsx:38
+msgid "Analytics requires an Enterprise license. Update the license tier in Settings to enable usage reporting."
+msgstr "تحلیل‌ها نیاز به مجوز Enterprise دارند. سطح مجوز را در تنظیمات به‌روز کنید تا گزارش‌دهی مصرف فعال شود."
+
+#: src/admin/pages/Settings.jsx:26
+msgid "Anthropic Claude models"
+msgstr "مدل‌های Anthropic Claude"
+
+#: src/admin/pages/Settings.jsx:46
+msgid "Any OpenAI-compatible endpoint"
+msgstr "هر نقطه پایانی سازگار با OpenAI"
+
+#: src/admin/pages/SalesChatSettings.jsx:9
+msgid "Appearance and placement on the storefront"
+msgstr "ظاهر و جایگاه در فروشگاه"
+
+#: src/post-editor/FeaturedImageModal.jsx:187
+msgid "Applying..."
+msgstr "در حال اعمال..."
+
+#: includes/Agents/TaskTemplates.php:31
+msgid "Article sections count"
+msgstr "Article sections count"
+
+#: src/admin/components/ChatInterface.jsx:201
+msgid "Ask AgenPress anything..."
+msgstr "هر چیزی از AgenPress بپرسید..."
+
+#: src/elementor/Panel.jsx:199
+msgid "Ask about this page..."
+msgstr "درباره این صفحه بپرسید..."
+
+#: src/elementor/Panel.jsx:153
+msgid "Ask me to design sections, update widgets, or generate images for your page."
+msgstr "از من بخواهید بخش‌ها را طراحی کنم، ویجت‌ها را به‌روز کنم، یا تصاویری برای صفحه شما تولید کنم."
+
+#: includes/Sales/CustomerMemory.php:226
+#: src/admin/pages/Inbox.jsx:20
+msgid "Assistant"
+msgstr "دستیار"
+
+#: includes/Modules/Admin/Tools/UpdateMediaTool.php:48
+msgid "Attachment not found."
+msgstr "پیوست یافت نشد."
+
+#: includes/REST/RestController.php:54
+msgid "Authentication required."
+msgstr "احراز هویت الزامی است."
+
+#: src/admin/pages/Memory.jsx:189
+msgid "Auto-Extract Brand Info"
+msgstr "استخراج خودکار اطلاعات برند"
+
+#: src/admin/pages/Settings.jsx:335
+msgid "Base language for AI responses and generated content."
+msgstr "زبان پایه برای پاسخ‌های هوش مصنوعی و محتوای تولیدشده."
+
+#: src/admin/pages/Settings.jsx:346
+msgid "Basic"
+msgstr "پایه"
+
+#: src/admin/pages/SalesChatSettings.jsx:237
+msgid "Bottom Left"
+msgstr "پایین چپ"
+
+#: src/admin/pages/SalesChatSettings.jsx:227
+msgid "Bottom Right"
+msgstr "پایین راست"
+
+#: src/admin/pages/Memory.jsx:14
+msgid "Brand"
+msgstr "برند"
+
+#: src/admin/pages/Memory.jsx:141
+msgid "Brand info imported: %1$d created, %2$d updated."
+msgstr "اطلاعات برند وارد شد: %1$d ایجاد شد، %2$d به‌روز شد."
+
+#: src/admin/components/ConfirmationModal.jsx:36
+#: src/admin/pages/Memory.jsx:339
+#: src/admin/pages/Tasks.jsx:280
+#: src/post-editor/FeaturedImageModal.jsx:165
+#: src/post-editor/GenerateTextModal.jsx:132
+#: src/post-editor/InsertImageModal.jsx:151
+msgid "Cancel"
+msgstr "لغو"
+
+#: includes/Modules/Sales/Tools/GetCartSummaryTool.php:59
+msgid "Cart is empty."
+msgstr "سبد خرید خالی است."
+
+#: includes/Modules/Sales/Tools/GetCartSummaryTool.php:34
+msgid "Cart is not available."
+msgstr "سبد خرید در دسترس نیست."
+
+#: includes/Modules/Sales/Tools/GetCartSummaryTool.php:59
+msgid "Cart summary retrieved."
+msgstr "خلاصه سبد خرید دریافت شد."
+
+#: src/admin/pages/Memory.jsx:215
+#: src/admin/pages/Memory.jsx:295
+msgid "Category"
+msgstr "دسته‌بندی"
+
+#: includes/Core/Settings.php:42
+#: includes/Core/Settings.php:344
+#: src/admin/pages/SalesChatSettings.jsx:75
+#: src/admin/pages/SalesChatSettings.jsx:86
+#: src/admin/pages/SalesChatSettings.jsx:212
+#: src/frontend/Widget.jsx:23
+msgid "Chat with us"
+msgstr "با ما چت کنید"
+
+#: src/admin/pages/Settings.jsx:25
+msgid "Claude"
+msgstr "Claude"
+
+#: includes/AI/ClaudeProvider.php:93
+msgid "Claude API error."
+msgstr "خطای API کلود."
+
+#: includes/AI/ClaudeProvider.php:55
+msgid "Claude API key is not configured."
+msgstr "کلید API کلود پیکربندی نشده است."
+
+#: src/admin/pages/SalesChatSettings.jsx:34
+msgid "Clear and business-like"
+msgstr "واضح و حرفه‌ای"
+
+#: src/admin/pages/Tasks.jsx:315
+#: src/post-editor/FeaturedImageModal.jsx:106
+#: src/post-editor/GenerateTextModal.jsx:79
+#: src/post-editor/InsertImageModal.jsx:92
+msgid "Close"
+msgstr "بستن"
+
+#: src/admin/pages/Tasks.jsx:20
+msgid "Completed"
+msgstr "تکمیل‌شده"
+
+#: includes/Agents/TaskStepExecutor.php:434
+msgid "Conclusion"
+msgstr "Conclusion"
+
+#: src/admin/pages/Dashboard.jsx:87
+msgid "Configure AI"
+msgstr "پیکربندی هوش مصنوعی"
+
+#: src/admin/pages/Memory.jsx:204
+msgid "Configure an OpenAI API key in Settings to enable semantic memory search."
+msgstr "یک کلید API OpenAI در تنظیمات پیکربندی کنید تا جستجوی حافظه معنایی فعال شود."
+
+#: src/admin/pages/SalesChatSettings.jsx:161
+msgid "Configure the floating chat widget and how the sales assistant talks to customers on your store."
+msgstr "ابزارک چت شناور و نحوه صحبت دستیار فروش با مشتریان در فروشگاه را پیکربندی کنید."
+
+#: src/admin/pages/Settings.jsx:73
+msgid "Configured"
+msgstr "پیکربندی‌شده"
+
+#: src/admin/components/ConfirmationModal.jsx:43
+#: src/elementor/Panel.jsx:165
+msgid "Confirm"
+msgstr "تأیید"
+
+#: src/admin/components/ConfirmationModal.jsx:22
+msgid "Confirm Action"
+msgstr "تأیید اقدام"
+
+#: includes/Agents/AbstractTool.php:44
+msgid "Confirm execution of \"%s\"?"
+msgstr "آیا اجرای \"%s\" را تأیید می‌کنید؟"
+
+#: includes/Agents/ToolRegistry.php:110
+msgid "Confirm this action?"
+msgstr "آیا این اقدام را تأیید می‌کنید؟"
+
+#: includes/Agents/AgentEngine.php:312
+msgid "Confirmed action **%1$s**: %2$s"
+msgstr "اقدام **%1$s** تأیید شد: %2$s"
+
+#: src/admin/pages/Memory.jsx:15
+msgid "Contact"
+msgstr "تماس"
+
+#: src/admin/pages/SalesChatSettings.jsx:279
+msgid "Controls how the sales assistant speaks to customers."
+msgstr "نحوه صحبت دستیار فروش با مشتریان را کنترل می‌کند."
+
+#: includes/Modules/Sales/Tools/EscalateToHumanTool.php:58
+#: includes/REST/SalesChatController.php:339
+msgid "Conversation ID is required."
+msgstr "شناسه مکالمه الزامی است."
+
+#: src/admin/pages/SalesChatSettings.jsx:277
+msgid "Conversation Tone"
+msgstr "لحن گفتگو"
+
+#: includes/Modules/Sales/Tools/EscalateToHumanTool.php:64
+#: includes/REST/ChatController.php:176
+#: includes/REST/ChatController.php:206
+#: includes/REST/ChatController.php:292
+#: includes/REST/InboxController.php:138
+#: includes/REST/InboxController.php:190
+#: includes/REST/InboxController.php:216
+#: includes/REST/SalesChatController.php:141
+#: includes/REST/SalesChatController.php:312
+#: includes/REST/SalesChatController.php:353
+msgid "Conversation not found."
+msgstr "مکالمه یافت نشد."
+
+#: includes/Core/Settings.php:289
+msgid "Conversation tone:"
+msgstr "لحن گفتگو:"
+
+#: src/admin/pages/Analytics.jsx:58
+msgid "Conversations"
+msgstr "مکالمات"
+
+#: src/admin/pages/Analytics.jsx:79
+msgid "Conversations by Module"
+msgstr "مکالمات بر اساس ماژول"
+
+#: src/admin/pages/Settings.jsx:359
+msgid "Copy your key now — it won't be shown again:"
+msgstr "کلید خود را اکنون کپی کنید — دیگر نمایش داده نخواهد شد:"
+
+#: includes/Modules/Sales/Tools/ValidateCouponTool.php:57
+msgid "Coupon is valid."
+msgstr "کوپن معتبر است."
+
+#: includes/Modules/Sales/Tools/ValidateCouponTool.php:40
+msgid "Coupon not found."
+msgstr "کوپن یافت نشد."
+
+#: src/admin/pages/SalesChatSettings.jsx:24
+msgid "Courteous and respectful"
+msgstr "مودبانه و محترمانه"
+
+#: src/admin/pages/Workflows.jsx:92
+msgid "Create"
+msgstr "ایجاد"
+
+#: src/admin/pages/Tasks.jsx:151
+msgid "Create Agent Task"
+msgstr "ایجاد وظیفه عامل"
+
+#: includes/Modules/Admin/AdminModule.php:125
+msgid "Create FAQ schema markup for [topic]"
+msgstr "ایجاد نشانه‌گذاری طرحواره FAQ برای [topic]"
+
+#: src/admin/pages/Workflows.jsx:82
+msgid "Create Workflow"
+msgstr "ایجاد گردش کار"
+
+#: includes/Modules/Admin/AdminModule.php:132
+msgid "Create a new product draft for [product name]"
+msgstr "ایجاد پیش‌نویس محصول جدید برای [product name]"
+
+#: includes/Modules/Admin/Tools/CreatePostTool.php:103
+msgid "Created \"%s\" successfully."
+msgstr "\"%s\" با موفقیت ایجاد شد."
+
+#: includes/Modules/Admin/Tools/CreateProductTool.php:76
+msgid "Created product \"%s\"."
+msgstr "محصول \"%s\" ایجاد شد."
+
+#: includes/Modules/Admin/Tools/CreateTermTool.php:70
+msgid "Created term \"%s\"."
+msgstr "اصطلاح \"%s\" ایجاد شد."
+
+#: includes/Agents/TaskTemplates.php:190
+msgid "Creating SEO article %d"
+msgstr "در حال ایجاد مقاله سئو %d"
+
+#: src/admin/pages/Tasks.jsx:217
+msgid "Creating..."
+msgstr "در حال ایجاد..."
+
+#: src/admin/pages/Settings.jsx:45
+msgid "Custom AI Agent"
+msgstr "عامل هوش مصنوعی سفارشی"
+
+#: includes/AI/CustomProvider.php:42
+msgid "Custom AI agent API key and base URL are not configured."
+msgstr "کلید API عامل هوش مصنوعی سفارشی و آدرس پایه پیکربندی نشده‌اند."
+
+#: includes/Agents/TaskTemplates.php:50
+msgid "Custom Task"
+msgstr "وظیفه سفارشی"
+
+#: includes/Sales/CustomerMemory.php:226
+#: src/admin/pages/Inbox.jsx:19
+msgid "Customer"
+msgstr "مشتری"
+
+#: includes/Agents/AgentEngine.php:457
+msgid "Customer conversation history:"
+msgstr "تاریخچه مکالمات مشتری:"
+
+#: includes/REST/SalesChatController.php:364
+msgid "Customer requested human support"
+msgstr "مشتری پشتیبانی انسانی درخواست کرد"
+
+#: src/admin/pages/Analytics.jsx:91
+msgid "Daily Messages"
+msgstr "پیام‌های روزانه"
+
+#: src/admin/App.jsx:27
+#: src/admin/components/Sidebar.jsx:4
+msgid "Dashboard"
+msgstr "داشبورد"
+
+#: src/admin/pages/Memory.jsx:376
+#: src/admin/pages/Tasks.jsx:297
+#: src/admin/pages/Workflows.jsx:128
+msgid "Delete"
+msgstr "حذف"
+
+#: includes/Modules/Admin/Tools/DeletePostTool.php:33
+msgid "Delete %2$s \"%1$s\"? This cannot be undone."
+msgstr "حذف %2$s \"%1$s\"؟ این عمل قابل بازگشت نیست."
+
+#: includes/Modules/Elementor/Tools/DeleteElementTool.php:28
+msgid "Delete Elementor element \"%s\"? This cannot be undone."
+msgstr "حذف عنصر المنتور \"%s\"؟ این عمل قابل بازگشت نیست."
+
+#: includes/Modules/Admin/Tools/DeleteProductTool.php:37
+msgid "Delete product \"%s\"? This cannot be undone."
+msgstr "حذف محصول \"%s\"؟ این عمل قابل بازگشت نیست."
+
+#: includes/Modules/Admin/Tools/DeletePostTool.php:39
+msgid "Delete this post? This cannot be undone."
+msgstr "حذف این پست؟ این عمل قابل بازگشت نیست."
+
+#: includes/Modules/Admin/Tools/DeleteProductTool.php:29
+#: includes/Modules/Admin/Tools/DeleteProductTool.php:42
+msgid "Delete this product? This cannot be undone."
+msgstr "حذف این محصول؟ این عمل قابل بازگشت نیست."
+
+#: includes/Modules/Admin/Tools/DeletePostTool.php:79
+msgid "Deleted \"%s\"."
+msgstr "\"%s\" حذف شد."
+
+#: includes/Modules/Admin/Tools/DeleteProductTool.php:84
+msgid "Deleted product \"%s\"."
+msgstr "محصول \"%s\" حذف شد."
+
+#: src/post-editor/FeaturedImageModal.jsx:123
+#: src/post-editor/InsertImageModal.jsx:109
+msgid "Describe the image you want to generate..."
+msgstr "تصویری را که می‌خواهید تولید کنید توضیح دهید..."
+
+#: src/post-editor/GenerateTextModal.jsx:103
+msgid "Describe the text you want to generate..."
+msgstr "متنی را که می‌خواهید تولید کنید توضیح دهید..."
+
+#: src/admin/pages/Tasks.jsx:208
+msgid "Description"
+msgstr "توضیحات"
+
+#: src/admin/pages/Memory.jsx:16
+msgid "Design"
+msgstr "طراحی"
+
+#: includes/Modules/Elementor/ElementorModule.php:121
+msgid "Design a hero section using my brand colors"
+msgstr "یک بخش هیرو با رنگ‌های برند من طراحی کن"
+
+#: src/admin/pages/Tasks.jsx:294
+msgid "Details"
+msgstr "جزئیات"
+
+#: src/post-editor/FeaturedImageModal.jsx:129
+#: src/post-editor/InsertImageModal.jsx:115
+msgid "Dimensions"
+msgstr "ابعاد"
+
+#: includes/Modules/Sales/SalesModule.php:113
+msgid "Do you have any active discount codes?"
+msgstr "آیا کدهای تخفیف فعالی دارید؟"
+
+#: src/admin/components/ChatInterface.jsx:19
+msgid "Draft a customer support response"
+msgstr "پیش‌نویس پاسخ پشتیبانی مشتری"
+
+#: includes/Modules/Admin/AdminModule.php:127
+msgid "Draft a new page with a hero section and CTA"
+msgstr "پیش‌نویس صفحه جدید با بخش هیرو و CTA"
+
+#: includes/Modules/Elementor/ElementorModule.php:124
+msgid "Duplicate this section and adjust the copy"
+msgstr "این بخش را تکثیر کن و متن را تنظیم کن"
+
+#: src/admin/pages/Memory.jsx:369
+msgid "Edit"
+msgstr "ویرایش"
+
+#: includes/Modules/Elementor/ElementorDocumentService.php:301
+msgid "Element deleted."
+msgstr "عنصر حذف شد."
+
+#: includes/Modules/Elementor/ElementorDocumentService.php:266
+msgid "Element duplicated."
+msgstr "عنصر تکثیر شد."
+
+#: includes/Modules/Elementor/ElementorDocumentService.php:214
+#: includes/Modules/Elementor/ElementorDocumentService.php:251
+#: includes/Modules/Elementor/ElementorDocumentService.php:293
+#: includes/Modules/Elementor/Tools/GetElementTool.php:47
+msgid "Element not found."
+msgstr "عنصر یافت نشد."
+
+#: includes/Modules/Elementor/Tools/GetElementTool.php:50
+msgid "Element retrieved."
+msgstr "عنصر دریافت شد."
+
+#: includes/Modules/Elementor/ElementorDocumentService.php:222
+msgid "Element settings updated."
+msgstr "تنظیمات عنصر به‌روز شد."
+
+#: includes/Modules/Elementor/ElementorModule.php:78
+msgid "Elementor Assistant"
+msgstr "دستیار المنتور"
+
+#: includes/Modules/Elementor/ElementorDocumentService.php:151
+#: includes/Modules/Elementor/ElementorDocumentService.php:190
+#: includes/Modules/Elementor/ElementorDocumentService.php:240
+#: includes/Modules/Elementor/ElementorDocumentService.php:283
+msgid "Elementor document not found."
+msgstr "سند المنتور یافت نشد."
+
+#: includes/Modules/Elementor/Tools/ListElementorPagesTool.php:40
+msgid "Elementor is not active."
+msgstr "المنتور فعال نیست."
+
+#: includes/Modules/Elementor/Tools/GetPageStructureTool.php:49
+msgid "Elementor page not found."
+msgstr "صفحه المنتور یافت نشد."
+
+#: src/admin/pages/Settings.jsx:348
+msgid "Enterprise"
+msgstr "سازمانی"
+
+#: includes/Agents/AgentEngine.php:477
+msgid "Error: %s"
+msgstr "خطا: %s"
+
+#: src/admin/pages/Inbox.jsx:8
+#: src/admin/pages/Inbox.jsx:14
+msgid "Escalated"
+msgstr "ارجاع‌شده"
+
+#: includes/Agents/TaskTemplates.php:280
+msgid "Executing planned work"
+msgstr "در حال اجرای کارهای برنامه‌ریزی‌شده"
+
+#: src/admin/components/ConfirmationModal.jsx:43
+msgid "Executing..."
+msgstr "در حال اجرا..."
+
+#: src/admin/pages/Settings.jsx:355
+msgid "External API Keys"
+msgstr "کلیدهای API خارجی"
+
+#: src/admin/pages/Memory.jsx:189
+msgid "Extracting..."
+msgstr "در حال استخراج..."
+
+#: src/admin/pages/Tasks.jsx:21
+msgid "Failed"
+msgstr "ناموفق"
+
+#: src/admin/components/ChatInterface.jsx:110
+msgid "Failed to confirm action."
+msgstr "تأیید اقدام ناموفق بود."
+
+#: includes/REST/ApiKeysController.php:108
+msgid "Failed to create API key."
+msgstr "ایجاد کلید API ناموفق بود."
+
+#: includes/REST/ChatController.php:148
+#: includes/REST/ChatController.php:278
+#: includes/REST/ExternalApiController.php:92
+#: includes/REST/OrchestratorController.php:110
+msgid "Failed to create conversation."
+msgstr "ایجاد مکالمه ناموفق بود."
+
+#: includes/REST/MemoryController.php:248
+msgid "Failed to create memory entry."
+msgstr "ایجاد ورودی حافظه ناموفق بود."
+
+#: includes/Modules/Admin/Tools/CreateProductTool.php:71
+msgid "Failed to create product."
+msgstr "ایجاد محصول ناموفق بود."
+
+#: includes/REST/TaskController.php:193
+msgid "Failed to create task."
+msgstr "ایجاد وظیفه ناموفق بود."
+
+#: includes/REST/WorkflowController.php:135
+msgid "Failed to create workflow."
+msgstr "ایجاد گردش کار ناموفق بود."
+
+#: includes/Modules/Admin/Tools/DeletePostTool.php:72
+msgid "Failed to delete post."
+msgstr "حذف پست ناموفق بود."
+
+#: includes/Modules/Admin/Tools/DeleteProductTool.php:79
+msgid "Failed to delete product."
+msgstr "حذف محصول ناموفق بود."
+
+#: src/admin/pages/Analytics.jsx:26
+msgid "Failed to load analytics."
+msgstr "بارگذاری تحلیل‌ها ناموفق بود."
+
+#: includes/Agents/TaskStepExecutor.php:222
+#: includes/Agents/TaskStepExecutor.php:250
+msgid "Failed to parse generated article."
+msgstr "تجزیه مقاله تولیدشده ناموفق بود."
+
+#: includes/REST/WorkflowController.php:198
+msgid "Failed to run workflow."
+msgstr "اجرای گردش کار ناموفق بود."
+
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:95
+#: includes/REST/ImageController.php:179
+msgid "Failed to save image to media library."
+msgstr "ذخیره تصویر در کتابخانه رسانه ناموفق بود."
+
+#: src/admin/components/ChatInterface.jsx:89
+#: src/elementor/Panel.jsx:109
+#: src/frontend/Widget.jsx:105
+msgid "Failed to send message."
+msgstr "ارسال پیام ناموفق بود."
+
+#: includes/REST/ImageController.php:231
+#: src/post-editor/FeaturedImageModal.jsx:84
+msgid "Failed to set featured image."
+msgstr "تنظیم تصویر شاخص ناموفق بود."
+
+#: includes/REST/SalesChatController.php:162
+msgid "Failed to start conversation."
+msgstr "شروع مکالمه ناموفق بود."
+
+#: includes/Agents/TaskStepExecutor.php:290
+msgid "Featured image set."
+msgstr "Featured image set."
+
+#: includes/Agents/TaskTemplates.php:232
+msgid "Fetching existing products"
+msgstr "در حال دریافت محصولات موجود"
+
+#: includes/Modules/Elementor/Tools/ListElementorPagesTool.php:49
+msgid "Found %d Elementor pages."
+msgstr "%d صفحه المنتور یافت شد."
+
+#: includes/Modules/Sales/Tools/ListCouponsTool.php:60
+msgid "Found %d coupons."
+msgstr "%d کوپن یافت شد."
+
+#: includes/Modules/Sales/Tools/GetMyOrdersTool.php:50
+msgid "Found %d orders."
+msgstr "%d سفارش یافت شد."
+
+#: includes/Modules/Admin/Tools/ListPostsTool.php:82
+msgid "Found %d posts."
+msgstr "%d پست یافت شد."
+
+#: includes/Modules/Admin/Tools/ListProductsTool.php:63
+#: includes/Modules/Sales/Tools/SearchProductsTool.php:52
+msgid "Found %d products."
+msgstr "%d محصول یافت شد."
+
+#: includes/Modules/Admin/Tools/ListTermsTool.php:74
+msgid "Found %d terms."
+msgstr "%d اصطلاح یافت شد."
+
+#: includes/Modules/Admin/Tools/ListUsersTool.php:71
+msgid "Found %d users."
+msgstr "%d کاربر یافت شد."
+
+#: includes/Agents/TaskStepExecutor.php:412
+msgid "Frequently Asked Questions"
+msgstr "Frequently Asked Questions"
+
+#: src/admin/pages/SalesChatSettings.jsx:28
+msgid "Friendly / Casual"
+msgstr "خودمونی"
+
+#: src/admin/pages/Settings.jsx:16
+msgid "GPT models via OpenAI API"
+msgstr "مدل‌های GPT از طریق API OpenAI"
+
+#: includes/AI/GapGPTProvider.php:47
+msgid "GapGPT API key is not configured."
+msgstr "کلید API GapGPT پیکربندی نشده است."
+
+#: src/admin/pages/Memory.jsx:18
+#: src/admin/pages/Settings.jsx:319
+msgid "General"
+msgstr "عمومی"
+
+#: src/post-editor/FeaturedImageModal.jsx:173
+#: src/post-editor/GenerateTextModal.jsx:140
+#: src/post-editor/InsertImageModal.jsx:159
+msgid "Generate"
+msgstr "تولید"
+
+#: includes/Modules/Admin/ClassicEditorToolbar.php:178
+msgid "Generate Image"
+msgstr "تولید تصویر"
+
+#: src/admin/pages/Settings.jsx:380
+msgid "Generate Key"
+msgstr "تولید کلید"
+
+#: includes/Agents/TaskTemplates.php:42
+msgid "Generate SEO product descriptions for WooCommerce products"
+msgstr "تولید توضیحات سئو محصول برای محصولات ووکامرس"
+
+#: includes/Modules/Admin/ClassicEditorToolbar.php:177
+msgid "Generate Text"
+msgstr "تولید متن"
+
+#: includes/Modules/Elementor/ElementorModule.php:123
+msgid "Generate a background image for this section"
+msgstr "یک تصویر پس‌زمینه برای این بخش تولید کن"
+
+#: includes/Agents/TaskTemplates.php:32
+msgid "Generate featured image"
+msgstr "Generate featured image"
+
+#: includes/Agents/TaskTemplates.php:33
+msgid "Generate image for each section"
+msgstr "Generate image for each section"
+
+#: includes/Modules/Admin/AdminModule.php:124
+#: src/admin/components/ChatInterface.jsx:11
+msgid "Generate meta title and description for my latest post"
+msgstr "عنوان متا و توضیحات برای آخرین پست من تولید کن"
+
+#: includes/Agents/TaskTemplates.php:27
+msgid "Generate multiple SEO-optimized articles with categories and tags"
+msgstr "چندین مقاله بهینه‌شده برای سئو با دسته‌بندی‌ها و برچسب‌ها تولید کن"
+
+#: src/post-editor/FeaturedImageModal.jsx:147
+#: src/post-editor/InsertImageModal.jsx:133
+msgid "Generated preview"
+msgstr "پیش‌نمایش تولیدشده"
+
+#: src/post-editor/FeaturedImageModal.jsx:153
+#: src/post-editor/InsertImageModal.jsx:139
+msgid "Generating image..."
+msgstr "در حال تولید تصویر..."
+
+#: includes/Agents/TaskTemplates.php:206
+msgid "Generating task summary"
+msgstr "در حال تولید خلاصه وظیفه"
+
+#: src/post-editor/GenerateTextModal.jsx:120
+msgid "Generating text..."
+msgstr "در حال تولید متن..."
+
+#: src/post-editor/FeaturedImageModal.jsx:173
+#: src/post-editor/GenerateTextModal.jsx:140
+#: src/post-editor/InsertImageModal.jsx:159
+msgid "Generating..."
+msgstr "در حال تولید..."
+
+#: includes/Modules/Admin/AdminModule.php:122
+msgid "Give me an overview of my WordPress site"
+msgstr "یک مرور کلی از سایت وردپرس من بده"
+
+#: src/admin/components/ChatInterface.jsx:14
+msgid "Help me design a hero section"
+msgstr "در طراحی یک بخش هیرو کمکم کن"
+
+#: src/frontend/Widget.jsx:176
+msgid "Hi! How can I help you today?"
+msgstr "سلام! چطور می‌توانم امروز کمکتان کنم؟"
+
+#: src/admin/components/ChatInterface.jsx:144
+msgid "How can I help you manage your site?"
+msgstr "چطور می‌توانم در مدیریت سایتتان کمک کنم؟"
+
+#: src/admin/pages/Settings.jsx:308
+msgid "Image Model"
+msgstr "مدل تصویر"
+
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:122
+msgid "Image generated and applied to element."
+msgstr "تصویر تولید و به عنصر اعمال شد."
+
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:123
+msgid "Image generated and saved to media library."
+msgstr "تصویر تولید و در کتابخانه رسانه ذخیره شد."
+
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:89
+#: includes/REST/ImageController.php:167
+#: src/post-editor/FeaturedImageModal.jsx:56
+#: src/post-editor/InsertImageModal.jsx:56
+msgid "Image generation failed."
+msgstr "تولید تصویر ناموفق بود."
+
+#: includes/AI/ClaudeProvider.php:127
+msgid "Image generation is not supported by Claude provider."
+msgstr "تولید تصویر توسط ارائه‌دهنده کلود پشتیبانی نمی‌شود."
+
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:68
+#: includes/REST/ImageController.php:122
+msgid "Image prompt is required."
+msgstr "پرامپت تصویر الزامی است."
+
+#: includes/Agents/TaskTemplates.php:34
+msgid "Include FAQ section"
+msgstr "Include FAQ section"
+
+#: includes/Agents/TaskTemplates.php:35
+msgid "Include conclusion"
+msgstr "Include conclusion"
+
+#: src/post-editor/InsertImageModal.jsx:168
+msgid "Insert Image"
+msgstr "درج تصویر"
+
+#: src/post-editor/GenerateTextModal.jsx:149
+msgid "Insert Text"
+msgstr "درج متن"
+
+#: includes/REST/ExternalAuth.php:54
+msgid "Invalid API key."
+msgstr "کلید API نامعتبر است."
+
+#: includes/Agents/AgentEngine.php:291
+msgid "Invalid conversation for this action."
+msgstr "مکالمه نامعتبر برای این اقدام."
+
+#: includes/REST/MemoryController.php:308
+msgid "Invalid data."
+msgstr "داده نامعتبر."
+
+#: includes/REST/ImageController.php:219
+msgid "Invalid image attachment."
+msgstr "پیوست تصویر نامعتبر."
+
+#: includes/REST/ChatController.php:231
+msgid "Invalid module."
+msgstr "ماژول نامعتبر."
+
+#: includes/REST/SettingsController.php:90
+msgid "Invalid settings data."
+msgstr "داده تنظیمات نامعتبر."
+
+#: src/admin/pages/Memory.jsx:227
+#: src/admin/pages/Memory.jsx:296
+msgid "Key"
+msgstr "کلید"
+
+#: src/admin/pages/Settings.jsx:291
+msgid "Key is saved. Paste a new value to replace it."
+msgstr "کلید ذخیره شده است. مقدار جدیدی را برای جایگزینی وارد کنید."
+
+#: src/admin/pages/Settings.jsx:368
+msgid "Key name"
+msgstr "نام کلید"
+
+#: includes/REST/MemoryController.php:231
+msgid "Key name and value are required."
+msgstr "نام کلید و مقدار الزامی هستند."
+
+#: includes/Modules/Admin/ClassicEditorToolbar.php:169
+#: includes/Modules/Admin/PostFeaturedImage.php:143
+msgid "Landscape (1792×1024)"
+msgstr "افقی (۱۷۹۲×۱۰۲۴)"
+
+#: src/admin/pages/Analytics.jsx:66
+msgid "Last"
+msgstr "آخرین"
+
+#: src/admin/pages/Workflows.jsx:112
+msgid "Last Run"
+msgstr "آخرین اجرا"
+
+#: src/admin/pages/Settings.jsx:340
+msgid "License Tier"
+msgstr "سطح مجوز"
+
+#: includes/Modules/Admin/AdminModule.php:126
+msgid "List all categories and suggest new ones"
+msgstr "همه دسته‌بندی‌ها را فهرست کن و دسته‌های جدید پیشنهاد بده"
+
+#: includes/Modules/Admin/AdminModule.php:131
+msgid "List my WooCommerce products and their stock levels"
+msgstr "محصولات ووکامرس و سطح موجودی آن‌ها را فهرست کن"
+
+#: src/admin/pages/Analytics.jsx:44
+msgid "Loading analytics..."
+msgstr "در حال بارگذاری تحلیل‌ها..."
+
+#: src/admin/pages/SalesChatSettings.jsx:147
+#: src/admin/pages/Settings.jsx:217
+msgid "Loading settings..."
+msgstr "در حال بارگذاری تنظیمات..."
+
+#: src/admin/pages/Tasks.jsx:240
+msgid "Loading tasks..."
+msgstr "در حال بارگذاری وظایف..."
+
+#: src/admin/pages/Inbox.jsx:130
+#: src/admin/pages/Memory.jsx:288
+#: src/admin/pages/Workflows.jsx:102
+msgid "Loading..."
+msgstr "در حال بارگذاری..."
+
+#: src/admin/pages/Inbox.jsx:149
+msgid "Logged-in customer"
+msgstr "مشتری واردشده"
+
+#: src/admin/pages/Tasks.jsx:333
+msgid "Logs"
+msgstr "گزارش‌ها"
+
+#: src/admin/pages/Dashboard.jsx:84
+msgid "Manage Memory"
+msgstr "مدیریت حافظه"
+
+#: src/admin/pages/Inbox.jsx:191
+msgid "Mark Resolved"
+msgstr "علامت‌گذاری به عنوان حل‌شده"
+
+#: includes/Modules/Admin/Tools/UpdateMediaTool.php:79
+msgid "Media updated."
+msgstr "رسانه به‌روز شد."
+
+#: src/admin/components/Sidebar.jsx:10
+msgid "Memory"
+msgstr "حافظه"
+
+#: src/admin/pages/Dashboard.jsx:47
+msgid "Memory Entries"
+msgstr "ورودی‌های حافظه"
+
+#: src/admin/App.jsx:33
+msgid "Memory Manager"
+msgstr "مدیریت حافظه"
+
+#: src/admin/pages/Memory.jsx:203
+msgid "Memory entries are embedded for semantic retrieval in AI prompts."
+msgstr "ورودی‌های حافظه برای بازیابی معنایی در پرامپت‌های هوش مصنوعی جاسازی می‌شوند."
+
+#: includes/REST/MemoryController.php:272
+#: includes/REST/MemoryController.php:296
+#: includes/REST/MemoryController.php:332
+msgid "Memory entry not found."
+msgstr "ورودی حافظه یافت نشد."
+
+#: src/admin/pages/Memory.jsx:79
+msgid "Memory entry saved."
+msgstr "ورودی حافظه ذخیره شد."
+
+#: src/admin/pages/Memory.jsx:111
+msgid "Memory entry updated."
+msgstr "ورودی حافظه به‌روز شد."
+
+#: includes/REST/ChatController.php:258
+#: includes/REST/SalesChatController.php:114
+msgid "Message cannot be empty."
+msgstr "پیام نمی‌تواند خالی باشد."
+
+#: includes/REST/ExternalApiController.php:79
+#: includes/REST/OrchestratorController.php:99
+msgid "Message is required."
+msgstr "پیام الزامی است."
+
+#: src/admin/pages/Analytics.jsx:57
+msgid "Messages"
+msgstr "پیام‌ها"
+
+#: src/admin/pages/Chat.jsx:31
+msgid "Multi-Agent"
+msgstr "چند عامله"
+
+#: src/admin/pages/Settings.jsx:36
+msgid "Multi-model gateway (OpenAI-compatible)"
+msgstr "دروازه چند مدلی (سازگار با OpenAI)"
+
+#: includes/REST/WorkflowController.php:129
+msgid "New Workflow"
+msgstr "گردش کار جدید"
+
+#: src/admin/pages/Inbox.jsx:95
+msgid "No active sales chats."
+msgstr "چت فروش فعالی وجود ندارد."
+
+#: src/elementor/Panel.jsx:35
+msgid "No element selected"
+msgstr "هیچ عنصری انتخاب نشده"
+
+#: src/admin/pages/Inbox.jsx:96
+msgid "No escalated conversations."
+msgstr "هیچ مکالمه ارتقایافته‌ای وجود ندارد."
+
+#: includes/REST/UploadController.php:58
+msgid "No file uploaded."
+msgstr "هیچ فایلی آپلود نشد."
+
+#: src/admin/pages/Tasks.jsx:347
+msgid "No logs yet."
+msgstr "هنوز گزارشی وجود ندارد."
+
+#: src/admin/pages/Memory.jsx:290
+msgid "No memory entries yet."
+msgstr "هنوز ورودی حافظه‌ای وجود ندارد."
+
+#: src/admin/pages/Inbox.jsx:97
+msgid "No resolved conversations."
+msgstr "چت حل‌شده‌ای وجود ندارد."
+
+#: includes/AI/OpenAICompatibleProvider.php:95
+msgid "No response from AI provider."
+msgstr "هیچ پاسخی از ارائه‌دهنده هوش مصنوعی دریافت نشد."
+
+#: src/admin/pages/Inbox.jsx:94
+msgid "No storefront sales chats yet."
+msgstr "هنوز چت فروش فروشگاهی ثبت نشده است."
+
+#: src/admin/pages/Tasks.jsx:242
+msgid "No tasks yet. Create one above."
+msgstr "هنوز وظیفه‌ای وجود ندارد. یکی را در بالا ایجاد کنید."
+
+#: src/admin/pages/Workflows.jsx:104
+msgid "No workflows yet."
+msgstr "هنوز گردش کاری وجود ندارد."
+
+#: includes/Agents/TaskTemplates.php:29
+msgid "Number of articles"
+msgstr "تعداد مقالات"
+
+#: includes/Agents/TaskTemplates.php:44
+msgid "Number of products"
+msgstr "تعداد محصولات"
+
+#: src/admin/pages/SalesChatSettings.jsx:303
+msgid "One rule per line, e.g. Always mention free shipping over $50"
+msgstr "هر قانون در یک خط، مثال: همیشه ارسال رایگان بالای ۵۰ دلار را ذکر کن"
+
+#: src/admin/pages/SalesChatSettings.jsx:317
+msgid "One rule per line, e.g. Never promise delivery dates without checking"
+msgstr "هر قانون در یک خط، مثال: هرگز بدون بررسی تاریخ تحویل را قول نده"
+
+#: includes/REST/TaskController.php:349
+msgid "Only failed tasks can be retried."
+msgstr "فقط وظایف ناموفق قابل تکرار هستند."
+
+#: src/frontend/formatMessage.js:52
+msgid "Open link"
+msgstr "Open link"
+
+#: includes/AI/OpenAIProvider.php:42
+msgid "OpenAI API key is not configured."
+msgstr "کلید API OpenAI پیکربندی نشده است."
+
+#: src/admin/pages/Settings.jsx:265
+msgid "OpenAI-compatible base URL including /v1 path."
+msgstr "آدرس پایه سازگار با OpenAI شامل مسیر /v1."
+
+#: includes/Modules/Sales/Tools/GetOrderStatusTool.php:75
+msgid "Order not found for that email."
+msgstr "سفارشی برای این ایمیل یافت نشد."
+
+#: includes/Modules/Sales/Tools/GetOrderStatusTool.php:71
+#: includes/Modules/Sales/Tools/GetOrderStatusTool.php:79
+msgid "Order not found."
+msgstr "سفارش یافت نشد."
+
+#: includes/Modules/Sales/Tools/GetOrderStatusTool.php:41
+msgid "Order number and email are required."
+msgstr "شماره سفارش و ایمیل الزامی هستند."
+
+#: includes/Modules/Sales/Tools/GetOrderStatusTool.php:91
+msgid "Order status: %s"
+msgstr "وضعیت سفارش: %s"
+
+#: includes/Modules/Elementor/Tools/GetPageStructureTool.php:52
+msgid "Page structure retrieved."
+msgstr "ساختار صفحه دریافت شد."
+
+#: src/admin/pages/Settings.jsx:292
+msgid "Paste your API key here."
+msgstr "کلید API خود را اینجا وارد کنید."
+
+#: src/admin/pages/Tasks.jsx:275
+msgid "Pause"
+msgstr "توقف"
+
+#: src/admin/pages/Tasks.jsx:19
+msgid "Paused"
+msgstr "متوقف‌شده"
+
+#: src/admin/pages/Tasks.jsx:22
+msgid "Pending"
+msgstr "در انتظار"
+
+#: includes/REST/ChatController.php:346
+msgid "Pending action ID and conversation ID are required."
+msgstr "شناسه اقدام معلق و شناسه مکالمه الزامی هستند."
+
+#: includes/Agents/AgentEngine.php:287
+msgid "Pending action not found or expired."
+msgstr "اقدام معلق یافت نشد یا منقضی شده است."
+
+#: includes/Modules/Admin/Tools/CreatePostTool.php:45
+#: includes/Modules/Admin/Tools/CreateProductTool.php:48
+#: includes/Modules/Admin/Tools/CreateTermTool.php:41
+#: includes/Modules/Admin/Tools/DeletePostTool.php:58
+#: includes/Modules/Admin/Tools/DeleteProductTool.php:65
+#: includes/Modules/Admin/Tools/GetPostTool.php:39
+#: includes/Modules/Admin/Tools/GetProductTool.php:43
+#: includes/Modules/Admin/Tools/GetUserTool.php:39
+#: includes/Modules/Admin/Tools/ListPostsTool.php:58
+#: includes/Modules/Admin/Tools/ListProductsTool.php:44
+#: includes/Modules/Admin/Tools/ListTermsTool.php:40
+#: includes/Modules/Admin/Tools/ListUsersTool.php:40
+#: includes/Modules/Admin/Tools/UpdateMediaTool.php:42
+#: includes/Modules/Admin/Tools/UpdatePostTool.php:45
+#: includes/Modules/Admin/Tools/UpdateProductTool.php:49
+#: includes/Modules/Elementor/Tools/CreateSectionTool.php:44
+#: includes/Modules/Elementor/Tools/DeleteElementTool.php:53
+#: includes/Modules/Elementor/Tools/DuplicateElementTool.php:41
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:62
+#: includes/Modules/Elementor/Tools/GetElementTool.php:41
+#: includes/Modules/Elementor/Tools/GetPageStructureTool.php:40
+#: includes/Modules/Elementor/Tools/ListElementorPagesTool.php:36
+#: includes/Modules/Elementor/Tools/UpdateWidgetSettingsTool.php:50
+msgid "Permission denied."
+msgstr "دسترسی رد شد."
+
+#: includes/Agents/TaskTemplates.php:171
+msgid "Planning article topics"
+msgstr "برنامه‌ریزی موضوعات مقاله"
+
+#: src/post-editor/FeaturedImageModal.jsx:36
+#: src/post-editor/GenerateTextModal.jsx:27
+#: src/post-editor/InsertImageModal.jsx:36
+msgid "Please enter a prompt."
+msgstr "لطفاً یک پرامپت وارد کنید."
+
+#: includes/Modules/Sales/Tools/GetMyOrdersTool.php:36
+msgid "Please log in to view your orders, or provide order number and email."
+msgstr "لطفاً برای مشاهده سفارشات وارد شوید، یا شماره سفارش و ایمیل را وارد کنید."
+
+#: src/admin/pages/SalesChatSettings.jsx:23
+msgid "Polite"
+msgstr "مودبانه"
+
+#: includes/Modules/Admin/ClassicEditorToolbar.php:173
+#: includes/Modules/Admin/PostFeaturedImage.php:147
+msgid "Portrait (1024×1792)"
+msgstr "عمودی (۱۰۲۴×۱۷۹۲)"
+
+#: includes/Modules/Admin/Tools/DeletePostTool.php:65
+#: includes/Modules/Admin/Tools/GetPostTool.php:45
+#: includes/Modules/Admin/Tools/UpdatePostTool.php:52
+#: includes/REST/ImageController.php:209
+msgid "Post not found."
+msgstr "پست یافت نشد."
+
+#: includes/Modules/Admin/Tools/GetPostTool.php:53
+msgid "Post retrieved."
+msgstr "پست دریافت شد."
+
+#: includes/Modules/Admin/Tools/UpdatePostTool.php:95
+msgid "Post updated successfully."
+msgstr "پست با موفقیت به‌روز شد."
+
+#: src/frontend/Widget.jsx:232
+msgid "Powered by AgenPress"
+msgstr "قدرت‌گرفته از AgenPress"
+
+#: src/admin/pages/SalesChatSettings.jsx:65
+#: src/post-editor/GenerateTextModal.jsx:110
+msgid "Preview"
+msgstr "پیش‌نمایش"
+
+#: src/admin/pages/Settings.jsx:347
+msgid "Pro"
+msgstr "حرفه‌ای"
+
+#: includes/Agents/TaskTemplates.php:41
+msgid "Product Descriptions"
+msgstr "توضیحات محصول"
+
+#: includes/Modules/Sales/Tools/GetProductDetailsTool.php:52
+msgid "Product details retrieved."
+msgstr "جزئیات محصول دریافت شد."
+
+#: includes/Agents/TaskTemplates.php:45
+msgid "Product niche"
+msgstr "حوزه محصول"
+
+#: includes/Modules/Admin/Tools/DeleteProductTool.php:72
+#: includes/Modules/Admin/Tools/GetProductTool.php:49
+#: includes/Modules/Admin/Tools/UpdateProductTool.php:55
+#: includes/Modules/Sales/Tools/GetProductDetailsTool.php:45
+msgid "Product not found."
+msgstr "محصول یافت نشد."
+
+#: includes/Modules/Admin/Tools/GetProductTool.php:66
+msgid "Product retrieved."
+msgstr "محصول دریافت شد."
+
+#: includes/Modules/Admin/Tools/UpdateProductTool.php:81
+msgid "Product updated."
+msgstr "محصول به‌روز شد."
+
+#: src/admin/pages/SalesChatSettings.jsx:33
+msgid "Professional"
+msgstr "حرفه‌ای"
+
+#: src/admin/pages/Tasks.jsx:249
+msgid "Progress"
+msgstr "پیشرفت"
+
+#: src/post-editor/FeaturedImageModal.jsx:116
+#: src/post-editor/GenerateTextModal.jsx:96
+#: src/post-editor/InsertImageModal.jsx:102
+msgid "Prompt"
+msgstr "پرامپت"
+
+#: includes/Agents/TaskTemplates.php:36
+msgid "Publish when done"
+msgstr "انتشار پس از اتمام"
+
+#: src/admin/pages/Tasks.jsx:217
+msgid "Queue Task"
+msgstr "افزودن وظیفه به صف"
+
+#: src/admin/pages/Dashboard.jsx:74
+msgid "Quick Actions"
+msgstr "اقدامات سریع"
+
+#: src/admin/pages/Memory.jsx:353
+msgid "RAG"
+msgstr "RAG"
+
+#: src/admin/pages/Settings.jsx:401
+msgid "Rate Limit (requests/hour)"
+msgstr "محدودیت نرخ (درخواست/ساعت)"
+
+#: includes/Security/RateLimiter.php:45
+msgid "Rate limit exceeded. Please try again later."
+msgstr "محدودیت نرخ تجاوز کرده است. لطفاً بعداً دوباره امتحان کنید."
+
+#: includes/Security/RateLimiter.php:36
+msgid "Rate limiting requires a user or visitor key."
+msgstr "محدودیت نرخ نیاز به کلید کاربر یا بازدیدکننده دارد."
+
+#: src/admin/pages/Tasks.jsx:290
+msgid "Re-run"
+msgstr "اجرای مجدد"
+
+#: src/admin/pages/Inbox.jsx:199
+msgid "Reason:"
+msgstr "دلیل:"
+
+#: includes/Modules/Sales/SalesModule.php:116
+msgid "Recommend products for [occasion]"
+msgstr "محصولات را برای [occasion] پیشنهاد بده"
+
+#: src/admin/pages/Memory.jsx:197
+msgid "Reindex Embeddings"
+msgstr "ایندکس‌گذاری مجدد جاسازی‌ها"
+
+#: src/admin/pages/Memory.jsx:162
+msgid "Reindexed embeddings: %1$d of %2$d entries."
+msgstr "جاسازی‌ها مجدداً ایندکس‌گذاری شدند: %1$d از %2$d ورودی."
+
+#: src/admin/pages/Memory.jsx:197
+msgid "Reindexing..."
+msgstr "در حال ایندکس‌گذاری مجدد..."
+
+#: src/admin/pages/Inbox.jsx:9
+#: src/admin/pages/Inbox.jsx:15
+msgid "Resolved"
+msgstr "حل‌شده"
+
+#: src/admin/pages/Tasks.jsx:275
+msgid "Resume"
+msgstr "ادامه"
+
+#: src/admin/pages/Tasks.jsx:285
+msgid "Retry"
+msgstr "تکرار"
+
+#: src/admin/pages/Settings.jsx:390
+msgid "Revoke"
+msgstr "لغو دسترسی"
+
+#: src/admin/pages/Workflows.jsx:125
+msgid "Run"
+msgstr "اجرا"
+
+#: src/admin/pages/Tasks.jsx:18
+msgid "Running"
+msgstr "در حال اجرا"
+
+#: src/admin/pages/Dashboard.jsx:42
+msgid "Running Agents"
+msgstr "عاملان در حال اجرا"
+
+#: src/admin/pages/Memory.jsx:17
+msgid "SEO"
+msgstr "سئو"
+
+#: includes/Agents/TaskTemplates.php:26
+msgid "SEO Articles Batch"
+msgstr "دسته مقالات سئو"
+
+#: includes/Modules/Sales/SalesModule.php:66
+msgid "Sales Assistant"
+msgstr "دستیار فروش"
+
+#: src/admin/App.jsx:29
+#: src/admin/components/Sidebar.jsx:6
+msgid "Sales Inbox"
+msgstr "صندوق ورودی فروش"
+
+#: src/admin/pages/SalesChatSettings.jsx:298
+msgid "Sales Rules — Do"
+msgstr "قوانین فروش — بایدها"
+
+#: src/admin/pages/SalesChatSettings.jsx:312
+msgid "Sales Rules — Do Not"
+msgstr "قوانین فروش — نبایدها"
+
+#: src/admin/pages/Inbox.jsx:143
+#: src/admin/pages/Inbox.jsx:166
+msgid "Sales chat"
+msgstr "چت فروش"
+
+#: includes/Core/Settings.php:298
+msgid "Sales rules — DO NOT:"
+msgstr "قوانین فروش — نبایدها:"
+
+#: includes/Core/Settings.php:293
+msgid "Sales rules — DO:"
+msgstr "قوانین فروش — بایدها:"
+
+#: src/admin/pages/Memory.jsx:336
+msgid "Save"
+msgstr "ذخیره"
+
+#: src/admin/pages/Memory.jsx:246
+msgid "Save Memory"
+msgstr "ذخیره حافظه"
+
+#: src/admin/pages/SalesChatSettings.jsx:331
+#: src/admin/pages/Settings.jsx:413
+msgid "Save Settings"
+msgstr "ذخیره تنظیمات"
+
+#: src/post-editor/FeaturedImageModal.jsx:177
+msgid "Save the post as a draft first to set a featured image."
+msgstr "ابتدا پست را به عنوان پیش‌نویس ذخیره کنید تا بتوانید تصویر شاخص تنظیم کنید."
+
+#: src/admin/pages/Memory.jsx:246
+#: src/admin/pages/SalesChatSettings.jsx:331
+#: src/admin/pages/Settings.jsx:413
+msgid "Saving..."
+msgstr "در حال ذخیره..."
+
+#: src/admin/pages/Memory.jsx:298
+msgid "Score"
+msgstr "امتیاز"
+
+#: includes/REST/MemoryController.php:167
+msgid "Search query is required."
+msgstr "عبارت جستجو الزامی است."
+
+#: src/admin/pages/Memory.jsx:271
+msgid "Search..."
+msgstr "جستجو..."
+
+#: includes/Modules/Elementor/ElementorDocumentService.php:172
+msgid "Section created."
+msgstr "بخش ایجاد شد."
+
+#: src/admin/pages/Inbox.jsx:161
+msgid "Select a conversation to view."
+msgstr "یک مکالمه برای مشاهده انتخاب کنید."
+
+#: src/post-editor/GenerateTextModal.jsx:90
+msgid "Selected text"
+msgstr "متن انتخاب‌شده"
+
+#: src/elementor/Panel.jsx:145
+msgid "Selection:"
+msgstr "انتخاب:"
+
+#: src/admin/pages/Memory.jsx:282
+msgid "Semantic"
+msgstr "معنایی"
+
+#: src/admin/pages/Memory.jsx:271
+msgid "Semantic search..."
+msgstr "جستجوی معنایی..."
+
+#: src/admin/components/ChatInterface.jsx:210
+#: src/elementor/Panel.jsx:207
+#: src/frontend/Widget.jsx:227
+msgid "Send"
+msgstr "ارسال"
+
+#: src/admin/App.jsx:34
+#: src/admin/components/Sidebar.jsx:11
+msgid "Settings"
+msgstr "تنظیمات"
+
+#: includes/Modules/Elementor/Tools/UpdateWidgetSettingsTool.php:46
+msgid "Settings are required."
+msgstr "تنظیمات الزامی هستند."
+
+#: src/admin/pages/SalesChatSettings.jsx:130
+#: src/admin/pages/Settings.jsx:182
+msgid "Settings saved successfully."
+msgstr "تنظیمات با موفقیت ذخیره شد."
+
+#: includes/Modules/Elementor/ElementorModule.php:120
+msgid "Show me the structure of this page"
+msgstr "ساختار این صفحه را به من نشان بده"
+
+#: src/admin/pages/Memory.jsx:182
+msgid "Site Memory"
+msgstr "حافظه سایت"
+
+#: includes/Modules/Admin/Tools/GetSiteInfoTool.php:55
+msgid "Site info retrieved."
+msgstr "اطلاعات سایت دریافت شد."
+
+#: includes/Modules/Admin/ClassicEditorToolbar.php:165
+#: includes/Modules/Admin/PostFeaturedImage.php:139
+msgid "Square (1024×1024)"
+msgstr "مربع (۱۰۲۴×۱۰۲۴)"
+
+#: src/admin/pages/Dashboard.jsx:78
+msgid "Start AI Chat"
+msgstr "شروع چت هوش مصنوعی"
+
+#: src/admin/pages/Tasks.jsx:321
+#: src/admin/pages/Workflows.jsx:111
+msgid "Steps"
+msgstr "مراحل"
+
+#: src/admin/pages/Memory.jsx:242
+msgid "Store brand info, design rules, SEO keywords..."
+msgstr "اطلاعات برند، قوانین طراحی، کلمات کلیدی سئو... را ذخیره کنید"
+
+#: src/admin/App.jsx:35
+#: src/admin/components/Sidebar.jsx:15
+#: src/admin/pages/SalesChatSettings.jsx:159
+msgid "Storefront Sales Chat"
+msgstr "چت فروش فروشگاه"
+
+#: src/admin/pages/Inbox.jsx:127
+msgid "Storefront Sales Chats"
+msgstr "چت‌های فروش فروشگاه"
+
+#: includes/Core/Settings.php:305
+msgid "Storefront sales chat behavior:"
+msgstr "رفتار چت فروش فروشگاه:"
+
+#: src/admin/components/ChatInterface.jsx:15
+msgid "Suggest a landing page structure"
+msgstr "یک ساختار صفحه فرود پیشنهاد بده"
+
+#: src/frontend/Widget.jsx:235
+msgid "Talk to a human"
+msgstr "صحبت با یک انسان"
+
+#: includes/Agents/TaskRunner.php:164
+msgid "Task \"%s\" completed successfully."
+msgstr "وظیفه \"%s\" با موفقیت تکمیل شد."
+
+#: src/admin/pages/Tasks.jsx:312
+msgid "Task Details:"
+msgstr "جزئیات وظیفه:"
+
+#: src/admin/pages/Tasks.jsx:224
+msgid "Task Queue"
+msgstr "صف وظایف"
+
+#: src/admin/pages/Tasks.jsx:155
+msgid "Task Template"
+msgstr "قالب وظیفه"
+
+#: src/admin/pages/Tasks.jsx:199
+msgid "Task Title"
+msgstr "عنوان وظیفه"
+
+#: includes/REST/TaskController.php:322
+msgid "Task cannot be cancelled in its current state."
+msgstr "وظیفه در وضعیت فعلی قابل لغو نیست."
+
+#: includes/REST/TaskController.php:287
+msgid "Task cannot be paused or resumed in its current state."
+msgstr "وظیفه در وضعیت فعلی قابل توقف یا ادامه نیست."
+
+#: includes/REST/TaskController.php:218
+#: includes/REST/TaskController.php:245
+#: includes/REST/TaskController.php:272
+#: includes/REST/TaskController.php:312
+#: includes/REST/TaskController.php:374
+msgid "Task not found."
+msgstr "وظیفه یافت نشد."
+
+#: includes/Agents/TaskStepExecutor.php:185
+msgid "Task plan created."
+msgstr "برنامه وظیفه ایجاد شد."
+
+#: includes/REST/TaskController.php:170
+msgid "Task title is required."
+msgstr "عنوان وظیفه الزامی است."
+
+#: src/admin/pages/Analytics.jsx:59
+msgid "Tasks Completed"
+msgstr "وظایف تکمیل‌شده"
+
+#: src/admin/pages/Tasks.jsx:248
+msgid "Template"
+msgstr "قالب"
+
+#: includes/Modules/Admin/Tools/CreateTermTool.php:48
+msgid "Term name is required."
+msgstr "نام اصطلاح الزامی است."
+
+#: src/admin/pages/Settings.jsx:297
+msgid "Text Model"
+msgstr "مدل متن"
+
+#: includes/REST/TextController.php:150
+#: src/post-editor/GenerateTextModal.jsx:47
+msgid "Text generation failed."
+msgstr "تولید متن ناموفق بود."
+
+#: includes/REST/TextController.php:78
+msgid "Text prompt is required."
+msgstr "پرامپت متن الزامی است."
+
+#: includes/Agents/AgentEngine.php:212
+msgid "The following actions require your confirmation before proceeding."
+msgstr "اقدامات زیر قبل از ادامه نیاز به تأیید شما دارند."
+
+#: src/admin/pages/SalesChatSettings.jsx:321
+msgid "Things the assistant must avoid in responses."
+msgstr "مواردی که دستیار باید در پاسخ‌ها از آن‌ها اجتناب کند."
+
+#: src/admin/pages/SalesChatSettings.jsx:307
+msgid "Things the assistant must do when helping customers."
+msgstr "مواردی که دستیار باید هنگام کمک به مشتریان انجام دهد."
+
+#: src/admin/components/ChatInterface.jsx:180
+#: src/elementor/Panel.jsx:186
+msgid "Thinking..."
+msgstr "در حال تفکر..."
+
+#: includes/Security/PermissionValidator.php:169
+msgid "This action is not available in the storefront chat."
+msgstr "این اقدام در چت فروشگاه در دسترس نیست."
+
+#: includes/Security/PermissionValidator.php:213
+msgid "This action requires administrator privileges."
+msgstr "این اقدام نیاز به دسترسی مدیر دارد."
+
+#: includes/Sales/CustomerMemory.php:147
+msgid "This customer has chatted with you before. Use the prior conversations below to personalize replies, remember preferences, and avoid repeating questions they already answered. Do not mention that you are reading stored logs unless the customer asks."
+msgstr "این مشتری قبلاً با شما چت کرده است. از مکالمات قبلی برای شخصی‌سازی پاسخ‌ها، به‌خاطر سپردن ترجیحات و پرهیز از تکرار سؤال‌هایی که قبلاً پاسخ داده‌اند استفاده کن. مگر اینکه مشتری بپرسد، به خواندن لاگ ذخیره‌شده اشاره نکن."
+
+#: includes/Core/LicenseGate.php:96
+msgid "This feature requires an Enterprise license."
+msgstr "این ویژگی نیاز به مجوز Enterprise دارد."
+
+#: src/admin/pages/Tasks.jsx:247
+#: src/admin/pages/Workflows.jsx:109
+msgid "Title"
+msgstr "عنوان"
+
+#: src/admin/pages/Analytics.jsx:56
+msgid "Tokens Used"
+msgstr "توکن‌های مصرف‌شده"
+
+#: src/admin/pages/SalesChatSettings.jsx:15
+msgid "Tone and sales rules for customer replies"
+msgstr "لحن و قوانین فروش برای پاسخ به مشتریان"
+
+#: src/admin/pages/Analytics.jsx:60
+msgid "Tool Executions"
+msgstr "اجراهای ابزار"
+
+#: includes/REST/McpController.php:101
+msgid "Tool name is required."
+msgstr "نام ابزار الزامی است."
+
+#: src/admin/components/ConfirmationModal.jsx:28
+msgid "Tool:"
+msgstr "ابزار:"
+
+#: includes/Agents/TaskTemplates.php:30
+msgid "Topic / niche"
+msgstr "موضوع / حوزه"
+
+#: src/admin/pages/Dashboard.jsx:37
+msgid "Total Tasks"
+msgstr "مجموع وظایف"
+
+#: includes/Modules/Sales/SalesModule.php:115
+msgid "Track my order"
+msgstr "سفارش من را ردیابی کن"
+
+#: src/admin/pages/Workflows.jsx:110
+msgid "Trigger"
+msgstr "محرک"
+
+#: src/frontend/Widget.jsx:217
+msgid "Type a message..."
+msgstr "یک پیام بنویسید..."
+
+#: src/admin/pages/Inbox.jsx:179
+msgid "Unassigned"
+msgstr "تخصیص‌نیافته"
+
+#: includes/Modules/Elementor/ElementorModule.php:122
+msgid "Update the selected widget heading text"
+msgstr "متن عنوان ابزارک انتخاب‌شده را به‌روز کن"
+
+#: src/admin/components/FileUpload.jsx:24
+msgid "Upload failed."
+msgstr "آپلود ناموفق بود."
+
+#: src/admin/components/FileUpload.jsx:46
+msgid "Upload file"
+msgstr "آپلود فایل"
+
+#: src/admin/pages/Settings.jsx:395
+msgid "Use Authorization: Bearer agp_... for /external/* and /mcp/* endpoints."
+msgstr "از Authorization: Bearer agp_... برای نقاط پایانی /external/* و /mcp/* استفاده کنید."
+
+#: src/post-editor/FeaturedImageModal.jsx:187
+msgid "Use Image"
+msgstr "استفاده از تصویر"
+
+#: includes/Core/Settings.php:283
+msgid "Use a polite, respectful tone. Address customers courteously and with warmth."
+msgstr "از لحن مودبانه و محترمانه استفاده کن. با مشتریان با ادب و گرمی صحبت کن."
+
+#: includes/Core/Settings.php:285
+msgid "Use a professional, confident business tone. Be clear, structured, and expert without being stiff."
+msgstr "از لحن حرفه‌ای و مطمئن کسب‌وکار استفاده کن. واضح، منظم و متخصص باش بدون خشکی."
+
+#: includes/Core/Settings.php:284
+msgid "Use a warm, casual, conversational tone. Be approachable and relatable while staying helpful."
+msgstr "از لحن گرم، خودمونی و گفتگومحور استفاده کن. صمیمی و قابل ارتباط باش در عین حفظ مفید بودن."
+
+#: includes/Modules/Admin/Tools/GetUserTool.php:45
+msgid "User not found."
+msgstr "کاربر یافت نشد."
+
+#: includes/Modules/Admin/Tools/GetUserTool.php:61
+msgid "User retrieved."
+msgstr "کاربر دریافت شد."
+
+#: src/admin/pages/Memory.jsx:237
+#: src/admin/pages/Memory.jsx:297
+msgid "Value"
+msgstr "مقدار"
+
+#: src/admin/pages/Dashboard.jsx:81
+msgid "View Tasks"
+msgstr "مشاهده وظایف"
+
+#: src/frontend/formatMessage.js:49
+msgid "View product"
+msgstr "View product"
+
+#: src/admin/pages/SalesChatSettings.jsx:29
+msgid "Warm and conversational"
+msgstr "گرم و گفتگومحور"
+
+#: src/frontend/Widget.jsx:175
+msgid "Welcome back! I remember our previous chats. How can I help you today?"
+msgstr "خوش برگشتی! مکالمات قبلی‌مان را به خاطر دارم. امروز چطور می‌توانم کمکت کنم؟"
+
+#: src/admin/components/ChatInterface.jsx:18
+msgid "What are our best-selling products?"
+msgstr "محصولات پرفروش ما کدامند؟"
+
+#: includes/Modules/Sales/SalesModule.php:112
+msgid "What are your best-selling products?"
+msgstr "محصولات پرفروش شما کدامند؟"
+
+#: includes/Modules/Sales/SalesModule.php:114
+msgid "What is in my cart?"
+msgstr "چه چیزی در سبد خرید من است؟"
+
+#: includes/Modules/Admin/AdminModule.php:121
+#: src/admin/components/ChatInterface.jsx:9
+msgid "What posts do I have on my site?"
+msgstr "چه پست‌هایی در سایتم دارم؟"
+
+#: src/admin/pages/SalesChatSettings.jsx:8
+msgid "Widget"
+msgstr "ابزارک"
+
+#: src/admin/pages/SalesChatSettings.jsx:243
+msgid "Widget Color"
+msgstr "رنگ ابزارک"
+
+#: src/admin/pages/SalesChatSettings.jsx:217
+msgid "Widget Position"
+msgstr "موقعیت ابزارک"
+
+#: src/admin/pages/SalesChatSettings.jsx:207
+msgid "Widget Title"
+msgstr "عنوان ابزارک"
+
+#: src/admin/pages/SalesChatSettings.jsx:174
+msgid "Widget disabled"
+msgstr "ابزارک غیرفعال"
+
+#: src/admin/pages/SalesChatSettings.jsx:173
+msgid "Widget enabled"
+msgstr "ابزارک فعال"
+
+#: includes/Agents/TaskStepExecutor.php:542
+#: includes/Modules/Admin/Tools/CreateProductTool.php:44
+#: includes/Modules/Admin/Tools/DeleteProductTool.php:61
+#: includes/Modules/Admin/Tools/GetProductTool.php:39
+#: includes/Modules/Admin/Tools/ListProductsTool.php:40
+#: includes/Modules/Admin/Tools/UpdateProductTool.php:45
+#: includes/Modules/Sales/Tools/GetProductDetailsTool.php:37
+#: includes/Modules/Sales/Tools/RecommendProductsTool.php:38
+#: includes/Modules/Sales/Tools/SearchProductsTool.php:38
+#: src/admin/pages/SalesChatSettings.jsx:141
+msgid "WooCommerce is not active."
+msgstr "ووکامرس فعال نیست."
+
+#: src/admin/pages/Workflows.jsx:89
+msgid "Workflow name"
+msgstr "نام گردش کار"
+
+#: src/admin/App.jsx:31
+#: src/admin/components/Sidebar.jsx:8
+#: src/admin/pages/Workflows.jsx:99
+msgid "Workflows"
+msgstr "گردش‌های کار"
+
+#: src/admin/pages/Workflows.jsx:40
+msgid "Workflows require an Enterprise license. Update the license tier in Settings to enable automation workflows."
+msgstr "گردش‌های کار نیاز به مجوز Enterprise دارند. سطح مجوز را در تنظیمات به‌روز کنید تا گردش‌های کار اتوماسیون فعال شود."
+
+#: includes/Modules/Admin/AdminModule.php:123
+#: src/admin/components/ChatInterface.jsx:10
+msgid "Write an SEO-optimized blog post about [topic]"
+msgstr "یک پست وبلاگ بهینه‌شده برای سئو درباره [topic] بنویس"
+
+#: includes/Agents/TaskTemplates.php:246
+msgid "Writing product description %d"
+msgstr "در حال نوشتن توضیحات محصول %d"
+
+#: includes/Security/PermissionValidator.php:148
+msgid "You do not have permission to access this module."
+msgstr "شما اجازه دسترسی به این ماژول را ندارید."
+
+#: includes/Security/PermissionValidator.php:205
+msgid "You do not have permission to perform this action."
+msgstr "شما اجازه انجام این اقدام را ندارید."
+
+#: includes/Security/PermissionValidator.php:133
+msgid "You must be logged in."
+msgstr "شما باید وارد شوید."
+
+#: src/admin/pages/Settings.jsx:49
+msgid "Your API key"
+msgstr "کلید API شما"
+
+#: src/frontend/Widget.jsx:122
+msgid "Your request has been sent to our team. We will get back to you soon."
+msgstr "درخواست شما به تیم ما ارسال شد. به زودی با شما در تماس خواهیم بود."
+
+#: src/admin/pages/Analytics.jsx:66
+msgid "days"
+msgstr "روز"
+
+#: src/admin/pages/Tasks.jsx:204
+msgid "e.g. Generate 10 SEO articles about WordPress"
+msgstr "مثال: ۱۰ مقاله سئو درباره وردپرس تولید کن"
+
+#: src/admin/pages/Memory.jsx:232
+msgid "e.g. brand_name, primary_color"
+msgstr "مثال: brand_name, primary_color"
+
+#: includes/Agents/TaskQueue.php:336
+msgid "re-run"
+msgstr "اجرای مجدد"
+

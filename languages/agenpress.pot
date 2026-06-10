@@ -1,0 +1,1872 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: AgenPress\n"
+"Report-Msgid-Bugs-To: https://github.com/agenpress/agenpress\n"
+"POT-Creation-Date: 2026-06-10 08:16+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: agenpress\n"
+
+#: includes/Modules/Sales/Tools/RecommendProductsTool.php:74
+msgid "%d recommendations."
+msgstr ""
+
+#: includes/Modules/Sales/Tools/EscalateToHumanTool.php:78
+msgid "A team member will follow up shortly."
+msgstr ""
+
+#: src/frontend/Widget.jsx:157
+msgid "A team member will follow up with you."
+msgstr ""
+
+#: includes/AI/OpenAICompatibleProvider.php:259
+msgid "AI API error."
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:14
+msgid "AI Behavior"
+msgstr ""
+
+#: src/admin/App.jsx:28
+#: src/admin/components/Sidebar.jsx:5
+msgid "AI Chat"
+msgstr ""
+
+#: src/post-editor/FeaturedImageModal.jsx:100
+#: src/post-editor/InsertImageModal.jsx:86
+msgid "AI Generate Image"
+msgstr ""
+
+#: src/post-editor/GenerateTextModal.jsx:73
+msgid "AI Generate Text"
+msgstr ""
+
+#: src/post-editor/FeaturedImageButton.jsx:50
+#: src/post-editor/FeaturedImageButton.jsx:80
+msgid "AI Generate image"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:322
+msgid "AI Language"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:228
+msgid "AI Provider"
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:270
+msgid "AI planning task steps"
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:51
+msgid "AI-planned multi-step task from your description"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:257
+msgid "API Base URL"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:270
+msgid "API Endpoint"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:276
+msgid "API Key"
+msgstr ""
+
+#: includes/REST/ExternalAuth.php:62
+msgid "API key does not have permission for this scope."
+msgstr ""
+
+#: includes/REST/ExternalAuth.php:42
+msgid "API key required. Use Authorization: Bearer agp_..."
+msgstr ""
+
+#: src/admin/pages/Dashboard.jsx:94
+msgid "About AgenPress"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:250
+msgid "Actions"
+msgstr ""
+
+#: src/admin/pages/Inbox.jsx:7
+#: src/admin/pages/Inbox.jsx:13
+msgid "Active"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:210
+msgid "Add Memory Entry"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:213
+msgid "Additional instructions for the agent..."
+msgstr ""
+
+#: includes/Admin/AdminMenu.php:78
+msgid "Admin AI"
+msgstr ""
+
+#: includes/Modules/Admin/AdminModule.php:64
+msgid "Admin Assistant"
+msgstr ""
+
+#: includes/Admin/AdminMenu.php:24
+#: includes/Admin/AdminMenu.php:25
+msgid "AgenPress"
+msgstr ""
+
+#: src/elementor/Panel.jsx:138
+msgid "AgenPress AI"
+msgstr ""
+
+#: src/admin/pages/Dashboard.jsx:97
+msgid "AgenPress is your AI Operating System for WordPress. Use the Admin AI to manage content, Agent Tasks for multi-step automation, and Memory to store brand knowledge for smarter responses."
+msgstr ""
+
+#: src/admin/App.jsx:32
+#: src/admin/components/Sidebar.jsx:9
+msgid "Agent Tasks"
+msgstr ""
+
+#: src/admin/pages/Inbox.jsx:6
+#: src/admin/pages/Memory.jsx:257
+#: src/admin/pages/Tasks.jsx:17
+msgid "All"
+msgstr ""
+
+#: src/admin/pages/Inbox.jsx:105
+msgid "All AI sales chats from the storefront widget. Escalated chats need human follow-up."
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:261
+msgid "Also available via shortcode: [agenpress_chat]"
+msgstr ""
+
+#: includes/REST/TextController.php:94
+msgid "An AI provider API key is required."
+msgstr ""
+
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:74
+#: includes/REST/ImageController.php:142
+msgid "An image-capable AI provider API key is required (OpenAI, GapGPT, or Custom)."
+msgstr ""
+
+#: src/admin/App.jsx:30
+#: src/admin/components/Sidebar.jsx:7
+msgid "Analytics"
+msgstr ""
+
+#: src/admin/pages/Analytics.jsx:22
+#: src/admin/pages/Analytics.jsx:52
+msgid "Analytics data is unavailable."
+msgstr ""
+
+#: src/admin/pages/Analytics.jsx:38
+msgid "Analytics requires an Enterprise license. Update the license tier in Settings to enable usage reporting."
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:26
+msgid "Anthropic Claude models"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:46
+msgid "Any OpenAI-compatible endpoint"
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:9
+msgid "Appearance and placement on the storefront"
+msgstr ""
+
+#: src/post-editor/FeaturedImageModal.jsx:187
+msgid "Applying..."
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:31
+msgid "Article sections count"
+msgstr ""
+
+#: src/admin/components/ChatInterface.jsx:201
+msgid "Ask AgenPress anything..."
+msgstr ""
+
+#: src/elementor/Panel.jsx:199
+msgid "Ask about this page..."
+msgstr ""
+
+#: src/elementor/Panel.jsx:153
+msgid "Ask me to design sections, update widgets, or generate images for your page."
+msgstr ""
+
+#: includes/Sales/CustomerMemory.php:226
+#: src/admin/pages/Inbox.jsx:20
+msgid "Assistant"
+msgstr ""
+
+#: includes/Modules/Admin/Tools/UpdateMediaTool.php:48
+msgid "Attachment not found."
+msgstr ""
+
+#: includes/REST/RestController.php:54
+msgid "Authentication required."
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:189
+msgid "Auto-Extract Brand Info"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:335
+msgid "Base language for AI responses and generated content."
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:346
+msgid "Basic"
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:237
+msgid "Bottom Left"
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:227
+msgid "Bottom Right"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:14
+msgid "Brand"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:141
+msgid "Brand info imported: %1$d created, %2$d updated."
+msgstr ""
+
+#: src/admin/components/ConfirmationModal.jsx:36
+#: src/admin/pages/Memory.jsx:339
+#: src/admin/pages/Tasks.jsx:280
+#: src/post-editor/FeaturedImageModal.jsx:165
+#: src/post-editor/GenerateTextModal.jsx:132
+#: src/post-editor/InsertImageModal.jsx:151
+msgid "Cancel"
+msgstr ""
+
+#: includes/Modules/Sales/Tools/GetCartSummaryTool.php:59
+msgid "Cart is empty."
+msgstr ""
+
+#: includes/Modules/Sales/Tools/GetCartSummaryTool.php:34
+msgid "Cart is not available."
+msgstr ""
+
+#: includes/Modules/Sales/Tools/GetCartSummaryTool.php:59
+msgid "Cart summary retrieved."
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:215
+#: src/admin/pages/Memory.jsx:295
+msgid "Category"
+msgstr ""
+
+#: includes/Core/Settings.php:42
+#: includes/Core/Settings.php:344
+#: src/admin/pages/SalesChatSettings.jsx:75
+#: src/admin/pages/SalesChatSettings.jsx:86
+#: src/admin/pages/SalesChatSettings.jsx:212
+#: src/frontend/Widget.jsx:23
+msgid "Chat with us"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:25
+msgid "Claude"
+msgstr ""
+
+#: includes/AI/ClaudeProvider.php:93
+msgid "Claude API error."
+msgstr ""
+
+#: includes/AI/ClaudeProvider.php:55
+msgid "Claude API key is not configured."
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:34
+msgid "Clear and business-like"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:315
+#: src/post-editor/FeaturedImageModal.jsx:106
+#: src/post-editor/GenerateTextModal.jsx:79
+#: src/post-editor/InsertImageModal.jsx:92
+msgid "Close"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:20
+msgid "Completed"
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:434
+msgid "Conclusion"
+msgstr ""
+
+#: src/admin/pages/Dashboard.jsx:87
+msgid "Configure AI"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:204
+msgid "Configure an OpenAI API key in Settings to enable semantic memory search."
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:161
+msgid "Configure the floating chat widget and how the sales assistant talks to customers on your store."
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:73
+msgid "Configured"
+msgstr ""
+
+#: src/admin/components/ConfirmationModal.jsx:43
+#: src/elementor/Panel.jsx:165
+msgid "Confirm"
+msgstr ""
+
+#: src/admin/components/ConfirmationModal.jsx:22
+msgid "Confirm Action"
+msgstr ""
+
+#: includes/Agents/AbstractTool.php:44
+msgid "Confirm execution of \"%s\"?"
+msgstr ""
+
+#: includes/Agents/ToolRegistry.php:110
+msgid "Confirm this action?"
+msgstr ""
+
+#: includes/Agents/AgentEngine.php:312
+msgid "Confirmed action **%1$s**: %2$s"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:15
+msgid "Contact"
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:279
+msgid "Controls how the sales assistant speaks to customers."
+msgstr ""
+
+#: includes/Modules/Sales/Tools/EscalateToHumanTool.php:58
+#: includes/REST/SalesChatController.php:339
+msgid "Conversation ID is required."
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:277
+msgid "Conversation Tone"
+msgstr ""
+
+#: includes/Modules/Sales/Tools/EscalateToHumanTool.php:64
+#: includes/REST/ChatController.php:176
+#: includes/REST/ChatController.php:206
+#: includes/REST/ChatController.php:292
+#: includes/REST/InboxController.php:138
+#: includes/REST/InboxController.php:190
+#: includes/REST/InboxController.php:216
+#: includes/REST/SalesChatController.php:141
+#: includes/REST/SalesChatController.php:312
+#: includes/REST/SalesChatController.php:353
+msgid "Conversation not found."
+msgstr ""
+
+#: includes/Core/Settings.php:289
+msgid "Conversation tone:"
+msgstr ""
+
+#: src/admin/pages/Analytics.jsx:58
+msgid "Conversations"
+msgstr ""
+
+#: src/admin/pages/Analytics.jsx:79
+msgid "Conversations by Module"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:359
+msgid "Copy your key now — it won't be shown again:"
+msgstr ""
+
+#: includes/Modules/Sales/Tools/ValidateCouponTool.php:57
+msgid "Coupon is valid."
+msgstr ""
+
+#: includes/Modules/Sales/Tools/ValidateCouponTool.php:40
+msgid "Coupon not found."
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:24
+msgid "Courteous and respectful"
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:92
+msgid "Create"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:151
+msgid "Create Agent Task"
+msgstr ""
+
+#: includes/Modules/Admin/AdminModule.php:125
+msgid "Create FAQ schema markup for [topic]"
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:82
+msgid "Create Workflow"
+msgstr ""
+
+#: includes/Modules/Admin/AdminModule.php:132
+msgid "Create a new product draft for [product name]"
+msgstr ""
+
+#: includes/Modules/Admin/Tools/CreatePostTool.php:103
+msgid "Created \"%s\" successfully."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/CreateProductTool.php:76
+msgid "Created product \"%s\"."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/CreateTermTool.php:70
+msgid "Created term \"%s\"."
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:190
+msgid "Creating SEO article %d"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:217
+msgid "Creating..."
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:45
+msgid "Custom AI Agent"
+msgstr ""
+
+#: includes/AI/CustomProvider.php:42
+msgid "Custom AI agent API key and base URL are not configured."
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:50
+msgid "Custom Task"
+msgstr ""
+
+#: includes/Sales/CustomerMemory.php:226
+#: src/admin/pages/Inbox.jsx:19
+msgid "Customer"
+msgstr ""
+
+#: includes/Agents/AgentEngine.php:457
+msgid "Customer conversation history:"
+msgstr ""
+
+#: includes/REST/SalesChatController.php:364
+msgid "Customer requested human support"
+msgstr ""
+
+#: src/admin/pages/Analytics.jsx:91
+msgid "Daily Messages"
+msgstr ""
+
+#: src/admin/App.jsx:27
+#: src/admin/components/Sidebar.jsx:4
+msgid "Dashboard"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:376
+#: src/admin/pages/Tasks.jsx:297
+#: src/admin/pages/Workflows.jsx:128
+msgid "Delete"
+msgstr ""
+
+#: includes/Modules/Admin/Tools/DeletePostTool.php:33
+msgid "Delete %2$s \"%1$s\"? This cannot be undone."
+msgstr ""
+
+#: includes/Modules/Elementor/Tools/DeleteElementTool.php:28
+msgid "Delete Elementor element \"%s\"? This cannot be undone."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/DeleteProductTool.php:37
+msgid "Delete product \"%s\"? This cannot be undone."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/DeletePostTool.php:39
+msgid "Delete this post? This cannot be undone."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/DeleteProductTool.php:29
+#: includes/Modules/Admin/Tools/DeleteProductTool.php:42
+msgid "Delete this product? This cannot be undone."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/DeletePostTool.php:79
+msgid "Deleted \"%s\"."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/DeleteProductTool.php:84
+msgid "Deleted product \"%s\"."
+msgstr ""
+
+#: src/post-editor/FeaturedImageModal.jsx:123
+#: src/post-editor/InsertImageModal.jsx:109
+msgid "Describe the image you want to generate..."
+msgstr ""
+
+#: src/post-editor/GenerateTextModal.jsx:103
+msgid "Describe the text you want to generate..."
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:208
+msgid "Description"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:16
+msgid "Design"
+msgstr ""
+
+#: includes/Modules/Elementor/ElementorModule.php:121
+msgid "Design a hero section using my brand colors"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:294
+msgid "Details"
+msgstr ""
+
+#: src/post-editor/FeaturedImageModal.jsx:129
+#: src/post-editor/InsertImageModal.jsx:115
+msgid "Dimensions"
+msgstr ""
+
+#: includes/Modules/Sales/SalesModule.php:113
+msgid "Do you have any active discount codes?"
+msgstr ""
+
+#: src/admin/components/ChatInterface.jsx:19
+msgid "Draft a customer support response"
+msgstr ""
+
+#: includes/Modules/Admin/AdminModule.php:127
+msgid "Draft a new page with a hero section and CTA"
+msgstr ""
+
+#: includes/Modules/Elementor/ElementorModule.php:124
+msgid "Duplicate this section and adjust the copy"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:369
+msgid "Edit"
+msgstr ""
+
+#: includes/Modules/Elementor/ElementorDocumentService.php:301
+msgid "Element deleted."
+msgstr ""
+
+#: includes/Modules/Elementor/ElementorDocumentService.php:266
+msgid "Element duplicated."
+msgstr ""
+
+#: includes/Modules/Elementor/ElementorDocumentService.php:214
+#: includes/Modules/Elementor/ElementorDocumentService.php:251
+#: includes/Modules/Elementor/ElementorDocumentService.php:293
+#: includes/Modules/Elementor/Tools/GetElementTool.php:47
+msgid "Element not found."
+msgstr ""
+
+#: includes/Modules/Elementor/Tools/GetElementTool.php:50
+msgid "Element retrieved."
+msgstr ""
+
+#: includes/Modules/Elementor/ElementorDocumentService.php:222
+msgid "Element settings updated."
+msgstr ""
+
+#: includes/Modules/Elementor/ElementorModule.php:78
+msgid "Elementor Assistant"
+msgstr ""
+
+#: includes/Modules/Elementor/ElementorDocumentService.php:151
+#: includes/Modules/Elementor/ElementorDocumentService.php:190
+#: includes/Modules/Elementor/ElementorDocumentService.php:240
+#: includes/Modules/Elementor/ElementorDocumentService.php:283
+msgid "Elementor document not found."
+msgstr ""
+
+#: includes/Modules/Elementor/Tools/ListElementorPagesTool.php:40
+msgid "Elementor is not active."
+msgstr ""
+
+#: includes/Modules/Elementor/Tools/GetPageStructureTool.php:49
+msgid "Elementor page not found."
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:348
+msgid "Enterprise"
+msgstr ""
+
+#: includes/Agents/AgentEngine.php:477
+msgid "Error: %s"
+msgstr ""
+
+#: src/admin/pages/Inbox.jsx:8
+#: src/admin/pages/Inbox.jsx:14
+msgid "Escalated"
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:280
+msgid "Executing planned work"
+msgstr ""
+
+#: src/admin/components/ConfirmationModal.jsx:43
+msgid "Executing..."
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:355
+msgid "External API Keys"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:189
+msgid "Extracting..."
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:21
+msgid "Failed"
+msgstr ""
+
+#: src/admin/components/ChatInterface.jsx:110
+msgid "Failed to confirm action."
+msgstr ""
+
+#: includes/REST/ApiKeysController.php:108
+msgid "Failed to create API key."
+msgstr ""
+
+#: includes/REST/ChatController.php:148
+#: includes/REST/ChatController.php:278
+#: includes/REST/ExternalApiController.php:92
+#: includes/REST/OrchestratorController.php:110
+msgid "Failed to create conversation."
+msgstr ""
+
+#: includes/REST/MemoryController.php:248
+msgid "Failed to create memory entry."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/CreateProductTool.php:71
+msgid "Failed to create product."
+msgstr ""
+
+#: includes/REST/TaskController.php:193
+msgid "Failed to create task."
+msgstr ""
+
+#: includes/REST/WorkflowController.php:135
+msgid "Failed to create workflow."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/DeletePostTool.php:72
+msgid "Failed to delete post."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/DeleteProductTool.php:79
+msgid "Failed to delete product."
+msgstr ""
+
+#: src/admin/pages/Analytics.jsx:26
+msgid "Failed to load analytics."
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:222
+#: includes/Agents/TaskStepExecutor.php:250
+msgid "Failed to parse generated article."
+msgstr ""
+
+#: includes/REST/WorkflowController.php:198
+msgid "Failed to run workflow."
+msgstr ""
+
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:95
+#: includes/REST/ImageController.php:179
+msgid "Failed to save image to media library."
+msgstr ""
+
+#: src/admin/components/ChatInterface.jsx:89
+#: src/elementor/Panel.jsx:109
+#: src/frontend/Widget.jsx:105
+msgid "Failed to send message."
+msgstr ""
+
+#: includes/REST/ImageController.php:231
+#: src/post-editor/FeaturedImageModal.jsx:84
+msgid "Failed to set featured image."
+msgstr ""
+
+#: includes/REST/SalesChatController.php:162
+msgid "Failed to start conversation."
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:290
+msgid "Featured image set."
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:232
+msgid "Fetching existing products"
+msgstr ""
+
+#: includes/Modules/Elementor/Tools/ListElementorPagesTool.php:49
+msgid "Found %d Elementor pages."
+msgstr ""
+
+#: includes/Modules/Sales/Tools/ListCouponsTool.php:60
+msgid "Found %d coupons."
+msgstr ""
+
+#: includes/Modules/Sales/Tools/GetMyOrdersTool.php:50
+msgid "Found %d orders."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/ListPostsTool.php:82
+msgid "Found %d posts."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/ListProductsTool.php:63
+#: includes/Modules/Sales/Tools/SearchProductsTool.php:52
+msgid "Found %d products."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/ListTermsTool.php:74
+msgid "Found %d terms."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/ListUsersTool.php:71
+msgid "Found %d users."
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:412
+msgid "Frequently Asked Questions"
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:28
+msgid "Friendly / Casual"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:16
+msgid "GPT models via OpenAI API"
+msgstr ""
+
+#: includes/AI/GapGPTProvider.php:47
+msgid "GapGPT API key is not configured."
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:18
+#: src/admin/pages/Settings.jsx:319
+msgid "General"
+msgstr ""
+
+#: src/post-editor/FeaturedImageModal.jsx:173
+#: src/post-editor/GenerateTextModal.jsx:140
+#: src/post-editor/InsertImageModal.jsx:159
+msgid "Generate"
+msgstr ""
+
+#: includes/Modules/Admin/ClassicEditorToolbar.php:178
+msgid "Generate Image"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:380
+msgid "Generate Key"
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:42
+msgid "Generate SEO product descriptions for WooCommerce products"
+msgstr ""
+
+#: includes/Modules/Admin/ClassicEditorToolbar.php:177
+msgid "Generate Text"
+msgstr ""
+
+#: includes/Modules/Elementor/ElementorModule.php:123
+msgid "Generate a background image for this section"
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:32
+msgid "Generate featured image"
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:33
+msgid "Generate image for each section"
+msgstr ""
+
+#: includes/Modules/Admin/AdminModule.php:124
+#: src/admin/components/ChatInterface.jsx:11
+msgid "Generate meta title and description for my latest post"
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:27
+msgid "Generate multiple SEO-optimized articles with categories and tags"
+msgstr ""
+
+#: src/post-editor/FeaturedImageModal.jsx:147
+#: src/post-editor/InsertImageModal.jsx:133
+msgid "Generated preview"
+msgstr ""
+
+#: src/post-editor/FeaturedImageModal.jsx:153
+#: src/post-editor/InsertImageModal.jsx:139
+msgid "Generating image..."
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:206
+msgid "Generating task summary"
+msgstr ""
+
+#: src/post-editor/GenerateTextModal.jsx:120
+msgid "Generating text..."
+msgstr ""
+
+#: src/post-editor/FeaturedImageModal.jsx:173
+#: src/post-editor/GenerateTextModal.jsx:140
+#: src/post-editor/InsertImageModal.jsx:159
+msgid "Generating..."
+msgstr ""
+
+#: includes/Modules/Admin/AdminModule.php:122
+msgid "Give me an overview of my WordPress site"
+msgstr ""
+
+#: src/admin/components/ChatInterface.jsx:14
+msgid "Help me design a hero section"
+msgstr ""
+
+#: src/frontend/Widget.jsx:176
+msgid "Hi! How can I help you today?"
+msgstr ""
+
+#: src/admin/components/ChatInterface.jsx:144
+msgid "How can I help you manage your site?"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:308
+msgid "Image Model"
+msgstr ""
+
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:122
+msgid "Image generated and applied to element."
+msgstr ""
+
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:123
+msgid "Image generated and saved to media library."
+msgstr ""
+
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:89
+#: includes/REST/ImageController.php:167
+#: src/post-editor/FeaturedImageModal.jsx:56
+#: src/post-editor/InsertImageModal.jsx:56
+msgid "Image generation failed."
+msgstr ""
+
+#: includes/AI/ClaudeProvider.php:127
+msgid "Image generation is not supported by Claude provider."
+msgstr ""
+
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:68
+#: includes/REST/ImageController.php:122
+msgid "Image prompt is required."
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:34
+msgid "Include FAQ section"
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:35
+msgid "Include conclusion"
+msgstr ""
+
+#: src/post-editor/InsertImageModal.jsx:168
+msgid "Insert Image"
+msgstr ""
+
+#: src/post-editor/GenerateTextModal.jsx:149
+msgid "Insert Text"
+msgstr ""
+
+#: includes/REST/ExternalAuth.php:54
+msgid "Invalid API key."
+msgstr ""
+
+#: includes/Agents/AgentEngine.php:291
+msgid "Invalid conversation for this action."
+msgstr ""
+
+#: includes/REST/MemoryController.php:308
+msgid "Invalid data."
+msgstr ""
+
+#: includes/REST/ImageController.php:219
+msgid "Invalid image attachment."
+msgstr ""
+
+#: includes/REST/ChatController.php:231
+msgid "Invalid module."
+msgstr ""
+
+#: includes/REST/SettingsController.php:90
+msgid "Invalid settings data."
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:227
+#: src/admin/pages/Memory.jsx:296
+msgid "Key"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:291
+msgid "Key is saved. Paste a new value to replace it."
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:368
+msgid "Key name"
+msgstr ""
+
+#: includes/REST/MemoryController.php:231
+msgid "Key name and value are required."
+msgstr ""
+
+#: includes/Modules/Admin/ClassicEditorToolbar.php:169
+#: includes/Modules/Admin/PostFeaturedImage.php:143
+msgid "Landscape (1792×1024)"
+msgstr ""
+
+#: src/admin/pages/Analytics.jsx:66
+msgid "Last"
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:112
+msgid "Last Run"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:340
+msgid "License Tier"
+msgstr ""
+
+#: includes/Modules/Admin/AdminModule.php:126
+msgid "List all categories and suggest new ones"
+msgstr ""
+
+#: includes/Modules/Admin/AdminModule.php:131
+msgid "List my WooCommerce products and their stock levels"
+msgstr ""
+
+#: src/admin/pages/Analytics.jsx:44
+msgid "Loading analytics..."
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:147
+#: src/admin/pages/Settings.jsx:217
+msgid "Loading settings..."
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:240
+msgid "Loading tasks..."
+msgstr ""
+
+#: src/admin/pages/Inbox.jsx:130
+#: src/admin/pages/Memory.jsx:288
+#: src/admin/pages/Workflows.jsx:102
+msgid "Loading..."
+msgstr ""
+
+#: src/admin/pages/Inbox.jsx:149
+msgid "Logged-in customer"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:333
+msgid "Logs"
+msgstr ""
+
+#: src/admin/pages/Dashboard.jsx:84
+msgid "Manage Memory"
+msgstr ""
+
+#: src/admin/pages/Inbox.jsx:191
+msgid "Mark Resolved"
+msgstr ""
+
+#: includes/Modules/Admin/Tools/UpdateMediaTool.php:79
+msgid "Media updated."
+msgstr ""
+
+#: src/admin/components/Sidebar.jsx:10
+msgid "Memory"
+msgstr ""
+
+#: src/admin/pages/Dashboard.jsx:47
+msgid "Memory Entries"
+msgstr ""
+
+#: src/admin/App.jsx:33
+msgid "Memory Manager"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:203
+msgid "Memory entries are embedded for semantic retrieval in AI prompts."
+msgstr ""
+
+#: includes/REST/MemoryController.php:272
+#: includes/REST/MemoryController.php:296
+#: includes/REST/MemoryController.php:332
+msgid "Memory entry not found."
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:79
+msgid "Memory entry saved."
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:111
+msgid "Memory entry updated."
+msgstr ""
+
+#: includes/REST/ChatController.php:258
+#: includes/REST/SalesChatController.php:114
+msgid "Message cannot be empty."
+msgstr ""
+
+#: includes/REST/ExternalApiController.php:79
+#: includes/REST/OrchestratorController.php:99
+msgid "Message is required."
+msgstr ""
+
+#: src/admin/pages/Analytics.jsx:57
+msgid "Messages"
+msgstr ""
+
+#: src/admin/pages/Chat.jsx:31
+msgid "Multi-Agent"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:36
+msgid "Multi-model gateway (OpenAI-compatible)"
+msgstr ""
+
+#: includes/REST/WorkflowController.php:129
+msgid "New Workflow"
+msgstr ""
+
+#: src/admin/pages/Inbox.jsx:95
+msgid "No active sales chats."
+msgstr ""
+
+#: src/elementor/Panel.jsx:35
+msgid "No element selected"
+msgstr ""
+
+#: src/admin/pages/Inbox.jsx:96
+msgid "No escalated conversations."
+msgstr ""
+
+#: includes/REST/UploadController.php:58
+msgid "No file uploaded."
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:347
+msgid "No logs yet."
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:290
+msgid "No memory entries yet."
+msgstr ""
+
+#: src/admin/pages/Inbox.jsx:97
+msgid "No resolved conversations."
+msgstr ""
+
+#: includes/AI/OpenAICompatibleProvider.php:95
+msgid "No response from AI provider."
+msgstr ""
+
+#: src/admin/pages/Inbox.jsx:94
+msgid "No storefront sales chats yet."
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:242
+msgid "No tasks yet. Create one above."
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:104
+msgid "No workflows yet."
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:29
+msgid "Number of articles"
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:44
+msgid "Number of products"
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:303
+msgid "One rule per line, e.g. Always mention free shipping over $50"
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:317
+msgid "One rule per line, e.g. Never promise delivery dates without checking"
+msgstr ""
+
+#: includes/REST/TaskController.php:349
+msgid "Only failed tasks can be retried."
+msgstr ""
+
+#: src/frontend/formatMessage.js:52
+msgid "Open link"
+msgstr ""
+
+#: includes/AI/OpenAIProvider.php:42
+msgid "OpenAI API key is not configured."
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:265
+msgid "OpenAI-compatible base URL including /v1 path."
+msgstr ""
+
+#: includes/Modules/Sales/Tools/GetOrderStatusTool.php:75
+msgid "Order not found for that email."
+msgstr ""
+
+#: includes/Modules/Sales/Tools/GetOrderStatusTool.php:71
+#: includes/Modules/Sales/Tools/GetOrderStatusTool.php:79
+msgid "Order not found."
+msgstr ""
+
+#: includes/Modules/Sales/Tools/GetOrderStatusTool.php:41
+msgid "Order number and email are required."
+msgstr ""
+
+#: includes/Modules/Sales/Tools/GetOrderStatusTool.php:91
+msgid "Order status: %s"
+msgstr ""
+
+#: includes/Modules/Elementor/Tools/GetPageStructureTool.php:52
+msgid "Page structure retrieved."
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:292
+msgid "Paste your API key here."
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:275
+msgid "Pause"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:19
+msgid "Paused"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:22
+msgid "Pending"
+msgstr ""
+
+#: includes/REST/ChatController.php:346
+msgid "Pending action ID and conversation ID are required."
+msgstr ""
+
+#: includes/Agents/AgentEngine.php:287
+msgid "Pending action not found or expired."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/CreatePostTool.php:45
+#: includes/Modules/Admin/Tools/CreateProductTool.php:48
+#: includes/Modules/Admin/Tools/CreateTermTool.php:41
+#: includes/Modules/Admin/Tools/DeletePostTool.php:58
+#: includes/Modules/Admin/Tools/DeleteProductTool.php:65
+#: includes/Modules/Admin/Tools/GetPostTool.php:39
+#: includes/Modules/Admin/Tools/GetProductTool.php:43
+#: includes/Modules/Admin/Tools/GetUserTool.php:39
+#: includes/Modules/Admin/Tools/ListPostsTool.php:58
+#: includes/Modules/Admin/Tools/ListProductsTool.php:44
+#: includes/Modules/Admin/Tools/ListTermsTool.php:40
+#: includes/Modules/Admin/Tools/ListUsersTool.php:40
+#: includes/Modules/Admin/Tools/UpdateMediaTool.php:42
+#: includes/Modules/Admin/Tools/UpdatePostTool.php:45
+#: includes/Modules/Admin/Tools/UpdateProductTool.php:49
+#: includes/Modules/Elementor/Tools/CreateSectionTool.php:44
+#: includes/Modules/Elementor/Tools/DeleteElementTool.php:53
+#: includes/Modules/Elementor/Tools/DuplicateElementTool.php:41
+#: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:62
+#: includes/Modules/Elementor/Tools/GetElementTool.php:41
+#: includes/Modules/Elementor/Tools/GetPageStructureTool.php:40
+#: includes/Modules/Elementor/Tools/ListElementorPagesTool.php:36
+#: includes/Modules/Elementor/Tools/UpdateWidgetSettingsTool.php:50
+msgid "Permission denied."
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:171
+msgid "Planning article topics"
+msgstr ""
+
+#: src/post-editor/FeaturedImageModal.jsx:36
+#: src/post-editor/GenerateTextModal.jsx:27
+#: src/post-editor/InsertImageModal.jsx:36
+msgid "Please enter a prompt."
+msgstr ""
+
+#: includes/Modules/Sales/Tools/GetMyOrdersTool.php:36
+msgid "Please log in to view your orders, or provide order number and email."
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:23
+msgid "Polite"
+msgstr ""
+
+#: includes/Modules/Admin/ClassicEditorToolbar.php:173
+#: includes/Modules/Admin/PostFeaturedImage.php:147
+msgid "Portrait (1024×1792)"
+msgstr ""
+
+#: includes/Modules/Admin/Tools/DeletePostTool.php:65
+#: includes/Modules/Admin/Tools/GetPostTool.php:45
+#: includes/Modules/Admin/Tools/UpdatePostTool.php:52
+#: includes/REST/ImageController.php:209
+msgid "Post not found."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/GetPostTool.php:53
+msgid "Post retrieved."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/UpdatePostTool.php:95
+msgid "Post updated successfully."
+msgstr ""
+
+#: src/frontend/Widget.jsx:232
+msgid "Powered by AgenPress"
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:65
+#: src/post-editor/GenerateTextModal.jsx:110
+msgid "Preview"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:347
+msgid "Pro"
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:41
+msgid "Product Descriptions"
+msgstr ""
+
+#: includes/Modules/Sales/Tools/GetProductDetailsTool.php:52
+msgid "Product details retrieved."
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:45
+msgid "Product niche"
+msgstr ""
+
+#: includes/Modules/Admin/Tools/DeleteProductTool.php:72
+#: includes/Modules/Admin/Tools/GetProductTool.php:49
+#: includes/Modules/Admin/Tools/UpdateProductTool.php:55
+#: includes/Modules/Sales/Tools/GetProductDetailsTool.php:45
+msgid "Product not found."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/GetProductTool.php:66
+msgid "Product retrieved."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/UpdateProductTool.php:81
+msgid "Product updated."
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:33
+msgid "Professional"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:249
+msgid "Progress"
+msgstr ""
+
+#: src/post-editor/FeaturedImageModal.jsx:116
+#: src/post-editor/GenerateTextModal.jsx:96
+#: src/post-editor/InsertImageModal.jsx:102
+msgid "Prompt"
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:36
+msgid "Publish when done"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:217
+msgid "Queue Task"
+msgstr ""
+
+#: src/admin/pages/Dashboard.jsx:74
+msgid "Quick Actions"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:353
+msgid "RAG"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:401
+msgid "Rate Limit (requests/hour)"
+msgstr ""
+
+#: includes/Security/RateLimiter.php:45
+msgid "Rate limit exceeded. Please try again later."
+msgstr ""
+
+#: includes/Security/RateLimiter.php:36
+msgid "Rate limiting requires a user or visitor key."
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:290
+msgid "Re-run"
+msgstr ""
+
+#: src/admin/pages/Inbox.jsx:199
+msgid "Reason:"
+msgstr ""
+
+#: includes/Modules/Sales/SalesModule.php:116
+msgid "Recommend products for [occasion]"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:197
+msgid "Reindex Embeddings"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:162
+msgid "Reindexed embeddings: %1$d of %2$d entries."
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:197
+msgid "Reindexing..."
+msgstr ""
+
+#: src/admin/pages/Inbox.jsx:9
+#: src/admin/pages/Inbox.jsx:15
+msgid "Resolved"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:275
+msgid "Resume"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:285
+msgid "Retry"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:390
+msgid "Revoke"
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:125
+msgid "Run"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:18
+msgid "Running"
+msgstr ""
+
+#: src/admin/pages/Dashboard.jsx:42
+msgid "Running Agents"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:17
+msgid "SEO"
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:26
+msgid "SEO Articles Batch"
+msgstr ""
+
+#: includes/Modules/Sales/SalesModule.php:66
+msgid "Sales Assistant"
+msgstr ""
+
+#: src/admin/App.jsx:29
+#: src/admin/components/Sidebar.jsx:6
+msgid "Sales Inbox"
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:298
+msgid "Sales Rules — Do"
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:312
+msgid "Sales Rules — Do Not"
+msgstr ""
+
+#: src/admin/pages/Inbox.jsx:143
+#: src/admin/pages/Inbox.jsx:166
+msgid "Sales chat"
+msgstr ""
+
+#: includes/Core/Settings.php:298
+msgid "Sales rules — DO NOT:"
+msgstr ""
+
+#: includes/Core/Settings.php:293
+msgid "Sales rules — DO:"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:336
+msgid "Save"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:246
+msgid "Save Memory"
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:331
+#: src/admin/pages/Settings.jsx:413
+msgid "Save Settings"
+msgstr ""
+
+#: src/post-editor/FeaturedImageModal.jsx:177
+msgid "Save the post as a draft first to set a featured image."
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:246
+#: src/admin/pages/SalesChatSettings.jsx:331
+#: src/admin/pages/Settings.jsx:413
+msgid "Saving..."
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:298
+msgid "Score"
+msgstr ""
+
+#: includes/REST/MemoryController.php:167
+msgid "Search query is required."
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:271
+msgid "Search..."
+msgstr ""
+
+#: includes/Modules/Elementor/ElementorDocumentService.php:172
+msgid "Section created."
+msgstr ""
+
+#: src/admin/pages/Inbox.jsx:161
+msgid "Select a conversation to view."
+msgstr ""
+
+#: src/post-editor/GenerateTextModal.jsx:90
+msgid "Selected text"
+msgstr ""
+
+#: src/elementor/Panel.jsx:145
+msgid "Selection:"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:282
+msgid "Semantic"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:271
+msgid "Semantic search..."
+msgstr ""
+
+#: src/admin/components/ChatInterface.jsx:210
+#: src/elementor/Panel.jsx:207
+#: src/frontend/Widget.jsx:227
+msgid "Send"
+msgstr ""
+
+#: src/admin/App.jsx:34
+#: src/admin/components/Sidebar.jsx:11
+msgid "Settings"
+msgstr ""
+
+#: includes/Modules/Elementor/Tools/UpdateWidgetSettingsTool.php:46
+msgid "Settings are required."
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:130
+#: src/admin/pages/Settings.jsx:182
+msgid "Settings saved successfully."
+msgstr ""
+
+#: includes/Modules/Elementor/ElementorModule.php:120
+msgid "Show me the structure of this page"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:182
+msgid "Site Memory"
+msgstr ""
+
+#: includes/Modules/Admin/Tools/GetSiteInfoTool.php:55
+msgid "Site info retrieved."
+msgstr ""
+
+#: includes/Modules/Admin/ClassicEditorToolbar.php:165
+#: includes/Modules/Admin/PostFeaturedImage.php:139
+msgid "Square (1024×1024)"
+msgstr ""
+
+#: src/admin/pages/Dashboard.jsx:78
+msgid "Start AI Chat"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:321
+#: src/admin/pages/Workflows.jsx:111
+msgid "Steps"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:242
+msgid "Store brand info, design rules, SEO keywords..."
+msgstr ""
+
+#: src/admin/App.jsx:35
+#: src/admin/components/Sidebar.jsx:15
+#: src/admin/pages/SalesChatSettings.jsx:159
+msgid "Storefront Sales Chat"
+msgstr ""
+
+#: src/admin/pages/Inbox.jsx:127
+msgid "Storefront Sales Chats"
+msgstr ""
+
+#: includes/Core/Settings.php:305
+msgid "Storefront sales chat behavior:"
+msgstr ""
+
+#: src/admin/components/ChatInterface.jsx:15
+msgid "Suggest a landing page structure"
+msgstr ""
+
+#: src/frontend/Widget.jsx:235
+msgid "Talk to a human"
+msgstr ""
+
+#: includes/Agents/TaskRunner.php:164
+msgid "Task \"%s\" completed successfully."
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:312
+msgid "Task Details:"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:224
+msgid "Task Queue"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:155
+msgid "Task Template"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:199
+msgid "Task Title"
+msgstr ""
+
+#: includes/REST/TaskController.php:322
+msgid "Task cannot be cancelled in its current state."
+msgstr ""
+
+#: includes/REST/TaskController.php:287
+msgid "Task cannot be paused or resumed in its current state."
+msgstr ""
+
+#: includes/REST/TaskController.php:218
+#: includes/REST/TaskController.php:245
+#: includes/REST/TaskController.php:272
+#: includes/REST/TaskController.php:312
+#: includes/REST/TaskController.php:374
+msgid "Task not found."
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:185
+msgid "Task plan created."
+msgstr ""
+
+#: includes/REST/TaskController.php:170
+msgid "Task title is required."
+msgstr ""
+
+#: src/admin/pages/Analytics.jsx:59
+msgid "Tasks Completed"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:248
+msgid "Template"
+msgstr ""
+
+#: includes/Modules/Admin/Tools/CreateTermTool.php:48
+msgid "Term name is required."
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:297
+msgid "Text Model"
+msgstr ""
+
+#: includes/REST/TextController.php:150
+#: src/post-editor/GenerateTextModal.jsx:47
+msgid "Text generation failed."
+msgstr ""
+
+#: includes/REST/TextController.php:78
+msgid "Text prompt is required."
+msgstr ""
+
+#: includes/Agents/AgentEngine.php:212
+msgid "The following actions require your confirmation before proceeding."
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:321
+msgid "Things the assistant must avoid in responses."
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:307
+msgid "Things the assistant must do when helping customers."
+msgstr ""
+
+#: src/admin/components/ChatInterface.jsx:180
+#: src/elementor/Panel.jsx:186
+msgid "Thinking..."
+msgstr ""
+
+#: includes/Security/PermissionValidator.php:169
+msgid "This action is not available in the storefront chat."
+msgstr ""
+
+#: includes/Security/PermissionValidator.php:213
+msgid "This action requires administrator privileges."
+msgstr ""
+
+#: includes/Sales/CustomerMemory.php:147
+msgid "This customer has chatted with you before. Use the prior conversations below to personalize replies, remember preferences, and avoid repeating questions they already answered. Do not mention that you are reading stored logs unless the customer asks."
+msgstr ""
+
+#: includes/Core/LicenseGate.php:96
+msgid "This feature requires an Enterprise license."
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:247
+#: src/admin/pages/Workflows.jsx:109
+msgid "Title"
+msgstr ""
+
+#: src/admin/pages/Analytics.jsx:56
+msgid "Tokens Used"
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:15
+msgid "Tone and sales rules for customer replies"
+msgstr ""
+
+#: src/admin/pages/Analytics.jsx:60
+msgid "Tool Executions"
+msgstr ""
+
+#: includes/REST/McpController.php:101
+msgid "Tool name is required."
+msgstr ""
+
+#: src/admin/components/ConfirmationModal.jsx:28
+msgid "Tool:"
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:30
+msgid "Topic / niche"
+msgstr ""
+
+#: src/admin/pages/Dashboard.jsx:37
+msgid "Total Tasks"
+msgstr ""
+
+#: includes/Modules/Sales/SalesModule.php:115
+msgid "Track my order"
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:110
+msgid "Trigger"
+msgstr ""
+
+#: src/frontend/Widget.jsx:217
+msgid "Type a message..."
+msgstr ""
+
+#: src/admin/pages/Inbox.jsx:179
+msgid "Unassigned"
+msgstr ""
+
+#: includes/Modules/Elementor/ElementorModule.php:122
+msgid "Update the selected widget heading text"
+msgstr ""
+
+#: src/admin/components/FileUpload.jsx:24
+msgid "Upload failed."
+msgstr ""
+
+#: src/admin/components/FileUpload.jsx:46
+msgid "Upload file"
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:395
+msgid "Use Authorization: Bearer agp_... for /external/* and /mcp/* endpoints."
+msgstr ""
+
+#: src/post-editor/FeaturedImageModal.jsx:187
+msgid "Use Image"
+msgstr ""
+
+#: includes/Core/Settings.php:283
+msgid "Use a polite, respectful tone. Address customers courteously and with warmth."
+msgstr ""
+
+#: includes/Core/Settings.php:285
+msgid "Use a professional, confident business tone. Be clear, structured, and expert without being stiff."
+msgstr ""
+
+#: includes/Core/Settings.php:284
+msgid "Use a warm, casual, conversational tone. Be approachable and relatable while staying helpful."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/GetUserTool.php:45
+msgid "User not found."
+msgstr ""
+
+#: includes/Modules/Admin/Tools/GetUserTool.php:61
+msgid "User retrieved."
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:237
+#: src/admin/pages/Memory.jsx:297
+msgid "Value"
+msgstr ""
+
+#: src/admin/pages/Dashboard.jsx:81
+msgid "View Tasks"
+msgstr ""
+
+#: src/frontend/formatMessage.js:49
+msgid "View product"
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:29
+msgid "Warm and conversational"
+msgstr ""
+
+#: src/frontend/Widget.jsx:175
+msgid "Welcome back! I remember our previous chats. How can I help you today?"
+msgstr ""
+
+#: src/admin/components/ChatInterface.jsx:18
+msgid "What are our best-selling products?"
+msgstr ""
+
+#: includes/Modules/Sales/SalesModule.php:112
+msgid "What are your best-selling products?"
+msgstr ""
+
+#: includes/Modules/Sales/SalesModule.php:114
+msgid "What is in my cart?"
+msgstr ""
+
+#: includes/Modules/Admin/AdminModule.php:121
+#: src/admin/components/ChatInterface.jsx:9
+msgid "What posts do I have on my site?"
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:8
+msgid "Widget"
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:243
+msgid "Widget Color"
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:217
+msgid "Widget Position"
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:207
+msgid "Widget Title"
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:174
+msgid "Widget disabled"
+msgstr ""
+
+#: src/admin/pages/SalesChatSettings.jsx:173
+msgid "Widget enabled"
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:542
+#: includes/Modules/Admin/Tools/CreateProductTool.php:44
+#: includes/Modules/Admin/Tools/DeleteProductTool.php:61
+#: includes/Modules/Admin/Tools/GetProductTool.php:39
+#: includes/Modules/Admin/Tools/ListProductsTool.php:40
+#: includes/Modules/Admin/Tools/UpdateProductTool.php:45
+#: includes/Modules/Sales/Tools/GetProductDetailsTool.php:37
+#: includes/Modules/Sales/Tools/RecommendProductsTool.php:38
+#: includes/Modules/Sales/Tools/SearchProductsTool.php:38
+#: src/admin/pages/SalesChatSettings.jsx:141
+msgid "WooCommerce is not active."
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:89
+msgid "Workflow name"
+msgstr ""
+
+#: src/admin/App.jsx:31
+#: src/admin/components/Sidebar.jsx:8
+#: src/admin/pages/Workflows.jsx:99
+msgid "Workflows"
+msgstr ""
+
+#: src/admin/pages/Workflows.jsx:40
+msgid "Workflows require an Enterprise license. Update the license tier in Settings to enable automation workflows."
+msgstr ""
+
+#: includes/Modules/Admin/AdminModule.php:123
+#: src/admin/components/ChatInterface.jsx:10
+msgid "Write an SEO-optimized blog post about [topic]"
+msgstr ""
+
+#: includes/Agents/TaskTemplates.php:246
+msgid "Writing product description %d"
+msgstr ""
+
+#: includes/Security/PermissionValidator.php:148
+msgid "You do not have permission to access this module."
+msgstr ""
+
+#: includes/Security/PermissionValidator.php:205
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: includes/Security/PermissionValidator.php:133
+msgid "You must be logged in."
+msgstr ""
+
+#: src/admin/pages/Settings.jsx:49
+msgid "Your API key"
+msgstr ""
+
+#: src/frontend/Widget.jsx:122
+msgid "Your request has been sent to our team. We will get back to you soon."
+msgstr ""
+
+#: src/admin/pages/Analytics.jsx:66
+msgid "days"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:204
+msgid "e.g. Generate 10 SEO articles about WordPress"
+msgstr ""
+
+#: src/admin/pages/Memory.jsx:232
+msgid "e.g. brand_name, primary_color"
+msgstr ""
+
+#: includes/Agents/TaskQueue.php:336
+msgid "re-run"
+msgstr ""
+

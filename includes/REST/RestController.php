@@ -107,13 +107,21 @@ abstract class RestController extends \WP_REST_Controller {
 	 */
 	protected function error( \WP_Error $error ): \WP_REST_Response {
 		$status = (int) ( $error->get_error_data()['status'] ?? 400 );
+		$code   = $error->get_error_code();
+		$message = $error->get_error_message();
 
 		return new \WP_REST_Response(
 			array(
+				// WP REST / apiFetch expect top-level code + message on error responses.
+				'code'    => $code,
+				'message' => $message,
+				'data'    => array(
+					'status' => $status,
+				),
 				'success' => false,
 				'error'   => array(
-					'code'    => $error->get_error_code(),
-					'message' => $error->get_error_message(),
+					'code'    => $code,
+					'message' => $message,
 				),
 			),
 			$status

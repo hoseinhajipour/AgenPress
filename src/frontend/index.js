@@ -1,6 +1,9 @@
+import apiFetch from '@wordpress/api-fetch';
 import { render } from '@wordpress/element';
 import Widget from './Widget';
 import './styles.css';
+
+apiFetch.use( apiFetch.createNonceMiddleware( window.agenpressChatData?.nonce || '' ) );
 
 const mount = document.getElementById( 'agenpress-chat-widget' );
 

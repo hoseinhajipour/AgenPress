@@ -28,6 +28,11 @@ class TaskTemplates {
 				'fields'      => array(
 					array( 'key' => 'count', 'label' => __( 'Number of articles', 'agenpress' ), 'type' => 'number', 'default' => 5 ),
 					array( 'key' => 'topic', 'label' => __( 'Topic / niche', 'agenpress' ), 'type' => 'text', 'default' => '' ),
+					array( 'key' => 'sections_count', 'label' => __( 'Article sections count', 'agenpress' ), 'type' => 'number', 'default' => 4 ),
+					array( 'key' => 'featured_image', 'label' => __( 'Generate featured image', 'agenpress' ), 'type' => 'boolean', 'default' => false ),
+					array( 'key' => 'section_images', 'label' => __( 'Generate image for each section', 'agenpress' ), 'type' => 'boolean', 'default' => false ),
+					array( 'key' => 'include_faq', 'label' => __( 'Include FAQ section', 'agenpress' ), 'type' => 'boolean', 'default' => true ),
+					array( 'key' => 'include_conclusion', 'label' => __( 'Include conclusion', 'agenpress' ), 'type' => 'boolean', 'default' => true ),
 					array( 'key' => 'publish', 'label' => __( 'Publish when done', 'agenpress' ), 'type' => 'boolean', 'default' => false ),
 				),
 			),
@@ -151,6 +156,14 @@ class TaskTemplates {
 		$topic   = sanitize_text_field( (string) ( $params['topic'] ?? self::parse_topic( $description ?: $title ) ) );
 		$publish = ! empty( $params['publish'] );
 
+		$article_options = array(
+			'sections_count'     => min( 10, max( 2, (int) ( $params['sections_count'] ?? 4 ) ) ),
+			'featured_image'     => ! empty( $params['featured_image'] ),
+			'section_images'     => ! empty( $params['section_images'] ),
+			'include_faq'        => array_key_exists( 'include_faq', $params ) ? ! empty( $params['include_faq'] ) : true,
+			'include_conclusion' => array_key_exists( 'include_conclusion', $params ) ? ! empty( $params['include_conclusion'] ) : true,
+		);
+
 		$steps = array(
 			array(
 				'type'        => 'ai',
@@ -183,6 +196,7 @@ class TaskTemplates {
 				'index'       => $i - 1,
 				'topic'       => $topic,
 				'publish'     => $publish,
+				'options'     => $article_options,
 			);
 		}
 

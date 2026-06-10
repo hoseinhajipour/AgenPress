@@ -218,3 +218,417 @@
 .ap-suggestion-chip {
 	@apply ap-px-3 ap-py-1.5 ap-rounded-full ap-text-xs ap-bg-slate-100 ap-text-slate-600 ap-cursor-pointer ap-border ap-border-slate-200 hover:ap-bg-slate-200 ap-transition-colors;
 }
+
+.ap-settings-layout {
+	@apply ap-max-w-2xl;
+}
+
+.ap-provider-tabs {
+	@apply ap-grid ap-grid-cols-2 md:ap-grid-cols-4 ap-gap-2 ap-mb-5;
+}
+
+.ap-provider-tab {
+	@apply ap-flex ap-flex-col ap-items-start ap-gap-1 ap-p-3 ap-rounded-lg ap-border ap-border-slate-200 ap-bg-white ap-cursor-pointer ap-text-left ap-transition-all;
+}
+
+.ap-provider-tab:hover {
+	@apply ap-border-blue-300 ap-bg-blue-50/40;
+}
+
+.ap-provider-tab.active {
+	@apply ap-border-blue-500 ap-bg-blue-50 ap-ring-1 ap-ring-blue-500;
+}
+
+.ap-provider-tab-title {
+	@apply ap-text-sm ap-font-semibold ap-text-slate-800;
+}
+
+.ap-provider-tab-desc {
+	@apply ap-text-xs ap-text-slate-500 ap-leading-snug;
+}
+
+.ap-provider-panel {
+	@apply ap-rounded-lg ap-border ap-border-slate-200 ap-bg-slate-50/60 ap-p-5 ap-mb-6;
+}
+
+.ap-provider-panel-header {
+	@apply ap-flex ap-items-start ap-justify-between ap-gap-3 ap-mb-4 ap-pb-4 ap-border-b ap-border-slate-200;
+}
+
+.ap-provider-panel-title {
+	@apply ap-text-base ap-font-semibold ap-text-slate-800 ap-m-0;
+}
+
+.ap-provider-panel-desc {
+	@apply ap-text-xs ap-text-slate-500 ap-mt-1 ap-mb-0;
+}
+
+.ap-settings-section-title {
+	@apply ap-text-sm ap-font-semibold ap-text-slate-500 ap-uppercase ap-tracking-wide ap-mb-3 ap-mt-2;
+}
+
+.ap-settings-subsection-title {
+	@apply ap-text-sm ap-font-semibold ap-text-slate-700 ap-mb-2 ap-mt-4;
+}
+
+.ap-badge-configured {
+	@apply ap-bg-green-100 ap-text-green-700;
+}
+
+.ap-endpoint-chip {
+	@apply ap-inline-flex ap-items-center ap-gap-1 ap-px-2 ap-py-1 ap-rounded ap-bg-white ap-border ap-border-slate-200 ap-text-xs ap-font-mono ap-text-slate-600;
+}
+
+.ap-form-hint {
+	@apply ap-text-xs ap-text-slate-500 ap-mt-1 ap-mb-0;
+}
+
+/* Storefront Sales Chat settings */
+.ap-sales-settings {
+	@apply ap-max-w-4xl;
+}
+
+.ap-sales-settings-intro {
+	@apply ap-flex ap-items-start ap-justify-between ap-gap-4 ap-mb-5 ap-p-5;
+}
+
+.ap-sales-settings-title {
+	@apply ap-text-lg ap-font-semibold ap-text-slate-800 ap-m-0 ap-mb-1;
+}
+
+.ap-sales-settings-desc {
+	@apply ap-text-sm ap-text-slate-500 ap-m-0;
+}
+
+.ap-sales-settings-actions {
+	@apply ap-mt-4;
+}
+
+.ap-settings-tabs {
+	@apply ap-grid ap-grid-cols-1 sm:ap-grid-cols-2 ap-gap-3 ap-mb-4;
+}
+
+.ap-settings-tab {
+	@apply ap-flex ap-flex-col ap-items-start ap-gap-1 ap-p-4 ap-rounded-lg ap-border ap-border-slate-200 ap-bg-white ap-cursor-pointer ap-text-left ap-transition-all;
+}
+
+.ap-settings-tab:hover {
+	@apply ap-border-blue-300 ap-bg-blue-50/40;
+}
+
+.ap-settings-tab.active {
+	@apply ap-border-blue-500 ap-bg-blue-50 ap-ring-1 ap-ring-blue-500;
+}
+
+.ap-settings-tab-icon {
+	@apply ap-text-lg;
+}
+
+.ap-settings-tab-title {
+	@apply ap-text-sm ap-font-semibold ap-text-slate-800;
+}
+
+.ap-settings-tab-desc {
+	@apply ap-text-xs ap-text-slate-500 ap-leading-snug;
+}
+
+.ap-settings-tab-panel {
+	@apply ap-p-5;
+}
+
+.ap-settings-tab-panel-header {
+	@apply ap-mb-5 ap-pb-4 ap-border-b ap-border-slate-200;
+}
+
+.ap-settings-tab-panel-header h4 {
+	@apply ap-text-base ap-font-semibold ap-text-slate-800 ap-m-0 ap-mb-1;
+}
+
+.ap-settings-tab-panel-header p {
+	@apply ap-text-sm ap-text-slate-500 ap-m-0;
+}
+
+.ap-toggle {
+	@apply ap-inline-flex ap-items-center ap-gap-3 ap-cursor-pointer ap-select-none ap-shrink-0;
+}
+
+.ap-toggle input {
+	@apply ap-sr-only;
+}
+
+.ap-toggle-track {
+	@apply ap-relative ap-w-11 ap-h-6 ap-rounded-full ap-bg-slate-300 ap-transition-colors;
+}
+
+.ap-toggle-track::after {
+	content: '';
+	@apply ap-absolute ap-top-0.5 ap-left-0.5 ap-w-5 ap-h-5 ap-rounded-full ap-bg-white ap-shadow ap-transition-transform;
+}
+
+.ap-toggle.is-on .ap-toggle-track {
+	@apply ap-bg-blue-600;
+}
+
+.ap-toggle.is-on .ap-toggle-track::after {
+	transform: translateX(20px);
+}
+
+.ap-toggle-label {
+	@apply ap-text-sm ap-font-medium ap-text-slate-700 ap-whitespace-nowrap;
+}
+
+.ap-sales-widget-layout {
+	@apply ap-grid ap-grid-cols-1 lg:ap-grid-cols-[1fr_280px] ap-gap-6;
+}
+
+.ap-position-options {
+	@apply ap-grid ap-grid-cols-2 ap-gap-2;
+}
+
+.ap-position-option {
+	@apply ap-flex ap-items-center ap-justify-center ap-p-3 ap-rounded-lg ap-border ap-border-slate-200 ap-bg-white ap-cursor-pointer ap-text-sm ap-font-medium ap-text-slate-700 ap-transition-all;
+}
+
+.ap-position-option input {
+	@apply ap-sr-only;
+}
+
+.ap-position-option:hover {
+	@apply ap-border-blue-300 ap-bg-blue-50/40;
+}
+
+.ap-position-option.active {
+	@apply ap-border-blue-500 ap-bg-blue-50 ap-text-blue-800 ap-ring-1 ap-ring-blue-500;
+}
+
+.ap-color-field {
+	@apply ap-flex ap-items-center ap-gap-2;
+}
+
+.ap-color-input {
+	@apply ap-w-12 ap-h-10 ap-p-1 ap-cursor-pointer;
+}
+
+.ap-sales-preview {
+	@apply ap-rounded-lg ap-border ap-border-slate-200 ap-bg-slate-50 ap-p-4;
+}
+
+.ap-sales-preview-label {
+	@apply ap-text-xs ap-font-semibold ap-uppercase ap-tracking-wide ap-text-slate-500 ap-mb-3;
+}
+
+.ap-sales-preview-canvas {
+	@apply ap-relative ap-h-52 ap-rounded-md ap-bg-white ap-border ap-border-slate-200 ap-overflow-hidden;
+}
+
+.ap-sales-preview-store {
+	@apply ap-p-4 ap-space-y-2;
+}
+
+.ap-sales-preview-bar {
+	@apply ap-h-2 ap-rounded ap-bg-slate-100;
+}
+
+.ap-sales-preview-bar.short {
+	@apply ap-w-2/3;
+}
+
+.ap-sales-preview-bar.medium {
+	@apply ap-w-1/2;
+}
+
+.ap-sales-preview-fab,
+.ap-sales-preview-widget {
+	@apply ap-absolute ap-bottom-3 ap-shadow-lg;
+}
+
+.ap-sales-preview-canvas.is-right .ap-sales-preview-fab,
+.ap-sales-preview-canvas.is-right .ap-sales-preview-widget {
+	@apply ap-right-3;
+}
+
+.ap-sales-preview-canvas.is-left .ap-sales-preview-fab,
+.ap-sales-preview-canvas.is-left .ap-sales-preview-widget {
+	@apply ap-left-3;
+}
+
+.ap-sales-preview-fab {
+	@apply ap-w-12 ap-h-12 ap-rounded-full ap-flex ap-items-center ap-justify-center ap-text-white ap-text-lg;
+}
+
+.ap-sales-preview-widget {
+	@apply ap-w-44 ap-rounded-lg ap-overflow-hidden ap-border ap-border-slate-200 ap-bg-white;
+}
+
+.ap-sales-preview-header {
+	@apply ap-px-3 ap-py-2 ap-text-white ap-text-xs ap-font-semibold;
+}
+
+.ap-sales-preview-body {
+	@apply ap-p-3 ap-space-y-2 ap-bg-white;
+}
+
+.ap-sales-preview-bubble {
+	@apply ap-h-2 ap-rounded-full ap-bg-slate-100;
+}
+
+.ap-sales-preview-bubble.user {
+	@apply ap-w-3/4 ap-ml-auto ap-bg-blue-100;
+}
+
+.ap-sales-preview-bubble.bot {
+	@apply ap-w-2/3;
+}
+
+.ap-tone-grid {
+	@apply ap-grid ap-grid-cols-1 sm:ap-grid-cols-3 ap-gap-3 ap-mt-3;
+}
+
+.ap-tone-card {
+	@apply ap-flex ap-flex-col ap-items-start ap-gap-1 ap-p-4 ap-rounded-lg ap-border ap-border-slate-200 ap-bg-white ap-cursor-pointer ap-text-left ap-transition-all;
+}
+
+.ap-tone-card:hover {
+	@apply ap-border-blue-300 ap-bg-blue-50/40;
+}
+
+.ap-tone-card.active {
+	@apply ap-border-blue-500 ap-bg-blue-50 ap-ring-1 ap-ring-blue-500;
+}
+
+.ap-tone-card-label {
+	@apply ap-text-sm ap-font-semibold ap-text-slate-800;
+}
+
+.ap-tone-card-desc {
+	@apply ap-text-xs ap-text-slate-500;
+}
+
+.ap-rules-grid {
+	@apply ap-grid ap-grid-cols-1 lg:ap-grid-cols-2 ap-gap-4 ap-mt-2;
+}
+
+.ap-rules-do .ap-form-textarea {
+	@apply ap-border-green-200 focus:ap-ring-green-300;
+}
+
+.ap-rules-dont .ap-form-textarea {
+	@apply ap-border-red-200 focus:ap-ring-red-300;
+}
+
+/* Sales Inbox */
+.ap-inbox-intro {
+	@apply ap-text-sm ap-text-slate-500 ap-mb-4 ap-mt-0;
+}
+
+.ap-inbox-tabs {
+	@apply ap-flex ap-flex-wrap ap-gap-2 ap-mb-4;
+}
+
+.ap-inbox-tab {
+	@apply ap-inline-flex ap-items-center ap-gap-2 ap-px-3 ap-py-2 ap-rounded-lg ap-border ap-border-slate-200 ap-bg-white ap-cursor-pointer ap-text-sm ap-font-medium ap-text-slate-700 ap-transition-all;
+}
+
+.ap-inbox-tab:hover {
+	@apply ap-border-blue-300 ap-bg-blue-50/40;
+}
+
+.ap-inbox-tab.active {
+	@apply ap-border-blue-500 ap-bg-blue-50 ap-text-blue-800 ap-ring-1 ap-ring-blue-500;
+}
+
+.ap-inbox-tab-count {
+	@apply ap-inline-flex ap-items-center ap-justify-center ap-min-w-[1.25rem] ap-h-5 ap-px-1.5 ap-rounded-full ap-bg-slate-100 ap-text-xs ap-font-semibold ap-text-slate-600;
+}
+
+.ap-inbox-tab.active .ap-inbox-tab-count {
+	@apply ap-bg-blue-100 ap-text-blue-700;
+}
+
+.ap-inbox-layout {
+	@apply ap-grid ap-grid-cols-1 lg:ap-grid-cols-[320px_1fr] ap-gap-4 ap-min-h-[420px];
+}
+
+.ap-inbox-list-title {
+	@apply ap-text-base ap-font-semibold ap-text-slate-800 ap-m-0 ap-mb-3;
+}
+
+.ap-inbox-conversations {
+	@apply ap-list-none ap-m-0 ap-p-0;
+}
+
+.ap-inbox-conversation-btn {
+	@apply ap-w-full ap-text-left ap-p-3 ap-mb-2 ap-rounded-lg ap-border ap-border-slate-200 ap-bg-white ap-cursor-pointer ap-transition-all;
+}
+
+.ap-inbox-conversation-btn:hover {
+	@apply ap-border-blue-300 ap-bg-slate-50;
+}
+
+.ap-inbox-conversation-btn.is-selected {
+	@apply ap-border-blue-500 ap-bg-blue-50 ap-ring-1 ap-ring-blue-500;
+}
+
+.ap-inbox-conversation-top {
+	@apply ap-flex ap-items-start ap-justify-between ap-gap-2 ap-mb-1;
+}
+
+.ap-inbox-meta {
+	@apply ap-block ap-text-slate-500 ap-mt-1;
+}
+
+.ap-inbox-status {
+	@apply ap-inline-flex ap-items-center ap-px-2 ap-py-0.5 ap-rounded-full ap-text-[11px] ap-font-semibold ap-uppercase ap-tracking-wide ap-shrink-0;
+}
+
+.ap-inbox-status-active {
+	@apply ap-bg-green-100 ap-text-green-700;
+}
+
+.ap-inbox-status-escalated {
+	@apply ap-bg-amber-100 ap-text-amber-800;
+}
+
+.ap-inbox-status-resolved {
+	@apply ap-bg-slate-100 ap-text-slate-600;
+}
+
+.ap-inbox-detail-header {
+	@apply ap-flex ap-items-start ap-justify-between ap-gap-3 ap-mb-4 ap-flex-wrap;
+}
+
+.ap-inbox-detail-header h3 {
+	@apply ap-m-0 ap-mb-1 ap-text-base ap-font-semibold ap-text-slate-800;
+}
+
+.ap-inbox-detail-actions {
+	@apply ap-flex ap-gap-2 ap-items-center ap-flex-wrap;
+}
+
+.ap-inbox-reason {
+	@apply ap-text-sm ap-text-slate-500 ap-mb-4;
+}
+
+.ap-inbox-messages {
+	@apply ap-flex ap-flex-col ap-gap-2 ap-max-h-[480px] ap-overflow-y-auto;
+}
+
+.ap-inbox-message {
+	@apply ap-p-3 ap-rounded-lg ap-max-w-[85%];
+}
+
+.ap-inbox-message-user {
+	@apply ap-bg-slate-100 ap-self-end;
+}
+
+.ap-inbox-message-assistant {
+	@apply ap-bg-blue-50 ap-border ap-border-blue-100 ap-self-start;
+}
+
+.ap-inbox-message-role {
+	@apply ap-block ap-text-[11px] ap-uppercase ap-tracking-wide ap-text-slate-500 ap-mb-1;
+}
+
+.ap-inbox-message p {
+	@apply ap-m-0 ap-whitespace-pre-wrap ap-text-sm ap-text-slate-800;
+}

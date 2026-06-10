@@ -8,6 +8,8 @@
 namespace AgenPress\Modules\Elementor\Tools;
 
 use AgenPress\AI\ProviderFactory;
+use AgenPress\Media\AiImageSideloader;
+use AgenPress\Modules\Elementor\ElementorDocumentService;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -66,10 +68,10 @@ class GenerateSectionImageTool extends ElementorAbstractTool {
 			return $this->fail( __( 'Image prompt is required.', 'agenpress' ) );
 		}
 
-		$provider = $this->provider_factory->get( 'openai' );
+		$provider = $this->provider_factory->get_image_provider();
 
 		if ( ! $provider->is_configured() ) {
-			return $this->fail( __( 'OpenAI API key is required for image generation.', 'agenpress' ) );
+			return $this->fail( __( 'An image-capable AI provider API key is required (OpenAI, GapGPT, or Custom).', 'agenpress' ) );
 		}
 
 		try {
@@ -87,7 +89,7 @@ class GenerateSectionImageTool extends ElementorAbstractTool {
 			return $this->fail( __( 'Image generation failed.', 'agenpress' ) );
 		}
 
-		$attachment_id = $this->sideload_image( $image['url'], $prompt );
+		$attachment_id = AiImageSideloader::sideload( $image['url'], $prompt );
 
 		if ( ! $attachment_id ) {
 			return $this->fail( __( 'Failed to save image to media library.', 'agenpress' ) );
@@ -159,38 +161,5 @@ class GenerateSectionImageTool extends ElementorAbstractTool {
 				'url' => $url,
 			),
 		);
-	}
-
-	/**
-	 * Sideload remote image into media library.
-	 *
-	 * @param string $url   Image URL.
-	 * @param string $title Image title.
-	 * @return int Attachment ID or 0.
-	 */
-	private function sideload_image( string $url, string $title ): int {
-		require_once ABSPATH . 'wp-admin/includes/file.php';
-		require_once ABSPATH . 'wp-admin/includes/media.php';
-		require_once ABSPATH . 'wp-admin/includes/image.php';
-
-		$tmp = download_url( $url );
-
-		if ( is_wp_error( $tmp ) ) {
-			return 0;
-		}
-
-		$file = array(
-			'name'     => sanitize_file_name( $title ) . '.png',
-			'tmp_name' => $tmp,
-		);
-
-		$attachment_id = media_handle_sideload( $file, 0, $title );
-
-		if ( is_wp_error( $attachment_id ) ) {
-			@unlink( $tmp );
-			return 0;
-		}
-
-		return (int) $attachment_id;
 	}
 }

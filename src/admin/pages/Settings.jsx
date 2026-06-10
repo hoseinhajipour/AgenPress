@@ -1,17 +1,133 @@
-import { useState, useEffect } from '@wordpress/element';
+import { useState, useEffect, useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { getSettings, updateSettings, getApiKeys, createApiKey, deleteApiKey } from '../api';
+
+const PROVIDER_DEFAULTS = {
+	openai: { model: 'gpt-5.2', imageModel: 'dall-e-3' },
+	claude: { model: 'claude-sonnet-4-6', imageModel: 'dall-e-3' },
+	gapgpt: { model: 'gapgpt-qwen-3.6', imageModel: 'gapgpt/z-image' },
+	custom: { model: 'gpt-5.2', imageModel: 'dall-e-3' },
+};
+
+const PROVIDERS = [
+	{
+		id: 'openai',
+		label: 'OpenAI',
+		description: __( 'GPT models via OpenAI API', 'agenpress' ),
+		endpoint: 'https://api.openai.com/v1',
+		keyField: 'openai_api_key',
+		hasKeyField: 'has_openai_key',
+		placeholder: 'sk-...',
+		supportsImage: true,
+	},
+	{
+		id: 'claude',
+		label: __( 'Claude', 'agenpress' ),
+		description: __( 'Anthropic Claude models', 'agenpress' ),
+		endpoint: 'https://api.anthropic.com/v1',
+		keyField: 'claude_api_key',
+		hasKeyField: 'has_claude_key',
+		placeholder: 'sk-ant-...',
+		supportsImage: false,
+	},
+	{
+		id: 'gapgpt',
+		label: 'GapGPT',
+		description: __( 'Multi-model gateway (OpenAI-compatible)', 'agenpress' ),
+		endpoint: 'https://api.gapgpt.app/v1',
+		keyField: 'gapgpt_api_key',
+		hasKeyField: 'has_gapgpt_key',
+		placeholder: 'gapgpt-...',
+		supportsImage: true,
+	},
+	{
+		id: 'custom',
+		label: __( 'Custom AI Agent', 'agenpress' ),
+		description: __( 'Any OpenAI-compatible endpoint', 'agenpress' ),
+		keyField: 'custom_api_key',
+		hasKeyField: 'has_custom_key',
+		placeholder: __( 'Your API key', 'agenpress' ),
+		supportsImage: true,
+		customEndpoint: true,
+		customModelInput: true,
+	},
+];
+
+function filterModels( catalog, provider, type ) {
+	if ( ! catalog || ! provider ) {
+		return [];
+	}
+
+	const models = catalog[ type ] || [];
+
+	return models.filter( ( model ) => model.providers?.includes( provider ) );
+}
+
+function ConfiguredBadge( { active } ) {
+	if ( ! active ) {
+		return null;
+	}
+
+	return (
+		<span className="ap-badge ap-badge-configured">
+			{ __( 'Configured', 'agenpress' ) }
+		</span>
+	);
+}
+
+function ModelField( { label, value, models, onChange, customInput, placeholder, datalistId } ) {
+	return (
+		<div className="ap-form-group">
+			<label className="ap-form-label">{ label }</label>
+			{ customInput ? (
+				<input
+					className="ap-form-input"
+					value={ value }
+					onChange={ ( e ) => onChange( e.target.value ) }
+					placeholder={ placeholder }
+					list={ datalistId }
+				/>
+			) : (
+				<select
+					className="ap-form-select"
+					value={ value }
+					onChange={ ( e ) => onChange( e.target.value ) }
+				>
+					{ models.map( ( model ) => (
+						<option key={ model.id } value={ model.id }>{ model.label }</option>
+					) ) }
+				</select>
+			) }
+			{ customInput && (
+				<datalist id={ datalistId }>
+					{ models.map( ( model ) => (
+						<option key={ model.id } value={ model.id }>{ model.label }</option>
+					) ) }
+				</datalist>
+			) }
+		</div>
+	);
+}
 
 export default function Settings() {
 	const [ settings, setSettings ] = useState( {
 		default_provider: 'openai',
 		default_model: 'gpt-4o-mini',
+		default_image_model: 'dall-e-3',
+		custom_api_base_url: '',
 		rate_limit: 60,
 		license_tier: 'basic',
+		ai_language: 'en',
+		language_catalog: [],
 		openai_api_key: '',
 		claude_api_key: '',
+		gapgpt_api_key: '',
+		custom_api_key: '',
 		has_openai_key: false,
 		has_claude_key: false,
+		has_gapgpt_key: false,
+		has_custom_key: false,
+		model_catalog: { text: [], image: [] },
 	} );
 	const [ loading, setLoading ] = useState( true );
 	const [ saving, setSaving ] = useState( false );
@@ -20,6 +136,29 @@ export default function Settings() {
 	const [ apiKeys, setApiKeys ] = useState( [] );
 	const [ newKeyName, setNewKeyName ] = useState( '' );
 	const [ createdKey, setCreatedKey ] = useState( null );
+
+	const activeProvider = useMemo(
+		() => PROVIDERS.find( ( p ) => p.id === settings.default_provider ) || PROVIDERS[ 0 ],
+		[ settings.default_provider ]
+	);
+
+	const textModels = useMemo(
+		() => filterModels( settings.model_catalog, settings.default_provider, 'text' ),
+		[ settings.model_catalog, settings.default_provider ]
+	);
+
+	const imageModels = useMemo(
+		() => filterModels( settings.model_catalog, settings.default_provider, 'image' ),
+		[ settings.model_catalog, settings.default_provider ]
+	);
+
+	const isProviderConfigured = useMemo( () => {
+		if ( activeProvider.customEndpoint ) {
+			return settings.has_custom_key && !! settings.custom_api_base_url;
+		}
+
+		return !! settings[ activeProvider.hasKeyField ];
+	}, [ activeProvider, settings ] );
 
 	useEffect( () => {
 		Promise.all( [ getSettings(), getApiKeys().catch( () => ( { keys: [] } ) ) ] )
@@ -52,122 +191,150 @@ export default function Settings() {
 		setSettings( ( prev ) => ( { ...prev, [ key ]: value } ) );
 	};
 
+	const handleProviderChange = ( provider ) => {
+		const defaults = PROVIDER_DEFAULTS[ provider ] || PROVIDER_DEFAULTS.openai;
+
+		setSettings( ( prev ) => {
+			const text = filterModels( prev.model_catalog, provider, 'text' );
+			const image = filterModels( prev.model_catalog, provider, 'image' );
+			const model = text.some( ( m ) => m.id === defaults.model )
+				? defaults.model
+				: ( text[ 0 ]?.id || prev.default_model );
+			const imageModel = image.some( ( m ) => m.id === defaults.imageModel )
+				? defaults.imageModel
+				: ( image[ 0 ]?.id || prev.default_image_model );
+
+			return {
+				...prev,
+				default_provider: provider,
+				default_model: model,
+				default_image_model: imageModel,
+			};
+		} );
+	};
+
 	if ( loading ) {
 		return <p className="ap-empty-state">{ __( 'Loading settings...', 'agenpress' ) }</p>;
 	}
 
+	const useCustomModelInput = !! activeProvider.customModelInput;
+
 	return (
-		<div className="ap-card" style={ { maxWidth: '600px' } }>
+		<div className="ap-card ap-settings-layout">
 			{ error && <div className="ap-alert ap-alert-error">{ error }</div> }
 			{ success && <div className="ap-alert ap-alert-success">{ success }</div> }
 
 			<form onSubmit={ handleSave }>
-				<div className="ap-form-group">
-					<label className="ap-form-label">{ __( 'Default AI Provider', 'agenpress' ) }</label>
-					<select
-						className="ap-form-select"
-						value={ settings.default_provider }
-						onChange={ ( e ) => handleChange( 'default_provider', e.target.value ) }
-					>
-						<option value="openai">OpenAI</option>
-						<option value="claude">Claude (Anthropic)</option>
-					</select>
+				<h3 className="ap-settings-section-title">{ __( 'AI Provider', 'agenpress' ) }</h3>
+
+				<div className="ap-provider-tabs" role="tablist">
+					{ PROVIDERS.map( ( provider ) => (
+						<button
+							key={ provider.id }
+							type="button"
+							role="tab"
+							aria-selected={ settings.default_provider === provider.id }
+							className={ `ap-provider-tab ${ settings.default_provider === provider.id ? 'active' : '' }` }
+							onClick={ () => handleProviderChange( provider.id ) }
+						>
+							<span className="ap-provider-tab-title">{ provider.label }</span>
+							<span className="ap-provider-tab-desc">{ provider.description }</span>
+						</button>
+					) ) }
 				</div>
 
-				<div className="ap-form-group">
-					<label className="ap-form-label">{ __( 'Default Model', 'agenpress' ) }</label>
-					<input
-						className="ap-form-input"
-						value={ settings.default_model }
-						onChange={ ( e ) => handleChange( 'default_model', e.target.value ) }
-						placeholder="gpt-4o-mini"
-					/>
-				</div>
+				<div className="ap-provider-panel" role="tabpanel">
+					<div className="ap-provider-panel-header">
+						<div>
+							<h4 className="ap-provider-panel-title">{ activeProvider.label }</h4>
+							<p className="ap-provider-panel-desc">{ activeProvider.description }</p>
+						</div>
+						<ConfiguredBadge active={ isProviderConfigured } />
+					</div>
 
-				<div className="ap-form-group">
-					<label className="ap-form-label">
-						{ __( 'OpenAI API Key', 'agenpress' ) }
-						{ settings.has_openai_key && (
-							<span style={ { color: '#22c55e', marginLeft: '8px', fontSize: '12px' } }>
-								{ __( 'Configured', 'agenpress' ) }
-							</span>
-						) }
-					</label>
-					<input
-						className="ap-form-input"
-						type="password"
-						value={ settings.openai_api_key }
-						onChange={ ( e ) => handleChange( 'openai_api_key', e.target.value ) }
-						placeholder={ settings.has_openai_key ? settings.openai_api_key : 'sk-...' }
-					/>
-				</div>
-
-				<div className="ap-form-group">
-					<label className="ap-form-label">
-						{ __( 'Claude API Key', 'agenpress' ) }
-						{ settings.has_claude_key && (
-							<span style={ { color: '#22c55e', marginLeft: '8px', fontSize: '12px' } }>
-								{ __( 'Configured', 'agenpress' ) }
-							</span>
-						) }
-					</label>
-					<input
-						className="ap-form-input"
-						type="password"
-						value={ settings.claude_api_key }
-						onChange={ ( e ) => handleChange( 'claude_api_key', e.target.value ) }
-						placeholder={ settings.has_claude_key ? settings.claude_api_key : 'sk-ant-...' }
-					/>
-				</div>
-
-				{ window.agenpressData?.woocommerce && (
-					<>
-						<h3 style={ { margin: '24px 0 12px', fontSize: '16px' } }>
-							{ __( 'Storefront Sales Chat', 'agenpress' ) }
-						</h3>
+					{ activeProvider.customEndpoint ? (
 						<div className="ap-form-group">
-							<label style={ { display: 'flex', alignItems: 'center', gap: '8px' } }>
-								<input
-									type="checkbox"
-									checked={ !! settings.sales_chat_enabled }
-									onChange={ ( e ) => handleChange( 'sales_chat_enabled', e.target.checked ) }
-								/>
-								{ __( 'Enable floating chat widget on storefront', 'agenpress' ) }
-							</label>
-							<p style={ { margin: '4px 0 0', fontSize: '12px', color: '#646970' } }>
-								{ __( 'Also available via shortcode: [agenpress_chat]', 'agenpress' ) }
+							<label className="ap-form-label">{ __( 'API Base URL', 'agenpress' ) }</label>
+							<input
+								className="ap-form-input"
+								value={ settings.custom_api_base_url }
+								onChange={ ( e ) => handleChange( 'custom_api_base_url', e.target.value ) }
+								placeholder="https://api.example.com/v1"
+							/>
+							<p className="ap-form-hint">
+								{ __( 'OpenAI-compatible base URL including /v1 path.', 'agenpress' ) }
 							</p>
 						</div>
+					) : (
 						<div className="ap-form-group">
-							<label className="ap-form-label">{ __( 'Widget Title', 'agenpress' ) }</label>
-							<input
-								className="ap-form-input"
-								value={ settings.sales_chat_title || '' }
-								onChange={ ( e ) => handleChange( 'sales_chat_title', e.target.value ) }
-							/>
+							<label className="ap-form-label">{ __( 'API Endpoint', 'agenpress' ) }</label>
+							<code className="ap-endpoint-chip">{ activeProvider.endpoint }</code>
 						</div>
-						<div className="ap-form-group">
-							<label className="ap-form-label">{ __( 'Widget Position', 'agenpress' ) }</label>
-							<select
-								className="ap-form-select"
-								value={ settings.sales_chat_position || 'bottom-right' }
-								onChange={ ( e ) => handleChange( 'sales_chat_position', e.target.value ) }
-							>
-								<option value="bottom-right">{ __( 'Bottom Right', 'agenpress' ) }</option>
-								<option value="bottom-left">{ __( 'Bottom Left', 'agenpress' ) }</option>
-							</select>
-						</div>
-						<div className="ap-form-group">
-							<label className="ap-form-label">{ __( 'Widget Color', 'agenpress' ) }</label>
-							<input
-								className="ap-form-input"
-								type="color"
-								value={ settings.sales_chat_color || '#2271b1' }
-								onChange={ ( e ) => handleChange( 'sales_chat_color', e.target.value ) }
-							/>
-						</div>
-					</>
-				) }
+					) }
+
+					<div className="ap-form-group">
+						<label className="ap-form-label">{ __( 'API Key', 'agenpress' ) }</label>
+						<input
+							className="ap-form-input"
+							value={ settings[ activeProvider.keyField ] }
+							onChange={ ( e ) => handleChange( activeProvider.keyField, e.target.value ) }
+							placeholder={
+								settings[ activeProvider.hasKeyField ]
+									? settings[ activeProvider.keyField ]
+									: activeProvider.placeholder
+							}
+							autoComplete="off"
+							spellCheck="false"
+						/>
+						<p className="ap-form-hint">
+							{ settings[ activeProvider.hasKeyField ]
+								? __( 'Key is saved. Paste a new value to replace it.', 'agenpress' )
+								: __( 'Paste your API key here.', 'agenpress' ) }
+						</p>
+					</div>
+
+					<ModelField
+						label={ __( 'Text Model', 'agenpress' ) }
+						value={ settings.default_model }
+						models={ textModels }
+						customInput={ useCustomModelInput }
+						placeholder="gpt-5.2"
+						datalistId="ap-text-models"
+						onChange={ ( value ) => handleChange( 'default_model', value ) }
+					/>
+
+					{ activeProvider.supportsImage && (
+						<ModelField
+							label={ __( 'Image Model', 'agenpress' ) }
+							value={ settings.default_image_model }
+							models={ imageModels }
+							customInput={ useCustomModelInput }
+							placeholder="dall-e-3"
+							datalistId="ap-image-models"
+							onChange={ ( value ) => handleChange( 'default_image_model', value ) }
+						/>
+					) }
+				</div>
+
+				<h3 className="ap-settings-section-title">{ __( 'General', 'agenpress' ) }</h3>
+
+				<div className="ap-form-group">
+					<label className="ap-form-label">{ __( 'AI Language', 'agenpress' ) }</label>
+					<select
+						className="ap-form-select"
+						value={ settings.ai_language || 'en' }
+						onChange={ ( e ) => handleChange( 'ai_language', e.target.value ) }
+					>
+						{ ( settings.language_catalog || [] ).map( ( language ) => (
+							<option key={ language.id } value={ language.id }>
+								{ language.label }
+							</option>
+						) ) }
+					</select>
+					<p className="ap-form-hint">
+						{ __( 'Base language for AI responses and generated content.', 'agenpress' ) }
+					</p>
+				</div>
 
 				<div className="ap-form-group">
 					<label className="ap-form-label">{ __( 'License Tier', 'agenpress' ) }</label>
@@ -183,10 +350,10 @@ export default function Settings() {
 				</div>
 
 				{ settings.license_tier === 'enterprise' && (
-					<div className="ap-card" style={ { marginBottom: '16px', padding: '16px', background: '#f8fafc' } }>
-						<h3 style={ { margin: '0 0 12px', fontSize: '16px' } }>
+					<div className="ap-provider-panel" style={ { marginBottom: '16px' } }>
+						<h4 className="ap-provider-panel-title" style={ { marginBottom: '12px' } }>
 							{ __( 'External API Keys', 'agenpress' ) }
-						</h3>
+						</h4>
 						{ createdKey && (
 							<div className="ap-alert ap-alert-success" style={ { wordBreak: 'break-all' } }>
 								<strong>{ __( 'Copy your key now — it won\'t be shown again:', 'agenpress' ) }</strong>
@@ -224,7 +391,7 @@ export default function Settings() {
 								</button>
 							</div>
 						) ) }
-						<p style={ { fontSize: '12px', color: '#646970', marginTop: '8px' } }>
+						<p className="ap-form-hint">
 							{ __( 'Use Authorization: Bearer agp_... for /external/* and /mcp/* endpoints.', 'agenpress' ) }
 						</p>
 					</div>

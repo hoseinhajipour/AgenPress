@@ -1,0 +1,220 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#agenpress-root {
+	@apply ap-font-sans ap-text-slate-800;
+	margin-left: -20px;
+}
+
+.ap-app {
+	@apply ap-flex ap-min-h-screen ap-bg-slate-50;
+}
+
+.ap-sidebar {
+	@apply ap-w-56 ap-bg-slate-900 ap-text-white ap-flex ap-flex-col ap-shrink-0;
+	min-height: calc(100vh - 32px);
+}
+
+.ap-sidebar-logo {
+	@apply ap-px-5 ap-py-6 ap-border-b ap-border-slate-700;
+}
+
+.ap-sidebar-logo h1 {
+	@apply ap-text-lg ap-font-bold ap-text-white ap-m-0;
+}
+
+.ap-sidebar-logo p {
+	@apply ap-text-xs ap-text-slate-400 ap-mt-1 ap-mb-0;
+}
+
+.ap-nav-item {
+	@apply ap-flex ap-items-center ap-gap-3 ap-px-5 ap-py-3 ap-text-sm ap-text-slate-300 ap-cursor-pointer ap-border-none ap-bg-transparent ap-w-full ap-text-left ap-transition-colors;
+}
+
+.ap-nav-item:hover {
+	@apply ap-bg-slate-800 ap-text-white;
+}
+
+.ap-nav-item.active {
+	@apply ap-bg-blue-600 ap-text-white;
+}
+
+.ap-main {
+	@apply ap-flex-1 ap-flex ap-flex-col ap-overflow-hidden;
+}
+
+.ap-header {
+	@apply ap-bg-white ap-border-b ap-border-slate-200 ap-px-6 ap-py-4;
+}
+
+.ap-header h2 {
+	@apply ap-text-xl ap-font-semibold ap-m-0;
+}
+
+.ap-content {
+	@apply ap-flex-1 ap-p-6 ap-overflow-y-auto;
+}
+
+.ap-card {
+	@apply ap-bg-white ap-rounded-lg ap-border ap-border-slate-200 ap-p-5 ap-shadow-sm;
+}
+
+.ap-stat-grid {
+	@apply ap-grid ap-grid-cols-1 md:ap-grid-cols-3 ap-gap-4;
+}
+
+.ap-stat-card {
+	@apply ap-bg-white ap-rounded-lg ap-border ap-border-slate-200 ap-p-5;
+}
+
+.ap-stat-card h3 {
+	@apply ap-text-sm ap-text-slate-500 ap-font-medium ap-m-0;
+}
+
+.ap-stat-card p {
+	@apply ap-text-2xl ap-font-bold ap-mt-2 ap-mb-0 ap-text-slate-800;
+}
+
+.ap-chat-container {
+	@apply ap-flex ap-flex-col ap-h-full;
+	height: calc(100vh - 180px);
+}
+
+.ap-chat-messages {
+	@apply ap-flex-1 ap-overflow-y-auto ap-p-4 ap-space-y-4;
+}
+
+.ap-message {
+	@apply ap-flex ap-gap-3 ap-max-w-3xl;
+}
+
+.ap-message.user {
+	@apply ap-ml-auto ap-flex-row-reverse;
+}
+
+.ap-message-avatar {
+	@apply ap-w-8 ap-h-8 ap-rounded-full ap-flex ap-items-center ap-justify-center ap-text-xs ap-font-bold ap-shrink-0;
+}
+
+.ap-message.assistant .ap-message-avatar {
+	@apply ap-bg-blue-100 ap-text-blue-700;
+}
+
+.ap-message.user .ap-message-avatar {
+	@apply ap-bg-slate-200 ap-text-slate-700;
+}
+
+.ap-message-bubble {
+	@apply ap-rounded-lg ap-px-4 ap-py-3 ap-text-sm ap-leading-relaxed;
+}
+
+.ap-message.assistant .ap-message-bubble {
+	@apply ap-bg-white ap-border ap-border-slate-200;
+}
+
+.ap-message.user .ap-message-bubble {
+	@apply ap-bg-blue-600 ap-text-white;
+}
+
+.ap-chat-input-area {
+	@apply ap-border-t ap-border-slate-200 ap-bg-white ap-p-4;
+}
+
+.ap-chat-input-row {
+	@apply ap-flex ap-gap-2 ap-items-end;
+}
+
+.ap-chat-input {
+	@apply ap-flex-1 ap-border ap-border-slate-300 ap-rounded-lg ap-px-4 ap-py-3 ap-text-sm ap-resize-none ap-outline-none focus:ap-border-blue-500 focus:ap-ring-1 focus:ap-ring-blue-500;
+	min-height: 44px;
+	max-height: 120px;
+}
+
+.ap-btn {
+	@apply ap-inline-flex ap-items-center ap-gap-2 ap-px-4 ap-py-2 ap-rounded-lg ap-text-sm ap-font-medium ap-cursor-pointer ap-border ap-transition-colors;
+}
+
+.ap-btn-primary {
+	@apply ap-bg-blue-600 ap-text-white ap-border-blue-600 hover:ap-bg-blue-700;
+}
+
+.ap-btn-secondary {
+	@apply ap-bg-white ap-text-slate-700 ap-border-slate-300 hover:ap-bg-slate-50;
+}
+
+.ap-btn-danger {
+	@apply ap-bg-red-50 ap-text-red-600 ap-border-red-200 hover:ap-bg-red-100;
+}
+
+.ap-btn:disabled {
+	@apply ap-opacity-50 ap-cursor-not-allowed;
+}
+
+.ap-form-group {
+	@apply ap-mb-4;
+}
+
+.ap-form-label {
+	@apply ap-block ap-text-sm ap-font-medium ap-text-slate-700 ap-mb-1;
+}
+
+.ap-form-input,
+.ap-form-select,
+.ap-form-textarea {
+	@apply ap-w-full ap-border ap-border-slate-300 ap-rounded-lg ap-px-3 ap-py-2 ap-text-sm ap-outline-none focus:ap-border-blue-500;
+}
+
+.ap-form-textarea {
+	@apply ap-resize-y;
+	min-height: 80px;
+}
+
+.ap-table {
+	@apply ap-w-full ap-text-sm;
+}
+
+.ap-table th {
+	@apply ap-text-left ap-text-slate-500 ap-font-medium ap-pb-3 ap-border-b ap-border-slate-200;
+}
+
+.ap-table td {
+	@apply ap-py-3 ap-border-b ap-border-slate-100;
+}
+
+.ap-badge {
+	@apply ap-inline-flex ap-items-center ap-px-2 ap-py-0.5 ap-rounded-full ap-text-xs ap-font-medium;
+}
+
+.ap-badge-pending { @apply ap-bg-yellow-100 ap-text-yellow-800; }
+.ap-badge-running { @apply ap-bg-blue-100 ap-text-blue-800; }
+.ap-badge-paused { @apply ap-bg-orange-100 ap-text-orange-800; }
+.ap-badge-completed { @apply ap-bg-green-100 ap-text-green-800; }
+.ap-badge-failed { @apply ap-bg-red-100 ap-text-red-800; }
+
+.ap-progress-bar {
+	@apply ap-w-full ap-h-2 ap-bg-slate-200 ap-rounded-full ap-overflow-hidden;
+}
+
+.ap-progress-fill {
+	@apply ap-h-full ap-bg-blue-600 ap-rounded-full ap-transition-all ap-duration-300;
+}
+
+.ap-empty-state {
+	@apply ap-text-center ap-py-12 ap-text-slate-400;
+}
+
+.ap-alert {
+	@apply ap-p-4 ap-rounded-lg ap-text-sm ap-mb-4;
+}
+
+.ap-alert-success { @apply ap-bg-green-50 ap-text-green-800 ap-border ap-border-green-200; }
+.ap-alert-error { @apply ap-bg-red-50 ap-text-red-800 ap-border ap-border-red-200; }
+
+.ap-suggestions {
+	@apply ap-flex ap-flex-wrap ap-gap-2 ap-mb-3;
+}
+
+.ap-suggestion-chip {
+	@apply ap-px-3 ap-py-1.5 ap-rounded-full ap-text-xs ap-bg-slate-100 ap-text-slate-600 ap-cursor-pointer ap-border ap-border-slate-200 hover:ap-bg-slate-200 ap-transition-colors;
+}

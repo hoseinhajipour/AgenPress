@@ -1,0 +1,153 @@
+<?php
+/**
+ * Admin AI module.
+ *
+ * @package AgenPress
+ */
+
+namespace AgenPress\Modules\Admin;
+
+use AgenPress\Agents\ToolRegistry;
+use AgenPress\Modules\Admin\Tools\CreatePostTool;
+use AgenPress\Modules\Admin\Tools\CreateProductTool;
+use AgenPress\Modules\Admin\Tools\CreateTermTool;
+use AgenPress\Modules\Admin\Tools\DeletePostTool;
+use AgenPress\Modules\Admin\Tools\DeleteProductTool;
+use AgenPress\Modules\Admin\Tools\GetPostTool;
+use AgenPress\Modules\Admin\Tools\GetProductTool;
+use AgenPress\Modules\Admin\Tools\GetSiteInfoTool;
+use AgenPress\Modules\Admin\Tools\GetUserTool;
+use AgenPress\Modules\Admin\Tools\ListPostsTool;
+use AgenPress\Modules\Admin\Tools\ListProductsTool;
+use AgenPress\Modules\Admin\Tools\ListTermsTool;
+use AgenPress\Modules\Admin\Tools\ListUsersTool;
+use AgenPress\Modules\Admin\Tools\UpdateMediaTool;
+use AgenPress\Modules\Admin\Tools\UpdatePostTool;
+use AgenPress\Modules\Admin\Tools\UpdateProductTool;
+use AgenPress\Modules\ContentPrompts;
+use AgenPress\Modules\ModuleInterface;
+
+defined( 'ABSPATH' ) || exit;
+
+/**
+ * Class AdminModule
+ */
+class AdminModule implements ModuleInterface {
+
+	/**
+	 * Tool registry.
+	 *
+	 * @var ToolRegistry
+	 */
+	private ToolRegistry $tool_registry;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param ToolRegistry $tool_registry Tool registry.
+	 */
+	public function __construct( ToolRegistry $tool_registry ) {
+		$this->tool_registry = $tool_registry;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function get_id(): string {
+		return 'admin';
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function get_name(): string {
+		return __( 'Admin Assistant', 'agenpress' );
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function get_tools(): array {
+		$tools = array(
+			new ListPostsTool(),
+			new GetPostTool(),
+			new CreatePostTool(),
+			new UpdatePostTool(),
+			new DeletePostTool(),
+			new ListTermsTool(),
+			new CreateTermTool(),
+			new ListUsersTool(),
+			new GetUserTool(),
+			new UpdateMediaTool(),
+			new GetSiteInfoTool(),
+		);
+
+		if ( class_exists( 'WooCommerce' ) ) {
+			$tools = array_merge(
+				$tools,
+				array(
+					new ListProductsTool(),
+					new GetProductTool(),
+					new CreateProductTool(),
+					new UpdateProductTool(),
+					new DeleteProductTool(),
+				)
+			);
+		}
+
+		return $tools;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function get_system_prompt(): string {
+		return implode(
+			"\n\n",
+			array(
+				'You are AgenPress Admin Assistant. You help manage WordPress content, users, media, and site settings.',
+				'Always use available tools to fetch real data before answering. Never invent post IDs or product data.',
+				'For destructive actions (delete_post, delete_product), the user will be asked to confirm before execution.',
+				ContentPrompts::admin_instructions(),
+			)
+		);
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function get_suggestions(): array {
+		$suggestions = array(
+			__( 'What posts do I have on my site?', 'agenpress' ),
+			__( 'Give me an overview of my WordPress site', 'agenpress' ),
+			__( 'Write an SEO-optimized blog post about [topic]', 'agenpress' ),
+			__( 'Generate meta title and description for my latest post', 'agenpress' ),
+			__( 'Create FAQ schema markup for [topic]', 'agenpress' ),
+			__( 'List all categories and suggest new ones', 'agenpress' ),
+			__( 'Draft a new page with a hero section and CTA', 'agenpress' ),
+		);
+
+		if ( class_exists( 'WooCommerce' ) ) {
+			$suggestions[] = __( 'List my WooCommerce products and their stock levels', 'agenpress' );
+			$suggestions[] = __( 'Create a new product draft for [product name]', 'agenpress' );
+		}
+
+		return $suggestions;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function is_available(): bool {
+		return true;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function boot(): void {
+		foreach ( $this->get_tools() as $tool ) {
+			$this->tool_registry->register( $tool, 'admin' );
+		}
+	}
+}

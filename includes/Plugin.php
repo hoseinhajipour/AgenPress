@@ -518,5 +518,32 @@ class Plugin {
 			10,
 			1
 		);
+
+		$this->loader->add_action( 'wp_head', $this, 'output_seo_article_faq_schema' );
+	}
+
+	/**
+	 * Output FAQ JSON-LD from post meta (not visible in post content).
+	 *
+	 * @return void
+	 */
+	public function output_seo_article_faq_schema(): void {
+		if ( ! is_singular( 'post' ) ) {
+			return;
+		}
+
+		$schema_json = get_post_meta( get_queried_object_id(), '_agenpress_faq_schema', true );
+
+		if ( ! is_string( $schema_json ) || '' === $schema_json ) {
+			return;
+		}
+
+		$schema = json_decode( $schema_json, true );
+
+		if ( ! is_array( $schema ) || empty( $schema['@type'] ) ) {
+			return;
+		}
+
+		echo '<script type="application/ld+json">' . wp_json_encode( $schema ) . '</script>' . "\n";
 	}
 }

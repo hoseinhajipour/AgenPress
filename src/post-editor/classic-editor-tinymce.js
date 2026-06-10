@@ -1,4 +1,8 @@
 ( function () {
+	if ( typeof tinymce === 'undefined' ) {
+		return;
+	}
+
 	const data = window.agenpressPostEditorData || {};
 	const labels = data.labels || {};
 

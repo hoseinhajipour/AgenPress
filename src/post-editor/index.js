@@ -1,4 +1,4 @@
-import { render } from '@wordpress/element';
+import { createRoot, render } from '@wordpress/element';
 import { addFilter } from '@wordpress/hooks';
 import apiFetch from '@wordpress/api-fetch';
 import FeaturedImageButton from './FeaturedImageButton';
@@ -9,21 +9,29 @@ const data = window.agenpressPostEditorData || {};
 
 apiFetch.use( apiFetch.createNonceMiddleware( data.nonce || '' ) );
 
+function mountApp( container, app ) {
+	if ( createRoot ) {
+		createRoot( container ).render( app );
+	} else {
+		render( app, container );
+	}
+}
+
 const classicMount = document.getElementById( 'agenpress-featured-image-root' );
 
 if ( classicMount ) {
 	const postId = parseInt( classicMount.dataset.postId || data.postId || '0', 10 );
 
-	render(
-		<FeaturedImageButton editorType="classic" postId={ postId } />,
-		classicMount
+	mountApp(
+		classicMount,
+		<FeaturedImageButton editorType="classic" postId={ postId } />
 	);
 }
 
 const classicEditorRoot = document.getElementById( 'agenpress-classic-editor-root' );
 
 if ( classicEditorRoot ) {
-	render( <ClassicEditorBridge />, classicEditorRoot );
+	mountApp( classicEditorRoot, <ClassicEditorBridge /> );
 }
 
 addFilter(

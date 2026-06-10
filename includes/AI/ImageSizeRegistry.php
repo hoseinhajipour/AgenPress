@@ -158,4 +158,37 @@ class ImageSizeRegistry {
 
 		return self::to_pixel_size( self::is_valid_aspect( $aspect ) ? $aspect : '1:1' );
 	}
+
+	/**
+	 * Resolve pixel size for a specific image model.
+	 *
+	 * GPT Image models (gpt-image-*) use 1536-based sizes, not DALL-E 3's 1792 sizes.
+	 *
+	 * @param string $input Aspect ratio key, pixel size, or empty for plugin default.
+	 * @param string $model Image model ID.
+	 * @return string
+	 */
+	public static function resolve_size_for_model( string $input, string $model ): string {
+		$size = self::resolve_size( $input );
+
+		if ( ! self::uses_gpt_image_sizes( $model ) ) {
+			return $size;
+		}
+
+		return match ( $size ) {
+			'1792x1024' => '1536x1024',
+			'1024x1792' => '1024x1536',
+			default     => $size,
+		};
+	}
+
+	/**
+	 * Whether the model expects GPT Image API size constraints.
+	 *
+	 * @param string $model Image model ID.
+	 * @return bool
+	 */
+	public static function uses_gpt_image_sizes( string $model ): bool {
+		return str_starts_with( $model, 'gpt-image-' );
+	}
 }

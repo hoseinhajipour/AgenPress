@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AgenPress\n"
 "Report-Msgid-Bugs-To: https://github.com/agenpress/agenpress\n"
-"POT-Creation-Date: 2026-06-10 10:50+0000\n"
+"POT-Creation-Date: 2026-06-10 12:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,6 +13,10 @@ msgstr ""
 
 #: includes/Media/AttachmentContext.php:71
 msgid "  File excerpt:"
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:311
+msgid "%d image error(s)"
 msgstr ""
 
 #: includes/Modules/Sales/Tools/RecommendProductsTool.php:74
@@ -52,8 +56,12 @@ msgstr ""
 msgid "A team member will follow up with you."
 msgstr ""
 
-#: includes/AI/OpenAICompatibleProvider.php:255
-msgid "AI API error."
+#: includes/AI/OpenAICompatibleProvider.php:294
+msgid "AI API error (HTTP %1$d): %2$s"
+msgstr ""
+
+#: includes/AI/OpenAICompatibleProvider.php:302
+msgid "AI API error (HTTP %d)."
 msgstr ""
 
 #: src/admin/pages/SalesChatSettings.jsx:14
@@ -103,12 +111,32 @@ msgstr ""
 msgid "AI breaks a goal into action items, then executes. Edit title and description in step 1."
 msgstr ""
 
+#: includes/Agents/TaskStepExecutor.php:924
+msgid "AI did not return image_prompt for this section."
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:1066
+msgid "AI image API returned no image URL or data."
+msgstr ""
+
 #: src/admin/workflowPresets.js:212
 msgid "AI plan → AI execution pattern for open-ended admin work."
 msgstr ""
 
 #: includes/Agents/TaskTemplates.php:274
 msgid "AI planning task steps"
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:206
+msgid "AI response preview:"
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:1250
+msgid "AI response was not text or JSON."
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:155
+msgid "AI step completed."
 msgstr ""
 
 #: includes/Agents/TaskTemplates.php:53
@@ -139,7 +167,7 @@ msgstr ""
 msgid "About AgenPress"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:252
+#: src/admin/pages/Tasks.jsx:273
 msgid "Actions"
 msgstr ""
 
@@ -164,7 +192,7 @@ msgstr ""
 msgid "Add my uploaded image to this page"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:215
+#: src/admin/pages/Tasks.jsx:236
 msgid "Additional instructions for the agent..."
 msgstr ""
 
@@ -200,7 +228,7 @@ msgstr ""
 
 #: src/admin/pages/Inbox.jsx:6
 #: src/admin/pages/Memory.jsx:257
-#: src/admin/pages/Tasks.jsx:17
+#: src/admin/pages/Tasks.jsx:18
 msgid "All"
 msgstr ""
 
@@ -260,12 +288,24 @@ msgstr ""
 msgid "Applying..."
 msgstr ""
 
+#: src/admin/components/TaskDetails.jsx:277
+msgid "Article"
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:271
+msgid "Article JSON was parsed but sections/content are empty."
+msgstr ""
+
 #: src/admin/pages/Workflows.jsx:194
 msgid "Article index"
 msgstr ""
 
 #: includes/Agents/TaskTemplates.php:31
 msgid "Article sections count"
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:273
+msgid "Articles overview"
 msgstr ""
 
 #: src/admin/components/ChatInterface.jsx:293
@@ -347,7 +387,7 @@ msgstr ""
 
 #: src/admin/components/ConfirmationModal.jsx:36
 #: src/admin/pages/Memory.jsx:339
-#: src/admin/pages/Tasks.jsx:282
+#: src/admin/pages/Tasks.jsx:303
 #: src/admin/pages/Workflows.jsx:480
 #: src/post-editor/FeaturedImageModal.jsx:151
 #: src/post-editor/GenerateTextModal.jsx:124
@@ -365,6 +405,10 @@ msgstr ""
 
 #: includes/Modules/Sales/Tools/GetCartSummaryTool.php:59
 msgid "Cart summary retrieved."
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:136
+msgid "Categories:"
 msgstr ""
 
 #: src/admin/pages/Memory.jsx:215
@@ -410,18 +454,19 @@ msgstr ""
 msgid "Clear this chat and start over?"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:317
+#: src/admin/components/TaskDetails.jsx:362
 #: src/post-editor/FeaturedImageModal.jsx:92
 #: src/post-editor/GenerateTextModal.jsx:71
 #: src/post-editor/InsertImageModal.jsx:85
 msgid "Close"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:20
+#: src/admin/pages/Tasks.jsx:21
 msgid "Completed"
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:465
+#: includes/Agents/TaskStepExecutor.php:544
+#: src/admin/components/TaskDetails.jsx:97
 msgid "Conclusion"
 msgstr ""
 
@@ -514,6 +559,18 @@ msgstr ""
 msgid "Copy your key now — it won't be shown again:"
 msgstr ""
 
+#: includes/Media/AiImageSideloader.php:137
+msgid "Could not create temporary file for image."
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:1280
+msgid "Could not decode JSON from AI response."
+msgstr ""
+
+#: includes/Media/AiImageSideloader.php:147
+msgid "Could not write temporary image file."
+msgstr ""
+
 #: includes/Modules/Sales/Tools/ValidateCouponTool.php:57
 msgid "Coupon is valid."
 msgstr ""
@@ -526,7 +583,7 @@ msgstr ""
 msgid "Courteous and respectful"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:153
+#: src/admin/pages/Tasks.jsx:174
 msgid "Create Agent Task"
 msgstr ""
 
@@ -562,7 +619,7 @@ msgstr ""
 msgid "Creating SEO article %d"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:219
+#: src/admin/pages/Tasks.jsx:240
 msgid "Creating..."
 msgstr ""
 
@@ -618,7 +675,7 @@ msgid "Define reusable multi-step automations and run them on demand."
 msgstr ""
 
 #: src/admin/pages/Memory.jsx:376
-#: src/admin/pages/Tasks.jsx:299
+#: src/admin/pages/Tasks.jsx:320
 #: src/admin/pages/Workflows.jsx:728
 msgid "Delete"
 msgstr ""
@@ -670,7 +727,7 @@ msgstr ""
 msgid "Describe the text you want to generate..."
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:210
+#: src/admin/pages/Tasks.jsx:231
 #: src/admin/pages/Workflows.jsx:377
 msgid "Description"
 msgstr ""
@@ -679,7 +736,7 @@ msgstr ""
 msgid "Design"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:296
+#: src/admin/pages/Tasks.jsx:317
 msgid "Details"
 msgstr ""
 
@@ -712,6 +769,10 @@ msgstr ""
 
 #: src/admin/pages/Workflows.jsx:356
 msgid "Edit Workflow"
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:164
+msgid "Edit in WordPress"
 msgstr ""
 
 #: src/frontend/formatMessage.js:44
@@ -764,6 +825,10 @@ msgstr ""
 msgid "Elementor page not found."
 msgstr ""
 
+#: includes/Agents/TaskStepExecutor.php:1032
+msgid "Empty image prompt."
+msgstr ""
+
 #: src/admin/pages/Workflows.jsx:394
 #: src/admin/pages/Workflows.jsx:701
 msgid "Enabled"
@@ -771,6 +836,10 @@ msgstr ""
 
 #: src/admin/pages/Settings.jsx:370
 msgid "Enterprise"
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:200
+msgid "Error:"
 msgstr ""
 
 #: includes/Agents/AgentEngine.php:546
@@ -810,13 +879,33 @@ msgstr ""
 msgid "Extracting..."
 msgstr ""
 
+#: src/admin/components/TaskDetails.jsx:281
+msgid "FAQ"
+msgstr ""
+
 #: src/admin/workflowPresets.js:150
 #: src/admin/workflowPresets.js:153
 msgid "FAQ Content Pack"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:21
+#: src/admin/components/TaskDetails.jsx:98
+msgid "FAQ schema"
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:865
+msgid "FAQ schema saved"
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:85
+msgid "FAQ: %d questions"
+msgstr ""
+
+#: src/admin/pages/Tasks.jsx:22
 msgid "Failed"
+msgstr ""
+
+#: includes/Media/AiImageSideloader.php:196
+msgid "Failed to add image to media library: %s"
 msgstr ""
 
 #: src/admin/components/ChatInterface.jsx:182
@@ -867,6 +956,10 @@ msgstr ""
 msgid "Failed to delete product."
 msgstr ""
 
+#: includes/Media/AiImageSideloader.php:89
+msgid "Failed to download image: %s"
+msgstr ""
+
 #: includes/Modules/Elementor/ElementorDocumentService.php:401
 msgid "Failed to insert widget."
 msgstr ""
@@ -875,15 +968,15 @@ msgstr ""
 msgid "Failed to load analytics."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:223
-#: includes/Agents/TaskStepExecutor.php:251
-msgid "Failed to parse generated article."
+#: includes/Agents/TaskStepExecutor.php:241
+msgid "Failed to parse generated article: %s"
 msgstr ""
 
 #: includes/REST/WorkflowController.php:198
 msgid "Failed to run workflow."
 msgstr ""
 
+#: includes/Agents/TaskStepExecutor.php:1081
 #: includes/Modules/Admin/Tools/GenerateImageTool.php:97
 #: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:96
 #: includes/REST/ImageController.php:171
@@ -905,8 +998,21 @@ msgstr ""
 msgid "Failed to start conversation."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:291
-msgid "Featured image set."
+#: includes/Agents/TaskStepExecutor.php:313
+#: src/admin/components/TaskDetails.jsx:96
+msgid "Featured image"
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:861
+msgid "Featured image: not set"
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:860
+msgid "Featured image: set"
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:305
+msgid "Featured only"
 msgstr ""
 
 #: src/admin/workflowPresets.js:250
@@ -975,7 +1081,7 @@ msgstr ""
 msgid "Found %d users."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:443
+#: includes/Agents/TaskStepExecutor.php:521
 msgid "Frequently Asked Questions"
 msgstr ""
 
@@ -1010,7 +1116,7 @@ msgstr ""
 msgid "Generate FAQ pairs"
 msgstr ""
 
-#: includes/Modules/Admin/ClassicEditorToolbar.php:171
+#: includes/Modules/Admin/ClassicEditorToolbar.php:166
 msgid "Generate Image"
 msgstr ""
 
@@ -1022,7 +1128,7 @@ msgstr ""
 msgid "Generate SEO product descriptions for WooCommerce products"
 msgstr ""
 
-#: includes/Modules/Admin/ClassicEditorToolbar.php:170
+#: includes/Modules/Admin/ClassicEditorToolbar.php:165
 msgid "Generate Text"
 msgstr ""
 
@@ -1052,6 +1158,10 @@ msgstr ""
 
 #: src/admin/workflowPresets.js:41
 msgid "Generate post ideas"
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:267
+msgid "Generated article has no usable content (sections in response: %d)."
 msgstr ""
 
 #: src/post-editor/FeaturedImageModal.jsx:133
@@ -1103,8 +1213,13 @@ msgstr ""
 msgid "How can I help you manage your site?"
 msgstr ""
 
+#: includes/Agents/TaskStepExecutor.php:1020
 #: includes/Media/AttachmentContext.php:52
 msgid "Image"
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:1048
+msgid "Image AI provider is not configured. Add an API key for OpenAI, GapGPT, or Custom in AgenPress settings."
 msgstr ""
 
 #: src/admin/pages/Settings.jsx:321
@@ -1113,6 +1228,22 @@ msgstr ""
 
 #: src/admin/pages/Settings.jsx:310
 msgid "Image Model"
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:1098
+msgid "Image created for %1$s (attachment #%2$d)."
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:871
+msgid "Image errors: %d (see task logs)"
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:1036
+#: includes/Agents/TaskStepExecutor.php:1052
+#: includes/Agents/TaskStepExecutor.php:1070
+#: includes/Agents/TaskStepExecutor.php:1085
+#: includes/Agents/TaskStepExecutor.php:1109
+msgid "Image failed for %1$s: %2$s"
 msgstr ""
 
 #: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:123
@@ -1139,14 +1270,30 @@ msgstr ""
 msgid "Image generation is not supported by Claude provider."
 msgstr ""
 
+#: src/admin/components/TaskDetails.jsx:103
+msgid "Image generation:"
+msgstr ""
+
 #: includes/Modules/Admin/Tools/GenerateImageTool.php:70
 #: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:69
 #: includes/REST/ImageController.php:116
 msgid "Image prompt is required."
 msgstr ""
 
+#: includes/Agents/TaskStepExecutor.php:927
+msgid "Image skipped for %s: missing image_prompt from AI."
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:322
+msgid "Image was generated but could not be set as featured image."
+msgstr ""
+
 #: includes/Modules/Elementor/ElementorDocumentService.php:480
 msgid "Image widget added to the page."
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:280
+msgid "Images"
 msgstr ""
 
 #: src/admin/workflowPresets.js:219
@@ -1185,6 +1332,10 @@ msgstr ""
 
 #: src/admin/pages/Workflows.jsx:78
 msgid "Invalid JSON in tool arguments."
+msgstr ""
+
+#: includes/Media/AiImageSideloader.php:128
+msgid "Invalid base64 image data from AI."
 msgstr ""
 
 #: includes/Agents/AgentEngine.php:296
@@ -1280,7 +1431,7 @@ msgstr ""
 msgid "Loading settings..."
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:242
+#: src/admin/pages/Tasks.jsx:263
 msgid "Loading tasks..."
 msgstr ""
 
@@ -1294,7 +1445,7 @@ msgstr ""
 msgid "Logged-in customer"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:335
+#: src/admin/components/TaskDetails.jsx:416
 msgid "Logs"
 msgstr ""
 
@@ -1366,6 +1517,14 @@ msgstr ""
 msgid "Messages"
 msgstr ""
 
+#: src/admin/components/TaskDetails.jsx:150
+msgid "Meta description:"
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:147
+msgid "Meta title:"
+msgstr ""
+
 #: src/admin/pages/Workflows.jsx:455
 msgid "Move down"
 msgstr ""
@@ -1388,6 +1547,10 @@ msgstr ""
 msgid "New Workflow"
 msgstr ""
 
+#: src/admin/components/TaskDetails.jsx:35
+msgid "No"
+msgstr ""
+
 #: src/admin/pages/Inbox.jsx:95
 msgid "No active sales chats."
 msgstr ""
@@ -1408,7 +1571,11 @@ msgstr ""
 msgid "No file uploaded."
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:349
+#: includes/Media/AiImageSideloader.php:53
+msgid "No image URL or base64 data in AI response."
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:474
 msgid "No logs yet."
 msgstr ""
 
@@ -1436,7 +1603,7 @@ msgstr ""
 msgid "No storefront sales chats yet."
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:244
+#: src/admin/pages/Tasks.jsx:265
 msgid "No tasks yet. Create one above."
 msgstr ""
 
@@ -1460,8 +1627,12 @@ msgstr ""
 msgid "One rule per line, e.g. Never promise delivery dates without checking"
 msgstr ""
 
-#: includes/REST/TaskController.php:349
+#: includes/REST/TaskController.php:364
 msgid "Only failed tasks can be retried."
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:321
+msgid "Open"
 msgstr ""
 
 #: src/frontend/formatMessage.js:66
@@ -1501,7 +1672,7 @@ msgstr ""
 msgid "Order status: %s"
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:471
+#: includes/Agents/TaskStepExecutor.php:550
 msgid "Our Services"
 msgstr ""
 
@@ -1518,15 +1689,15 @@ msgstr ""
 msgid "Paste your API key here."
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:277
+#: src/admin/pages/Tasks.jsx:298
 msgid "Pause"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:19
+#: src/admin/pages/Tasks.jsx:20
 msgid "Paused"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:22
+#: src/admin/pages/Tasks.jsx:23
 msgid "Pending"
 msgstr ""
 
@@ -1589,6 +1760,14 @@ msgstr ""
 msgid "Plan titles → create 3 SEO drafts → summary."
 msgstr ""
 
+#: includes/Agents/TaskStepExecutor.php:149
+msgid "Planned %d article titles."
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:180
+msgid "Planned article titles:"
+msgstr ""
+
 #: includes/Agents/TaskTemplates.php:175
 msgid "Planning article topics"
 msgstr ""
@@ -1609,6 +1788,10 @@ msgstr ""
 
 #: src/admin/pages/SalesChatSettings.jsx:23
 msgid "Polite"
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:282
+msgid "Post"
 msgstr ""
 
 #: includes/Modules/Admin/Tools/GenerateImageTool.php:117
@@ -1688,7 +1871,7 @@ msgstr ""
 msgid "Professional"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:251
+#: src/admin/pages/Tasks.jsx:272
 msgid "Progress"
 msgstr ""
 
@@ -1704,11 +1887,15 @@ msgstr ""
 msgid "Publish when done"
 msgstr ""
 
+#: src/admin/components/TaskDetails.jsx:53
+msgid "Published title:"
+msgstr ""
+
 #: src/admin/workflowPresets.js:138
 msgid "Publishing plan"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:219
+#: src/admin/pages/Tasks.jsx:240
 msgid "Queue Task"
 msgstr ""
 
@@ -1732,7 +1919,7 @@ msgstr ""
 msgid "Rate limiting requires a user or visitor key."
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:292
+#: src/admin/pages/Tasks.jsx:313
 msgid "Re-run"
 msgstr ""
 
@@ -1744,7 +1931,7 @@ msgstr ""
 msgid "Recommend products for [occasion]"
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:478
+#: includes/Agents/TaskStepExecutor.php:557
 msgid "Recommended Products"
 msgstr ""
 
@@ -1773,11 +1960,11 @@ msgstr ""
 msgid "Respond with internal sales analytics and operational insights. Do not pitch products to this user."
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:277
+#: src/admin/pages/Tasks.jsx:298
 msgid "Resume"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:287
+#: src/admin/pages/Tasks.jsx:308
 msgid "Retry"
 msgstr ""
 
@@ -1797,7 +1984,7 @@ msgstr ""
 msgid "Run"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:18
+#: src/admin/pages/Tasks.jsx:19
 msgid "Running"
 msgstr ""
 
@@ -1891,12 +2078,40 @@ msgstr ""
 msgid "Search..."
 msgstr ""
 
+#: includes/Agents/TaskStepExecutor.php:908
+msgid "Section %d"
+msgstr ""
+
 #: includes/Modules/Elementor/ElementorDocumentService.php:190
 msgid "Section created."
 msgstr ""
 
+#: src/admin/components/TaskDetails.jsx:124
+msgid "Section headings:"
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:75
+msgid "Section images: %1$d / %2$d"
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:903
+msgid "Section: %s"
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:279
+msgid "Sections"
+msgstr ""
+
 #: src/admin/pages/Workflows.jsx:212
 msgid "Sections count"
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:66
+msgid "Sections: %1$d / %2$d"
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:851
+msgid "Sections: %1$d | Section images: %2$d/%3$d | FAQ: %4$d"
 msgstr ""
 
 #: src/admin/pages/Inbox.jsx:161
@@ -1980,6 +2195,7 @@ msgstr ""
 msgid "Start from a ready-made template, customize steps, then save and run."
 msgstr ""
 
+#: src/admin/components/TaskDetails.jsx:278
 #: src/admin/pages/Workflows.jsx:681
 msgid "Status"
 msgstr ""
@@ -1988,11 +2204,19 @@ msgstr ""
 msgid "Step"
 msgstr ""
 
+#: src/admin/components/TaskDetails.jsx:353
+msgid "Step %1$d of %2$d · Template: %3$s"
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:430
+msgid "Step %d"
+msgstr ""
+
 #: src/admin/pages/Workflows.jsx:97
 msgid "Step label"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:323
+#: src/admin/components/TaskDetails.jsx:386
 #: src/admin/pages/Workflows.jsx:411
 #: src/admin/pages/Workflows.jsx:683
 msgid "Steps"
@@ -2040,6 +2264,14 @@ msgstr ""
 msgid "Summarize the completed SEO article batch in 2–3 sentences for the site admin."
 msgstr ""
 
+#: src/admin/components/TaskDetails.jsx:378
+msgid "Summary:"
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:139
+msgid "Tags:"
+msgstr ""
+
 #: src/frontend/Widget.jsx:265
 msgid "Talk to a human"
 msgstr ""
@@ -2048,31 +2280,31 @@ msgstr ""
 msgid "Target column not found."
 msgstr ""
 
-#: includes/Agents/TaskRunner.php:164
+#: includes/Agents/TaskRunner.php:207
 msgid "Task \"%s\" completed successfully."
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:314
+#: src/admin/components/TaskDetails.jsx:346
 msgid "Task Details:"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:226
+#: src/admin/pages/Tasks.jsx:247
 msgid "Task Queue"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:157
+#: src/admin/pages/Tasks.jsx:178
 msgid "Task Template"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:201
+#: src/admin/pages/Tasks.jsx:222
 msgid "Task Title"
 msgstr ""
 
-#: includes/REST/TaskController.php:322
+#: includes/REST/TaskController.php:337
 msgid "Task cannot be cancelled in its current state."
 msgstr ""
 
-#: includes/REST/TaskController.php:287
+#: includes/REST/TaskController.php:302
 msgid "Task cannot be paused or resumed in its current state."
 msgstr ""
 
@@ -2081,14 +2313,14 @@ msgid "Task description"
 msgstr ""
 
 #: includes/REST/TaskController.php:218
-#: includes/REST/TaskController.php:245
-#: includes/REST/TaskController.php:272
-#: includes/REST/TaskController.php:312
-#: includes/REST/TaskController.php:374
+#: includes/REST/TaskController.php:260
+#: includes/REST/TaskController.php:287
+#: includes/REST/TaskController.php:327
+#: includes/REST/TaskController.php:389
 msgid "Task not found."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:186
+#: includes/Agents/TaskStepExecutor.php:201
 msgid "Task plan created."
 msgstr ""
 
@@ -2108,7 +2340,7 @@ msgstr ""
 msgid "Taxonomy recommendations"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:250
+#: src/admin/pages/Tasks.jsx:271
 msgid "Template"
 msgstr ""
 
@@ -2166,7 +2398,7 @@ msgstr ""
 msgid "This post type does not support featured images."
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:249
+#: src/admin/pages/Tasks.jsx:270
 #: src/admin/pages/Workflows.jsx:367
 #: src/admin/pages/Workflows.jsx:680
 msgid "Title"
@@ -2226,6 +2458,10 @@ msgstr ""
 
 #: includes/Agents/TaskTemplates.php:30
 msgid "Topic / niche"
+msgstr ""
+
+#: src/admin/components/TaskDetails.jsx:58
+msgid "Topic:"
 msgstr ""
 
 #: src/admin/pages/Dashboard.jsx:37
@@ -2306,12 +2542,24 @@ msgstr ""
 msgid "View Tasks"
 msgstr ""
 
+#: src/admin/components/TaskDetails.jsx:159
+msgid "View post"
+msgstr ""
+
 #: src/frontend/formatMessage.js:54
 msgid "View product"
 msgstr ""
 
 #: src/admin/pages/SalesChatSettings.jsx:29
 msgid "Warm and conversational"
+msgstr ""
+
+#: includes/Media/AiImageSideloader.php:215
+msgid "WebP conversion failed: PHP GD extension does not support WebP on this server."
+msgstr ""
+
+#: includes/Media/AiImageSideloader.php:218
+msgid "WebP conversion failed: image could not be processed."
 msgstr ""
 
 #: src/frontend/Widget.jsx:186
@@ -2372,7 +2620,7 @@ msgstr ""
 msgid "Widget type is required."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:771
+#: includes/Agents/TaskStepExecutor.php:1131
 #: includes/Modules/Admin/Tools/CreateProductTool.php:44
 #: includes/Modules/Admin/Tools/DeleteProductTool.php:61
 #: includes/Modules/Admin/Tools/GetProductTool.php:39
@@ -2420,6 +2668,10 @@ msgstr ""
 msgid "Writing product description %d"
 msgstr ""
 
+#: src/admin/components/TaskDetails.jsx:35
+msgid "Yes"
+msgstr ""
+
 #: includes/Security/PermissionValidator.php:148
 msgid "You do not have permission to access this module."
 msgstr ""
@@ -2444,12 +2696,16 @@ msgstr ""
 msgid "days"
 msgstr ""
 
-#: src/admin/pages/Tasks.jsx:206
+#: src/admin/pages/Tasks.jsx:227
 msgid "e.g. Generate 10 SEO articles about WordPress"
 msgstr ""
 
 #: src/admin/pages/Memory.jsx:232
 msgid "e.g. brand_name, primary_color"
+msgstr ""
+
+#: includes/Agents/TaskStepExecutor.php:242
+msgid "invalid JSON structure"
 msgstr ""
 
 #: src/admin/workflowPresets.js:244

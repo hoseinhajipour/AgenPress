@@ -12,6 +12,7 @@ import {
 	getTaskTemplates,
 } from '../api';
 import TaskProgress from '../components/TaskProgress';
+import TaskDetails from '../components/TaskDetails';
 
 const STATUS_FILTERS = [
 	{ id: '', label: __( 'All', 'agenpress' ) },
@@ -89,6 +90,26 @@ export default function Tasks() {
 		const interval = setInterval( loadTasks, hasRunning ? 2000 : 8000 );
 		return () => clearInterval( interval );
 	}, [ loadTasks, hasRunning ] );
+
+	useEffect( () => {
+		if ( ! selectedTask ) {
+			return undefined;
+		}
+
+		if ( selectedTask.status !== 'running' && selectedTask.status !== 'pending' ) {
+			return undefined;
+		}
+
+		const taskId = selectedTask.id;
+		const interval = setInterval( async () => {
+			const updated = await getTask( taskId ).catch( () => null );
+			if ( updated ) {
+				setSelectedTask( updated );
+			}
+		}, 2000 );
+
+		return () => clearInterval( interval );
+	}, [ selectedTask?.id, selectedTask?.status ] );
 
 	const handleCreate = async ( e ) => {
 		e.preventDefault();
@@ -308,47 +329,7 @@ export default function Tasks() {
 			</div>
 
 			{ selectedTask && (
-				<div className="ap-card" style={ { marginTop: '16px' } }>
-					<div style={ { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' } }>
-						<h3 style={ { margin: 0, fontSize: '16px' } }>
-							{ __( 'Task Details:', 'agenpress' ) } { selectedTask.title }
-						</h3>
-						<button className="ap-btn ap-btn-secondary" onClick={ () => setSelectedTask( null ) }>
-							{ __( 'Close', 'agenpress' ) }
-						</button>
-					</div>
-
-					{ selectedTask.steps?.length > 0 && (
-						<div style={ { marginBottom: '16px' } }>
-							<h4 style={ { fontSize: '14px', margin: '0 0 8px' } }>{ __( 'Steps', 'agenpress' ) }</h4>
-							{ selectedTask.steps.map( ( step, i ) => (
-								<div key={ i } style={ { display: 'flex', gap: '8px', padding: '6px 0', borderBottom: '1px solid #f1f5f9', fontSize: '13px' } }>
-									<span className={ `ap-badge ap-badge-${ step.status === 'completed' ? 'completed' : step.status === 'failed' ? 'failed' : 'pending' }` }>
-										{ step.status || 'pending' }
-									</span>
-									<span>{ step.label || step.name }</span>
-								</div>
-							) ) }
-						</div>
-					) }
-
-					<h4 style={ { fontSize: '14px', margin: '0 0 8px' } }>{ __( 'Logs', 'agenpress' ) }</h4>
-					{ selectedTask.logs?.length > 0 ? (
-						<div style={ { fontSize: '13px', fontFamily: 'monospace', maxHeight: '240px', overflowY: 'auto' } }>
-							{ selectedTask.logs.map( ( log, i ) => (
-								<div key={ i } style={ { padding: '4px 0', borderBottom: '1px solid #f1f5f9' } }>
-									<span style={ { color: '#94a3b8' } }>{ log.created_at }</span>
-									{ ' ' }
-									<span style={ { color: log.level === 'error' ? '#ef4444' : log.level === 'warning' ? '#f59e0b' : '#334155' } }>
-										[{ log.level }] { log.message }
-									</span>
-								</div>
-							) ) }
-						</div>
-					) : (
-						<p style={ { color: '#94a3b8' } }>{ __( 'No logs yet.', 'agenpress' ) }</p>
-					) }
-				</div>
+				<TaskDetails task={ selectedTask } onClose={ () => setSelectedTask( null ) } />
 			) }
 		</div>
 	);

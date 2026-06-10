@@ -1,5 +1,5 @@
 import apiFetch from '@wordpress/api-fetch';
-import { render } from '@wordpress/element';
+import { createRoot, render } from '@wordpress/element';
 import Widget from './Widget';
 import './styles.css';
 
@@ -15,5 +15,11 @@ if ( mount ) {
 		mount.classList.add( 'ap-pos-left' );
 	}
 
-	render( <Widget inline={ inline } />, mount );
+	const app = <Widget inline={ inline } />;
+
+	if ( createRoot ) {
+		createRoot( mount ).render( app );
+	} else {
+		render( app, mount );
+	}
 }

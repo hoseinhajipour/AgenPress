@@ -1,4 +1,4 @@
-import { render } from '@wordpress/element';
+import { createRoot, render } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 import Panel from './Panel';
 import './styles.css';
@@ -10,5 +10,11 @@ apiFetch.use( apiFetch.createNonceMiddleware( data.nonce || '' ) );
 const mount = document.getElementById( 'agenpress-elementor-root' );
 
 if ( mount ) {
-	render( <Panel />, mount );
+	const app = <Panel />;
+
+	if ( createRoot ) {
+		createRoot( mount ).render( app );
+	} else {
+		render( app, mount );
+	}
 }

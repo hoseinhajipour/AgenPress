@@ -124,19 +124,23 @@ abstract class OpenAICompatibleProvider implements ProviderInterface {
 			throw new \RuntimeException( $this->get_not_configured_message() );
 		}
 
-		$size = ImageSizeRegistry::resolve_size( (string) ( $options['size'] ?? '' ) );
-
 		$model = $options['model'] ?? $this->settings->get_default_image_model();
-
-		$data = $this->request(
-			'images/generations',
-			array(
-				'model'  => $model,
-				'prompt' => $prompt,
-				'n'      => 1,
-				'size'   => $size,
-			)
+		$size  = ImageSizeRegistry::resolve_size_for_model(
+			(string) ( $options['size'] ?? '' ),
+			$model
 		);
+
+		$params = array(
+			'model'  => $model,
+			'prompt' => $prompt,
+			'n'      => 1,
+		);
+
+		if ( '' !== $size ) {
+			$params['size'] = $size;
+		}
+
+		$data = $this->request( 'images/generations', $params );
 
 		$item = $data['data'][0] ?? array();
 
@@ -252,10 +256,51 @@ abstract class OpenAICompatibleProvider implements ProviderInterface {
 		$data = json_decode( wp_remote_retrieve_body( $response ), true );
 
 		if ( $code >= 400 ) {
-			$error = $data['error']['message'] ?? __( 'AI API error.', 'agenpress' );
-			throw new \RuntimeException( $error );
+			throw new \RuntimeException( $this->extract_api_error_message( $code, $data, $response ) );
 		}
 
 		return is_array( $data ) ? $data : array();
+	}
+
+	/**
+	 * Extract a human-readable error from an API error response.
+	 *
+	 * @param int                  $code     HTTP status code.
+	 * @param array<string, mixed> $data     Decoded JSON body.
+	 * @param array<string, mixed>|\WP_Error $response Raw HTTP response.
+	 * @return string
+	 */
+	private function extract_api_error_message( int $code, array $data, array $response ): string {
+		$candidates = array(
+			$data['error']['message'] ?? null,
+			$data['message'] ?? null,
+			is_string( $data['error'] ?? null ) ? $data['error'] : null,
+		);
+
+		foreach ( $candidates as $candidate ) {
+			if ( is_string( $candidate ) && '' !== trim( $candidate ) ) {
+				return $candidate;
+			}
+		}
+
+		$body = wp_remote_retrieve_body( $response );
+		$body = is_string( $body ) ? trim( wp_strip_all_tags( $body ) ) : '';
+
+		if ( '' !== $body ) {
+			$snippet = function_exists( 'mb_substr' ) ? mb_substr( $body, 0, 200 ) : substr( $body, 0, 200 );
+
+			return sprintf(
+				/* translators: 1: HTTP status code, 2: response body snippet */
+				__( 'AI API error (HTTP %1$d): %2$s', 'agenpress' ),
+				$code,
+				$snippet
+			);
+		}
+
+		return sprintf(
+			/* translators: %d: HTTP status code */
+			__( 'AI API error (HTTP %d).', 'agenpress' ),
+			$code
+		);
 	}
 }

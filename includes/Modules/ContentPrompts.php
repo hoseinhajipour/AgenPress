@@ -36,4 +36,29 @@ class ContentPrompts {
 			)
 		);
 	}
+
+	/**
+	 * Instructions for structured SEO article batch generation (JSON output).
+	 *
+	 * @return string
+	 */
+	public static function seo_article_instructions(): string {
+		return implode(
+			"\n",
+			array(
+				'Output rules:',
+				'- Return valid JSON only. No markdown code fences or commentary.',
+				'- Write in the same language as the article title and topic.',
+				'- meta_title ~60 chars; meta_description ~160 chars.',
+				'- tags: WordPress post tags (no # prefix).',
+				'- image_alt: descriptive alt text per section (separate field, never inside section content).',
+				'- image_prompt: AI image prompt only (separate field, never inside section content).',
+				'- Section content: reader-facing HTML only (<p>, <ul>, <ol>, <li>, <strong>, <a>).',
+				'- Do not include JSON-LD, FAQPage schema, @context, image_prompt, alt text, or hashtags inside any content field.',
+				'- Do not include a top-level content key; use the sections array for the article body.',
+				'- FAQ schema is added automatically by the CMS from the faq array.',
+				'- Links: <a href="url">title</a> in HTML.',
+			)
+		);
+	}
 }

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AgenPress\n"
 "Report-Msgid-Bugs-To: https://github.com/agenpress/agenpress\n"
-"POT-Creation-Date: 2026-06-10 10:50+0000\n"
-"PO-Revision-Date: 2026-06-10 10:50+0000\n"
+"POT-Creation-Date: 2026-06-10 12:22+0000\n"
+"PO-Revision-Date: 2026-06-10 12:22+0000\n"
 "Last-Translator: AgenPress <support@agenpress.io>\n"
 "Language-Team: Persian\n"
 "Language: fa-IR\n"
@@ -16,6 +16,10 @@ msgstr ""
 #: includes/Media/AttachmentContext.php:71
 msgid "  File excerpt:"
 msgstr "  File excerpt:"
+
+#: src/admin/components/TaskDetails.jsx:311
+msgid "%d image error(s)"
+msgstr "%d image error(s)"
 
 #: includes/Modules/Sales/Tools/RecommendProductsTool.php:74
 msgid "%d recommendations."
@@ -54,9 +58,13 @@ msgstr "یک عضو تیم به زودی پیگیری خواهد کرد."
 msgid "A team member will follow up with you."
 msgstr "یک عضو تیم با شما پیگیری خواهد کرد."
 
-#: includes/AI/OpenAICompatibleProvider.php:255
-msgid "AI API error."
-msgstr "خطای API هوش مصنوعی."
+#: includes/AI/OpenAICompatibleProvider.php:294
+msgid "AI API error (HTTP %1$d): %2$s"
+msgstr "AI API error (HTTP %1$d): %2$s"
+
+#: includes/AI/OpenAICompatibleProvider.php:302
+msgid "AI API error (HTTP %d)."
+msgstr "AI API error (HTTP %d)."
 
 #: src/admin/pages/SalesChatSettings.jsx:14
 msgid "AI Behavior"
@@ -105,6 +113,14 @@ msgstr "AI analyzes your site context, then turns the strategy into 10 concrete 
 msgid "AI breaks a goal into action items, then executes. Edit title and description in step 1."
 msgstr "AI breaks a goal into action items, then executes. Edit title and description in step 1."
 
+#: includes/Agents/TaskStepExecutor.php:924
+msgid "AI did not return image_prompt for this section."
+msgstr "AI did not return image_prompt for this section."
+
+#: includes/Agents/TaskStepExecutor.php:1066
+msgid "AI image API returned no image URL or data."
+msgstr "AI image API returned no image URL or data."
+
 #: src/admin/workflowPresets.js:212
 msgid "AI plan → AI execution pattern for open-ended admin work."
 msgstr "AI plan → AI execution pattern for open-ended admin work."
@@ -112,6 +128,18 @@ msgstr "AI plan → AI execution pattern for open-ended admin work."
 #: includes/Agents/TaskTemplates.php:274
 msgid "AI planning task steps"
 msgstr "برنامه‌ریزی مراحل وظیفه با هوش مصنوعی"
+
+#: src/admin/components/TaskDetails.jsx:206
+msgid "AI response preview:"
+msgstr "AI response preview:"
+
+#: includes/Agents/TaskStepExecutor.php:1250
+msgid "AI response was not text or JSON."
+msgstr "AI response was not text or JSON."
+
+#: includes/Agents/TaskStepExecutor.php:155
+msgid "AI step completed."
+msgstr "AI step completed."
 
 #: includes/Agents/TaskTemplates.php:53
 msgid "AI-planned multi-step task from your description"
@@ -141,7 +169,7 @@ msgstr "کلید API الزامی است. از Authorization: Bearer agp_... ا�
 msgid "About AgenPress"
 msgstr "درباره AgenPress"
 
-#: src/admin/pages/Tasks.jsx:252
+#: src/admin/pages/Tasks.jsx:273
 msgid "Actions"
 msgstr "اقدامات"
 
@@ -166,7 +194,7 @@ msgstr "Add at least one step before saving."
 msgid "Add my uploaded image to this page"
 msgstr "Add my uploaded image to this page"
 
-#: src/admin/pages/Tasks.jsx:215
+#: src/admin/pages/Tasks.jsx:236
 msgid "Additional instructions for the agent..."
 msgstr "دستورالعمل‌های اضافی برای عامل..."
 
@@ -202,7 +230,7 @@ msgstr "وظایف عامل"
 
 #: src/admin/pages/Inbox.jsx:6
 #: src/admin/pages/Memory.jsx:257
-#: src/admin/pages/Tasks.jsx:17
+#: src/admin/pages/Tasks.jsx:18
 msgid "All"
 msgstr "همه"
 
@@ -262,6 +290,14 @@ msgstr "ظاهر و جایگاه در فروشگاه"
 msgid "Applying..."
 msgstr "در حال اعمال..."
 
+#: src/admin/components/TaskDetails.jsx:277
+msgid "Article"
+msgstr "Article"
+
+#: includes/Agents/TaskStepExecutor.php:271
+msgid "Article JSON was parsed but sections/content are empty."
+msgstr "Article JSON was parsed but sections/content are empty."
+
 #: src/admin/pages/Workflows.jsx:194
 msgid "Article index"
 msgstr "Article index"
@@ -269,6 +305,10 @@ msgstr "Article index"
 #: includes/Agents/TaskTemplates.php:31
 msgid "Article sections count"
 msgstr "Article sections count"
+
+#: src/admin/components/TaskDetails.jsx:273
+msgid "Articles overview"
+msgstr "Articles overview"
 
 #: src/admin/components/ChatInterface.jsx:293
 msgid "Ask AgenPress anything..."
@@ -349,7 +389,7 @@ msgstr "اطلاعات برند وارد شد: %1$d ایجاد شد، %2$d به�
 
 #: src/admin/components/ConfirmationModal.jsx:36
 #: src/admin/pages/Memory.jsx:339
-#: src/admin/pages/Tasks.jsx:282
+#: src/admin/pages/Tasks.jsx:303
 #: src/admin/pages/Workflows.jsx:480
 #: src/post-editor/FeaturedImageModal.jsx:151
 #: src/post-editor/GenerateTextModal.jsx:124
@@ -368,6 +408,10 @@ msgstr "سبد خرید در دسترس نیست."
 #: includes/Modules/Sales/Tools/GetCartSummaryTool.php:59
 msgid "Cart summary retrieved."
 msgstr "خلاصه سبد خرید دریافت شد."
+
+#: src/admin/components/TaskDetails.jsx:136
+msgid "Categories:"
+msgstr "Categories:"
 
 #: src/admin/pages/Memory.jsx:215
 #: src/admin/pages/Memory.jsx:295
@@ -412,18 +456,19 @@ msgstr "Clear chat"
 msgid "Clear this chat and start over?"
 msgstr "Clear this chat and start over?"
 
-#: src/admin/pages/Tasks.jsx:317
+#: src/admin/components/TaskDetails.jsx:362
 #: src/post-editor/FeaturedImageModal.jsx:92
 #: src/post-editor/GenerateTextModal.jsx:71
 #: src/post-editor/InsertImageModal.jsx:85
 msgid "Close"
 msgstr "بستن"
 
-#: src/admin/pages/Tasks.jsx:20
+#: src/admin/pages/Tasks.jsx:21
 msgid "Completed"
 msgstr "تکمیل‌شده"
 
-#: includes/Agents/TaskStepExecutor.php:465
+#: includes/Agents/TaskStepExecutor.php:544
+#: src/admin/components/TaskDetails.jsx:97
 msgid "Conclusion"
 msgstr "Conclusion"
 
@@ -516,6 +561,18 @@ msgstr "مکالمات بر اساس ماژول"
 msgid "Copy your key now — it won't be shown again:"
 msgstr "کلید خود را اکنون کپی کنید — دیگر نمایش داده نخواهد شد:"
 
+#: includes/Media/AiImageSideloader.php:137
+msgid "Could not create temporary file for image."
+msgstr "Could not create temporary file for image."
+
+#: includes/Agents/TaskStepExecutor.php:1280
+msgid "Could not decode JSON from AI response."
+msgstr "Could not decode JSON from AI response."
+
+#: includes/Media/AiImageSideloader.php:147
+msgid "Could not write temporary image file."
+msgstr "Could not write temporary image file."
+
 #: includes/Modules/Sales/Tools/ValidateCouponTool.php:57
 msgid "Coupon is valid."
 msgstr "کوپن معتبر است."
@@ -528,7 +585,7 @@ msgstr "کوپن یافت نشد."
 msgid "Courteous and respectful"
 msgstr "مودبانه و محترمانه"
 
-#: src/admin/pages/Tasks.jsx:153
+#: src/admin/pages/Tasks.jsx:174
 msgid "Create Agent Task"
 msgstr "ایجاد وظیفه عامل"
 
@@ -564,7 +621,7 @@ msgstr "اصطلاح \"%s\" ایجاد شد."
 msgid "Creating SEO article %d"
 msgstr "در حال ایجاد مقاله سئو %d"
 
-#: src/admin/pages/Tasks.jsx:219
+#: src/admin/pages/Tasks.jsx:240
 msgid "Creating..."
 msgstr "در حال ایجاد..."
 
@@ -620,7 +677,7 @@ msgid "Define reusable multi-step automations and run them on demand."
 msgstr "Define reusable multi-step automations and run them on demand."
 
 #: src/admin/pages/Memory.jsx:376
-#: src/admin/pages/Tasks.jsx:299
+#: src/admin/pages/Tasks.jsx:320
 #: src/admin/pages/Workflows.jsx:728
 msgid "Delete"
 msgstr "حذف"
@@ -672,7 +729,7 @@ msgstr "تصویری را که می‌خواهید تولید کنید توضی�
 msgid "Describe the text you want to generate..."
 msgstr "متنی را که می‌خواهید تولید کنید توضیح دهید..."
 
-#: src/admin/pages/Tasks.jsx:210
+#: src/admin/pages/Tasks.jsx:231
 #: src/admin/pages/Workflows.jsx:377
 msgid "Description"
 msgstr "توضیحات"
@@ -681,7 +738,7 @@ msgstr "توضیحات"
 msgid "Design"
 msgstr "طراحی"
 
-#: src/admin/pages/Tasks.jsx:296
+#: src/admin/pages/Tasks.jsx:317
 msgid "Details"
 msgstr "جزئیات"
 
@@ -715,6 +772,10 @@ msgstr "ویرایش"
 #: src/admin/pages/Workflows.jsx:356
 msgid "Edit Workflow"
 msgstr "Edit Workflow"
+
+#: src/admin/components/TaskDetails.jsx:164
+msgid "Edit in WordPress"
+msgstr "Edit in WordPress"
 
 #: src/frontend/formatMessage.js:44
 msgid "Edit post"
@@ -766,6 +827,10 @@ msgstr "المنتور فعال نیست."
 msgid "Elementor page not found."
 msgstr "صفحه المنتور یافت نشد."
 
+#: includes/Agents/TaskStepExecutor.php:1032
+msgid "Empty image prompt."
+msgstr "Empty image prompt."
+
 #: src/admin/pages/Workflows.jsx:394
 #: src/admin/pages/Workflows.jsx:701
 msgid "Enabled"
@@ -774,6 +839,10 @@ msgstr "Enabled"
 #: src/admin/pages/Settings.jsx:370
 msgid "Enterprise"
 msgstr "سازمانی"
+
+#: src/admin/components/TaskDetails.jsx:200
+msgid "Error:"
+msgstr "Error:"
 
 #: includes/Agents/AgentEngine.php:546
 msgid "Error: %s"
@@ -812,14 +881,34 @@ msgstr "کلیدهای API خارجی"
 msgid "Extracting..."
 msgstr "در حال استخراج..."
 
+#: src/admin/components/TaskDetails.jsx:281
+msgid "FAQ"
+msgstr "FAQ"
+
 #: src/admin/workflowPresets.js:150
 #: src/admin/workflowPresets.js:153
 msgid "FAQ Content Pack"
 msgstr "FAQ Content Pack"
 
-#: src/admin/pages/Tasks.jsx:21
+#: src/admin/components/TaskDetails.jsx:98
+msgid "FAQ schema"
+msgstr "FAQ schema"
+
+#: includes/Agents/TaskStepExecutor.php:865
+msgid "FAQ schema saved"
+msgstr "FAQ schema saved"
+
+#: src/admin/components/TaskDetails.jsx:85
+msgid "FAQ: %d questions"
+msgstr "FAQ: %d questions"
+
+#: src/admin/pages/Tasks.jsx:22
 msgid "Failed"
 msgstr "ناموفق"
+
+#: includes/Media/AiImageSideloader.php:196
+msgid "Failed to add image to media library: %s"
+msgstr "Failed to add image to media library: %s"
 
 #: src/admin/components/ChatInterface.jsx:182
 msgid "Failed to clear chat."
@@ -869,6 +958,10 @@ msgstr "حذف پست ناموفق بود."
 msgid "Failed to delete product."
 msgstr "حذف محصول ناموفق بود."
 
+#: includes/Media/AiImageSideloader.php:89
+msgid "Failed to download image: %s"
+msgstr "Failed to download image: %s"
+
 #: includes/Modules/Elementor/ElementorDocumentService.php:401
 msgid "Failed to insert widget."
 msgstr "Failed to insert widget."
@@ -877,15 +970,15 @@ msgstr "Failed to insert widget."
 msgid "Failed to load analytics."
 msgstr "بارگذاری تحلیل‌ها ناموفق بود."
 
-#: includes/Agents/TaskStepExecutor.php:223
-#: includes/Agents/TaskStepExecutor.php:251
-msgid "Failed to parse generated article."
-msgstr "تجزیه مقاله تولیدشده ناموفق بود."
+#: includes/Agents/TaskStepExecutor.php:241
+msgid "Failed to parse generated article: %s"
+msgstr "Failed to parse generated article: %s"
 
 #: includes/REST/WorkflowController.php:198
 msgid "Failed to run workflow."
 msgstr "اجرای گردش کار ناموفق بود."
 
+#: includes/Agents/TaskStepExecutor.php:1081
 #: includes/Modules/Admin/Tools/GenerateImageTool.php:97
 #: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:96
 #: includes/REST/ImageController.php:171
@@ -907,9 +1000,22 @@ msgstr "تنظیم تصویر شاخص ناموفق بود."
 msgid "Failed to start conversation."
 msgstr "شروع مکالمه ناموفق بود."
 
-#: includes/Agents/TaskStepExecutor.php:291
-msgid "Featured image set."
-msgstr "Featured image set."
+#: includes/Agents/TaskStepExecutor.php:313
+#: src/admin/components/TaskDetails.jsx:96
+msgid "Featured image"
+msgstr "Featured image"
+
+#: includes/Agents/TaskStepExecutor.php:861
+msgid "Featured image: not set"
+msgstr "Featured image: not set"
+
+#: includes/Agents/TaskStepExecutor.php:860
+msgid "Featured image: set"
+msgstr "Featured image: set"
+
+#: src/admin/components/TaskDetails.jsx:305
+msgid "Featured only"
+msgstr "Featured only"
 
 #: src/admin/workflowPresets.js:250
 msgid "Fetch products"
@@ -977,7 +1083,7 @@ msgstr "%d اصطلاح یافت شد."
 msgid "Found %d users."
 msgstr "%d کاربر یافت شد."
 
-#: includes/Agents/TaskStepExecutor.php:443
+#: includes/Agents/TaskStepExecutor.php:521
 msgid "Frequently Asked Questions"
 msgstr "Frequently Asked Questions"
 
@@ -1012,7 +1118,7 @@ msgstr "Generate 8 frequently asked questions and detailed answers about \"YOUR 
 msgid "Generate FAQ pairs"
 msgstr "Generate FAQ pairs"
 
-#: includes/Modules/Admin/ClassicEditorToolbar.php:171
+#: includes/Modules/Admin/ClassicEditorToolbar.php:166
 msgid "Generate Image"
 msgstr "تولید تصویر"
 
@@ -1024,7 +1130,7 @@ msgstr "تولید کلید"
 msgid "Generate SEO product descriptions for WooCommerce products"
 msgstr "تولید توضیحات سئو محصول برای محصولات ووکامرس"
 
-#: includes/Modules/Admin/ClassicEditorToolbar.php:170
+#: includes/Modules/Admin/ClassicEditorToolbar.php:165
 msgid "Generate Text"
 msgstr "تولید متن"
 
@@ -1055,6 +1161,10 @@ msgstr "چندین مقاله بهینه‌شده برای سئو با دسته�
 #: src/admin/workflowPresets.js:41
 msgid "Generate post ideas"
 msgstr "Generate post ideas"
+
+#: includes/Agents/TaskStepExecutor.php:267
+msgid "Generated article has no usable content (sections in response: %d)."
+msgstr "Generated article has no usable content (sections in response: %d)."
 
 #: src/post-editor/FeaturedImageModal.jsx:133
 #: src/post-editor/InsertImageModal.jsx:126
@@ -1105,9 +1215,14 @@ msgstr "سلام! چطور می‌توانم امروز کمکتان کنم؟"
 msgid "How can I help you manage your site?"
 msgstr "چطور می‌توانم در مدیریت سایتتان کمک کنم؟"
 
+#: includes/Agents/TaskStepExecutor.php:1020
 #: includes/Media/AttachmentContext.php:52
 msgid "Image"
 msgstr "Image"
+
+#: includes/Agents/TaskStepExecutor.php:1048
+msgid "Image AI provider is not configured. Add an API key for OpenAI, GapGPT, or Custom in AgenPress settings."
+msgstr "Image AI provider is not configured. Add an API key for OpenAI, GapGPT, or Custom in AgenPress settings."
 
 #: src/admin/pages/Settings.jsx:321
 msgid "Image Generator"
@@ -1116,6 +1231,22 @@ msgstr "تصویر ساز"
 #: src/admin/pages/Settings.jsx:310
 msgid "Image Model"
 msgstr "مدل تصویر"
+
+#: includes/Agents/TaskStepExecutor.php:1098
+msgid "Image created for %1$s (attachment #%2$d)."
+msgstr "Image created for %1$s (attachment #%2$d)."
+
+#: includes/Agents/TaskStepExecutor.php:871
+msgid "Image errors: %d (see task logs)"
+msgstr "Image errors: %d (see task logs)"
+
+#: includes/Agents/TaskStepExecutor.php:1036
+#: includes/Agents/TaskStepExecutor.php:1052
+#: includes/Agents/TaskStepExecutor.php:1070
+#: includes/Agents/TaskStepExecutor.php:1085
+#: includes/Agents/TaskStepExecutor.php:1109
+msgid "Image failed for %1$s: %2$s"
+msgstr "Image failed for %1$s: %2$s"
 
 #: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:123
 msgid "Image generated and applied to element."
@@ -1141,15 +1272,31 @@ msgstr "تولید تصویر ناموفق بود."
 msgid "Image generation is not supported by Claude provider."
 msgstr "تولید تصویر توسط ارائه‌دهنده کلود پشتیبانی نمی‌شود."
 
+#: src/admin/components/TaskDetails.jsx:103
+msgid "Image generation:"
+msgstr "Image generation:"
+
 #: includes/Modules/Admin/Tools/GenerateImageTool.php:70
 #: includes/Modules/Elementor/Tools/GenerateSectionImageTool.php:69
 #: includes/REST/ImageController.php:116
 msgid "Image prompt is required."
 msgstr "پرامپت تصویر الزامی است."
 
+#: includes/Agents/TaskStepExecutor.php:927
+msgid "Image skipped for %s: missing image_prompt from AI."
+msgstr "Image skipped for %s: missing image_prompt from AI."
+
+#: includes/Agents/TaskStepExecutor.php:322
+msgid "Image was generated but could not be set as featured image."
+msgstr "Image was generated but could not be set as featured image."
+
 #: includes/Modules/Elementor/ElementorDocumentService.php:480
 msgid "Image widget added to the page."
 msgstr "Image widget added to the page."
+
+#: src/admin/components/TaskDetails.jsx:280
+msgid "Images"
+msgstr "Images"
 
 #: src/admin/workflowPresets.js:219
 msgid "Improve site content quality"
@@ -1188,6 +1335,10 @@ msgstr "کلید API نامعتبر است."
 #: src/admin/pages/Workflows.jsx:78
 msgid "Invalid JSON in tool arguments."
 msgstr "Invalid JSON in tool arguments."
+
+#: includes/Media/AiImageSideloader.php:128
+msgid "Invalid base64 image data from AI."
+msgstr "Invalid base64 image data from AI."
 
 #: includes/Agents/AgentEngine.php:296
 msgid "Invalid conversation for this action."
@@ -1282,7 +1433,7 @@ msgstr "در حال بارگذاری تحلیل‌ها..."
 msgid "Loading settings..."
 msgstr "در حال بارگذاری تنظیمات..."
 
-#: src/admin/pages/Tasks.jsx:242
+#: src/admin/pages/Tasks.jsx:263
 msgid "Loading tasks..."
 msgstr "در حال بارگذاری وظایف..."
 
@@ -1296,7 +1447,7 @@ msgstr "در حال بارگذاری..."
 msgid "Logged-in customer"
 msgstr "مشتری واردشده"
 
-#: src/admin/pages/Tasks.jsx:335
+#: src/admin/components/TaskDetails.jsx:416
 msgid "Logs"
 msgstr "گزارش‌ها"
 
@@ -1368,6 +1519,14 @@ msgstr "Message not found."
 msgid "Messages"
 msgstr "پیام‌ها"
 
+#: src/admin/components/TaskDetails.jsx:150
+msgid "Meta description:"
+msgstr "Meta description:"
+
+#: src/admin/components/TaskDetails.jsx:147
+msgid "Meta title:"
+msgstr "Meta title:"
+
 #: src/admin/pages/Workflows.jsx:455
 msgid "Move down"
 msgstr "Move down"
@@ -1390,6 +1549,10 @@ msgstr "دروازه چند مدلی (سازگار با OpenAI)"
 msgid "New Workflow"
 msgstr "گردش کار جدید"
 
+#: src/admin/components/TaskDetails.jsx:35
+msgid "No"
+msgstr "No"
+
 #: src/admin/pages/Inbox.jsx:95
 msgid "No active sales chats."
 msgstr "چت فروش فعالی وجود ندارد."
@@ -1410,7 +1573,11 @@ msgstr "هیچ مکالمه ارتقایافته‌ای وجود ندارد."
 msgid "No file uploaded."
 msgstr "هیچ فایلی آپلود نشد."
 
-#: src/admin/pages/Tasks.jsx:349
+#: includes/Media/AiImageSideloader.php:53
+msgid "No image URL or base64 data in AI response."
+msgstr "No image URL or base64 data in AI response."
+
+#: src/admin/components/TaskDetails.jsx:474
 msgid "No logs yet."
 msgstr "هنوز گزارشی وجود ندارد."
 
@@ -1438,7 +1605,7 @@ msgstr "No steps yet. Add a step type above."
 msgid "No storefront sales chats yet."
 msgstr "هنوز چت فروش فروشگاهی ثبت نشده است."
 
-#: src/admin/pages/Tasks.jsx:244
+#: src/admin/pages/Tasks.jsx:265
 msgid "No tasks yet. Create one above."
 msgstr "هنوز وظیفه‌ای وجود ندارد. یکی را در بالا ایجاد کنید."
 
@@ -1462,9 +1629,13 @@ msgstr "هر قانون در یک خط، مثال: همیشه ارسال رای�
 msgid "One rule per line, e.g. Never promise delivery dates without checking"
 msgstr "هر قانون در یک خط، مثال: هرگز بدون بررسی تاریخ تحویل را قول نده"
 
-#: includes/REST/TaskController.php:349
+#: includes/REST/TaskController.php:364
 msgid "Only failed tasks can be retried."
 msgstr "فقط وظایف ناموفق قابل تکرار هستند."
+
+#: src/admin/components/TaskDetails.jsx:321
+msgid "Open"
+msgstr "Open"
 
 #: src/frontend/formatMessage.js:66
 msgid "Open link"
@@ -1503,7 +1674,7 @@ msgstr "شماره سفارش و ایمیل الزامی هستند."
 msgid "Order status: %s"
 msgstr "وضعیت سفارش: %s"
 
-#: includes/Agents/TaskStepExecutor.php:471
+#: includes/Agents/TaskStepExecutor.php:550
 msgid "Our Services"
 msgstr "Our Services"
 
@@ -1520,15 +1691,15 @@ msgstr "ساختار صفحه دریافت شد."
 msgid "Paste your API key here."
 msgstr "کلید API خود را اینجا وارد کنید."
 
-#: src/admin/pages/Tasks.jsx:277
+#: src/admin/pages/Tasks.jsx:298
 msgid "Pause"
 msgstr "توقف"
 
-#: src/admin/pages/Tasks.jsx:19
+#: src/admin/pages/Tasks.jsx:20
 msgid "Paused"
 msgstr "متوقف‌شده"
 
-#: src/admin/pages/Tasks.jsx:22
+#: src/admin/pages/Tasks.jsx:23
 msgid "Pending"
 msgstr "در انتظار"
 
@@ -1591,6 +1762,14 @@ msgstr "Plan article titles"
 msgid "Plan titles → create 3 SEO drafts → summary."
 msgstr "Plan titles → create 3 SEO drafts → summary."
 
+#: includes/Agents/TaskStepExecutor.php:149
+msgid "Planned %d article titles."
+msgstr "Planned %d article titles."
+
+#: src/admin/components/TaskDetails.jsx:180
+msgid "Planned article titles:"
+msgstr "Planned article titles:"
+
 #: includes/Agents/TaskTemplates.php:175
 msgid "Planning article topics"
 msgstr "برنامه‌ریزی موضوعات مقاله"
@@ -1612,6 +1791,10 @@ msgstr "لطفاً برای مشاهده سفارشات وارد شوید، یا
 #: src/admin/pages/SalesChatSettings.jsx:23
 msgid "Polite"
 msgstr "مودبانه"
+
+#: src/admin/components/TaskDetails.jsx:282
+msgid "Post"
+msgstr "Post"
 
 #: includes/Modules/Admin/Tools/GenerateImageTool.php:117
 msgid "Post not found or permission denied."
@@ -1690,7 +1873,7 @@ msgstr "محصول به‌روز شد."
 msgid "Professional"
 msgstr "حرفه‌ای"
 
-#: src/admin/pages/Tasks.jsx:251
+#: src/admin/pages/Tasks.jsx:272
 msgid "Progress"
 msgstr "پیشرفت"
 
@@ -1706,11 +1889,15 @@ msgstr "پرامپت"
 msgid "Publish when done"
 msgstr "انتشار پس از اتمام"
 
+#: src/admin/components/TaskDetails.jsx:53
+msgid "Published title:"
+msgstr "Published title:"
+
 #: src/admin/workflowPresets.js:138
 msgid "Publishing plan"
 msgstr "Publishing plan"
 
-#: src/admin/pages/Tasks.jsx:219
+#: src/admin/pages/Tasks.jsx:240
 msgid "Queue Task"
 msgstr "افزودن وظیفه به صف"
 
@@ -1734,7 +1921,7 @@ msgstr "محدودیت نرخ تجاوز کرده است. لطفاً بعداً 
 msgid "Rate limiting requires a user or visitor key."
 msgstr "محدودیت نرخ نیاز به کلید کاربر یا بازدیدکننده دارد."
 
-#: src/admin/pages/Tasks.jsx:292
+#: src/admin/pages/Tasks.jsx:313
 msgid "Re-run"
 msgstr "اجرای مجدد"
 
@@ -1746,7 +1933,7 @@ msgstr "دلیل:"
 msgid "Recommend products for [occasion]"
 msgstr "محصولات را برای [occasion] پیشنهاد بده"
 
-#: includes/Agents/TaskStepExecutor.php:478
+#: includes/Agents/TaskStepExecutor.php:557
 msgid "Recommended Products"
 msgstr "Recommended Products"
 
@@ -1775,11 +1962,11 @@ msgstr "حل‌شده"
 msgid "Respond with internal sales analytics and operational insights. Do not pitch products to this user."
 msgstr "Respond with internal sales analytics and operational insights. Do not pitch products to this user."
 
-#: src/admin/pages/Tasks.jsx:277
+#: src/admin/pages/Tasks.jsx:298
 msgid "Resume"
 msgstr "ادامه"
 
-#: src/admin/pages/Tasks.jsx:287
+#: src/admin/pages/Tasks.jsx:308
 msgid "Retry"
 msgstr "تکرار"
 
@@ -1799,7 +1986,7 @@ msgstr "لغو دسترسی"
 msgid "Run"
 msgstr "اجرا"
 
-#: src/admin/pages/Tasks.jsx:18
+#: src/admin/pages/Tasks.jsx:19
 msgid "Running"
 msgstr "در حال اجرا"
 
@@ -1893,13 +2080,41 @@ msgstr "عبارت جستجو الزامی است."
 msgid "Search..."
 msgstr "جستجو..."
 
+#: includes/Agents/TaskStepExecutor.php:908
+msgid "Section %d"
+msgstr "Section %d"
+
 #: includes/Modules/Elementor/ElementorDocumentService.php:190
 msgid "Section created."
 msgstr "بخش ایجاد شد."
 
+#: src/admin/components/TaskDetails.jsx:124
+msgid "Section headings:"
+msgstr "Section headings:"
+
+#: src/admin/components/TaskDetails.jsx:75
+msgid "Section images: %1$d / %2$d"
+msgstr "Section images: %1$d / %2$d"
+
+#: includes/Agents/TaskStepExecutor.php:903
+msgid "Section: %s"
+msgstr "Section: %s"
+
+#: src/admin/components/TaskDetails.jsx:279
+msgid "Sections"
+msgstr "Sections"
+
 #: src/admin/pages/Workflows.jsx:212
 msgid "Sections count"
 msgstr "Sections count"
+
+#: src/admin/components/TaskDetails.jsx:66
+msgid "Sections: %1$d / %2$d"
+msgstr "Sections: %1$d / %2$d"
+
+#: includes/Agents/TaskStepExecutor.php:851
+msgid "Sections: %1$d | Section images: %2$d/%3$d | FAQ: %4$d"
+msgstr "Sections: %1$d | Section images: %2$d/%3$d | FAQ: %4$d"
 
 #: src/admin/pages/Inbox.jsx:161
 msgid "Select a conversation to view."
@@ -1982,6 +2197,7 @@ msgstr "شروع چت هوش مصنوعی"
 msgid "Start from a ready-made template, customize steps, then save and run."
 msgstr "Start from a ready-made template, customize steps, then save and run."
 
+#: src/admin/components/TaskDetails.jsx:278
 #: src/admin/pages/Workflows.jsx:681
 msgid "Status"
 msgstr "Status"
@@ -1990,11 +2206,19 @@ msgstr "Status"
 msgid "Step"
 msgstr "Step"
 
+#: src/admin/components/TaskDetails.jsx:353
+msgid "Step %1$d of %2$d · Template: %3$s"
+msgstr "Step %1$d of %2$d · Template: %3$s"
+
+#: src/admin/components/TaskDetails.jsx:430
+msgid "Step %d"
+msgstr "Step %d"
+
 #: src/admin/pages/Workflows.jsx:97
 msgid "Step label"
 msgstr "Step label"
 
-#: src/admin/pages/Tasks.jsx:323
+#: src/admin/components/TaskDetails.jsx:386
 #: src/admin/pages/Workflows.jsx:411
 #: src/admin/pages/Workflows.jsx:683
 msgid "Steps"
@@ -2042,6 +2266,14 @@ msgstr "Suggest services in article"
 msgid "Summarize the completed SEO article batch in 2–3 sentences for the site admin."
 msgstr "Summarize the completed SEO article batch in 2–3 sentences for the site admin."
 
+#: src/admin/components/TaskDetails.jsx:378
+msgid "Summary:"
+msgstr "Summary:"
+
+#: src/admin/components/TaskDetails.jsx:139
+msgid "Tags:"
+msgstr "Tags:"
+
 #: src/frontend/Widget.jsx:265
 msgid "Talk to a human"
 msgstr "صحبت با یک انسان"
@@ -2050,31 +2282,31 @@ msgstr "صحبت با یک انسان"
 msgid "Target column not found."
 msgstr "Target column not found."
 
-#: includes/Agents/TaskRunner.php:164
+#: includes/Agents/TaskRunner.php:207
 msgid "Task \"%s\" completed successfully."
 msgstr "وظیفه \"%s\" با موفقیت تکمیل شد."
 
-#: src/admin/pages/Tasks.jsx:314
+#: src/admin/components/TaskDetails.jsx:346
 msgid "Task Details:"
 msgstr "جزئیات وظیفه:"
 
-#: src/admin/pages/Tasks.jsx:226
+#: src/admin/pages/Tasks.jsx:247
 msgid "Task Queue"
 msgstr "صف وظایف"
 
-#: src/admin/pages/Tasks.jsx:157
+#: src/admin/pages/Tasks.jsx:178
 msgid "Task Template"
 msgstr "قالب وظیفه"
 
-#: src/admin/pages/Tasks.jsx:201
+#: src/admin/pages/Tasks.jsx:222
 msgid "Task Title"
 msgstr "عنوان وظیفه"
 
-#: includes/REST/TaskController.php:322
+#: includes/REST/TaskController.php:337
 msgid "Task cannot be cancelled in its current state."
 msgstr "وظیفه در وضعیت فعلی قابل لغو نیست."
 
-#: includes/REST/TaskController.php:287
+#: includes/REST/TaskController.php:302
 msgid "Task cannot be paused or resumed in its current state."
 msgstr "وظیفه در وضعیت فعلی قابل توقف یا ادامه نیست."
 
@@ -2083,14 +2315,14 @@ msgid "Task description"
 msgstr "Task description"
 
 #: includes/REST/TaskController.php:218
-#: includes/REST/TaskController.php:245
-#: includes/REST/TaskController.php:272
-#: includes/REST/TaskController.php:312
-#: includes/REST/TaskController.php:374
+#: includes/REST/TaskController.php:260
+#: includes/REST/TaskController.php:287
+#: includes/REST/TaskController.php:327
+#: includes/REST/TaskController.php:389
 msgid "Task not found."
 msgstr "وظیفه یافت نشد."
 
-#: includes/Agents/TaskStepExecutor.php:186
+#: includes/Agents/TaskStepExecutor.php:201
 msgid "Task plan created."
 msgstr "برنامه وظیفه ایجاد شد."
 
@@ -2110,7 +2342,7 @@ msgstr "وظایف تکمیل‌شده"
 msgid "Taxonomy recommendations"
 msgstr "Taxonomy recommendations"
 
-#: src/admin/pages/Tasks.jsx:250
+#: src/admin/pages/Tasks.jsx:271
 msgid "Template"
 msgstr "قالب"
 
@@ -2168,7 +2400,7 @@ msgstr "این ویژگی نیاز به مجوز Enterprise دارد."
 msgid "This post type does not support featured images."
 msgstr "This post type does not support featured images."
 
-#: src/admin/pages/Tasks.jsx:249
+#: src/admin/pages/Tasks.jsx:270
 #: src/admin/pages/Workflows.jsx:367
 #: src/admin/pages/Workflows.jsx:680
 msgid "Title"
@@ -2229,6 +2461,10 @@ msgstr "Topic"
 #: includes/Agents/TaskTemplates.php:30
 msgid "Topic / niche"
 msgstr "موضوع / حوزه"
+
+#: src/admin/components/TaskDetails.jsx:58
+msgid "Topic:"
+msgstr "Topic:"
 
 #: src/admin/pages/Dashboard.jsx:37
 msgid "Total Tasks"
@@ -2308,6 +2544,10 @@ msgstr "مقدار"
 msgid "View Tasks"
 msgstr "مشاهده وظایف"
 
+#: src/admin/components/TaskDetails.jsx:159
+msgid "View post"
+msgstr "View post"
+
 #: src/frontend/formatMessage.js:54
 msgid "View product"
 msgstr "View product"
@@ -2315,6 +2555,14 @@ msgstr "View product"
 #: src/admin/pages/SalesChatSettings.jsx:29
 msgid "Warm and conversational"
 msgstr "گرم و گفتگومحور"
+
+#: includes/Media/AiImageSideloader.php:215
+msgid "WebP conversion failed: PHP GD extension does not support WebP on this server."
+msgstr "WebP conversion failed: PHP GD extension does not support WebP on this server."
+
+#: includes/Media/AiImageSideloader.php:218
+msgid "WebP conversion failed: image could not be processed."
+msgstr "WebP conversion failed: image could not be processed."
 
 #: src/frontend/Widget.jsx:186
 msgid "Welcome back! I remember our previous chats. How can I help you today?"
@@ -2374,7 +2622,7 @@ msgstr "ابزارک فعال"
 msgid "Widget type is required."
 msgstr "Widget type is required."
 
-#: includes/Agents/TaskStepExecutor.php:771
+#: includes/Agents/TaskStepExecutor.php:1131
 #: includes/Modules/Admin/Tools/CreateProductTool.php:44
 #: includes/Modules/Admin/Tools/DeleteProductTool.php:61
 #: includes/Modules/Admin/Tools/GetProductTool.php:39
@@ -2422,6 +2670,10 @@ msgstr "Write product description"
 msgid "Writing product description %d"
 msgstr "در حال نوشتن توضیحات محصول %d"
 
+#: src/admin/components/TaskDetails.jsx:35
+msgid "Yes"
+msgstr "Yes"
+
 #: includes/Security/PermissionValidator.php:148
 msgid "You do not have permission to access this module."
 msgstr "شما اجازه دسترسی به این ماژول را ندارید."
@@ -2446,13 +2698,17 @@ msgstr "درخواست شما به تیم ما ارسال شد. به زودی ب
 msgid "days"
 msgstr "روز"
 
-#: src/admin/pages/Tasks.jsx:206
+#: src/admin/pages/Tasks.jsx:227
 msgid "e.g. Generate 10 SEO articles about WordPress"
 msgstr "مثال: ۱۰ مقاله سئو درباره وردپرس تولید کن"
 
 #: src/admin/pages/Memory.jsx:232
 msgid "e.g. brand_name, primary_color"
 msgstr "مثال: brand_name, primary_color"
+
+#: includes/Agents/TaskStepExecutor.php:242
+msgid "invalid JSON structure"
+msgstr "invalid JSON structure"
 
 #: src/admin/workflowPresets.js:244
 msgid "list_products → 3× product_description steps."

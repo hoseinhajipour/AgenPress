@@ -105,7 +105,35 @@ class TaskRunner {
 				$queue->set_runtime( $task_id, $runtime );
 			}
 
-			$queue->log( $task_id, $step_index, 'info', 'Completed: ' . $label, array( 'message' => $result['message'] ) );
+			$log_context = array( 'message' => $result['message'] );
+
+			if ( is_array( $result['data'] ) && ! empty( $result['data']['report'] ) ) {
+				$log_context['report'] = $result['data']['report'];
+			}
+
+			$queue->log( $task_id, $step_index, 'info', 'Completed: ' . $label, $log_context );
+
+			if ( is_array( $result['data'] ) && ! empty( $result['data']['report']['image_logs'] ) ) {
+				foreach ( $result['data']['report']['image_logs'] as $image_log ) {
+					if ( ! is_array( $image_log ) ) {
+						continue;
+					}
+
+					$image_message = (string) ( $image_log['message'] ?? '' );
+
+					if ( '' === $image_message ) {
+						continue;
+					}
+
+					$queue->log(
+						$task_id,
+						$step_index,
+						! empty( $image_log['success'] ) ? 'info' : 'warning',
+						$image_message,
+						array( 'image_log' => $image_log )
+					);
+				}
+			}
 
 			$next_step = $step_index + 1;
 			$queue->update_progress( $task_id, $next_step, $this->calc_progress( $next_step, $total_steps ) );
@@ -123,26 +151,41 @@ class TaskRunner {
 		$retries    = (int) ( $step['retries'] ?? 0 );
 		$max_retries = (int) ( $step['max_retries'] ?? 2 );
 
+		$failure_context = is_array( $result['data'] ?? null ) ? $result['data'] : array();
+
 		if ( $retries < $max_retries ) {
 			$queue->update_step(
 				$task_id,
 				$step_index,
-				array( 'retries' => $retries + 1 )
+				array(
+					'retries'         => $retries + 1,
+					'last_error'      => $result['message'],
+					'last_error_data' => $failure_context,
+				)
 			);
 			$queue->log(
 				$task_id,
 				$step_index,
 				'warning',
-				sprintf( 'Step failed, retrying (%d/%d): %s', $retries + 1, $max_retries, $result['message'] )
+				sprintf( 'Step failed, retrying (%d/%d): %s', $retries + 1, $max_retries, $result['message'] ),
+				$failure_context
 			);
 			$queue->schedule( $task_id, min( 60, (int) pow( 2, $retries + 1 ) ) );
 			return;
 		}
 
-		$queue->update_step( $task_id, $step_index, array( 'status' => 'failed' ) );
+		$queue->update_step(
+			$task_id,
+			$step_index,
+			array(
+				'status'          => 'failed',
+				'last_error'      => $result['message'],
+				'last_error_data' => $failure_context,
+			)
+		);
 		$queue->set_result( $task_id, null, $result['message'] );
 		$queue->update_status( $task_id, TaskState::FAILED );
-		$queue->log( $task_id, $step_index, 'error', 'Step failed: ' . $result['message'] );
+		$queue->log( $task_id, $step_index, 'error', 'Step failed: ' . $result['message'], $failure_context );
 	}
 
 	/**

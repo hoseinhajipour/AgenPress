@@ -95,6 +95,7 @@ class AdminMenu {
 			'agenpressData',
 			array(
 				'apiUrl'        => rest_url( 'agenpress/v1' ),
+				'adminUrl'      => admin_url(),
 				'nonce'         => wp_create_nonce( 'wp_rest' ),
 				'userId'        => get_current_user_id(),
 				'userName'      => wp_get_current_user()->display_name,

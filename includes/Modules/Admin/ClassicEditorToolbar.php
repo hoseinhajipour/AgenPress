@@ -96,7 +96,16 @@ class ClassicEditorToolbar {
 			return $plugins;
 		}
 
-		$plugins['agenpress_classic_editor'] = AGENPRESS_PLUGIN_URL . 'assets/js/classic-editor-tinymce.js';
+		$tinymce_asset_file = AGENPRESS_PLUGIN_DIR . 'assets/js/classic-editor-tinymce.asset.php';
+		$tinymce_version    = file_exists( $tinymce_asset_file )
+			? ( require $tinymce_asset_file )['version']
+			: AGENPRESS_VERSION;
+
+		$plugins['agenpress_classic_editor'] = add_query_arg(
+			'ver',
+			$tinymce_version,
+			AGENPRESS_PLUGIN_URL . 'assets/js/classic-editor-tinymce.js'
+		);
 
 		return $plugins;
 	}
@@ -122,12 +131,6 @@ class ClassicEditorToolbar {
 			'version'      => AGENPRESS_VERSION,
 		);
 
-		$tinymce_asset_file = AGENPRESS_PLUGIN_DIR . 'assets/js/classic-editor-tinymce.asset.php';
-		$tinymce_asset      = file_exists( $tinymce_asset_file ) ? require $tinymce_asset_file : array(
-			'dependencies' => array(),
-			'version'      => AGENPRESS_VERSION,
-		);
-
 		wp_enqueue_style(
 			'agenpress-post-editor',
 			AGENPRESS_PLUGIN_URL . 'assets/js/post-editor.css',
@@ -143,14 +146,6 @@ class ClassicEditorToolbar {
 				array( 'wp-element', 'wp-components', 'wp-api-fetch', 'wp-i18n', 'wp-hooks', 'wp-data' )
 			),
 			$asset['version'],
-			true
-		);
-
-		wp_enqueue_script(
-			'agenpress-classic-editor-tinymce',
-			AGENPRESS_PLUGIN_URL . 'assets/js/classic-editor-tinymce.js',
-			$tinymce_asset['dependencies'],
-			$tinymce_asset['version'],
 			true
 		);
 

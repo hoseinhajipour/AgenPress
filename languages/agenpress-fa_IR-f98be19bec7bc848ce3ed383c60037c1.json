@@ -10,6 +10,9 @@
             "  File excerpt:": [
                 "  File excerpt:"
             ],
+            "%d image error(s)": [
+                "%d image error(s)"
+            ],
             "%d recommendations.": [
                 "%d پیشنهاد."
             ],
@@ -37,8 +40,11 @@
             "A team member will follow up with you.": [
                 "یک عضو تیم با شما پیگیری خواهد کرد."
             ],
-            "AI API error.": [
-                "خطای API هوش مصنوعی."
+            "AI API error (HTTP %1$d): %2$s": [
+                "AI API error (HTTP %1$d): %2$s"
+            ],
+            "AI API error (HTTP %d).": [
+                "AI API error (HTTP %d)."
             ],
             "AI Behavior": [
                 "رفتار هوش مصنوعی"
@@ -73,11 +79,26 @@
             "AI breaks a goal into action items, then executes. Edit title and description in step 1.": [
                 "AI breaks a goal into action items, then executes. Edit title and description in step 1."
             ],
+            "AI did not return image_prompt for this section.": [
+                "AI did not return image_prompt for this section."
+            ],
+            "AI image API returned no image URL or data.": [
+                "AI image API returned no image URL or data."
+            ],
             "AI plan → AI execution pattern for open-ended admin work.": [
                 "AI plan → AI execution pattern for open-ended admin work."
             ],
             "AI planning task steps": [
                 "برنامه‌ریزی مراحل وظیفه با هوش مصنوعی"
+            ],
+            "AI response preview:": [
+                "AI response preview:"
+            ],
+            "AI response was not text or JSON.": [
+                "AI response was not text or JSON."
+            ],
+            "AI step completed.": [
+                "AI step completed."
             ],
             "AI-planned multi-step task from your description": [
                 "وظیفه چند مرحله‌ای برنامه‌ریزی‌شده توسط هوش مصنوعی از توضیحات شما"
@@ -184,11 +205,20 @@
             "Applying...": [
                 "در حال اعمال..."
             ],
+            "Article": [
+                "Article"
+            ],
+            "Article JSON was parsed but sections\/content are empty.": [
+                "Article JSON was parsed but sections\/content are empty."
+            ],
             "Article index": [
                 "Article index"
             ],
             "Article sections count": [
                 "Article sections count"
+            ],
+            "Articles overview": [
+                "Articles overview"
             ],
             "Ask AgenPress anything...": [
                 "هر چیزی از AgenPress بپرسید..."
@@ -258,6 +288,9 @@
             ],
             "Cart summary retrieved.": [
                 "خلاصه سبد خرید دریافت شد."
+            ],
+            "Categories:": [
+                "Categories:"
             ],
             "Category": [
                 "دسته‌بندی"
@@ -351,6 +384,15 @@
             ],
             "Copy your key now — it won't be shown again:": [
                 "کلید خود را اکنون کپی کنید — دیگر نمایش داده نخواهد شد:"
+            ],
+            "Could not create temporary file for image.": [
+                "Could not create temporary file for image."
+            ],
+            "Could not decode JSON from AI response.": [
+                "Could not decode JSON from AI response."
+            ],
+            "Could not write temporary image file.": [
+                "Could not write temporary image file."
             ],
             "Coupon is valid.": [
                 "کوپن معتبر است."
@@ -493,6 +535,9 @@
             "Edit Workflow": [
                 "Edit Workflow"
             ],
+            "Edit in WordPress": [
+                "Edit in WordPress"
+            ],
             "Edit post": [
                 "Edit post"
             ],
@@ -523,11 +568,17 @@
             "Elementor page not found.": [
                 "صفحه المنتور یافت نشد."
             ],
+            "Empty image prompt.": [
+                "Empty image prompt."
+            ],
             "Enabled": [
                 "Enabled"
             ],
             "Enterprise": [
                 "سازمانی"
+            ],
+            "Error:": [
+                "Error:"
             ],
             "Error: %s": [
                 "خطا: %s"
@@ -556,11 +607,26 @@
             "Extracting...": [
                 "در حال استخراج..."
             ],
+            "FAQ": [
+                "FAQ"
+            ],
             "FAQ Content Pack": [
                 "FAQ Content Pack"
             ],
+            "FAQ schema": [
+                "FAQ schema"
+            ],
+            "FAQ schema saved": [
+                "FAQ schema saved"
+            ],
+            "FAQ: %d questions": [
+                "FAQ: %d questions"
+            ],
             "Failed": [
                 "ناموفق"
+            ],
+            "Failed to add image to media library: %s": [
+                "Failed to add image to media library: %s"
             ],
             "Failed to clear chat.": [
                 "Failed to clear chat."
@@ -595,14 +661,17 @@
             "Failed to delete product.": [
                 "حذف محصول ناموفق بود."
             ],
+            "Failed to download image: %s": [
+                "Failed to download image: %s"
+            ],
             "Failed to insert widget.": [
                 "Failed to insert widget."
             ],
             "Failed to load analytics.": [
                 "بارگذاری تحلیل‌ها ناموفق بود."
             ],
-            "Failed to parse generated article.": [
-                "تجزیه مقاله تولیدشده ناموفق بود."
+            "Failed to parse generated article: %s": [
+                "Failed to parse generated article: %s"
             ],
             "Failed to run workflow.": [
                 "اجرای گردش کار ناموفق بود."
@@ -619,8 +688,17 @@
             "Failed to start conversation.": [
                 "شروع مکالمه ناموفق بود."
             ],
-            "Featured image set.": [
-                "Featured image set."
+            "Featured image": [
+                "Featured image"
+            ],
+            "Featured image: not set": [
+                "Featured image: not set"
+            ],
+            "Featured image: set": [
+                "Featured image: set"
+            ],
+            "Featured only": [
+                "Featured only"
             ],
             "Fetch products": [
                 "Fetch products"
@@ -724,6 +802,9 @@
             "Generate post ideas": [
                 "Generate post ideas"
             ],
+            "Generated article has no usable content (sections in response: %d).": [
+                "Generated article has no usable content (sections in response: %d)."
+            ],
             "Generated preview": [
                 "پیش‌نمایش تولیدشده"
             ],
@@ -760,11 +841,23 @@
             "Image": [
                 "Image"
             ],
+            "Image AI provider is not configured. Add an API key for OpenAI, GapGPT, or Custom in AgenPress settings.": [
+                "Image AI provider is not configured. Add an API key for OpenAI, GapGPT, or Custom in AgenPress settings."
+            ],
             "Image Generator": [
                 "تصویر ساز"
             ],
             "Image Model": [
                 "مدل تصویر"
+            ],
+            "Image created for %1$s (attachment #%2$d).": [
+                "Image created for %1$s (attachment #%2$d)."
+            ],
+            "Image errors: %d (see task logs)": [
+                "Image errors: %d (see task logs)"
+            ],
+            "Image failed for %1$s: %2$s": [
+                "Image failed for %1$s: %2$s"
             ],
             "Image generated and applied to element.": [
                 "تصویر تولید و به عنصر اعمال شد."
@@ -781,11 +874,23 @@
             "Image generation is not supported by Claude provider.": [
                 "تولید تصویر توسط ارائه‌دهنده کلود پشتیبانی نمی‌شود."
             ],
+            "Image generation:": [
+                "Image generation:"
+            ],
             "Image prompt is required.": [
                 "پرامپت تصویر الزامی است."
             ],
+            "Image skipped for %s: missing image_prompt from AI.": [
+                "Image skipped for %s: missing image_prompt from AI."
+            ],
+            "Image was generated but could not be set as featured image.": [
+                "Image was generated but could not be set as featured image."
+            ],
             "Image widget added to the page.": [
                 "Image widget added to the page."
+            ],
+            "Images": [
+                "Images"
             ],
             "Improve site content quality": [
                 "Improve site content quality"
@@ -813,6 +918,9 @@
             ],
             "Invalid JSON in tool arguments.": [
                 "Invalid JSON in tool arguments."
+            ],
+            "Invalid base64 image data from AI.": [
+                "Invalid base64 image data from AI."
             ],
             "Invalid conversation for this action.": [
                 "مکالمه نامعتبر برای این اقدام."
@@ -940,6 +1048,12 @@
             "Messages": [
                 "پیام‌ها"
             ],
+            "Meta description:": [
+                "Meta description:"
+            ],
+            "Meta title:": [
+                "Meta title:"
+            ],
             "Move down": [
                 "Move down"
             ],
@@ -955,6 +1069,9 @@
             "New Workflow": [
                 "گردش کار جدید"
             ],
+            "No": [
+                "No"
+            ],
             "No active sales chats.": [
                 "چت فروش فعالی وجود ندارد."
             ],
@@ -969,6 +1086,9 @@
             ],
             "No file uploaded.": [
                 "هیچ فایلی آپلود نشد."
+            ],
+            "No image URL or base64 data in AI response.": [
+                "No image URL or base64 data in AI response."
             ],
             "No logs yet.": [
                 "هنوز گزارشی وجود ندارد."
@@ -1011,6 +1131,9 @@
             ],
             "Only failed tasks can be retried.": [
                 "فقط وظایف ناموفق قابل تکرار هستند."
+            ],
+            "Open": [
+                "Open"
             ],
             "Open link": [
                 "Open link"
@@ -1081,6 +1204,12 @@
             "Plan titles → create 3 SEO drafts → summary.": [
                 "Plan titles → create 3 SEO drafts → summary."
             ],
+            "Planned %d article titles.": [
+                "Planned %d article titles."
+            ],
+            "Planned article titles:": [
+                "Planned article titles:"
+            ],
             "Planning article topics": [
                 "برنامه‌ریزی موضوعات مقاله"
             ],
@@ -1095,6 +1224,9 @@
             ],
             "Polite": [
                 "مودبانه"
+            ],
+            "Post": [
+                "Post"
             ],
             "Post not found or permission denied.": [
                 "Post not found or permission denied."
@@ -1155,6 +1287,9 @@
             ],
             "Publish when done": [
                 "انتشار پس از اتمام"
+            ],
+            "Published title:": [
+                "Published title:"
             ],
             "Publishing plan": [
                 "Publishing plan"
@@ -1291,11 +1426,32 @@
             "Search...": [
                 "جستجو..."
             ],
+            "Section %d": [
+                "Section %d"
+            ],
             "Section created.": [
                 "بخش ایجاد شد."
             ],
+            "Section headings:": [
+                "Section headings:"
+            ],
+            "Section images: %1$d \/ %2$d": [
+                "Section images: %1$d \/ %2$d"
+            ],
+            "Section: %s": [
+                "Section: %s"
+            ],
+            "Sections": [
+                "Sections"
+            ],
             "Sections count": [
                 "Sections count"
+            ],
+            "Sections: %1$d \/ %2$d": [
+                "Sections: %1$d \/ %2$d"
+            ],
+            "Sections: %1$d | Section images: %2$d\/%3$d | FAQ: %4$d": [
+                "Sections: %1$d | Section images: %2$d\/%3$d | FAQ: %4$d"
             ],
             "Select a conversation to view.": [
                 "یک مکالمه برای مشاهده انتخاب کنید."
@@ -1360,6 +1516,12 @@
             "Step": [
                 "Step"
             ],
+            "Step %1$d of %2$d · Template: %3$s": [
+                "Step %1$d of %2$d · Template: %3$s"
+            ],
+            "Step %d": [
+                "Step %d"
+            ],
             "Step label": [
                 "Step label"
             ],
@@ -1395,6 +1557,12 @@
             ],
             "Summarize the completed SEO article batch in 2–3 sentences for the site admin.": [
                 "Summarize the completed SEO article batch in 2–3 sentences for the site admin."
+            ],
+            "Summary:": [
+                "Summary:"
+            ],
+            "Tags:": [
+                "Tags:"
             ],
             "Talk to a human": [
                 "صحبت با یک انسان"
@@ -1531,6 +1699,9 @@
             "Topic \/ niche": [
                 "موضوع \/ حوزه"
             ],
+            "Topic:": [
+                "Topic:"
+            ],
             "Total Tasks": [
                 "مجموع وظایف"
             ],
@@ -1588,11 +1759,20 @@
             "View Tasks": [
                 "مشاهده وظایف"
             ],
+            "View post": [
+                "View post"
+            ],
             "View product": [
                 "View product"
             ],
             "Warm and conversational": [
                 "گرم و گفتگومحور"
+            ],
+            "WebP conversion failed: PHP GD extension does not support WebP on this server.": [
+                "WebP conversion failed: PHP GD extension does not support WebP on this server."
+            ],
+            "WebP conversion failed: image could not be processed.": [
+                "WebP conversion failed: image could not be processed."
             ],
             "Welcome back! I remember our previous chats. How can I help you today?": [
                 "خوش برگشتی! مکالمات قبلی‌مان را به خاطر دارم. امروز چطور می‌توانم کمکت کنم؟"
@@ -1663,6 +1843,9 @@
             "Writing product description %d": [
                 "در حال نوشتن توضیحات محصول %d"
             ],
+            "Yes": [
+                "Yes"
+            ],
             "You do not have permission to access this module.": [
                 "شما اجازه دسترسی به این ماژول را ندارید."
             ],
@@ -1686,6 +1869,9 @@
             ],
             "e.g. brand_name, primary_color": [
                 "مثال: brand_name, primary_color"
+            ],
+            "invalid JSON structure": [
+                "invalid JSON structure"
             ],
             "list_products → 3× product_description steps.": [
                 "list_products → 3× product_description steps."

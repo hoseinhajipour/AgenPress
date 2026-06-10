@@ -221,7 +221,22 @@ class TaskController extends RestController {
 			);
 		}
 
-		$task['logs'] = $queue->get_logs( $id );
+		$task['logs'] = array_map(
+			static function ( array $log ): array {
+				$log['step_index'] = (int) ( $log['step_index'] ?? 0 );
+				$decoded           = json_decode( (string) ( $log['context'] ?? '' ), true );
+				$log['context']    = is_array( $decoded ) ? $decoded : array();
+
+				return $log;
+			},
+			$queue->get_logs( $id )
+		);
+
+		if ( is_array( $task['result'] ) && ! empty( $task['result']['_runtime'] ) ) {
+			$task['runtime_context'] = $task['result']['context'] ?? array();
+		} elseif ( is_array( $task['result'] ) && empty( $task['result']['_runtime'] ) ) {
+			$task['final_result'] = $task['result'];
+		}
 
 		return $this->success( $task );
 	}

@@ -135,15 +135,30 @@ class TaskStepExecutor {
 			$content = trim( $response['content'] ?? '' );
 			$updates = array();
 
+			$parsed = $this->try_parse_json( $content );
+
 			if ( ! empty( $step['output_key'] ) ) {
-				$parsed = $this->try_parse_json( $content );
 				$updates[ $step['output_key'] ] = null !== $parsed ? $parsed : $content;
+			}
+
+			$data = null !== $parsed ? $parsed : $content;
+
+			if ( 'plan' === ( $step['name'] ?? '' ) && is_array( $data ) ) {
+				$message = sprintf(
+					/* translators: %d: number of planned article titles */
+					__( 'Planned %d article titles.', 'agenpress' ),
+					count( $data )
+				);
+			} elseif ( is_string( $data ) ) {
+				$message = mb_substr( $data, 0, 200 );
+			} else {
+				$message = __( 'AI step completed.', 'agenpress' );
 			}
 
 			return array(
 				'success'         => true,
-				'message'         => mb_substr( $content, 0, 200 ),
-				'data'            => $content,
+				'message'         => $message,
+				'data'            => $data,
 				'context_updates' => $updates,
 			);
 		} catch ( \Exception $e ) {
@@ -215,41 +230,48 @@ class TaskStepExecutor {
 			return $ai_result;
 		}
 
-		$article = $this->try_parse_json( $ai_result['data'] );
+		$parse_error = '';
+		$article     = $this->try_parse_json( $ai_result['data'], $parse_error );
 
 		if ( ! is_array( $article ) ) {
 			return array(
 				'success'         => false,
-				'message'         => __( 'Failed to parse generated article.', 'agenpress' ),
-				'data'            => null,
+				'message'         => sprintf(
+					/* translators: %s: parse error detail */
+					__( 'Failed to parse generated article: %s', 'agenpress' ),
+					$parse_error ?: __( 'invalid JSON structure', 'agenpress' )
+				),
+				'data'            => array(
+					'parse_error'      => $parse_error,
+					'response_preview' => $this->preview_ai_response( $ai_result['data'] ),
+				),
 				'context_updates' => array(),
 			);
 		}
 
-		if ( ! empty( $options['section_images'] ) && ! empty( $article['sections'] ) && is_array( $article['sections'] ) ) {
-			foreach ( $article['sections'] as $i => $section ) {
-				if ( empty( $section['image_prompt'] ) ) {
-					continue;
-				}
+		$image_logs = $this->generate_seo_article_images( $article, $options, $title );
 
-				$image = $this->generate_image_attachment( (string) $section['image_prompt'] );
+		$content = $this->assemble_seo_article_content( $article, $options );
 
-				if ( $image ) {
-					$article['sections'][ $i ]['image_url'] = $image['url'];
-					$article['sections'][ $i ]['image_alt'] = $section['heading'] ?? $title;
-				}
-			}
+		if ( '' === trim( $content ) && ! empty( $article['content'] ) ) {
+			$content = $this->sanitize_seo_article_content( (string) $article['content'] );
 		}
 
-		$content = ! empty( $article['content'] )
-			? (string) $article['content']
-			: $this->assemble_seo_article_content( $article, $options );
-
 		if ( '' === trim( $content ) ) {
+			$sections_count = is_array( $article['sections'] ?? null ) ? count( $article['sections'] ) : 0;
+
 			return array(
 				'success'         => false,
-				'message'         => __( 'Failed to parse generated article.', 'agenpress' ),
-				'data'            => null,
+				'message'         => sprintf(
+					/* translators: %d: number of sections returned by AI */
+					__( 'Generated article has no usable content (sections in response: %d).', 'agenpress' ),
+					$sections_count
+				),
+				'data'            => array(
+					'parse_error'      => __( 'Article JSON was parsed but sections/content are empty.', 'agenpress' ),
+					'sections_count'   => $sections_count,
+					'response_preview' => $this->preview_ai_response( $article ),
+				),
 				'context_updates' => array(),
 			);
 		}
@@ -280,28 +302,65 @@ class TaskStepExecutor {
 			);
 		}
 
-		$post_id = (int) ( $tool_result['data']['id'] ?? 0 );
-		$message = $tool_result['message'];
+		$post_id          = (int) ( $tool_result['data']['id'] ?? 0 );
+		$featured_set     = false;
+		$faq_schema_saved = false;
 
 		if ( $post_id && ! empty( $options['featured_image'] ) ) {
 			$image_prompt = (string) ( $article['featured_image_prompt'] ?? sprintf( 'Professional blog featured image for article: %s', $title ) );
-			$featured     = $this->generate_image_attachment( $image_prompt );
+			$featured     = $this->generate_image_attachment(
+				$image_prompt,
+				__( 'Featured image', 'agenpress' )
+			);
+			$featured['type'] = 'featured';
+			$image_logs[]     = $featured;
 
-			if ( $featured && set_post_thumbnail( $post_id, $featured['attachment_id'] ) ) {
-				$message .= ' ' . __( 'Featured image set.', 'agenpress' );
+			if ( ! empty( $featured['success'] ) && set_post_thumbnail( $post_id, (int) $featured['attachment_id'] ) ) {
+				$featured_set = true;
+			} elseif ( ! empty( $featured['success'] ) ) {
+				$featured['success']  = false;
+				$featured['error']    = __( 'Image was generated but could not be set as featured image.', 'agenpress' );
+				$featured['error_code'] = 'thumbnail_failed';
+				$image_logs[ count( $image_logs ) - 1 ] = $featured;
 			}
 		}
 
-		$created = $context['created_posts'] ?? array();
-		$created[] = $tool_result['data'];
+		if ( $post_id && ! empty( $options['include_faq'] ) && ! empty( $article['faq'] ) && is_array( $article['faq'] ) ) {
+			$schema = $this->build_faq_schema_array( $article['faq'] );
+
+			if ( $schema ) {
+				update_post_meta( $post_id, '_agenpress_faq_schema', wp_json_encode( $schema ) );
+				$faq_schema_saved = true;
+			}
+		}
+
+		$report = $this->build_seo_article_report(
+			$title,
+			(string) $topic,
+			$article,
+			$options,
+			$post_id,
+			$status,
+			$featured_set,
+			$faq_schema_saved,
+			$image_logs
+		);
+
+		$post_data = array_merge(
+			$tool_result['data'],
+			array( 'report' => $report )
+		);
+
+		$created   = $context['created_posts'] ?? array();
+		$created[] = $post_data;
 
 		return array(
 			'success'         => true,
-			'message'         => trim( $message ),
-			'data'            => $tool_result['data'],
+			'message'         => $this->format_seo_article_success_message( $report, $tool_result['message'] ),
+			'data'            => $post_data,
 			'context_updates' => array(
 				'created_posts' => $created,
-				'last_article'  => $tool_result['data'],
+				'last_article'  => $post_data,
 			),
 		);
 	}
@@ -360,18 +419,24 @@ class TaskStepExecutor {
 			}
 		}
 
+		$section_keys = 'heading, content (HTML paragraphs only)';
+
+		if ( $section_images ) {
+			$section_keys .= ', image_prompt (English visual description, no text in image), image_alt (accessible alt text in article language)';
+		}
+
 		$json_keys = array(
 			'title',
-			'excerpt',
+			'excerpt (1-2 sentence intro shown before sections)',
 			'categories (array of strings)',
 			'tags (array of strings)',
 			'meta_title',
 			'meta_description',
-			'sections (array of objects with keys: heading, content as HTML)',
+			'sections (array of exactly ' . $sections_count . ' objects with keys: ' . $section_keys . ')',
 		);
 
 		if ( $section_images ) {
-			$lines[] = '- For each section, add image_prompt: a detailed illustration prompt (no text in the image).';
+			$lines[] = '- For each section, set image_prompt and image_alt as separate JSON fields (never inside content HTML).';
 		}
 
 		if ( $include_faq ) {
@@ -395,9 +460,13 @@ class TaskStepExecutor {
 		}
 
 		$lines[] = '';
+		$lines[] = 'Content rules:';
+		$lines[] = sprintf( '- The sections array must contain exactly %d items, each with a unique H2 heading.', $sections_count );
+		$lines[] = '- Section content is reader-facing HTML only. No metadata, prompts, alt text, schema, or hashtags inside content.';
+		$lines[] = '- FAQ answers and conclusion are separate JSON fields, not duplicated inside sections.';
+		$lines[] = '';
 		$lines[] = 'Return JSON with keys: ' . implode( ', ', $json_keys ) . '.';
-		$lines[] = 'Do not include a top-level content key; use the sections array for the article body.';
-		$lines[] = ContentPrompts::admin_instructions();
+		$lines[] = ContentPrompts::seo_article_instructions();
 
 		return implode( "\n", $lines );
 	}
@@ -410,7 +479,14 @@ class TaskStepExecutor {
 	 * @return string
 	 */
 	private function assemble_seo_article_content( array $article, array $options ): string {
-		$html     = '';
+		$html = '';
+
+		$excerpt = trim( (string) ( $article['excerpt'] ?? '' ) );
+
+		if ( '' !== $excerpt ) {
+			$html .= '<p class="agenpress-article-intro">' . wp_kses_post( $excerpt ) . '</p>';
+		}
+
 		$sections = $article['sections'] ?? array();
 
 		if ( is_array( $sections ) ) {
@@ -420,7 +496,7 @@ class TaskStepExecutor {
 				}
 
 				$heading = (string) ( $section['heading'] ?? '' );
-				$content = (string) ( $section['content'] ?? '' );
+				$content = $this->sanitize_seo_article_content( (string) ( $section['content'] ?? '' ) );
 
 				if ( '' !== $heading ) {
 					$html .= '<h2>' . esc_html( $heading ) . '</h2>';
@@ -435,7 +511,9 @@ class TaskStepExecutor {
 					);
 				}
 
-				$html .= wp_kses_post( $content );
+				if ( '' !== $content ) {
+					$html .= wp_kses_post( $content );
+				}
 			}
 		}
 
@@ -448,22 +526,23 @@ class TaskStepExecutor {
 				}
 
 				$question = (string) ( $item['question'] ?? '' );
-				$answer   = (string) ( $item['answer'] ?? '' );
+				$answer   = $this->sanitize_seo_article_content( (string) ( $item['answer'] ?? '' ) );
 
 				if ( '' === $question ) {
 					continue;
 				}
 
 				$html .= '<h3>' . esc_html( $question ) . '</h3>';
-				$html .= wp_kses_post( $answer );
-			}
 
-			$html .= $this->build_faq_schema_markup( $article['faq'] );
+				if ( '' !== $answer ) {
+					$html .= wp_kses_post( $answer );
+				}
+			}
 		}
 
 		if ( ! empty( $options['include_conclusion'] ) && ! empty( $article['conclusion'] ) ) {
 			$html .= '<h2>' . esc_html__( 'Conclusion', 'agenpress' ) . '</h2>';
-			$html .= wp_kses_post( (string) $article['conclusion'] );
+			$html .= wp_kses_post( $this->sanitize_seo_article_content( (string) $article['conclusion'] ) );
 		}
 
 		if ( ! empty( $options['suggest_services'] ) && ! empty( $article['suggested_services'] ) && is_array( $article['suggested_services'] ) ) {
@@ -668,12 +747,232 @@ class TaskStepExecutor {
 	}
 
 	/**
-	 * Build FAQPage JSON-LD script tag.
+	 * Build a structured report for SEO article task steps.
 	 *
-	 * @param array<int, array<string, string>> $faq_items FAQ items.
+	 * @param string               $title            Planned title.
+	 * @param string               $topic            Article topic.
+	 * @param array<string, mixed> $article          Parsed article JSON.
+	 * @param array<string, mixed> $options          Step options.
+	 * @param int                  $post_id          Created post ID.
+	 * @param string               $status           Post status.
+	 * @param bool                 $featured_set     Whether featured image was set.
+	 * @param bool                 $faq_schema_saved Whether FAQ schema meta was saved.
+	 * @return array<string, mixed>
+	 */
+	private function build_seo_article_report(
+		string $title,
+		string $topic,
+		array $article,
+		array $options,
+		int $post_id,
+		string $status,
+		bool $featured_set,
+		bool $faq_schema_saved,
+		array $image_logs = array()
+	): array {
+		$sections         = is_array( $article['sections'] ?? null ) ? $article['sections'] : array();
+		$images_generated = 0;
+		$images_requested = 0;
+		$section_headings = array();
+
+		foreach ( $sections as $section ) {
+			if ( ! is_array( $section ) ) {
+				continue;
+			}
+
+			if ( ! empty( $section['heading'] ) ) {
+				$section_headings[] = (string) $section['heading'];
+			}
+		}
+
+		if ( ! empty( $options['section_images'] ) ) {
+			$images_requested = count( $sections );
+
+			foreach ( $sections as $section ) {
+				if ( is_array( $section ) && ! empty( $section['image_url'] ) ) {
+					++$images_generated;
+				}
+			}
+		}
+
+		$image_errors = array_values(
+			array_filter(
+				$image_logs,
+				static function ( array $log ): bool {
+					return empty( $log['success'] );
+				}
+			)
+		);
+
+		$faq = is_array( $article['faq'] ?? null ) ? $article['faq'] : array();
+
+		return array(
+			'planned_title'            => $title,
+			'published_title'          => (string) ( $article['title'] ?? $title ),
+			'topic'                    => $topic,
+			'post_id'                  => $post_id,
+			'post_status'              => $status,
+			'sections_count'           => count( $sections ),
+			'sections_expected'        => (int) ( $options['sections_count'] ?? 0 ),
+			'section_headings'         => $section_headings,
+			'section_images_requested' => $images_requested,
+			'section_images_generated' => $images_generated,
+			'featured_image_requested' => ! empty( $options['featured_image'] ),
+			'featured_image_set'       => $featured_set,
+			'faq_requested'            => ! empty( $options['include_faq'] ),
+			'faq_count'                => count( $faq ),
+			'faq_schema_saved'         => $faq_schema_saved,
+			'conclusion_requested'     => ! empty( $options['include_conclusion'] ),
+			'conclusion_included'      => ! empty( $options['include_conclusion'] ) && ! empty( $article['conclusion'] ),
+			'categories'               => is_array( $article['categories'] ?? null ) ? $article['categories'] : array(),
+			'tags'                     => is_array( $article['tags'] ?? null ) ? $article['tags'] : array(),
+			'meta_title'               => (string) ( $article['meta_title'] ?? '' ),
+			'meta_description'         => (string) ( $article['meta_description'] ?? '' ),
+			'suggest_products'         => ! empty( $options['suggest_products'] ),
+			'suggest_services'         => ! empty( $options['suggest_services'] ),
+			'image_logs'               => $image_logs,
+			'image_errors'             => $image_errors,
+			'image_error_count'        => count( $image_errors ),
+		);
+	}
+
+	/**
+	 * Format a human-readable SEO article completion message.
+	 *
+	 * @param array<string, mixed> $report       Article report.
+	 * @param string               $base_message Base tool message.
 	 * @return string
 	 */
-	private function build_faq_schema_markup( array $faq_items ): string {
+	private function format_seo_article_success_message( array $report, string $base_message ): string {
+		$parts = array( $base_message );
+
+		$parts[] = sprintf(
+			/* translators: 1: sections count, 2: images generated, 3: images requested, 4: FAQ count */
+			__( 'Sections: %1$d | Section images: %2$d/%3$d | FAQ: %4$d', 'agenpress' ),
+			(int) ( $report['sections_count'] ?? 0 ),
+			(int) ( $report['section_images_generated'] ?? 0 ),
+			(int) ( $report['section_images_requested'] ?? 0 ),
+			(int) ( $report['faq_count'] ?? 0 )
+		);
+
+		if ( ! empty( $report['featured_image_requested'] ) ) {
+			$parts[] = ! empty( $report['featured_image_set'] )
+				? __( 'Featured image: set', 'agenpress' )
+				: __( 'Featured image: not set', 'agenpress' );
+		}
+
+		if ( ! empty( $report['faq_schema_saved'] ) ) {
+			$parts[] = __( 'FAQ schema saved', 'agenpress' );
+		}
+
+		if ( ! empty( $report['image_error_count'] ) ) {
+			$parts[] = sprintf(
+				/* translators: %d: number of image errors */
+				__( 'Image errors: %d (see task logs)', 'agenpress' ),
+				(int) $report['image_error_count']
+			);
+		}
+
+		return implode( ' · ', $parts );
+	}
+
+	/**
+	 * Generate section images for an SEO article and collect detailed logs.
+	 *
+	 * @param array<string, mixed> $article Article data (modified by reference).
+	 * @param array<string, mixed> $options Step options.
+	 * @param string               $title   Article title.
+	 * @return array<int, array<string, mixed>>
+	 */
+	private function generate_seo_article_images( array &$article, array $options, string $title ): array {
+		$image_logs = array();
+
+		if ( empty( $options['section_images'] ) || empty( $article['sections'] ) || ! is_array( $article['sections'] ) ) {
+			return $image_logs;
+		}
+
+		foreach ( $article['sections'] as $i => $section ) {
+			if ( ! is_array( $section ) ) {
+				continue;
+			}
+
+			$heading   = (string) ( $section['heading'] ?? '' );
+			$label     = $heading
+				? sprintf(
+					/* translators: %s: section heading */
+					__( 'Section: %s', 'agenpress' ),
+					$heading
+				)
+				: sprintf(
+					/* translators: %d: section number */
+					__( 'Section %d', 'agenpress' ),
+					$i + 1
+				);
+			$log_entry = array(
+				'type'    => 'section',
+				'index'   => $i + 1,
+				'heading' => $heading,
+				'label'   => $label,
+			);
+
+			if ( empty( $section['image_prompt'] ) ) {
+				$image_logs[] = array_merge(
+					$log_entry,
+					array(
+						'success'    => false,
+						'error_code' => 'missing_prompt',
+						'error'      => __( 'AI did not return image_prompt for this section.', 'agenpress' ),
+						'message'    => sprintf(
+							/* translators: %s: section label */
+							__( 'Image skipped for %s: missing image_prompt from AI.', 'agenpress' ),
+							$label
+						),
+					)
+				);
+				continue;
+			}
+
+			$result = $this->generate_image_attachment( (string) $section['image_prompt'], $label );
+			$image_logs[] = array_merge( $log_entry, $result );
+
+			if ( ! empty( $result['success'] ) ) {
+				$article['sections'][ $i ]['image_url'] = $result['url'];
+				$article['sections'][ $i ]['image_alt']  = (string) ( $section['image_alt'] ?? $section['heading'] ?? $title );
+			}
+		}
+
+		return $image_logs;
+	}
+
+	/**
+	 * Strip metadata leaks (schema, image prompts, alt lines) from article HTML/text.
+	 *
+	 * @param string $content Raw content.
+	 * @return string
+	 */
+	private function sanitize_seo_article_content( string $content ): string {
+		$content = trim( $content );
+
+		if ( '' === $content ) {
+			return '';
+		}
+
+		$content = preg_replace( '/<script[^>]*type=["\']application\/ld\+json["\'][^>]*>.*?<\/script>/is', '', $content );
+		$content = preg_replace( '/\{\s*"@context"\s*:\s*"https?:\/\/schema\.org"[^}]*(?:\{[^}]*\}[^}]*)*\}/s', '', $content );
+		$content = preg_replace( '/^(?:alt\s*(?:متن|text)?\s*(?:تصویر|image)?|image_prompt)\s*[:：].*$/miu', '', $content );
+		$content = preg_replace( '/^(?:هشتگ(?:‌|ی)?های?\s*پیشنهادی|Suggested hashtags)\s*[:：].*$/miu', '', $content );
+		$content = preg_replace( '/\n{3,}/', "\n\n", $content );
+
+		return trim( $content );
+	}
+
+	/**
+	 * Build FAQPage schema array for post meta / head output.
+	 *
+	 * @param array<int, array<string, string>> $faq_items FAQ items.
+	 * @return array<string, mixed>|null
+	 */
+	private function build_faq_schema_array( array $faq_items ): ?array {
 		$entities = array();
 
 		foreach ( $faq_items as $item ) {
@@ -699,36 +998,63 @@ class TaskStepExecutor {
 		}
 
 		if ( empty( $entities ) ) {
-			return '';
+			return null;
 		}
 
-		$schema = array(
+		return array(
 			'@context'   => 'https://schema.org',
 			'@type'      => 'FAQPage',
 			'mainEntity' => $entities,
 		);
-
-		return '<script type="application/ld+json">' . wp_json_encode( $schema ) . '</script>';
 	}
 
 	/**
 	 * Generate an AI image and sideload it into the media library.
 	 *
 	 * @param string $prompt Image prompt.
-	 * @return array{attachment_id: int, url: string}|null
+	 * @param string $label  Human-readable label for logs.
+	 * @return array<string, mixed>
 	 */
-	private function generate_image_attachment( string $prompt ): ?array {
+	private function generate_image_attachment( string $prompt, string $label = '' ): array {
 		$prompt = trim( $prompt );
+		$label  = '' !== $label ? $label : __( 'Image', 'agenpress' );
+
+		$result = array(
+			'success'        => false,
+			'label'          => $label,
+			'prompt_preview' => mb_substr( $prompt, 0, 120 ),
+			'error'          => '',
+			'error_code'     => '',
+			'message'        => '',
+		);
 
 		if ( '' === $prompt ) {
-			return null;
+			$result['error']      = __( 'Empty image prompt.', 'agenpress' );
+			$result['error_code'] = 'empty_prompt';
+			$result['message']    = sprintf(
+				/* translators: %s: image label */
+				__( 'Image failed for %1$s: %2$s', 'agenpress' ),
+				$label,
+				$result['error']
+			);
+
+			return $result;
 		}
 
 		try {
 			$provider = $this->provider_factory->get_image_provider();
 
 			if ( ! $provider->is_configured() ) {
-				return null;
+				$result['error']      = __( 'Image AI provider is not configured. Add an API key for OpenAI, GapGPT, or Custom in AgenPress settings.', 'agenpress' );
+				$result['error_code'] = 'provider_not_configured';
+				$result['message']    = sprintf(
+					/* translators: 1: image label, 2: error message */
+					__( 'Image failed for %1$s: %2$s', 'agenpress' ),
+					$label,
+					$result['error']
+				);
+
+				return $result;
 			}
 
 			$image = $provider->generate_image(
@@ -737,21 +1063,55 @@ class TaskStepExecutor {
 			);
 
 			if ( empty( $image['url'] ) && empty( $image['b64_json'] ) ) {
-				return null;
+				$result['error']      = __( 'AI image API returned no image URL or data.', 'agenpress' );
+				$result['error_code'] = 'empty_response';
+				$result['message']    = sprintf(
+					/* translators: 1: image label, 2: error message */
+					__( 'Image failed for %1$s: %2$s', 'agenpress' ),
+					$label,
+					$result['error']
+				);
+
+				return $result;
 			}
 
-			$attachment_id = AiImageSideloader::sideload_result( $image, $prompt );
+			$sideload = AiImageSideloader::sideload_result_detailed( $image, $prompt );
 
-			if ( ! $attachment_id ) {
-				return null;
+			if ( empty( $sideload['attachment_id'] ) ) {
+				$result['error']      = (string) ( $sideload['error'] ?? __( 'Failed to save image to media library.', 'agenpress' ) );
+				$result['error_code'] = 'sideload_failed';
+				$result['message']    = sprintf(
+					/* translators: 1: image label, 2: error message */
+					__( 'Image failed for %1$s: %2$s', 'agenpress' ),
+					$label,
+					$result['error']
+				);
+
+				return $result;
 			}
 
-			return array(
-				'attachment_id' => $attachment_id,
-				'url'           => (string) wp_get_attachment_url( $attachment_id ),
+			$result['success']        = true;
+			$result['attachment_id']  = (int) $sideload['attachment_id'];
+			$result['url']            = (string) wp_get_attachment_url( $sideload['attachment_id'] );
+			$result['message']        = sprintf(
+				/* translators: 1: image label, 2: attachment ID */
+				__( 'Image created for %1$s (attachment #%2$d).', 'agenpress' ),
+				$label,
+				$result['attachment_id']
 			);
+
+			return $result;
 		} catch ( \Exception $e ) {
-			return null;
+			$result['error']      = $e->getMessage();
+			$result['error_code'] = 'api_exception';
+			$result['message']    = sprintf(
+				/* translators: 1: image label, 2: exception message */
+				__( 'Image failed for %1$s: %2$s', 'agenpress' ),
+				$label,
+				$result['error']
+			);
+
+			return $result;
 		}
 	}
 
@@ -877,19 +1237,66 @@ class TaskStepExecutor {
 	/**
 	 * Try to parse JSON from AI output.
 	 *
-	 * @param mixed $content Content.
+	 * @param mixed       $content Content.
+	 * @param string|null $error   Optional error message output.
 	 * @return mixed|null
 	 */
-	private function try_parse_json( mixed $content ): mixed {
+	private function try_parse_json( mixed $content, ?string &$error = null ): mixed {
+		if ( is_array( $content ) ) {
+			return $content;
+		}
+
 		if ( ! is_string( $content ) ) {
+			$error = __( 'AI response was not text or JSON.', 'agenpress' );
 			return null;
 		}
 
-		$content = trim( $content );
-		$content = preg_replace( '/^```json\s*|\s*```$/s', '', $content );
+		$content   = trim( $content );
+		$candidates = array( $content );
 
-		$decoded = json_decode( $content, true );
+		$stripped = preg_replace( '/^```(?:json)?\s*/i', '', $content );
+		$stripped = preg_replace( '/\s*```\s*$/', '', (string) $stripped );
 
-		return JSON_ERROR_NONE === json_last_error() ? $decoded : null;
+		if ( is_string( $stripped ) && $stripped !== $content ) {
+			$candidates[] = trim( $stripped );
+		}
+
+		if ( preg_match( '/\{.*\}/s', $content, $matches ) ) {
+			$candidates[] = trim( $matches[0] );
+		}
+
+		$last_error = '';
+
+		foreach ( array_unique( array_filter( $candidates ) ) as $candidate ) {
+			$decoded = json_decode( $candidate, true );
+
+			if ( JSON_ERROR_NONE === json_last_error() && is_array( $decoded ) ) {
+				return $decoded;
+			}
+
+			$last_error = json_last_error_msg();
+		}
+
+		$error = $last_error ?: __( 'Could not decode JSON from AI response.', 'agenpress' );
+
+		return null;
+	}
+
+	/**
+	 * Build a short preview of AI output for task error logs.
+	 *
+	 * @param mixed $data AI response data.
+	 * @return string
+	 */
+	private function preview_ai_response( mixed $data ): string {
+		if ( is_string( $data ) ) {
+			return mb_substr( $data, 0, 400 );
+		}
+
+		if ( is_array( $data ) ) {
+			return mb_substr( wp_json_encode( $data ), 0, 400 );
+		}
+
+		return '';
 	}
 }

@@ -58,6 +58,9 @@
             "AI API error (HTTP %d).": [
                 "AI API error (HTTP %d)."
             ],
+            "AI API request failed.": [
+                "AI API request failed."
+            ],
             "AI Behavior": [
                 "رفتار هوش مصنوعی"
             ],
@@ -343,6 +346,9 @@
             "Cancel": [
                 "لغو"
             ],
+            "Cannot reach the AI API server (%s). Check your internet connection and DNS settings, or use the alternate GapGPT endpoint in AgenPress settings.": [
+                "Cannot reach the AI API server (%s). Check your internet connection and DNS settings, or use the alternate GapGPT endpoint in AgenPress settings."
+            ],
             "Cart is empty.": [
                 "سبد خرید خالی است."
             ],
@@ -377,7 +383,7 @@
                 "واضح و حرفه‌ای"
             ],
             "Clear chat": [
-                "Clear chat"
+                "پاک کردن چت"
             ],
             "Clear this chat and start over?": [
                 "Clear this chat and start over?"
@@ -577,11 +583,17 @@
             "Delete Elementor element \"%s\"? This cannot be undone.": [
                 "حذف عنصر المنتور \"%s\"؟ این عمل قابل بازگشت نیست."
             ],
+            "Delete conversation": [
+                "حذف گفتگو"
+            ],
             "Delete message": [
                 "Delete message"
             ],
             "Delete product \"%s\"? This cannot be undone.": [
                 "حذف محصول \"%s\"؟ این عمل قابل بازگشت نیست."
+            ],
+            "Delete this conversation?": [
+                "این گفتگو حذف شود؟"
             ],
             "Delete this post? This cannot be undone.": [
                 "حذف این پست؟ این عمل قابل بازگشت نیست."
@@ -775,6 +787,9 @@
             "Failed to create workflow.": [
                 "ایجاد گردش کار ناموفق بود."
             ],
+            "Failed to delete conversation.": [
+                "حذف گفتگو ناموفق بود."
+            ],
             "Failed to delete message.": [
                 "Failed to delete message."
             ],
@@ -795,6 +810,12 @@
             ],
             "Failed to load analytics.": [
                 "بارگذاری تحلیل‌ها ناموفق بود."
+            ],
+            "Failed to load conversation.": [
+                "بارگذاری گفتگو ناموفق بود."
+            ],
+            "Failed to load conversations.": [
+                "بارگذاری گفتگوها ناموفق بود."
             ],
             "Failed to parse generated article: %s": [
                 "Failed to parse generated article: %s"
@@ -1228,6 +1249,9 @@
             "New Workflow": [
                 "گردش کار جدید"
             ],
+            "New chat": [
+                "گفتگوی جدید"
+            ],
             "No": [
                 "No"
             ],
@@ -1257,6 +1281,9 @@
             ],
             "No paid orders found for this period.": [
                 "No paid orders found for this period."
+            ],
+            "No previous chats yet.": [
+                "هنوز گفتگوی قبلی وجود ندارد."
             ],
             "No resolved conversations.": [
                 "چت حل‌شده‌ای وجود ندارد."
@@ -1441,6 +1468,9 @@
             "Product": [
                 "Product"
             ],
+            "Product #%d": [
+                "Product #%d"
+            ],
             "Product Description": [
                 "Product Description"
             ],
@@ -1449,6 +1479,9 @@
             ],
             "Product Descriptions": [
                 "توضیحات محصول"
+            ],
+            "Product and Rank Math SEO settings updated.": [
+                "Product and Rank Math SEO settings updated."
             ],
             "Product details retrieved.": [
                 "جزئیات محصول دریافت شد."
@@ -1581,6 +1614,9 @@
             ],
             "SEO Articles Batch": [
                 "دسته مقالات سئو"
+            ],
+            "SEO update: %s": [
+                "SEO update: %s"
             ],
             "Sales Assistant": [
                 "دستیار فروش"
@@ -1956,6 +1992,9 @@
             ],
             "Untitled": [
                 "Untitled"
+            ],
+            "Untitled chat": [
+                "گفتگوی بدون عنوان"
             ],
             "Update the selected widget heading text": [
                 "متن عنوان ابزارک انتخاب‌شده را به‌روز کن"

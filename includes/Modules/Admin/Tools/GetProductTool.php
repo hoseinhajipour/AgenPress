@@ -8,6 +8,7 @@
 namespace AgenPress\Modules\Admin\Tools;
 
 use AgenPress\Agents\AbstractTool;
+use AgenPress\Content\RankMathSeo;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -49,21 +50,24 @@ class GetProductTool extends AbstractTool {
 			return $this->fail( __( 'Product not found.', 'agenpress' ) );
 		}
 
-		return $this->success(
-			array(
-				'id'          => $product->get_id(),
-				'name'        => $product->get_name(),
-				'description' => $product->get_description(),
-				'short_description' => $product->get_short_description(),
-				'sku'         => $product->get_sku(),
-				'price'       => $product->get_price(),
-				'regular_price' => $product->get_regular_price(),
-				'sale_price'  => $product->get_sale_price(),
-				'status'      => $product->get_status(),
-				'stock'       => $product->get_stock_quantity(),
-				'categories'  => wp_get_post_terms( $product->get_id(), 'product_cat', array( 'fields' => 'names' ) ),
-			),
-			__( 'Product retrieved.', 'agenpress' )
+		$data = array(
+			'id'                => $product->get_id(),
+			'name'              => $product->get_name(),
+			'description'       => $product->get_description(),
+			'short_description' => $product->get_short_description(),
+			'sku'               => $product->get_sku(),
+			'price'             => $product->get_price(),
+			'regular_price'     => $product->get_regular_price(),
+			'sale_price'        => $product->get_sale_price(),
+			'status'            => $product->get_status(),
+			'stock'             => $product->get_stock_quantity(),
+			'categories'        => wp_get_post_terms( $product->get_id(), 'product_cat', array( 'fields' => 'names' ) ),
 		);
+
+		if ( RankMathSeo::is_active() ) {
+			$data['seo'] = RankMathSeo::get_for_post( $product->get_id() );
+		}
+
+		return $this->success( $data, __( 'Product retrieved.', 'agenpress' ) );
 	}
 }

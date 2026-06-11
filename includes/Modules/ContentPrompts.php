@@ -33,6 +33,8 @@ class ContentPrompts {
 				'- AI images: use generate_image for featured images, in-content images, or media library assets on any post type.',
 				'- Links: use [title](url) markdown with a short clickable title; never output bare URLs.',
 				'- When creating content, use create_post tool with status "draft" unless user asks to publish.',
+				'- WooCommerce products: description = full HTML in the main Description tab; short_description = brief excerpt only.',
+				'- Rank Math (when active): set focus_keyword, seo_title (~60 chars), and seo_description (~160 chars) on update_product for product SEO requests.',
 				'- Suggest internal links to existing posts when relevant.',
 			)
 		);

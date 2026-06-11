@@ -1072,14 +1072,24 @@ class TaskStepExecutor {
 			);
 		}
 
-		$create_new = ! empty( $step['create_new'] );
-		$products   = $context['products'] ?? array();
-		$index      = (int) ( $step['index'] ?? 0 );
-		$niche      = (string) ( $step['niche'] ?? '' );
-		$brief      = (string) ( $step['brief'] ?? '' );
-		$publish    = ! empty( $step['publish'] );
-		$status     = $publish ? 'publish' : 'draft';
-		$product    = ( ! $create_new && is_array( $products ) ) ? ( $products[ $index ] ?? null ) : null;
+		$create_new  = ! empty( $step['create_new'] );
+		$products    = $context['products'] ?? array();
+		$index       = (int) ( $step['index'] ?? 0 );
+		$niche       = (string) ( $step['niche'] ?? '' );
+		$brief       = (string) ( $step['brief'] ?? '' );
+		$publish     = ! empty( $step['publish'] );
+		$status      = $publish ? 'publish' : 'draft';
+		$product_id  = (int) ( $step['product_id'] ?? 0 );
+		$product     = null;
+
+		if ( $product_id > 0 ) {
+			$product = array(
+				'id'   => $product_id,
+				'name' => get_the_title( $product_id ),
+			);
+		} elseif ( ! $create_new && is_array( $products ) ) {
+			$product = $products[ $index ] ?? null;
+		}
 
 		if ( $create_new || ! $product || empty( $product['id'] ) ) {
 			$spec_prompt = sprintf(
@@ -1172,10 +1182,14 @@ class TaskStepExecutor {
 			);
 		}
 
+		$json_keys = 'name (only if the brief asks to rename the product), description (full long HTML for the main WooCommerce Description tab — 250+ words, H2 sections, persuasive SEO copy), short_description (1-2 sentence excerpt near price), focus_keyword, seo_title (~60 chars), seo_description (~160 chars)';
+
 		$prompt = sprintf(
-			'Write an SEO-optimized WooCommerce product description. Product: %s. Niche: %s. Return JSON with keys: description (HTML), short_description.',
+			'Write SEO-optimized WooCommerce product copy. Product: %s. Market/niche: %s. Instructions: %s. Return ONLY JSON with keys: %s. Follow every instruction in the brief (title changes, keyword targets, market focus). Use the same language as the brief.',
 			$product['name'] ?? 'Product',
-			$niche
+			$niche,
+			mb_substr( $brief, 0, 1200 ),
+			$json_keys
 		);
 
 		$ai_result = $this->execute_ai( array( 'prompt' => $prompt ), $context, $module );
@@ -1190,13 +1204,28 @@ class TaskStepExecutor {
 			$copy = array( 'description' => $ai_result['data'], 'short_description' => wp_trim_words( $ai_result['data'], 30 ) );
 		}
 
+		$update_args = array(
+			'product_id'        => (int) $product['id'],
+			'description'       => $copy['description'] ?? '',
+			'short_description' => $copy['short_description'] ?? '',
+		);
+
+		if ( ! empty( $copy['name'] ) ) {
+			$update_args['name'] = (string) $copy['name'];
+		}
+		if ( ! empty( $copy['focus_keyword'] ) ) {
+			$update_args['focus_keyword'] = (string) $copy['focus_keyword'];
+		}
+		if ( ! empty( $copy['seo_title'] ) ) {
+			$update_args['seo_title'] = (string) $copy['seo_title'];
+		}
+		if ( ! empty( $copy['seo_description'] ) ) {
+			$update_args['seo_description'] = (string) $copy['seo_description'];
+		}
+
 		$tool_result = $this->tool_registry->execute(
 			'update_product',
-			array(
-				'product_id'        => (int) $product['id'],
-				'description'       => $copy['description'] ?? '',
-				'short_description' => $copy['short_description'] ?? '',
-			),
+			$update_args,
 			$user_id,
 			$module
 		);

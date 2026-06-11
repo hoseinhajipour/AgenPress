@@ -160,7 +160,7 @@ class AgentEngine {
 		);
 
 		if ( 'admin' === $module ) {
-			$queued = $this->chat_task_planner->try_queue( $user_message, $user_id );
+			$queued = $this->chat_task_planner->try_queue( $user_message, $user_id, $attachments );
 
 			if ( null !== $queued && ! empty( $queued['tasks'] ) ) {
 				return $this->queued_tasks_response(

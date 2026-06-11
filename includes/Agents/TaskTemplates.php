@@ -328,16 +328,21 @@ class TaskTemplates {
 	 * @return array<int, array<string, mixed>>
 	 */
 	private static function product_description_steps( string $description, array $params ): array {
-		$count      = (int) ( $params['count'] ?? self::parse_count( $description, 3 ) );
-		$niche      = sanitize_text_field( (string) ( $params['niche'] ?? self::parse_topic( $description ) ) );
-		$create_new = array_key_exists( 'create_new', $params )
-			? ! empty( $params['create_new'] )
-			: self::should_create_products( $description );
-		$publish    = ! empty( $params['publish'] );
+		$product_ids = self::normalize_product_ids( $params['product_ids'] ?? array() );
+		$count       = ! empty( $product_ids )
+			? count( $product_ids )
+			: (int) ( $params['count'] ?? self::parse_count( $description, 3 ) );
+		$niche       = sanitize_text_field( (string) ( $params['niche'] ?? self::parse_topic( $description ) ) );
+		$create_new  = ! empty( $product_ids )
+			? false
+			: ( array_key_exists( 'create_new', $params )
+				? ! empty( $params['create_new'] )
+				: self::should_create_products( $description ) );
+		$publish     = ! empty( $params['publish'] );
 
 		$steps = array();
 
-		if ( ! $create_new ) {
+		if ( ! $create_new && empty( $product_ids ) ) {
 			$steps[] = array(
 				'type'        => 'tool',
 				'name'        => 'list_products',
@@ -352,7 +357,7 @@ class TaskTemplates {
 		}
 
 		for ( $i = 1; $i <= $count; $i++ ) {
-			$steps[] = array(
+			$step = array(
 				'type'        => 'product_description',
 				'name'        => 'product_' . $i,
 				'label'       => $create_new
@@ -367,9 +372,44 @@ class TaskTemplates {
 				'create_new'  => $create_new,
 				'publish'     => $publish,
 			);
+
+			if ( ! empty( $product_ids[ $i - 1 ] ) ) {
+				$step['product_id'] = (int) $product_ids[ $i - 1 ];
+				$step['label']      = sprintf(
+					/* translators: %s: product title */
+					__( 'SEO update: %s', 'agenpress' ),
+					get_the_title( (int) $product_ids[ $i - 1 ] ) ?: sprintf( '#%d', (int) $product_ids[ $i - 1 ] )
+				);
+			}
+
+			$steps[] = $step;
 		}
 
 		return $steps;
+	}
+
+	/**
+	 * Normalize product ID list from task params.
+	 *
+	 * @param mixed $product_ids Raw product IDs.
+	 * @return array<int, int>
+	 */
+	public static function normalize_product_ids( mixed $product_ids ): array {
+		if ( ! is_array( $product_ids ) ) {
+			return array();
+		}
+
+		$normalized = array();
+
+		foreach ( $product_ids as $product_id ) {
+			$product_id = (int) $product_id;
+
+			if ( $product_id > 0 ) {
+				$normalized[] = $product_id;
+			}
+		}
+
+		return array_values( array_unique( $normalized ) );
 	}
 
 	/**

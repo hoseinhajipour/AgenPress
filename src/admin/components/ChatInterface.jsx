@@ -32,11 +32,19 @@ const DEFAULT_SUGGESTIONS = {
 	],
 };
 
-export default function ChatInterface( { module = 'admin', orchestrate = false, onNavigateToTasks = null } ) {
-	const [ messages, setMessages ] = useState( [] );
+export default function ChatInterface( {
+	module = 'admin',
+	orchestrate = false,
+	onNavigateToTasks = null,
+	initialConversationId = 0,
+	initialMessages = [],
+	onConversationChange = null,
+	onChatCleared = null,
+} ) {
+	const [ messages, setMessages ] = useState( initialMessages );
 	const [ input, setInput ] = useState( '' );
 	const [ loading, setLoading ] = useState( false );
-	const [ conversationId, setConversationId ] = useState( 0 );
+	const [ conversationId, setConversationId ] = useState( initialConversationId );
 	const [ attachments, setAttachments ] = useState( [] );
 	const [ error, setError ] = useState( null );
 	const [ pendingAction, setPendingAction ] = useState( null );
@@ -72,7 +80,13 @@ export default function ChatInterface( { module = 'admin', orchestrate = false, 
 
 	const handleResponse = ( response ) => {
 		if ( response.conversation_id ) {
-			setConversationId( response.conversation_id );
+			const nextId = response.conversation_id;
+
+			if ( conversationId !== nextId && onConversationChange ) {
+				onConversationChange( nextId );
+			}
+
+			setConversationId( nextId );
 		}
 
 		setMessages( ( prev ) => {
@@ -228,6 +242,10 @@ export default function ChatInterface( { module = 'admin', orchestrate = false, 
 		setPendingAction( null );
 		setAttachments( [] );
 		setError( null );
+
+		if ( onChatCleared ) {
+			onChatCleared();
+		}
 	};
 
 	return (

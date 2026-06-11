@@ -48,7 +48,7 @@ class CreateAgentTaskTool extends AbstractTool {
 					),
 					'params'      => array(
 						'type'        => 'object',
-						'description' => 'Template parameters (e.g. count, topic, niche, publish)',
+						'description' => 'Template parameters (e.g. count, topic, niche, publish, product_ids for specific WooCommerce updates)',
 					),
 				),
 				'required'   => array( 'title', 'description' ),

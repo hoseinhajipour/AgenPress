@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AgenPress\n"
 "Report-Msgid-Bugs-To: https://github.com/agenpress/agenpress\n"
-"POT-Creation-Date: 2026-06-10 20:33+0000\n"
+"POT-Creation-Date: 2026-06-11 09:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,12 +72,16 @@ msgstr ""
 msgid "A team member will follow up with you."
 msgstr ""
 
-#: includes/AI/OpenAICompatibleProvider.php:483
+#: includes/AI/OpenAICompatibleProvider.php:568
 msgid "AI API error (HTTP %1$d): %2$s"
 msgstr ""
 
-#: includes/AI/OpenAICompatibleProvider.php:491
+#: includes/AI/OpenAICompatibleProvider.php:576
 msgid "AI API error (HTTP %d)."
+msgstr ""
+
+#: includes/AI/OpenAICompatibleProvider.php:481
+msgid "AI API request failed."
 msgstr ""
 
 #: src/admin/pages/SalesChatSettings.jsx:14
@@ -139,7 +143,7 @@ msgstr ""
 msgid "AI plan → AI execution pattern for open-ended admin work."
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:585
+#: includes/Agents/TaskTemplates.php:625
 msgid "AI planning task steps"
 msgstr ""
 
@@ -147,7 +151,7 @@ msgstr ""
 msgid "AI response preview:"
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:1274
+#: includes/Agents/TaskStepExecutor.php:1303
 msgid "AI response was not text or JSON."
 msgstr ""
 
@@ -184,8 +188,8 @@ msgid "About AgenPress"
 msgstr ""
 
 #: includes/Agents/SitePageBuilder.php:450
-#: includes/Agents/TaskTemplates.php:484
-#: includes/Agents/TaskTemplates.php:513
+#: includes/Agents/TaskTemplates.php:524
+#: includes/Agents/TaskTemplates.php:553
 msgid "About Us"
 msgstr ""
 
@@ -265,7 +269,7 @@ msgstr ""
 msgid "Agent Tasks"
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:257
+#: src/admin/components/ChatInterface.jsx:275
 msgid "Agent tasks queued"
 msgstr ""
 
@@ -356,7 +360,7 @@ msgstr ""
 msgid "Articles overview"
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:392
+#: src/admin/components/ChatInterface.jsx:410
 msgid "Ask AgenPress anything..."
 msgstr ""
 
@@ -373,7 +377,7 @@ msgstr ""
 msgid "Assistant"
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:382
+#: src/admin/components/ChatInterface.jsx:400
 #: src/admin/components/LinkPickerModal.jsx:112
 #: src/admin/components/LinkPickerModal.jsx:115
 msgid "Attach internal link"
@@ -435,8 +439,8 @@ msgstr ""
 msgid "Batch summary"
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:482
-#: includes/Agents/TaskTemplates.php:511
+#: includes/Agents/TaskTemplates.php:522
+#: includes/Agents/TaskTemplates.php:551
 msgid "Blog"
 msgstr ""
 
@@ -464,11 +468,11 @@ msgstr ""
 msgid "Brand info imported: %1$d created, %2$d updated."
 msgstr ""
 
-#: includes/Agents/ChatTaskAutoPlanner.php:284
+#: includes/Agents/ChatTaskAutoPlanner.php:304
 msgid "Build Elementor store pages"
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:425
+#: includes/Agents/TaskTemplates.php:465
 msgid "Building Elementor page: %s"
 msgstr ""
 
@@ -484,6 +488,10 @@ msgstr ""
 #: src/post-editor/GenerateTextModal.jsx:124
 #: src/post-editor/InsertImageModal.jsx:144
 msgid "Cancel"
+msgstr ""
+
+#: includes/AI/OpenAICompatibleProvider.php:531
+msgid "Cannot reach the AI API server (%s). Check your internet connection and DNS settings, or use the alternate GapGPT endpoint in AgenPress settings."
 msgstr ""
 
 #: includes/Modules/Sales/Tools/GetCartSummaryTool.php:59
@@ -537,11 +545,11 @@ msgstr ""
 msgid "Clear and business-like"
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:287
+#: src/admin/components/ChatInterface.jsx:305
 msgid "Clear chat"
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:213
+#: src/admin/components/ChatInterface.jsx:227
 msgid "Clear this chat and start over?"
 msgstr ""
 
@@ -604,8 +612,8 @@ msgid "Contact"
 msgstr ""
 
 #: includes/Agents/SitePageBuilder.php:361
-#: includes/Agents/TaskTemplates.php:483
-#: includes/Agents/TaskTemplates.php:512
+#: includes/Agents/TaskTemplates.php:523
+#: includes/Agents/TaskTemplates.php:552
 msgid "Contact Us"
 msgstr ""
 
@@ -653,6 +661,7 @@ msgstr ""
 msgid "Conversation tone:"
 msgstr ""
 
+#: src/admin/components/ChatHistorySidebar.jsx:85
 #: src/admin/pages/Analytics.jsx:58
 msgid "Conversations"
 msgstr ""
@@ -673,7 +682,7 @@ msgstr ""
 msgid "Could not create upload directory: %s"
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:1304
+#: includes/Agents/TaskStepExecutor.php:1333
 msgid "Could not decode JSON from AI response."
 msgstr ""
 
@@ -681,7 +690,7 @@ msgstr ""
 msgid "Could not find a column or container for widgets (id: %s). Use column_id from create_section or get_page_structure."
 msgstr ""
 
-#: includes/AI/OpenAICompatibleProvider.php:416
+#: includes/AI/OpenAICompatibleProvider.php:420
 msgid "Could not read reference image file."
 msgstr ""
 
@@ -701,11 +710,11 @@ msgstr ""
 msgid "Courteous and respectful"
 msgstr ""
 
-#: includes/Agents/ChatTaskAutoPlanner.php:222
+#: includes/Agents/ChatTaskAutoPlanner.php:242
 msgid "Create %d SEO blog posts"
 msgstr ""
 
-#: includes/Agents/ChatTaskAutoPlanner.php:240
+#: includes/Agents/ChatTaskAutoPlanner.php:260
 msgid "Create %d WooCommerce products"
 msgstr ""
 
@@ -717,7 +726,7 @@ msgstr ""
 msgid "Create Elementor pages with AI banners, sections, and widgets"
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:147
+#: includes/Modules/Admin/AdminModule.php:149
 msgid "Create FAQ schema markup for [topic]"
 msgstr ""
 
@@ -725,11 +734,11 @@ msgstr ""
 msgid "Create SEO article"
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:156
+#: includes/Modules/Admin/AdminModule.php:158
 msgid "Create a new product draft for [product name]"
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:151
+#: includes/Modules/Admin/AdminModule.php:153
 msgid "Create an AI hero image for a landing page"
 msgstr ""
 
@@ -757,7 +766,7 @@ msgstr ""
 msgid "Creating SEO article %d"
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:359
+#: includes/Agents/TaskTemplates.php:364
 msgid "Creating product %d with image"
 msgstr ""
 
@@ -830,13 +839,22 @@ msgstr ""
 msgid "Delete Elementor element \"%s\"? This cannot be undone."
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:335
-#: src/admin/components/ChatInterface.jsx:336
+#: src/admin/components/ChatHistorySidebar.jsx:131
+#: src/admin/components/ChatHistorySidebar.jsx:132
+msgid "Delete conversation"
+msgstr ""
+
+#: src/admin/components/ChatInterface.jsx:353
+#: src/admin/components/ChatInterface.jsx:354
 msgid "Delete message"
 msgstr ""
 
 #: includes/Modules/Admin/Tools/DeleteProductTool.php:37
 msgid "Delete product \"%s\"? This cannot be undone."
+msgstr ""
+
+#: src/admin/components/ChatHistorySidebar.jsx:61
+msgid "Delete this conversation?"
 msgstr ""
 
 #: includes/Modules/Admin/Tools/DeletePostTool.php:39
@@ -900,7 +918,7 @@ msgstr ""
 msgid "Draft Posts Review"
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:149
+#: includes/Modules/Admin/AdminModule.php:151
 msgid "Draft a new page with a hero section and CTA"
 msgstr ""
 
@@ -1014,7 +1032,7 @@ msgstr ""
 msgid "Execute this WordPress admin task and describe what was done. Title: Improve site content quality. Description: Review content gaps and suggest concrete improvements."
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:595
+#: includes/Agents/TaskTemplates.php:635
 msgid "Executing planned work"
 msgstr ""
 
@@ -1064,11 +1082,11 @@ msgstr ""
 msgid "Failed to add image to media library: %s"
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:221
+#: src/admin/components/ChatInterface.jsx:235
 msgid "Failed to clear chat."
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:157
+#: src/admin/components/ChatInterface.jsx:171
 msgid "Failed to confirm action."
 msgstr ""
 
@@ -1107,7 +1125,7 @@ msgstr ""
 msgid "Failed to create page section."
 msgstr ""
 
-#: includes/Agents/TaskStepExecutor.php:1126
+#: includes/Agents/TaskStepExecutor.php:1136
 #: includes/Modules/Admin/Tools/CreateProductTool.php:71
 msgid "Failed to create product."
 msgstr ""
@@ -1120,8 +1138,12 @@ msgstr ""
 msgid "Failed to create workflow."
 msgstr ""
 
+#: src/admin/components/ChatHistorySidebar.jsx:76
+msgid "Failed to delete conversation."
+msgstr ""
+
 #: includes/REST/ChatController.php:268
-#: src/admin/components/ChatInterface.jsx:203
+#: src/admin/components/ChatInterface.jsx:217
 msgid "Failed to delete message."
 msgstr ""
 
@@ -1149,6 +1171,14 @@ msgstr ""
 msgid "Failed to load analytics."
 msgstr ""
 
+#: src/admin/pages/Chat.jsx:59
+msgid "Failed to load conversation."
+msgstr ""
+
+#: src/admin/components/ChatHistorySidebar.jsx:48
+msgid "Failed to load conversations."
+msgstr ""
+
 #: includes/Agents/TaskStepExecutor.php:244
 msgid "Failed to parse generated article: %s"
 msgstr ""
@@ -1168,7 +1198,7 @@ msgstr ""
 msgid "Failed to save image to media library."
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:136
+#: src/admin/components/ChatInterface.jsx:150
 #: src/elementor/Panel.jsx:122
 #: src/frontend/Widget.jsx:116
 msgid "Failed to send message."
@@ -1216,7 +1246,7 @@ msgstr ""
 msgid "Fetches real site info via tool, then AI writes a short health report with recommendations."
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:344
+#: includes/Agents/TaskTemplates.php:349
 msgid "Fetching existing products"
 msgstr ""
 
@@ -1275,7 +1305,7 @@ msgstr ""
 msgid "GPT models via OpenAI API"
 msgstr ""
 
-#: includes/AI/GapGPTProvider.php:47
+#: includes/AI/GapGPTProvider.php:59
 msgid "GapGPT API key is not configured."
 msgstr ""
 
@@ -1310,7 +1340,7 @@ msgstr ""
 msgid "Generate Text"
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:150
+#: includes/Modules/Admin/AdminModule.php:152
 #: src/admin/components/ChatInterface.jsx:22
 msgid "Generate a featured image for my latest post"
 msgstr ""
@@ -1325,7 +1355,7 @@ msgstr ""
 msgid "Generate image for each section"
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:146
+#: includes/Modules/Admin/AdminModule.php:148
 #: src/admin/components/ChatInterface.jsx:21
 msgid "Generate meta title and description for my latest post"
 msgstr ""
@@ -1375,7 +1405,7 @@ msgstr ""
 msgid "Give me a sales overview for this week"
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:144
+#: includes/Modules/Admin/AdminModule.php:146
 msgid "Give me an overview of my WordPress site"
 msgstr ""
 
@@ -1387,8 +1417,8 @@ msgstr ""
 msgid "Hi! How can I help you today?"
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:480
-#: includes/Agents/TaskTemplates.php:509
+#: includes/Agents/TaskTemplates.php:520
+#: includes/Agents/TaskTemplates.php:549
 msgid "Home"
 msgstr ""
 
@@ -1400,7 +1430,7 @@ msgstr ""
 msgid "Home page sections created."
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:296
+#: src/admin/components/ChatInterface.jsx:314
 msgid "How can I help you manage your site?"
 msgstr ""
 
@@ -1608,7 +1638,7 @@ msgstr ""
 msgid "Link"
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:148
+#: includes/Modules/Admin/AdminModule.php:150
 msgid "List all categories and suggest new ones"
 msgstr ""
 
@@ -1620,7 +1650,7 @@ msgstr ""
 msgid "List draft posts"
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:155
+#: includes/Modules/Admin/AdminModule.php:157
 msgid "List my WooCommerce products and their stock levels"
 msgstr ""
 
@@ -1654,6 +1684,7 @@ msgstr ""
 msgid "Loading tasks..."
 msgstr ""
 
+#: src/admin/components/ChatHistorySidebar.jsx:101
 #: src/admin/pages/Inbox.jsx:130
 #: src/admin/pages/Memory.jsx:288
 #: src/admin/pages/Workflows.jsx:673
@@ -1760,7 +1791,7 @@ msgstr ""
 msgid "Move up"
 msgstr ""
 
-#: src/admin/pages/Chat.jsx:31
+#: src/admin/pages/Chat.jsx:94
 msgid "Multi-Agent"
 msgstr ""
 
@@ -1772,6 +1803,10 @@ msgstr ""
 #: src/admin/pages/Workflows.jsx:356
 #: src/admin/pages/Workflows.jsx:631
 msgid "New Workflow"
+msgstr ""
+
+#: src/admin/components/ChatHistorySidebar.jsx:91
+msgid "New chat"
 msgstr ""
 
 #: src/admin/components/TaskDetails.jsx:35
@@ -1812,6 +1847,10 @@ msgstr ""
 
 #: includes/Modules/Sales/Tools/GetBestSellersTool.php:56
 msgid "No paid orders found for this period."
+msgstr ""
+
+#: src/admin/components/ChatHistorySidebar.jsx:104
+msgid "No previous chats yet."
 msgstr ""
 
 #: src/admin/pages/Inbox.jsx:97
@@ -1870,11 +1909,11 @@ msgstr ""
 msgid "Open"
 msgstr ""
 
-#: includes/Agents/ChatTaskAutoPlanner.php:459
+#: includes/Agents/ChatTaskAutoPlanner.php:487
 msgid "Open **Agent Tasks** to watch progress, pause, or cancel individual tasks. Elementor layout work still needs the Elementor assistant in the page editor."
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:273
+#: src/admin/components/ChatInterface.jsx:291
 msgid "Open Agent Tasks"
 msgstr ""
 
@@ -1971,7 +2010,7 @@ msgstr ""
 #: includes/Modules/Admin/Tools/DeleteProductTool.php:65
 #: includes/Modules/Admin/Tools/GenerateImageTool.php:64
 #: includes/Modules/Admin/Tools/GetPostTool.php:39
-#: includes/Modules/Admin/Tools/GetProductTool.php:43
+#: includes/Modules/Admin/Tools/GetProductTool.php:44
 #: includes/Modules/Admin/Tools/GetUserTool.php:39
 #: includes/Modules/Admin/Tools/ListPostsTool.php:58
 #: includes/Modules/Admin/Tools/ListProductsTool.php:44
@@ -1979,7 +2018,7 @@ msgstr ""
 #: includes/Modules/Admin/Tools/ListUsersTool.php:40
 #: includes/Modules/Admin/Tools/UpdateMediaTool.php:42
 #: includes/Modules/Admin/Tools/UpdatePostTool.php:58
-#: includes/Modules/Admin/Tools/UpdateProductTool.php:49
+#: includes/Modules/Admin/Tools/UpdateProductTool.php:73
 #: includes/Modules/Elementor/Tools/AddAttachedImageTool.php:41
 #: includes/Modules/Elementor/Tools/AddAttachedImageTool.php:48
 #: includes/Modules/Elementor/Tools/ApplyMediaToElementTool.php:39
@@ -2098,6 +2137,10 @@ msgstr ""
 msgid "Product"
 msgstr ""
 
+#: includes/Agents/ChatTaskAutoPlanner.php:528
+msgid "Product #%d"
+msgstr ""
+
 #: src/admin/pages/Workflows.jsx:20
 msgid "Product Description"
 msgstr ""
@@ -2109,6 +2152,10 @@ msgstr ""
 
 #: includes/Agents/TaskTemplates.php:43
 msgid "Product Descriptions"
+msgstr ""
+
+#: includes/Modules/Admin/Tools/UpdateProductTool.php:125
+msgid "Product and Rank Math SEO settings updated."
 msgstr ""
 
 #: includes/Modules/Sales/Tools/GetProductDetailsTool.php:52
@@ -2125,17 +2172,17 @@ msgid "Product niche"
 msgstr ""
 
 #: includes/Modules/Admin/Tools/DeleteProductTool.php:72
-#: includes/Modules/Admin/Tools/GetProductTool.php:49
-#: includes/Modules/Admin/Tools/UpdateProductTool.php:55
+#: includes/Modules/Admin/Tools/GetProductTool.php:50
+#: includes/Modules/Admin/Tools/UpdateProductTool.php:79
 #: includes/Modules/Sales/Tools/GetProductDetailsTool.php:45
 msgid "Product not found."
 msgstr ""
 
-#: includes/Modules/Admin/Tools/GetProductTool.php:66
+#: includes/Modules/Admin/Tools/GetProductTool.php:71
 msgid "Product retrieved."
 msgstr ""
 
-#: includes/Modules/Admin/Tools/UpdateProductTool.php:81
+#: includes/Modules/Admin/Tools/UpdateProductTool.php:122
 msgid "Product updated."
 msgstr ""
 
@@ -2181,7 +2228,7 @@ msgstr ""
 msgid "Queued agent task \"%s\". It will run step-by-step in Agent Tasks."
 msgstr ""
 
-#: includes/Agents/ChatTaskAutoPlanner.php:445
+#: includes/Agents/ChatTaskAutoPlanner.php:473
 msgid "Queued tasks:"
 msgstr ""
 
@@ -2221,7 +2268,7 @@ msgstr ""
 msgid "Recommended Products"
 msgstr ""
 
-#: includes/AI/OpenAICompatibleProvider.php:356
+#: includes/AI/OpenAICompatibleProvider.php:360
 msgid "Reference image edit failed."
 msgstr ""
 
@@ -2241,7 +2288,7 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:366
+#: src/admin/components/ChatInterface.jsx:384
 msgid "Remove attachment"
 msgstr ""
 
@@ -2296,6 +2343,11 @@ msgstr ""
 
 #: includes/Agents/TaskTemplates.php:26
 msgid "SEO Articles Batch"
+msgstr ""
+
+#: includes/Agents/ChatTaskAutoPlanner.php:536
+#: includes/Agents/TaskTemplates.php:380
+msgid "SEO update: %s"
 msgstr ""
 
 #: includes/Modules/Sales/SalesModule.php:69
@@ -2420,7 +2472,7 @@ msgstr ""
 msgid "Sections: %1$d | Section images: %2$d/%3$d | FAQ: %4$d"
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:118
+#: src/admin/components/ChatInterface.jsx:132
 msgid "See attached items."
 msgstr ""
 
@@ -2444,7 +2496,7 @@ msgstr ""
 msgid "Semantic search..."
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:401
+#: src/admin/components/ChatInterface.jsx:419
 #: src/elementor/Panel.jsx:265
 #: src/frontend/Widget.jsx:257
 msgid "Send"
@@ -2468,8 +2520,8 @@ msgstr ""
 msgid "Settings saved successfully."
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:481
-#: includes/Agents/TaskTemplates.php:510
+#: includes/Agents/TaskTemplates.php:521
+#: includes/Agents/TaskTemplates.php:550
 msgid "Shop"
 msgstr ""
 
@@ -2698,7 +2750,7 @@ msgstr ""
 msgid "Things the assistant must do when helping customers."
 msgstr ""
 
-#: src/admin/components/ChatInterface.jsx:348
+#: src/admin/components/ChatInterface.jsx:366
 #: src/elementor/Panel.jsx:223
 msgid "Thinking..."
 msgstr ""
@@ -2826,6 +2878,10 @@ msgstr ""
 msgid "Untitled"
 msgstr ""
 
+#: src/admin/components/ChatHistorySidebar.jsx:24
+msgid "Untitled chat"
+msgstr ""
+
 #: includes/Modules/Elementor/ElementorModule.php:140
 msgid "Update the selected widget heading text"
 msgstr ""
@@ -2915,7 +2971,7 @@ msgstr ""
 msgid "What is in my cart?"
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:143
+#: includes/Modules/Admin/AdminModule.php:145
 #: src/admin/components/ChatInterface.jsx:19
 msgid "What posts do I have on my site?"
 msgstr ""
@@ -2972,9 +3028,9 @@ msgstr ""
 #: includes/Agents/TaskStepExecutor.php:1069
 #: includes/Modules/Admin/Tools/CreateProductTool.php:44
 #: includes/Modules/Admin/Tools/DeleteProductTool.php:61
-#: includes/Modules/Admin/Tools/GetProductTool.php:39
+#: includes/Modules/Admin/Tools/GetProductTool.php:40
 #: includes/Modules/Admin/Tools/ListProductsTool.php:40
-#: includes/Modules/Admin/Tools/UpdateProductTool.php:45
+#: includes/Modules/Admin/Tools/UpdateProductTool.php:69
 #: includes/Modules/Sales/Tools/GetProductDetailsTool.php:37
 #: includes/Modules/Sales/Tools/RecommendProductsTool.php:38
 #: includes/Modules/Sales/Tools/SearchProductsTool.php:38
@@ -3000,7 +3056,7 @@ msgstr ""
 msgid "Write a brief WordPress site health report for the administrator. Cover content overview, technical context, and 5 actionable recommendations. Use markdown headings and bullet points. Keep it under 400 words."
 msgstr ""
 
-#: includes/Modules/Admin/AdminModule.php:145
+#: includes/Modules/Admin/AdminModule.php:147
 #: src/admin/components/ChatInterface.jsx:20
 msgid "Write an SEO-optimized blog post about [topic]"
 msgstr ""
@@ -3013,7 +3069,7 @@ msgstr ""
 msgid "Write product description"
 msgstr ""
 
-#: includes/Agents/TaskTemplates.php:360
+#: includes/Agents/TaskTemplates.php:365
 msgid "Writing product description %d"
 msgstr ""
 
@@ -3046,7 +3102,7 @@ msgstr ""
 msgid "Your request has been sent to our team. We will get back to you soon."
 msgstr ""
 
-#: includes/Agents/ChatTaskAutoPlanner.php:443
+#: includes/Agents/ChatTaskAutoPlanner.php:471
 msgid "Your request was split into background agent tasks and queued for step-by-step execution."
 msgstr ""
 

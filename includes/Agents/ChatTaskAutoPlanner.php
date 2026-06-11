@@ -8,6 +8,7 @@
 namespace AgenPress\Agents;
 
 use AgenPress\AI\ProviderFactory;
+use AgenPress\Media\AttachmentContext;
 use AgenPress\Security\Capabilities;
 
 defined( 'ABSPATH' ) || exit;
@@ -58,25 +59,31 @@ class ChatTaskAutoPlanner {
 	/**
 	 * Try to queue one or more agent tasks from a chat message.
 	 *
-	 * @param string $message User message.
-	 * @param int    $user_id User ID.
+	 * @param string               $message     User message.
+	 * @param int                  $user_id     User ID.
+	 * @param array<int, mixed>    $attachments Optional chat attachments.
 	 * @return array{tasks: array<int, array<string, mixed>>, summary: string}|null
 	 */
-	public function try_queue( string $message, int $user_id ): ?array {
+	public function try_queue( string $message, int $user_id, array $attachments = array() ): ?array {
 		if ( ! user_can( $user_id, Capabilities::RUN_AGENTS ) ) {
 			return null;
 		}
 
-		$message = trim( $message );
+		$message          = trim( $message );
+		$effective_message = trim( AttachmentContext::append_to_content( $message, $attachments ) );
 
-		if ( ! $this->is_eligible( $message ) ) {
+		if ( ! $this->is_eligible( $effective_message, $attachments ) ) {
 			return null;
 		}
 
-		$definitions = $this->plan_with_ai( $message );
+		$definitions = $this->detect_product_seo_update_tasks( $effective_message, $attachments );
 
 		if ( empty( $definitions ) ) {
-			$definitions = $this->plan_with_rules( $message );
+			$definitions = $this->plan_with_ai( $effective_message );
+		}
+
+		if ( empty( $definitions ) ) {
+			$definitions = $this->plan_with_rules( $effective_message, $attachments );
 		}
 
 		if ( count( $definitions ) < 1 ) {
@@ -106,17 +113,22 @@ class ChatTaskAutoPlanner {
 	/**
 	 * Whether a message looks like a multi-step project request.
 	 *
-	 * @param string $message User message.
+	 * @param string            $message     User message (may include attachment context).
+	 * @param array<int, mixed> $attachments Optional chat attachments.
 	 * @return bool
 	 */
-	public function is_eligible( string $message ): bool {
+	public function is_eligible( string $message, array $attachments = array() ): bool {
 		$message = trim( $message );
+
+		if ( count( $this->parse_attached_product_ids( $attachments, $message ) ) >= 2 ) {
+			return true;
+		}
 
 		if ( mb_strlen( $message ) < 80 ) {
 			return false;
 		}
 
-		if ( preg_match( '/\b(?:تسک|task\s*queue|agent\s*task|queue\s*task|صف\s*تسک)\b/iu', $message ) ) {
+		if ( preg_match( '/\b(?:تسک|task\s*queue|agent\s*task|queue\s*task|صف\s*(?:تسک|وظایف)|وظایف)\b/iu', $message ) ) {
 			return true;
 		}
 
@@ -147,7 +159,7 @@ class ChatTaskAutoPlanner {
 	private function plan_with_ai( string $message ): array {
 		$templates = array(
 			'seo_articles'         => 'Batch SEO blog posts. Params: count (int), topic (string), publish (bool).',
-			'product_descriptions' => 'WooCommerce products with SEO copy and AI images. Params: count (int), niche (string), create_new (bool, true when user asks to create/add sample products), publish (bool). Requires WooCommerce.',
+			'product_descriptions' => 'WooCommerce products with SEO copy, full descriptions, Rank Math fields, and optional AI images. Params: count (int), niche (string), create_new (bool), publish (bool), product_ids (array of ints when updating specific attached products). Requires WooCommerce. For multiple attached products, create ONE task per product with product_ids:[id] and count:1.',
 			'custom'               => 'Any other multi-step WordPress admin work. Params: optional.',
 		);
 
@@ -164,8 +176,9 @@ class ChatTaskAutoPlanner {
 			. "Request:\n%s\n\n"
 			. "Available templates:\n%s\n\n"
 			. "Rules:\n"
-			. "- Set should_queue true only for multi-step projects (2+ distinct deliverables such as pages, products, articles, or site sections).\n"
-			. "- Split work into separate tasks (e.g. blog batch, product batch, each static page).\n"
+			. "- Set should_queue true for multi-step projects (2+ distinct deliverables such as pages, products, articles, or site sections) and for bulk SEO updates on multiple attached/mentioned products.\n"
+			. "- When the user attaches or lists multiple specific products (@ links, post_id lines), create ONE separate product_descriptions task per product (params.product_ids with a single ID, count:1, create_new:false).\n"
+			. "- Split work into separate tasks (e.g. blog batch, one task per product SEO update, each static page).\n"
 			. "- Use the same language as the user for titles and descriptions.\n"
 			. "- Include relevant brand/site details from the request in each task description.\n"
 			. "- Use EXACT quantities from the user request in params.count (e.g. «یک عدد محصول» = count:1, «1 پست» = count:1). Never default to 5.\n"
@@ -207,10 +220,17 @@ class ChatTaskAutoPlanner {
 	/**
 	 * Rule-based fallback decomposition.
 	 *
-	 * @param string $message User message.
+	 * @param string            $message     User message.
+	 * @param array<int, mixed> $attachments Optional chat attachments.
 	 * @return array<int, array<string, mixed>>
 	 */
-	private function plan_with_rules( string $message ): array {
+	private function plan_with_rules( string $message, array $attachments = array() ): array {
+		$definitions = $this->detect_product_seo_update_tasks( $message, $attachments );
+
+		if ( ! empty( $definitions ) ) {
+			return $this->normalize_definitions( $definitions );
+		}
+
 		$definitions = array();
 		$topic       = $this->extract_topic( $message );
 
@@ -376,18 +396,26 @@ class ChatTaskAutoPlanner {
 			}
 
 			if ( 'product_descriptions' === $template ) {
+				$product_ids = TaskTemplates::normalize_product_ids( $params['product_ids'] ?? array() );
+
 				$params = array_merge(
 					array(
-						'count'      => TaskTemplates::parse_product_count( $task_description ) ?? 1,
-						'create_new' => TaskTemplates::should_create_products( $task_description ),
+						'count'      => ! empty( $product_ids ) ? count( $product_ids ) : ( TaskTemplates::parse_product_count( $task_description ) ?? 1 ),
+						'create_new' => empty( $product_ids ) && TaskTemplates::should_create_products( $task_description ),
 						'niche'      => TaskTemplates::parse_topic( $task_description ),
 						'publish'    => false,
 					),
 					$params
 				);
 
+				if ( ! empty( $product_ids ) ) {
+					$params['product_ids'] = $product_ids;
+					$params['count']       = count( $product_ids );
+					$params['create_new']  = false;
+				}
+
 				$parsed_products = TaskTemplates::parse_product_count( $task_description );
-				if ( null !== $parsed_products ) {
+				if ( null !== $parsed_products && empty( $product_ids ) ) {
 					$params['count'] = $parsed_products;
 				}
 			}
@@ -464,6 +492,108 @@ class ChatTaskAutoPlanner {
 		}
 
 		return implode( "\n", $lines );
+	}
+
+	/**
+	 * Build one queued task per attached product for SEO/description updates.
+	 *
+	 * @param string            $message     User message.
+	 * @param array<int, mixed> $attachments Optional chat attachments.
+	 * @return array<int, array<string, mixed>>
+	 */
+	private function detect_product_seo_update_tasks( string $message, array $attachments = array() ): array {
+		if ( ! class_exists( 'WooCommerce' ) ) {
+			return array();
+		}
+
+		$product_ids = $this->parse_attached_product_ids( $attachments, $message );
+
+		if ( count( $product_ids ) < 2 ) {
+			return array();
+		}
+
+		if ( ! $this->looks_like_product_seo_update( $message ) ) {
+			return array();
+		}
+
+		$definitions = array();
+		$niche       = $this->extract_topic( $message );
+
+		foreach ( $product_ids as $product_id ) {
+			$title = get_the_title( $product_id );
+
+			if ( '' === $title ) {
+				$title = sprintf(
+					/* translators: %d: product ID */
+					__( 'Product #%d', 'agenpress' ),
+					$product_id
+				);
+			}
+
+			$definitions[] = array(
+				'title'       => sprintf(
+					/* translators: %s: product title */
+					__( 'SEO update: %s', 'agenpress' ),
+					$title
+				),
+				'description' => $message,
+				'template'    => 'product_descriptions',
+				'params'      => array(
+					'product_ids' => array( $product_id ),
+					'count'       => 1,
+					'create_new'  => false,
+					'niche'       => $niche,
+					'publish'     => false,
+				),
+			);
+		}
+
+		return $definitions;
+	}
+
+	/**
+	 * Whether a message asks for SEO/product copy updates.
+	 *
+	 * @param string $message User message.
+	 * @return bool
+	 */
+	private function looks_like_product_seo_update( string $message ): bool {
+		return (bool) preg_match(
+			'/(?:سئو|seo|rank\s*math|rankmath|توضیحات|description|focus\s*keyword|کلیدواژه|کلمه\s*کلیدی|meta\s*(?:title|description)|بروزرسانی|به‌روز|update|اصلاح|edit)/iu',
+			$message
+		);
+	}
+
+	/**
+	 * Parse WooCommerce product IDs from attachments or message context.
+	 *
+	 * @param array<int, mixed> $attachments Optional chat attachments.
+	 * @param string            $message     User message.
+	 * @return array<int, int>
+	 */
+	private function parse_attached_product_ids( array $attachments, string $message = '' ): array {
+		$product_ids = array();
+
+		foreach ( $attachments as $attachment ) {
+			if ( ! is_array( $attachment ) ) {
+				continue;
+			}
+
+			$post_id   = (int) ( $attachment['post_id'] ?? $attachment['id'] ?? 0 );
+			$post_type = sanitize_key( (string) ( $attachment['post_type'] ?? '' ) );
+
+			if ( $post_id > 0 && 'product' === $post_type ) {
+				$product_ids[] = $post_id;
+			}
+		}
+
+		if ( preg_match_all( '/post_id:\s*(\d+).{0,40}post_type:\s*product/iu', $message, $matches ) ) {
+			foreach ( $matches[1] as $product_id ) {
+				$product_ids[] = (int) $product_id;
+			}
+		}
+
+		return TaskTemplates::normalize_product_ids( $product_ids );
 	}
 
 	/**
